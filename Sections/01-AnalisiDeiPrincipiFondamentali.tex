@@ -1,0 +1,439 @@
+\section{Analisi dei principi fondamentali}
+
+\subsection{Vincoli}
+
+\note{Lezione 17/03/2026}
+Verranno considerati sistemi finiti di punti e di corpi rigidi con vincoli che ne limitano le posizioni. Questi vincoli possono essere in moto assegnato, su cui non vi è influenza da parte del sistema.
+
+L'insieme dei parametri che occorrono per determinare la posizione del corpo è
+\begin{equation*}
+    \xi_1, \xi_2, \dots, \xi_\ell.
+\end{equation*}
+
+\begin{definition}[Vincoli olonomi]
+I vincoli olonomi non dipendono dalle velocità e sono espressi da disequazioni del tipo
+\begin{align*}
+    \varphi_\alpha(\xi_1, \xi_2, \dots, \xi_\ell, t) &= 0 \quad \alpha = 1, 2, \dots, r \note{bilateri}\\
+    \psi_\beta(\xi_1, \xi_2, \dots, \xi_\ell, t) &\geq 0 \quad \beta = 1, 2, \dots, s.\note{unilaterali}
+\end{align*}
+\end{definition}
+
+\begin{definition}[Gradi di libertà]
+Il numero di gradi di libertà del sistema è dato da
+\begin{equation*}
+    n = \ell - \rho,
+\end{equation*}
+dove $\ell$ è il numero di parametri e $\rho$ è il rango della matrice Jacobiana dei vincoli, ovvero
+\begin{equation*}
+    \rho = \rank \left( \frac{\partial (\varphi_1, \varphi_2, \dots, \varphi_r)}{\partial (\xi_1, \xi_2, \dots, \xi_\ell)} \right).
+\end{equation*}
+Per cui si ha che il numero di gradi di libertà è dato dal numero dei parametri meno il numero di vincoli linearmente indipendenti.
+\end{definition}
+
+\subsection{Coordinate lagrangiane}
+Possiamo dimostrare che esistono $n$ funzioni indipendenti $q_1, q_2, \dots, q_n$ tali che
+\begin{equation*}
+    \xi_i = \xi_i(q_1, q_2, \dots, q_n, t) \quad i = 1, 2, \dots, \ell.
+\end{equation*}
+La dipendenza dal tempo è presente solo se almeno uno di questi parametri dipende esplicitamente dal tempo.
+
+Questo procedimento è la generalizzazione dell'espressione di $x$ e $y$ in funzione di $\theta$ per le coordinate polari.
+
+\begin{definition}[Coordinate lagrangiane]
+Questi $n$ parametri $q_1, q_2, \dots, q_n$ sono detti \emph{coordinate lagrangiane}, \emph{coordinate generalizzate} o \emph{coordinate libere}\note{libere enfatizza il fatto che siano indipendenti} del sistema.
+\end{definition}
+
+\begin{example}[Guida rettilinea ruotante]
+Consideriamo un punto che può scorrere liberamente su una guida rettilinea ruotante nel piano $(O, x, y)$ che si muove con una velocità angolare $\omega$ positiva. Consideriamo la distanza $\delta=\abs{OP}$ tra il punto e l'origine. Descriviamo la posizione del punto con
+\begin{equation*}
+    \begin{cases}
+        x = \delta \cos(\omega t) \\
+        y = \delta \sin(\omega t)
+    \end{cases}
+\end{equation*}
+avendo quindi la dipendenza dal tempo.
+\end{example}
+
+\begin{remark}
+Le coordinate lagrangiane non sono univoche: esiste una corrispondenza più forte della biunivoca fra le coordinate lagrangiane e i parametri $\xi_1, \xi_2, \dots, \xi_\ell$, detta \emph{diffeomorfismo}. In particolare, se $q_1, q_2, \dots, q_n$ sono coordinate lagrangiane, allora anche $q_1', q_2', \dots, q_n'$ con
+\begin{equation*}
+    q_i' = q_i'(q_1, q_2, \dots, q_n, t) \quad i = 1, 2, \dots, n
+\end{equation*}
+sono coordinate lagrangiane.
+\end{remark}
+
+\subsection{Spostamenti infinitesimi}
+Sia $\mathcal{C}_n$ uno spazio delle configurazioni reale $n$-dimensionale. Lo consideriamo come fosse uno spazio $\R^n$\note{È così solo localmente}.
+
+Il moto del sistema è descritto fissando le funzioni
+\begin{equation*}
+    \begin{cases}
+        q_k = q_k(t) \\
+        h = 1, 2, \dots, n
+    \end{cases}
+    \quad t \in [t_1, t_2]
+\end{equation*}
+le quali hanno "incorporate" il rispetto dei vincoli bilateri. Solitamente supponiamo che queste funzioni siano di classe $C^2([t_1, t_2])$.
+
+Introduciamo ora il concetto di \emph{spostamenti infinitesimi} o \emph{variazioni}.\note{Non ci sono approssimazioni, sotto ci sono formulazioni esatte}
+
+Consideriamo il sistema di coordinate lagrangiane
+\begin{equation*}
+    P = P(q_1, q_2, \dots, q_n; t).
+\end{equation*}
+
+Possiamo calcolare la velocità del punto $P$ come
+\begin{equation*}
+    \vv = \dv{P}{t} = \sum_{h=1}^n \pdv{P}{q_h} \dot{q}_h + \pdv{P}{t},
+\end{equation*}
+in modo da definire lo \emph{spostamento infinitesimo}:
+\begin{equation*}
+    \dd{P} = \vv \dd{t} = \sum_{h=1}^n \pdv{P}{q_h} \dd{q}_h + \pdv{P}{t} \dd{t}.
+\end{equation*}
+
+\begin{example}[Circonferenza, versore trasversale]
+\textbf{Esempio circonferenza versore trasversale etc. da completare.}
+\end{example}
+
+In un caso con una sola coordinata $s$ possiamo scrivere
+\begin{equation*}
+    \dd{P} = \pdv{P}{s} \dd{s} + \pdv{P}{t} \dd{t},
+\end{equation*}
+mentre definiamo
+\begin{equation*}
+    \var{P} = \pdv{P}{s} \var{s},
+\end{equation*}
+caso in cui non c'è la dipendenza dal tempo.
+
+\begin{definition}[Spostamenti possibili e virtuali]
+Parliamo di spostamenti \emph{reali} quando $\dd{t} \neq 0$ e di spostamenti \emph{virtuali} quando $\dd{t} = 0$.\note{Probabilmente Stevino nel '500 è stato il primo a parlare di spostamenti virtuali, con maggiore sistematizzazione da parte di Bernoulli e poi Lagrange.}
+Per cui abbiamo:
+\begin{align*}
+    \dd{P} &= \sum_{h=1}^n \pdv{P}{q_h} \dd{q}_h + \pdv{P}{t} \dd{t} \quad &\text{spostamenti possibili} \\
+    \var{P} &= \sum_{h=1}^n \pdv{P}{q_h} \delta q_h \quad &\text{spostamenti virtuali}.
+\end{align*}
+\end{definition}
+
+Tornando alla particella vincolata a muoversi su una guida ruotante, se consideriamo l'istante $t + \dd{t}$, vi sarà uno spostamento possibile $\dd{P}$. Invece se consideriamo il vincolo come se fosse fisso, solitamente si dice \emph{vincolo congelato}, allora si avrà uno spostamento virtuale $\var{P}$. \textbf{inserisci figura}
+
+Spostamenti virtuali e reali coincidono se si hanno vincoli indipendenti dal tempo.
+
+\subsubsection{Vincoli unilateri e spostamenti ammessi}
+Le coordinate lagrangiane non hanno incorporato il rispetto dei vincoli unilaterali per cui bisogna fare in modo che gli spostamenti virtuali rispettino anche questi vincoli.
+\begin{equation*}
+    \begin{cases}
+        g_j(q_1, q_2, \dots, q_n, t) \geq 0 \\
+        j = 1, 2, \dots, s
+    \end{cases}
+\end{equation*}
+
+\begin{example}[Punto in una circonferenza]
+Consideriamo un punto che si muove all'interno di una circonferenza di raggio $r$ con centro nell'origine.
+\begin{equation*}
+    \begin{cases}
+        x = \rho \cos \theta \\
+        y = \rho \sin \theta
+    \end{cases}
+\end{equation*}
+Il vincolo unilaterale che abbiamo è
+\begin{equation*}
+    x^2 + y^2 \leq r^2 \implies \rho \leq r.
+\end{equation*}
+
+Tutti i vincoli unilaterali sono soddisfatti come disuguaglianze strette, dandoci le posizioni (o configurazioni) ordinarie
+\begin{equation*}
+    x^2 + y^2 < r^2 \implies \rho < r.
+\end{equation*}
+Invece parliamo di posizioni di confine quando almeno una delle disequazioni è verificata come uguaglianza, in questo caso avremo
+\begin{equation*}
+    x^2 + y^2 = r^2 \implies \rho = r.
+\end{equation*}
+\end{example}
+
+Ci sono spostamenti infinitesimi consentiti, che rispettano i vincoli unilaterali, e spostamenti infinitesimi non consentiti, che violano almeno uno dei vincoli unilaterali, per esempio uscendo dalla circonferenza.
+
+\begin{definition}[Reversibilità]
+Diremo che uno spostamento virtuale è \emph{reversibile} se il suo opposto è anch'esso uno spostamento virtuale, altrimenti diremo che è \emph{irreversibile}.
+\end{definition}
+
+Tornando al disco che si espande. \textbf{inserisci figura}.
+
+\begin{remark}
+Nelle configurazioni ordinarie (tutti i vincoli unilaterali soddisfatti strettamente) gli spostamenti virtuali sufficientemente piccoli sono reversibili; nelle configurazioni di confine compaiono spostamenti virtuali irreversibili.
+\end{remark}
+
+Matematicamente:
+\begin{align*}
+    \text{Configurazione ordinaria:}\quad
+    g_j(q_1, q_2, \dots, q_n, t) &> 0 \qquad \forall j = 1, 2, \dots, s, \\
+    g_j(q_1 \pm \var{q_1}, q_2 \pm \var{q_2}, \dots, q_n \pm \var{q_n}, t) &> 0
+    \qquad \forall j,\ \forall \abs{\var{q_k}} < \varepsilon.
+\end{align*}
+
+\begin{align*}
+    \text{Configurazione di confine:}\quad
+    \exists j^*:\ g_{j^*}(q_1, q_2, \dots, q_n, t) &= 0, \\
+    g_{j^*}(q_1 + \var{q_1}, q_2 + \var{q_2}, \dots, q_n + \var{q_n}, t) &> 0
+    \qquad \forall \abs{\var{q_k}} < \varepsilon, \\
+    g_{j^*}(q_1 - \var{q_1}, q_2 - \var{q_2}, \dots, q_n - \var{q_n}, t) &< 0
+    \qquad \text{per qualche } \abs{\var{q_k}} < \varepsilon.
+\end{align*}
+
+\subsection{Problema meccanico dei vincoli}
+\begin{proposition}[Postulato delle reazioni vincolari]
+Ogni vincolo può essere sostituito con un sistema di forze, dette \emph{reazioni vincolari}, senza alterare lo stato di quiete o di moto del sistema materiale.
+\end{proposition}
+
+Supporremo vincoli \emph{lisci}.
+\begin{definition}[Superficie liscia]
+    Diremo che una superficie è liscia, o priva di attrito, se è in grado di esercitare tutte e sole le reazioni vincolari ad essa normali e rivolte verso l'esterno, cioè verso la regione in cui il sistema può muoversi.
+\end{definition}
+
+Diremo che un sistema materiale ha vincoli privi di attrito se tutte le superfici degli ostacoli esterni e dei corpi del sistema sono lisce.
+
+\textbf{Figura}
+
+\begin{equation*}
+    \dd{L} = \vF\cdot \dd{\vP} = \sum_{i=1}^n F_i \cdot \dd{\vP_i}.
+\end{equation*}
+
+Possiamo anche definire il lavoro virtuale
+\begin{equation*}
+    \delta L = \vF\cdot \var{\vP} = \sum_{i=1}^n F_i \cdot \var{\vP_i}.
+\end{equation*}
+
+Indichiamo con $\var{L}^{(V)}$ il lavoro virtuale delle reazioni vincolari.
+\begin{proposition}[Vincoli lisci e lavoro virtuale]
+Per un sistema olonomo con vincoli lisci si ha
+\begin{equation*}
+    \var{L}^{(V)} \geq 0 \quad \forall \var{P} \text{ spostamento virtuale}.
+\end{equation*}
+In particolare, $\var{L}^{(V)} = 0$ per gli spostamenti virtuali reversibili.
+\end{proposition}
+
+\begin{definition}
+    Diremo \emph{vincoli ideali} tutti i vincoli che verificano la disuguaglianza
+    \begin{equation*}
+        \var{L}^{(V)} \geq 0 \quad \forall \var{P} \text{ spostamento virtuale}.
+    \end{equation*}
+\end{definition}
+
+\begin{remark}
+    Esistono vincoli ideali che non sono privi di attrito.
+\end{remark}
+
+Questa è l'espressione analitica del fatto che la reazione vincolare deve essere normale alla superficie di contatto.
+
+Un sistema olonomo si dice a vincoli ideali se \note{Lezione 19/03/2026}
+\begin{equation*}
+    Se \var{L}^{(V)} \geq 0
+\end{equation*}
+per ogni spostamento virtuale effettuato a partire da una configurazione fissata.
+
+Proprietà: Se $\mathcal{S}$ p un sistema a vincoli privi di attrito allora è a vincoli ideali.
+
+\section{Equazioni di Lagrange}
+Talvolta le equazioni che seguono sono dette di Eulero-Lagrange, ma la derivazione che faremo è propriamente di Lagrange. Risale al 1788, con la pubblicazione del \emph{Mécanique Analytique}.
+
+Consideriamo un sistema olonomo di punti
+\begin{equation*}
+    \mathcal{S} = \{(\vP_1, 
+    m_1), (\vP_2, m_2), \dots, (\vP_N, m_N)\}.
+\end{equation*}
+dove $m_i$ è la massa del punto $\vP_i$, a cui è soggetto un ssitema di forze\note{o sollecitazione}
+\begin{equation*}
+    \Sigma=\{(\vP_1, \vF_1), (\vP_2, \vF_2), \dots, (\vP_N, \vF_N)\},
+\end{equation*}
+
+e un sistema di coordinate lagrangiane con le relative velcità 
+\begin{equation*}
+    \dot{\vq} = (\dot{q}_1, \dot{q}_2, \dots, \dot{q}_n) \qquad \vq=(q_1, q_2, \dots, q_n).
+\end{equation*}
+
+La generica forza $\vF_i$ può dipendere dalle posizioni dei punti, le loro velocità, e dal tempo:
+\begin{equation*}
+    \vF_i = \vF_i(\vP_1, \vP_2, \dots, \vP_N; \dot{\vP}_1, \dot{\vP}_2, \dots, \dot{\vP}_N; t).
+\end{equation*}
+
+Ricordiamo che la velocità di un punto $\vP_i$ è data da
+\begin{equation*}
+    \vv=\dv{\vP_i}{t} = \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t},
+\end{equation*}
+per cui possiamo scrivere la forza $\vF_i$ come
+\begin{equation*}
+    \vF_i = \vF_i(\vP_1, \vP_2, \dots, \vP_N; \vv; t).
+\end{equation*}
+
+Calcoliamo il lavoro virtuale totale
+\begin{equation*}
+    \var{L} = \sum_{i=1}^N \vF_i \cdot \var{\vP}_i = \sum_{i=1}^N \vF_i \cdot \sum_{h=1}^n \pdv{\vP_i}{q_h} \var{q}_h = \sum_{h=1}^n \left( \sum_{i=1}^N \vF_i \cdot \pdv{\vP_i}{q_h} \right) \var{q}_h.
+\end{equation*}
+Definiamo le componenti lagrangiane della sollecitaizione
+\begin{equation*}
+    Q_k \defeq \sum_{i=1}^N \vF_i \cdot \pdv{\vP_i}{q_k},
+\end{equation*}
+ottenuiamo quindi
+\begin{equation*}
+    \var{L} = \sum_{h=1}^n Q_h \var{q}_h.
+\end{equation*}
+
+\begin{example}[Caso in tre dimensioni]
+    Consideriamo un punto materiale soggetto alla forza $\vF$ e calcoliamo il lavoro virtuale.
+    \begin{gather*}
+        \var{\vP} = \var{x}\vu{i} + \var{y}\vu{j} + \var{z}\vu{k}, \\
+        \vF = F_x \vu{i} + F_y \vu{j} + F_z \vu{k}, \\
+        \var{L} = \vF \cdot \var{\vP} = F_x \var{x} + F_y \var{y} + F_z \var{z}.
+    \end{gather*}
+
+    In questo caso le componenti lagrangiane della forza corrispondo a quelle lagrangiane. Inoltre, si tratta semplicemente di una forma differenziale lineare in $\var{x}, \var{y}, \var{z}$.
+\end{example}
+
+Le $Q_h$ sono funzioni
+\begin{equation*}
+    Q_h = Q_h(q_1, q_2, \dots, q_n; \dot{q}_1, \dot{q}_2, \dots, \dot{q}_n; t).
+\end{equation*}
+
+\begin{definition}[Sistema di forze posizionali]
+    Un sistema di forze si dice \emph{posizionale} se le componenti lagrangiane dipendono solo dalle coordinate lagrangiane
+    \begin{equation*}
+        Q_h = Q_h(q_1, q_2, \dots, q_n).
+    \end{equation*}
+\end{definition}
+
+In meccanica newotniana, se in un sistea di forze
+\begin{equation*}
+    \vF_1, \dots, \vF_N,
+\end{equation*}
+per ogni forza $\vF_i$ esiste una funzione scalare
+\begin{equation*}
+    V = V(x_1, y_1, z_1; x_2, y_2, z_2; \dots; x_N, y_N, z_N),
+\end{equation*}
+tale che
+\begin{equation*}
+    \vF_i = -\grad_i V \quad i = 1, 2, \dots, N,
+\end{equation*}
+allora il sistema di forze è conservativo.
+
+\begin{definition}[Sistema di forze conservativo]
+    Diremo che un sistema di forze agenti su $\mathcal{S}$ (a vincoli fissi) è \emph{conservativo} se esiste una funzione
+    \begin{equation*}
+        V=V(q_1, q_2, \dots, q_n),
+    \end{equation*}
+    detta \emph{energia potenziale}, tale che
+    \begin{equation*}
+        \var{L} = -\var{V},
+    \end{equation*}
+    ovvero
+    \begin{equation*}
+        Q_h = -\pdv{V}{q_h} \quad h = 1, 2, \dots, n,
+    \end{equation*}
+    dove le $Q_h$ sono le componenti lagrangiane della sollecitazione considerata.
+\end{definition}
+
+In un sistema a vincoli fissi il lavoro virtuale coincide con quello reale, per cui se il sistema di forze è conservativo, allora
+\begin{equation*}
+    \dd{L} = -\dd{V}.
+\end{equation*}
+Inoltre si ha che la variazione dell'energia cinetica è uguale al lavoro totale del sistema di forze,
+\begin{equation*}
+    \dd{T} = \dd{L}.
+\end{equation*}
+Quindi, se il sistema di forze è conservativo, si ha che
+\begin{equation*}
+    \dd{T} = \dd{L} + \dd{V} = 0,
+\end{equation*}
+per cui l'energia meccanica totale è costante:
+\begin{equation*}
+    E = T + V = \text{costante}.
+\end{equation*}
+
+Ora, nel sistema oltre alle forze che agiscono sui punti, ci sono anche le forze vincolari, per cui
+\begin{equation*}
+    \dd{T} = \underbrace{\dd{L}^{(a)}}_{\text{conservative}} + \dd{L}^{(v)},
+\end{equation*}
+dove $\dd{L}^{(a)}$ è il lavoro reale delle forze attive, mentre $\dd{L}^{(v)}$ è il lavoro reale delle forze vincolari. Se i vincoli sono fissi (quindi il sistema è scleronomo), lisci e bilaterali, allora  si ha
+\begin{equation*}
+    \begin{cases}
+        \var{L}^{(v)} \geq 0 \\
+        -\var{L}^{(v)} \geq 0
+    \end{cases}
+    \implies
+    \begin{cases}
+        \vF\cdot \var{\vP} \geq 0 \\
+        -\vF\cdot \var{\vP} \geq 0
+    \end{cases}
+    \implies
+    \vF\cdot \var{\vP} = 0,
+\end{equation*}
+per cui
+\begin{equation*}
+    \dd{T} = \dd{L}^{(a)} = -\dd{V}.
+\end{equation*}
+
+\subsection{Energia cinetica di un sistema olonomo}
+L'energia cinetica di un sistema di $N$ punti materiali è data da
+\begin{equation*}
+    T = \frac{1}{2} \sum_{i=1}^N m_i v_i^2.
+\end{equation*}
+Teniamo però conto che possiamo esprimere ciascuna velocita come
+\begin{equation*}
+    \vv_i = \dv{\vP_i}{t} = \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t},
+\end{equation*}
+per cui otteniamo
+\begin{align*}
+    T &= \frac{1}{2} \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t} \right)^2 \\
+    &= \frac{1}{2} \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t} \right)\cdot \left( \sum_{k=1}^n \pdv{\vP_i}{q_k} \dot{q}_k + \pdv{\vP_i}{t} \right) \\
+    &= \frac{1}{2} \sum_{i=1}^N m_i \left[ \sum_{h,k=1}^n \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k} \dot{q}_h \dot{q}_k + 2 \sum_{h=1}^n \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{t} \dot{q}_h + \left(\pdv{\vP_i}{t}\right)^2 \right] \\
+    &= \underbrace{\frac{1}{2} \sum_{h,k=1}^n \left( \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k} \right) \dot{q}_h \dot{q}_k}_{T^2} + \underbrace{\sum_{h=1}^n \left( \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{t} \right) \dot{q}_h}_{T^1} + \underbrace{\frac{1}{2} \sum_{i=1}^N m_i \left(\pdv{\vP_i}{t}\right)^2}_{T^0}\\
+    &= T^2 + T^1 + T^0.
+\end{align*}
+Questo è un polinomio di secondo grado in $\dot{q}_i$. Definiamo
+\begin{equation*}
+    a_{hk} \defeq \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k}, \qquad a_{h} \defeq \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{t},
+\end{equation*}
+per cui otteniamo
+\begin{equation*}
+    T_2 = \frac{1}{2} \sum_{h,k=1}^n a_{hk}\, \dot{q}_h \dot{q}_k, \qquad T_1 = \sum_{h=1}^n a_h \,\dot{q}_h, \qquad T_0 = \frac{1}{2} \sum_{i=1}^N m_i \left(\pdv{\vP_i}{t}\right)^2.
+\end{equation*}
+
+\begin{remark}
+    Se il sistema è a vincoli indipendenti dal tempo, allora l'energia cinetica si riduce alla sola parte quadratica
+    \begin{equation*}
+        T = T^2.
+    \end{equation*}
+
+    Infatti si ha
+    \begin{equation*}
+        \pdv{\vP_i}{t} = 0 \quad \forall i = 1, 2, \dots, N,
+    \end{equation*}
+\end{remark}
+
+Si ricorda che gli elementi $a_{hk}$ dipendono in generale dalle coordinate lagrangiane, per cui non si tratta di un termine costante.
+
+La matrice $A = (a_{hk})$ è detta \emph{matrice di massa}
+
+Proprietà: $T^2$ è una forma quadratica definita positiva.
+\begin{proof}
+    \begin{align*}
+        \sum_{h,k=1}^n a_{hk}\, \xi_h \xi_k &= \sum_{h,k=1}^n\left(\sum_{i=1}^N m_i \pdv{\vP_i}{q_h}\cdot \pdv{\vP_i}{q_k}\right)\xi_h \xi_k \\
+        &= \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \xi_h \right)^2 \geq 0,
+    \end{align*}
+    pertanto è semidefinita positiva. Resta da dimostrare che  è uguale a zero solo se $\xi_h = 0$ per ogni $h = 1, 2, \dots, n$. Se $T^2 = 0$, allora
+    \begin{equation*}
+        \sum_{h=1}^n \pdv{\vP_i}{q_h} \xi_h = 0 \quad \forall i = 1, 2, \dots, N.
+    \end{equation*}
+
+    Notiamo che la somma delle derivate $\pdv{\vP_i}{q_h}$ rappresenta una combinazione lineare delle colonne della matrice Jacobiana delle coordinate
+    \begin{equation*}
+        \left(\begin{array}{cccc}
+            \pdv{x_1}{q_1} & \pdv{x_1}{q_2} & \dots & \pdv{x_1}{q_n} \\[0.2cm]
+            \pdv{y_1}{q_1} & \pdv{y_1}{q_2} & \dots & \pdv{y_1}{q_n} \\[0.2cm]
+            \pdv{z_1}{q_1} & \pdv{z_1}{q_2} & \dots & \pdv{z_1}{q_n} \\[0.2cm]
+            \vdots & \vdots & \ddots & \vdots \\[0.2cm]
+            \pdv{x_N}{q_1} & \pdv{x_N}{q_2} & \dots & \pdv{x_N}{q_n} \\[0.2cm]
+            \pdv{y_N}{q_1} & \pdv{y_N}{q_2} & \dots & \pdv{y_N}{q_n} \\[0.2cm]
+            \pdv{z_N}{q_1} & \pdv{z_N}{q_2} & \dots & \pdv{z_N}{q_n}
+        \end{array}\right)
+    \end{equation*}
+    che ha rango $n$. Per cui la somma è uguale a zero solo se $\xi_h = 0$ per ogni $h = 1, 2, \dots, n$ in quanto le $q_i$ sono indipendenti.
+\end{proof}

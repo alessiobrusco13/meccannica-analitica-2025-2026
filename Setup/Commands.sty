@@ -1,0 +1,57 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{Setup/Commands}[2026/03/16 Common math commands]
+
+% Sets
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+
+% Short vector aliases that map directly to physics package commands.
+\newcommand{\vh}{\vb{h}}
+\newcommand{\vk}{\vb{k}}
+\newcommand{\vvu}{\vb{u}}
+\newcommand{\vv}{\vb{v}}
+\newcommand{\vw}{\vb{w}}
+\newcommand{\vx}{\vb{x}}
+\newcommand{\vy}{\vb{y}}
+\newcommand{\vz}{\vb{z}}
+\newcommand{\vq}{\vb{q}}
+\newcommand{\vF}{\vb{F}}
+\newcommand{\vP}{\vb{P}}
+
+% Definition equality.
+\newcommand{\defeq}{\overset{\mathrm{def}}{=}}
+
+% Real/imaginary parts as operators (override fraktur defaults).
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+% ===================== Streamlined margin notes =========================
+% Tweaks (override before loading if you want)
+\providecommand{\NoteFontSize}{\scriptsize}     % note text size
+\providecommand{\NoteFont}{\itshape\sffamily}  % bold typewriter look
+\providecommand{\NoteColor}{black}              % text color
+\providecommand{\MarginNoteWidth}{3.2cm}        % box width
+
+% Margin width
+\setlength{\marginparwidth}{\MarginNoteWidth}
+
+% Side-aware alignment helper
+\newcommand{\NoteAlign}{%
+  \checkoddpage
+  \ifoddpage\raggedleftmarginnote\else\raggedrightmarginnote\fi
+}
+
+% Single \note command
+\newcommand{\note}[1]{%
+  \marginnote{%
+    \NoteAlign
+    \NoteFontSize
+    \begin{minipage}{\MarginNoteWidth}%
+      {\NoteFont\color{\NoteColor}#1}%
+    \end{minipage}%
+  }%
+}
+% ======================================================================
