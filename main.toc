@@ -1,10 +1,14 @@
 \babel@toc {italian}{}\relax 
 \babel@toc {italian}{}\relax 
 \contentsline {section}{\numberline {1}Analisi dei principi fondamentali}{2}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Vincoli}{2}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Coordinate lagrangiane}{2}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Spostamenti infinitesimi}{3}{subsection.1.3}%
-\contentsline {subsubsection}{\numberline {1.3.1}Vincoli unilateri e spostamenti ammessi}{4}{subsubsection.1.3.1}%
-\contentsline {subsection}{\numberline {1.4}Problema meccanico dei vincoli}{5}{subsection.1.4}%
-\contentsline {section}{\numberline {2}Equazioni di Lagrange}{6}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Energia cinetica di un sistema olonomo}{9}{subsection.2.1}%
+\contentsline {subsection}{\numberline {1.1}Vincoli e grado di libertà}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Coordinate lagrangiane}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Spostamenti infinitesimi}{4}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Vincoli unilateri e spostamenti ammessi}{5}{subsubsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.4}Problema meccanico dei vincoli}{7}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Applicazioni della formulazione lagrangiana}{8}{subsection.1.5}%
+\contentsline {subsubsection}{\numberline {1.5.1}Sistema di punti e forze applicate}{8}{subsubsection.1.5.1}%
+\contentsline {subsubsection}{\numberline {1.5.2}Lavoro virtuale e componenti lagrangiane}{8}{subsubsection.1.5.2}%
+\contentsline {subsubsection}{\numberline {1.5.3}Forze posizionali e conservative}{9}{subsubsection.1.5.3}%
+\contentsline {subsubsection}{\numberline {1.5.4}Energia cinetica di un sistema olonomo}{11}{subsubsection.1.5.4}%
+\contentsline {section}{\numberline {2}Principi variazionali e equazioni di Lagrange}{13}{section.2}%

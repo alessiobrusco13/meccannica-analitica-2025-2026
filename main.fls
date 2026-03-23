@@ -235,13 +235,15 @@ INPUT /Users/alessiobrusco13/Desktop/Università/II Anno/Meccanica Analitica/App
 INPUT /Users/alessiobrusco13/Desktop/Università/II Anno/Meccanica Analitica/Appunti/Sections/01-AnalisiDeiPrincipiFondamentali.tex
 INPUT /Users/alessiobrusco13/Desktop/Università/II Anno/Meccanica Analitica/Appunti/Sections/01-AnalisiDeiPrincipiFondamentali.tex
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ecti1095.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ecrm0800.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ecti0800.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ecsi0800.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ecti1095.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
@@ -254,6 +256,9 @@ INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmmib
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbsy10.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy8.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm
+INPUT /Users/alessiobrusco13/Desktop/Università/II Anno/Meccanica Analitica/Appunti/Sections/02-PrincipiVariazionaliELagrange.tex
+INPUT /Users/alessiobrusco13/Desktop/Università/II Anno/Meccanica Analitica/Appunti/Sections/02-PrincipiVariazionaliELagrange.tex
+INPUT /Users/alessiobrusco13/Desktop/Università/II Anno/Meccanica Analitica/Appunti/Sections/02-PrincipiVariazionaliELagrange.tex
 INPUT /Users/alessiobrusco13/Desktop/Università/II Anno/Meccanica Analitica/Appunti/main.aux
 INPUT /Users/alessiobrusco13/Desktop/Università/II Anno/Meccanica Analitica/Appunti/main.out
 INPUT /Users/alessiobrusco13/Desktop/Università/II Anno/Meccanica Analitica/Appunti/main.out
