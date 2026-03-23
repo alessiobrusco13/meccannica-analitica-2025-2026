@@ -9,6 +9,9 @@
 \providecommand{\C}{\mathbb{C}}
 
 % Short vector aliases that map directly to physics package commands.
+\newcommand{\vva}{\vb{a}}
+\newcommand{\vvb}{\vb{b}}
+\newcommand{\vc}{\vb{c}}
 \newcommand{\vh}{\vb{h}}
 \newcommand{\vk}{\vb{k}}
 \newcommand{\vvu}{\vb{u}}
@@ -23,6 +26,20 @@
 
 % Definition equality.
 \newcommand{\defeq}{\overset{\mathrm{def}}{=}}
+
+% Tensor symbols: bold sans-serif.
+\newcommand{\tens}[1]{\boldsymbol{\mathsf{#1}}}
+
+% Under-tilde notation (e.g. inertia tensor symbol).
+\stackMath
+\newcommand\tenq[2][1]{%
+  \def\useanchorwidth{T}%
+  \ifnum#1>1%
+    \stackunder[0pt]{\tenq[\numexpr#1-1\relax]{#2}}{\scriptscriptstyle\sim}%
+  \else%
+    \stackunder[1pt]{#2}{\scriptscriptstyle\sim}%
+  \fi%
+}
 
 % Real/imaginary parts as operators (override fraktur defaults).
 \renewcommand{\Re}{\operatorname{Re}}
