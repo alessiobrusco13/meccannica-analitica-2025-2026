@@ -1,2 +1,156 @@
 \section{Principi variazionali e equazioni di Lagrange}
-Talvolta le equazioni che seguono sono dette di Eulero--Lagrange, ma la derivazione che faremo è propriamente di Lagrange. Risale al 1788, con la pubblicazione del \emph{Mécanique Analytique}. In questa sottosezione fissiamo il sistema meccanico e introduciamo il lavoro virtuale in coordinate generalizzate, preludio alla forma delle equazioni del moto.
+Talvolta le equazioni che seguono sono dette di Eulero--Lagrange, ma la derivazione che faremo è propriamente di Lagrange. Risale al 1788, con la pubblicazione del \emph{Mécanique Analytique}.
+
+\note{Lezione 24/03/2026} L'equazione di Newton ha uso eminente nella dinamica del punto in un campo centrale e le equazioni cardinali nellla dinamica del corpo rigido. Le equazioni di Lagrange sono invece utili per descrivere la dinamica dei sistemi con vincoli. Dimostreremo la corrispondenza biunivoca fra le equazioni di Newton, e quindi anche le equazioni cardinali, e le equazioni di Lagrange.
+
+Consideriamo un sistema olonomo di punti materiali
+\begin{equation*}
+    \mathcal{S} = \{(\vP_1, m_1), \dots, (\vP_N, m_N)\},
+\end{equation*}
+di coordinate lagrangiane $q_1, \dots, q_n$.
+Possiamo scrivere l'equazione di Newton per il sistema
+\begin{equation*}
+    m_i\,\vva_i = \vF_i + \vb{\Phi}_i \qquad i = 1, \dots, N,
+\end{equation*}
+dove $\vF_i$ è la risultante delle forze attive, le quali sono assegnate, per cui conosciamo una relazione
+\begin{equation*}
+    \vF_i = \vF_i(\vP_1, \dots, \vP_N; \vv_1, \dots, \vv_N; t);
+\end{equation*}
+e $\vb{\Phi}_i$ è la risultante delle forze vincolari, incognita.
+
+D'Alambert riscrisse l'equazione come
+\begin{equation}
+    \label{eq:dalambert}
+    (\vF_i -m_i\,\vva_i) + \vb{\Phi}_i = 0 \qquad i = 1, \dots, N,
+\end{equation}
+dove le forze del primo termine tra parentesi sono le \emph{forze perdute}, utilizzate per compensare le forze vincolari. Il principio di D'Alambert afferma che, per un sistema olonomo, le forze perdute e le forze vincolari si annullano reciprocamente.
+
+Ci occuperemo di quello che viene detto \emph{problema fondamentale della dinamica dei sistemi olonomi}:
+\begin{quote}
+    Dato un sistema olonomo, le forze agenti su di esso e i vincoli, determinare il moto del sistema, note le condizioni iniziali (posizioni e velocità iniziali dei punti).
+\end{quote}
+Le incognite dinamiche del sistema sono le forze vincolari
+\begin{equation*}
+    \vb{\Phi}_1,\dots, \vb{\Phi}_N,
+\end{equation*}
+mentre le incognite cinematiche sono le accelerazioni e quindi le traiettorie dei punti
+\begin{equation*}
+    q_1(t), \dots, q_n(t).
+\end{equation*}
+Per cui in totale abbiamo $3N$ incognite dinamiche e $n$ incognite cinematiche, per un totale di $3N + n$ incognite.
+
+Moltiplichiamo scalarmente l'equazione \eqref{eq:dalambert} per il vettore di spostamente virtuale $\delta \vP_i$ e sommiamo su $i$ da $1$ a $N$:
+\begin{equation*}
+    \sum_{i=1}^N (\vF_i - m_i\,\vva_i + \vb{\Phi}_i)\cdot \var{\vP}_i = 0.
+\end{equation*}
+Abbiamo ridotto quindi $N$ equazioni vettoriali a una sola equazione scalare, al cui interno compaiono $\var{q_1}, \dots, \var{q_n}$ variazioni indipendenti.
+Distribuendo il prodotto scalare, otteniamo
+\begin{equation*}
+    \underbrace{\sum_{i=1}^N \vF_i\cdot \var{\vP}_i}_{\var{L^{(a)}}}  \underbrace{-\sum_{i=1}^N m_i\,\vva_i\cdot \var{\vP}_i}_{\var{L^{(m)}}} + \underbrace{\sum_{i=1}^N \vb{\Phi}_i\cdot \var{\vP}_i}_{\var{L^{(v)}}} = 0,
+\end{equation*}
+ovvero la somma di tre lavori, dove $m_i\,\vva_i$ è dimensionalmente una forza, detta \emph{forza di inerzia}. Otteniamo così il \emph{principio di D'Alambert} propriamente detto
+\begin{equation*}
+    \var{L^{(a)}} + \var{L^{(m)}} + \var{L^{(v)}} = 0.
+\end{equation*}
+
+Consideriamo l'ipotesi di vincoli ideali, per cui $\var{L^{(v)}} \geq 0$. \note{Le equazioni di Lagrange possono essere ricavate allo stesso modo introducendo i moltiplicatori di Lagrange} Segue necessariamente 
+\begin{equation*}
+    \var{L^{(a)}} + \var{L^{(m)}} \leq 0.
+\end{equation*}
+Consideriamo l'ulteriore ipotesi di vincoli bilaterali ideali, per cui $\var{L^{(v)}} = 0$. Segue di conseguenza
+\begin{equation*}
+    \var{L^{(a)}} + \var{L^{(m)}} = 0.
+\end{equation*}
+
+Possiamo esplicitare le incognite $q_1, \dots, q_n$ attraverso le componenti lagrangiane delle forze attive nel calcolo del lavoro virtuale
+\begin{equation*}
+    \var{L^{(a)}} = \sum_{i=1}^N \vF_i\cdot \var{\vP}_i = \sum_{j=1}^n Q_j\,\var{q_j},
+\end{equation*} dove
+\begin{equation*}
+    Q_j = \sum_{i=1}^N \vF_i\cdot \pdv{\vP_i}{q_j}.
+\end{equation*}
+Introduciamo analogamente le componenti lagrangiale delle forze di inerzia
+\begin{equation*}
+    \var{L^{(m)}} = \sum_{h=1}^N m_h\,\vva_h\cdot \var{\vP}_h = \sum_{k=1}^n \tau_k^{(m)}\,\var{q_k},
+\end{equation*}
+dove \begin{equation*}
+    \tau_k = \sum_{i=1}^N m_i\,\vva_i\cdot \pdv{\vP_i}{q_k}.
+\end{equation*}
+Il principio di D'Alambert si riscrive quindi come
+\begin{equation*}
+    \tau_h + Q_h = 0 \qquad h = 1, \dots, n,
+\end{equation*}
+ovvero $n$ equazioni scalari finite\note{non compaiono più variazioni infinitesime}. Queste sono le \emph{equazioni di Lagrange}, tuttavia non sono ancora posta in una formulazione comoda.
+
+\begin{lemma}[Legge di cancellazione dei punti]
+    In un sistema olonomo vale la seguente relazione
+    \begin{equation*}
+        \pdv{\vv}{\dot{q}_h} = \pdv{\vP}{\dot{q}_h},
+    \end{equation*}
+    dove
+    \begin{equation*}
+        \vv = \dot{\vP}.
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    Abbiamo che
+    \begin{equation*}
+        \vv = \dv{\vP}{t} = \sum_{k=1}^n \pdv{\vP}{q_k}\,\dot{q}_k + \pdv{\vP}{t}.
+    \end{equation*}
+    Derivando rispetto a $\dot{q}_h$ otteniamo
+    \begin{equation*}
+        \pdv{\vv}{\dot{q}_h} = \sum_{k=1}^n \pdv{\vP}{q_k}\,\delta_{kh} = \pdv{\vP}{q_h}.
+    \end{equation*}
+\end{proof}
+
+Applicando questa legge alla componente lagrangiana della forza di inerzia, otteniamo
+\begin{align*}
+    \tau_h &= \sum_{i=1}^N -m_i\,\vva_i\cdot \pdv{\vP_i}{q_h} \\ 
+    &= -\sum_{i=1}^N m_i\,\dv{\vv_i}{t}\cdot \pdv{\vP_i}{q_h} \\
+    &= -\dv{t}\sum_{i=1}^N m_i\,\vv_i\cdot \pdv{\vP_i}{q_h} + \sum_{i=1}^N m_i\,\vv_i\cdot \dv{t}\pdv{\vP_i}{q_h} \\
+    &= -\dv{t}\sum_{i=1}^N m_i\,\vv_i\pdv{\vv}{\dot{q}_h} + \sum_{i=1}^N m_i\,\vv_i\cdot \pdv{\vv}{q_h} \note{Legge di cancellazione dei punti e Teorema di Schwartz}\\
+    &= -\dv{t}\pdv{\dot{q}_h}\sum_{i=1}^N \frac{1}{2}m_i\,\vv_i^2 + \pdv{q_h}\sum_{i=1}^N \frac{1}{2}m_i\,\vv_i^2 \\
+    &= -\dv{t}\pdv{T}{\dot{q}_h} + \pdv{T}{q_h},
+\end{align*}
+questi ultimi termini vengono vetti \emph{binomi di Lagrange}.
+
+Otteniamo quindi le \emph{equazioni di Lagrange nella seconda forma}
+\begin{equation*}
+    \dv{t}\pdv{T}{\dot{q}_h} - \pdv{T}{q_h} = Q_h \qquad h = 1, \dots, n,
+\end{equation*}
+con le $2n$ condizioni iniziali
+\begin{equation*}
+    \begin{cases}
+        q_1(t_0)= q_1^0, \dots, q_n(t_0) = q_n^0, \\
+        \dot{q}_1(t_0) = \dot{q}_1^0, \dots, \dot{q}_n(t_0) = \dot{q}_n^0.
+    \end{cases}
+\end{equation*}
+Le equazioni di Lagrange sono $n$ equazioni differenziali ordinarie del secondo ordine pure (ovvero dove non compaiono le reazioni vincolari) nelle incognite $q_1(t), \dots, q_n(t)$.\note{Compaiono le derivate parziali dell'energia cinetica, che però non è un incognita} Il numero di equazioni è precisamente uguale al numero di gradi di libertà del sistema, ottenendo quindi una notevole semplificazione rispetto alle $3N$ equazioni di Newton.
+
+Non è immediato assumere che valga il teorema di esistenza e unicità per le equazioni di Lagrange. Sicuramente sono verificate le ipotesi di continuità e lipschitzianità. Il teorema prevedere un'equazione differenziale in forma normale, ovvero
+\begin{equation*}
+    y' = f(x, y),
+\end{equation*}
+con la derivata di ordine massimo espressa in funzione delle altre variabili.
+
+Possiamo espandere la seguente derivata
+\begin{equation*}
+    \dv{t}\pdv{T}{\dot{q}_h} = \sum_{k=1}^n \pdv[2]{T}{\dot{q}_h}{\dot{q}_k}\,\ddot{q}_k + \sum_{k=1}^n \pdv[2]{T}{\dot{q}_h}{q_k}\,\dot{q}_k + \pdv[2]{T}{\dot{q}_h}{t}.
+\end{equation*}
+È possibile isolare il termine del secondo ordine e portarlo al primo membro, ottenendo
+\begin{equation*}
+    \sum_{k=1}^n \pdv[2]{T}{\dot{q}_h}{\dot{q}_k}\,\ddot{q}_k = \underbrace{Q_h + \pdv{T}{q_h} - \sum_{k=1}^n \pdv[2]{T}{\dot{q}_h}{q_k}\,\dot{q}_k - \pdv[2]{T}{\dot{q}_h}{t}}_{F_h(\vq, \dot{\vq}, t)}.
+\end{equation*}
+Inoltre, si verifica velocemente che il termine $\pdv[2]{T}{\dot{q}_h}{\dot{q}_k}$ è il termine $h, k$ della matrice di massa $(a_{hk})$, ottenendo quindi
+\begin{equation*}
+    \sum_{k=1}^n a_{hk}\,\ddot{q}_k = F_h(\vq, \dot{\vq}, t),
+\end{equation*}
+otteniamo quindi
+\begin{equation*}
+    A^{-1} A \ddot{\vq} = A^{-1} \vF(\vq, \dot{\vq}, t),
+\end{equation*}
+e quindi
+\begin{equation*}
+    \ddot{q}_h= G_h(\vq, \dot{\vq}, t) \qquad h = 1, \dots, n,
+\end{equation*}
+avendo quindi scritto l'equazione in forma normale. Il teorema di esistenza e unicità è quindi verificato.
