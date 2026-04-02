@@ -1,7 +1,7 @@
 \section{Principi variazionali e equazioni di Lagrange}
 Talvolta le equazioni che seguono sono dette di Eulero--Lagrange, ma la derivazione che faremo è propriamente di Lagrange. Risale al 1788, con la pubblicazione del \emph{Mécanique Analytique}.
 
-\note{Lezione 24/03/2026} L'equazione di Newton ha uso eminente nella dinamica del punto in un campo centrale e le equazioni cardinali nellla dinamica del corpo rigido. Le equazioni di Lagrange sono invece utili per descrivere la dinamica dei sistemi con vincoli. Dimostreremo la corrispondenza biunivoca fra le equazioni di Newton, e quindi anche le equazioni cardinali, e le equazioni di Lagrange.
+\note{Lezione 24/03/2026} L'equazione di Newton ha uso eminente nella dinamica del punto in un campo centrale e le equazioni cardinali nella dinamica del corpo rigido. Le equazioni di Lagrange sono invece utili per descrivere la dinamica dei sistemi con vincoli. Dimostreremo la corrispondenza biunivoca fra le equazioni di Newton, e quindi anche le equazioni cardinali, e le equazioni di Lagrange.
 
 Consideriamo un sistema olonomo di punti materiali
 \begin{equation*}
@@ -39,7 +39,7 @@ mentre le incognite cinematiche sono le accelerazioni e quindi le traiettorie de
 \end{equation*}
 Per cui in totale abbiamo $3N$ incognite dinamiche e $n$ incognite cinematiche, per un totale di $3N + n$ incognite.
 
-Moltiplichiamo scalarmente l'equazione \eqref{eq:dalambert} per il vettore di spostamente virtuale $\delta \vP_i$ e sommiamo su $i$ da $1$ a $N$:
+Moltiplichiamo scalarmente l'equazione \eqref{eq:dalambert} per il vettore di spostamento virtuale $\delta \vP_i$ e sommiamo su $i$ da $1$ a $N$:
 \begin{equation*}
     \sum_{i=1}^N (\vF_i - m_i\,\vva_i + \vb{\Phi}_i)\cdot \var{\vP}_i = 0.
 \end{equation*}
@@ -80,7 +80,7 @@ Il principio di D'Alambert si riscrive quindi come
 \begin{equation*}
     \tau_h + Q_h = 0 \qquad h = 1, \dots, n,
 \end{equation*}
-ovvero $n$ equazioni scalari finite\note{non compaiono più variazioni infinitesime}. Queste sono le \emph{equazioni di Lagrange}, tuttavia non sono ancora posta in una formulazione comoda.
+ovvero $n$ equazioni scalari finite\note{non compaiono più variazioni infinitesime}. Queste sono le \emph{equazioni di Lagrange}, tuttavia non sono ancora poste in una formulazione comoda.
 
 \begin{lemma}[Legge di cancellazione dei punti]
     In un sistema olonomo vale la seguente relazione
@@ -112,7 +112,7 @@ Applicando questa legge alla componente lagrangiana della forza di inerzia, otte
     &= -\dv{t}\pdv{\dot{q}_h}\sum_{i=1}^N \frac{1}{2}m_i\,\vv_i^2 + \pdv{q_h}\sum_{i=1}^N \frac{1}{2}m_i\,\vv_i^2 \\
     &= -\dv{t}\pdv{T}{\dot{q}_h} + \pdv{T}{q_h},
 \end{align*}
-questi ultimi termini vengono vetti \emph{binomi di Lagrange}.
+questi ultimi termini vengono detti \emph{binomi di Lagrange}.
 
 Otteniamo quindi le \emph{equazioni di Lagrange nella seconda forma}
 \begin{equation*}
@@ -125,9 +125,9 @@ con le $2n$ condizioni iniziali
         \dot{q}_1(t_0) = \dot{q}_1^0, \dots, \dot{q}_n(t_0) = \dot{q}_n^0.
     \end{cases}
 \end{equation*}
-Le equazioni di Lagrange sono $n$ equazioni differenziali ordinarie del secondo ordine pure (ovvero dove non compaiono le reazioni vincolari) nelle incognite $q_1(t), \dots, q_n(t)$.\note{Compaiono le derivate parziali dell'energia cinetica, che però non è un incognita} Il numero di equazioni è precisamente uguale al numero di gradi di libertà del sistema, ottenendo quindi una notevole semplificazione rispetto alle $3N$ equazioni di Newton.
+Le equazioni di Lagrange sono $n$ equazioni differenziali ordinarie del secondo ordine pure (ovvero dove non compaiono le reazioni vincolari) nelle incognite $q_1(t), \dots, q_n(t)$.\note{Compaiono le derivate parziali dell'energia cinetica, che però non è un'incognita} Il numero di equazioni è precisamente uguale al numero di gradi di libertà del sistema, ottenendo quindi una notevole semplificazione rispetto alle $3N$ equazioni di Newton.
 
-Non è immediato assumere che valga il teorema di esistenza e unicità per le equazioni di Lagrange. Sicuramente sono verificate le ipotesi di continuità e lipschitzianità. Il teorema prevedere un'equazione differenziale in forma normale, ovvero
+Non è immediato assumere che valga il teorema di esistenza e unicità per le equazioni di Lagrange. Sicuramente sono verificate le ipotesi di continuità e lipschitzianità. Il teorema prevede un'equazione differenziale in forma normale, ovvero
 \begin{equation*}
     y' = f(x, y),
 \end{equation*}
@@ -156,13 +156,13 @@ e quindi
 \end{equation*}
 avendo quindi scritto l'equazione in forma normale. Il teorema di esistenza e unicità è quindi verificato.
 
-\note{Lezione 31/03/2026}L'unicità delle soluzioni garantisce il \emph{determinismo}, idea fondamentale nel '700 per cui una volta che sono note le condizioni iniziali, é possibile stabilire univocamente il comportamento del sistema nel tempo. A livello sperimentale questa idea non regge a causa della presenza di errori sulle misure.
+\note{Lezione 31/03/2026} L'unicità delle soluzioni garantisce il \emph{determinismo}, idea fondamentale nel '700 per cui una volta che sono note le condizioni iniziali, è possibile stabilire univocamente il comportamento del sistema nel tempo. A livello sperimentale questa idea non regge a causa della presenza di errori sulle misure.
 
 Consideriamo ora un sistema di forze attive indipendenti dalle velocità, quindi con componenti lagrangiane del tipo
 \begin{equation*}
     Q_h = Q_h(\vq, t) \qquad h = 1, \dots, n,
 \end{equation*}
-e supponiamo che essite una funzione $V(\vq, t)$, almeno di classe $C^1$, tale che
+e supponiamo che esiste una funzione $V(\vq, t)$, almeno di classe $C^1$, tale che
 \begin{equation*}
     Q_h = -\pdv{V}{q_h} \iff \var{L^{(a)}} = -\var{V}.
 \end{equation*}
@@ -186,15 +186,8 @@ detta \emph{lagrangiana} del sistema, possiamo scrivere le equazioni di Lagrange
 \end{equation*}
 
 \begin{definition}[Potenziale generalizzato]
-    Diremo che un sistema di forze con componenti
-    \begin{equation*}
-        Q_h = Q_h(\vq, \dot{\vq}, t),
-    \end{equation*}
-    dipende da un \emph{potenziale generalizzato} 
-    \begin{equation*}
-        V = V(\vq, \dot{\vq}, t)
-    \end{equation*}
-    se
+    Diremo che un sistema di forze con componenti $Q_h = Q_h(\vq, \dot{\vq}, t)$,
+    dipende da un \emph{potenziale generalizzato} $V = V(\vq, \dot{\vq}, t)$ se
     \begin{equation*}
         Q_h = \dv{t}\pdv{V}{\dot{q}_h}-\pdv{V}{q_h}.
     \end{equation*}
@@ -209,10 +202,10 @@ ovvero, utilizzando la lagrangiana,
     \dv{t}\pdv{\LL}{\dot{q}_h} - \pdv{\LL}{q_h} = 0.
 \end{equation*}
 
-\begin{example}[Forze derivate da un ponteziale generalizzato]
-    Le seguenti foze derivano da un potenziale generalizzato
+\begin{example}[Forze derivate da un potenziale generalizzato]
+    Le seguenti forze derivano da un potenziale generalizzato
     \begin{itemize}
-        \item Forza di Coiolis nei sistemi non inerziali;
+        \item Forza di Coriolis nei sistemi non inerziali;
         \item Forza di Lorentz in elettromagnetismo.
     \end{itemize}
 \end{example}
@@ -301,11 +294,11 @@ ovvero, utilizzando la lagrangiana,
     \begin{equation*}
         \LL = \frac{1}{6}m\ell^2\dot{\theta}^2 - mg\frac{\ell}{2}\sin\theta.
     \end{equation*}
-    Scriviamo quindi le equazioni di Lagrange:x
-    \begin{align*}
-        \dv{t}\pdv{\LL}{\dot{\theta}} - \pdv{\LL}{\theta} &= 0 \\
-        \implies \frac{1}{3}m\ell^2\ddot{\theta} + \frac{1}{2}mg\ell\cos\theta &= 0.
-    \end{align*}
+    Scriviamo quindi le equazioni di Lagrange:
+    \begin{gather*}
+        \dv{t}\pdv{\LL}{\dot{\theta}} - \pdv{\LL}{\theta} = 0 \\
+        \implies \frac{1}{3}m\ell^2\ddot{\theta} + \frac{1}{2}mg\ell\cos\theta = 0.
+    \end{gather*}
     Come dalla teoria possiamo scrivere l'equazione in forma normale
     \begin{equation*}
         \ddot{\theta} = -\frac{3}{2}\frac{g}{\ell}\cos\theta.
@@ -314,7 +307,7 @@ ovvero, utilizzando la lagrangiana,
 
 
 \subsection{Trasformazioni di coordinate}
-Stabilito una trasformazione di coordinate nello spazio delle confiturazioni
+Stabilito una trasformazione di coordinate nello spazio delle configurazioni
 \begin{equation*}
     \xi_i = \xi_i(\vq, t) \qquad i = 1, \dots, n,
 \end{equation*}
