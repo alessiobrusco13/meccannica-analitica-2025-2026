@@ -444,9 +444,10 @@ Questo è un polinomio di secondo grado in $\dot{q}_i$. Definiamo
     a_{hk} \defeq \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k}, \qquad a_{h} \defeq \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{t},
 \end{equation*}
 per cui otteniamo
-\begin{equation*}
+\begin{equation}
     T_2 = \frac{1}{2} \sum_{h,k=1}^n a_{hk}\, \dot{q}_h \dot{q}_k, \qquad T_1 = \sum_{h=1}^n a_h \,\dot{q}_h, \qquad T_0 = \frac{1}{2} \sum_{i=1}^N m_i \left(\pdv{\vP_i}{t}\right)^2.
-\end{equation*}
+    \label{eq:energia_cinetica}
+\end{equation}
 
 \begin{remark}
     Se il sistema è a vincoli indipendenti dal tempo, allora l'energia cinetica si riduce alla sola parte quadratica

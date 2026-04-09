@@ -323,3 +323,161 @@ possiamo scrivere le equazioni di Lagrange nella nuova coordinata $\xi_i$ come
 \begin{equation*}
     \dv{t}\pdv{\LL^*}{\dot{\xi}_i} - \pdv{\LL^*}{\xi_i} = 0 \qquad i = 1, \dots, n.
 \end{equation*}
+
+\subsection{Leggi di conservazione e teorema di Noether}
+\note{Lezione 07/04/2026}
+
+Considriamo un sistema di lagrangiana $\LL(\vq, \dot{\vq}, t)$ e un moto del sistema fissando $\vq(t)$ e $\dot{\vq}(t)$. Calcoliamo la derivata totale di $\LL$ rispetto al tempo:
+\begin{equation*}
+    \dv{\LL}{t} = \sum_{h=1}^n \pdv{\LL}{q_h}\,\dot{q}_h + \underbrace{\sum_{h=1}^n \pdv{\LL}{\dot{q}_h}\,\ddot{q}_h}_{*} + \pdv{\LL}{t}.
+\end{equation*}
+Attraverso la regola di derivazione del prodotto, otteniamo
+\begin{align*}
+    \dv{\LL}{t} &= \sum_{h=1}^n \pdv{\LL}{q_h}\,\dot{q}_h + \underbrace{\dv{t}\sum_{h=1}^n \pdv{\LL}{\dot{q}_h}\,\dot{q}_h - \sum_{h=1}^n \dv{t}\pdv{\LL}{\dot{q}_h}\,\dot{q}_h}_{*} + \pdv{\LL}{t} \\
+    &= \dv{t} \sum_{h=1}^n \pdv{\LL}{\dot{q}_h}\,\dot{q}_h + \sum_{h=1}^n \left(\pdv{\LL}{q_h} - \dv{t}\pdv{\LL}{\dot{q}_h}\right)\dot{q}_h + \pdv{\LL}{t} \\
+\end{align*}
+Il secondo termine è nullo in virtù delle equazioni di Lagrange. Otteniamo quindi
+\begin{equation*}
+    \dv{\LL}{t} = \dv{t} \sum_{h=1}^n \pdv{\LL}{\dot{q}_h}\,\dot{q}_h + \pdv{\LL}{t}.
+\end{equation*}
+Riordinando i termini, otteniamo
+\begin{equation}
+    \label{eq:conservazione_H}
+    \dv{t}\left(\sum_{h=1}^n \pdv{\LL}{\dot{q}_h}\,\dot{q}_h - \LL\right) = -\pdv{\LL}{t}.
+\end{equation}
+
+\begin{definition}[Funzione di Jacobi]
+    Definiamo \emph{funzione di Jacobi} di un sistema la funzione
+    \begin{equation*}
+        h(\vq, \dot{\vq}, t) = \sum_{h=1}^n \pdv{\LL}{\dot{q}_h}\,\dot{q}_h - \LL.
+    \end{equation*}
+\end{definition}
+
+Dall'equazione \eqref{eq:conservazione_H} segue il seguente teorema di conservazione.
+
+\begin{theorem}
+    Sia $\mathcal{S}$ un sistema di lagrangiana $\LL$. Se $\pdv{\LL}{t} = 0$, allora la funzione di Jacobi $h$ è una costante del moto; cioè:
+    \begin{equation*}
+        \dv{h}{t} = 0 \iff h = \text{costante}.
+    \end{equation*}
+\end{theorem}
+
+\begin{definition}[Momenti generalizzati]
+    I momenti generalizzati di un sistema sono le quanità
+    \begin{equation*}
+        p_i = \pdv{\LL}{\dot{q}_i} \qquad i = 1, \dots, n.
+    \end{equation*}
+\end{definition}
+Questi momenti sono immediate generalizzazioni della quantità di moto Newtoniana
+\begin{equation*}
+    \vp = m\vv,
+\end{equation*}
+
+\subsubsection{Conservazione dell'energia}
+Consideriamo ora un sistema meccanico olonomo soggetto a forze attive di potenziale $V(\vq)$, per cui la lagrangiana è, attraverso l'equazione \eqref{eq:energia_cinetica},
+\begin{equation*}
+    \LL = T - V = T_0 + T_1 + T_2- V.
+\end{equation*}
+Sviluppiando la funzione di Jacobi, otteniamo
+\begin{align*}
+    h &= \sum_{h=1}^n \pdv{\LL}{\dot{q}_h}\,\dot{q}_h - \LL \\
+    &= \sum_{h=1}^n \left(\pdv{T_1}{\dot{q}_h} + \pdv{T_2}{\dot{q}_h}\right)\dot{q}_h - T_0 - T_1 - T_2 + V.
+\end{align*}
+
+Ricorriamo al teorema di Eulero sulle funzioni omogenee:
+\begin{theorem}[di Eulero sulle funzioni omogenee]
+    Sia $f(\vx)$ una funzione omogenea di grado $\alpha$ in $\R^n$, ovvero
+    \begin{equation*}        
+        f(\lambda \vx) = \lambda^\alpha f(\vx) \qquad \forall \lambda > 0.
+    \end{equation*}
+    Allora
+    \begin{equation*}
+        \sum_{i=1}^n x_i\,\pdv{f}{x_i} = \alpha f.
+    \end{equation*}
+\end{theorem}
+
+Otteniamo quindi
+\begin{align*}
+    h &= 2T_2 +  T_1 - T_1 - T_2 - T_0 + V \\
+    &= T_2 - T_0 + V.
+\end{align*}
+Se il sistema è a vincoli fissi e soggetto a forze attive conservative risulta
+\begin{equation*}
+    h = T_2 + V = T + V  = E,
+\end{equation*}
+dove $E$ è l'energia meccanica totale.
+
+Per cui, quando il sistema è conservativo, la funzione di Jacobi coincide con l'energia meccanica totale, che quindi si conserva. Tuttavia, la funzione di Jacobi si conserva anache in sistemi non conservativi, fornendo una generalizzazione della legge di conservazione dell'energia, motivo per cui talvolta la funzione di Jacobi è detta \emph{energia generalizzata}.
+
+\subsubsection{Generalizzazione delle leggi di conservazione}
+\begin{definition}[Integrale primo]
+    Sia un sistema di lagrangiana $\LL$. Diremo che una funzione $f(\vq, \dot{\vq}, t)$ è un \emph{integrale primo} delle equazioni di Lagrange se $f$ si conserva costante lungo le soluzioni di tali equazioni.
+\end{definition}
+
+In altri termini, presa una soluzione $\vq(t)$ delle equazioni di Lagrange, se $f$ è un integrale primo, si ha
+\begin{equation*}
+    \dv{f(\vq(t), \dot{\vq}(t), t)}{t} = 0 \quad \forall t \iff f(\vq(t), \dot{\vq}(t), t) = \text{costante} \quad \forall t.
+\end{equation*}
+
+\begin{definition}[Coordinata ciclica]
+    Sia un sistema di lagrangiana $\LL$. Diremo che una coordinata $q_i$ è una \emph{coordinata ciclica} o \emph{ignorabile} se la lagrangiana non dipende esplicitamente da $q_i$, ovvero
+    \begin{equation*}
+        \pdv{\LL}{q_i} = 0.
+    \end{equation*}
+\end{definition}
+
+\begin{remark}
+    Se $q_i$ è una coordinata ciclica, allora il momento $p_i$ generalizzato (o coniugato) a $q_i$ si conserva costante. Questo risultato discende direttamente dalle equazioni di Lagrange, che in questo caso si riducono a
+    \begin{equation*}
+        \dv{t}\pdv{\LL}{\dot{q}_i} = \pdv{\LL}{q_i} = 0 \implies \pdv{\LL}{\dot{q}_i} = p_i = \text{costante}.
+    \end{equation*}
+\end{remark}
+
+\begin{definition}[Trasformazione di coordinate ammissibile]
+    Sia un sistema di lagrangiana $\LL$. Diremo che una trasformazione di coordinate $Q_i = f_i(\vq)$ indipendente dal tempo è \emph{ammissibile} per $\LL$ se
+    \begin{equation*}
+        \LL(\vQ, \dot{\vQ}) = \LL(\vq, \dot{\vq}).
+    \end{equation*}
+\end{definition}
+
+\begin{definition}[Gruppo di trasformazioni ammissibili]
+    Diremo che una famiglia ad un parametro $f(\vq, s)$, con $s \in \R$, di trasformazioni ammissibili costituisce un gruppo di trasformazioni ammissibili per $\LL$ se
+    \begin{enumerate}[label=($\roman*$)]
+        \item $f(\vq, 0) = \vq \quad \forall \vq$;
+        \item $\vQ = f(\vq, s) \implies \vq = f(\vQ, -s) \quad \forall s$.
+        \item $f(f(\vq, s_1), s_2) = f(\vq, s_1 + s_2) \quad \forall s_1, s_2$.
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}[di Noether]
+    \note{del 1918}
+    Sia $f(\vq, s)$ un grippo di trasformazioni ammissibili per la lagrangiana $\LL$ di un sistema. Allora, la funzione
+    \begin{equation*}
+        I = \sum_{j=1}^n \pdv{\LL}{\dot{q}_j}\,\pdv{f_j}{s}\bigg|_{s=0}
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Osseriamo che
+    \begin{equation*}
+        \LL(f(\vq, s), \dot{f}(\vq, s)) = \LL(\vq, \dot{\vq}) \quad \forall s.
+    \end{equation*}
+    Derivando rispetto $s$ otteniamo
+    \begin{align*}
+        0 = \dv{s} \LL\left(f(\vq, s), \dot{f}(\vq, s)\right) &= \sum_{j=1}^n \pdv{\LL}{q_j}\,\pdv{f_j}{s} + \sum_{j=1}^n \pdv{\LL}{\dot{q}_j}\,\pdv{\dot{f_j}}{s} \\
+        &= \sum_{j=1}^n \pdv{\LL}{q_j}\,\pdv{f_j}{s} + \dv{t}\sum_{j=1}^n \pdv{\LL}{\dot{q}_j}\,\pdv{f_j}{s} - \sum_{j=1}^n \dv{t}\pdv{\LL}{\dot{q}_j}\,\pdv{f_j}{s} \\
+        &=  \sum_{j=1}^n \left(\pdv{\LL}{q_j} - \dv{t}\pdv{\LL}{\dot{q}_j}\right)\pdv{f_j}{s} + \dv{t}\sum_{j=1}^n \pdv{\LL}{\dot{q}_j}\,\pdv{f_j}{s}.
+    \end{align*}
+
+    Posto $s = 0$, otteniamo
+    \begin{equation*}
+        0 = \sum_{j=1}^n \left(\pdv{\LL}{q_j} - \dv{t}\pdv{\LL}{\dot{q}_j}\right)\pdv{f_j}{s}\bigg|_{s=0} + \dv{t}\sum_{j=1}^n \pdv{\LL}{\dot{q}_j}\,\pdv{f_j}{s}\bigg|_{s=0}.
+    \end{equation*}
+    Il primo termine è nullo in virtù delle equazioni di Lagrange e l'assioma $(i)$ del gruppo, per cui
+    \begin{equation*}
+        \dv{t}\sum_{j=1}^n \pdv{\LL}{\dot{q}_j}\,\pdv{f_j}{s}\bigg|_{s=0} = 0,
+    \end{equation*}
+    ovvero
+    \begin{equation*}
+        I = \sum_{j=1}^n \pdv{\LL}{\dot{q}_j}\,\pdv{f_j}{s}\bigg|_{s=0} = \text{costante}.
+    \end{equation*}
+\end{proof}
