@@ -81,7 +81,7 @@ Consideriamo un punto che può scorrere liberamente su una guida rettilinea ruot
 \[
     \vP = x\,\vu{i} + y\,\vu{j}.
 \]
-Sia $\delta=\abs{P-O}$ la distanza tra il punto e l'origine. Le coordinate sono
+Sia $\delta=\abs{\vP - O}$ la distanza tra il punto e l'origine. Le coordinate sono
 \begin{equation*}
     \begin{cases}
         x = \delta \cos(\omega t) \\
@@ -156,7 +156,7 @@ Parliamo di spostamenti \emph{reali} quando $\dd{t} \neq 0$ e di spostamenti \em
 Per cui abbiamo:
 \begin{align*}
     \dd{\vP} &= \sum_{h=1}^n \pdv{\vP}{q_h} \dd{q}_h + \pdv{\vP}{t} \dd{t} \quad &\text{spostamenti reali} \\
-    \var{\vP} &= \sum_{h=1}^n \pdv{\vP}{q_h} \delta q_h \quad &\text{spostamenti virtuali}.
+    \var{\vP} &= \sum_{h=1}^n \pdv{\vP}{q_h} \var{q}_h \quad &\text{spostamenti virtuali}.
 \end{align*}
 \end{definition}
 
@@ -174,7 +174,7 @@ Le coordinate lagrangiane non incorporano automaticamente i vincoli unilaterali;
 \end{equation*}
 Nelle configurazioni di confine ($g_j = 0$) gli spostamenti virtuali ammessi devono soddisfare la disuguaglianza linearizzata
 \[
-    \sum_{k=1}^n \pdv{g_j}{q_k}\,\delta q_k \geq 0,
+    \sum_{k=1}^n \pdv{g_j}{q_k}\,\var{q}_k \geq 0,
     \qquad \text{per ogni vincolo attivo } g_j=0.
 \]
 In altre parole, a contatto con il vincolo possiamo muoverci solo verso la regione ammessa.
@@ -228,16 +228,16 @@ Nelle configurazioni ordinarie, quando tutti i vincoli unilaterali sono soddisfa
 Matematicamente, una configurazione è ordinaria se
 \begin{align*}
     g_j(q_1, q_2, \dots, q_n, t) &> 0 \qquad \forall j = 1, 2, \dots, s, \\
-    g_j(q_1 \pm \var{q_1}, q_2 \pm \var{q_2}, \dots, q_n \pm \var{q_n}, t) &> 0
-    \qquad \forall j,\ \forall \abs{\var{q_k}} < \varepsilon.
+    g_j(q_1 \pm \var{q}_1, q_2 \pm \var{q}_2, \dots, q_n \pm \var{q}_n, t) &> 0
+    \qquad \forall j,\ \forall \abs{\var{q}_k} < \varepsilon.
 \end{align*}
 Invece una configurazione è di confine se esiste almeno un vincolo unilaterale attivo, cioè
 \begin{align*}
     \exists j^*:\ g_{j^*}(q_1, q_2, \dots, q_n, t) &= 0, \\
-    g_{j^*}(q_1 + \var{q_1}, q_2 + \var{q_2}, \dots, q_n + \var{q_n}, t) &> 0
-    \qquad \forall \abs{\var{q_k}} < \varepsilon, \\
-    g_{j^*}(q_1 - \var{q_1}, q_2 - \var{q_2}, \dots, q_n - \var{q_n}, t) &< 0
-    \qquad \text{per qualche } \abs{\var{q_k}} < \varepsilon.
+    g_{j^*}(q_1 + \var{q}_1, q_2 + \var{q}_2, \dots, q_n + \var{q}_n, t) &> 0
+    \qquad \forall \abs{\var{q}_k} < \varepsilon, \\
+    g_{j^*}(q_1 - \var{q}_1, q_2 - \var{q}_2, \dots, q_n - \var{q}_n, t) &< 0
+    \qquad \text{per qualche } \abs{\var{q}_k} < \varepsilon.
 \end{align*}
 
 \subsection{Problema meccanico dei vincoli}
@@ -260,22 +260,22 @@ Se $\vF$ è la forza applicata a un punto materiale e $\dd{\vP}$ il suo spostame
 \end{equation*}
 Analogamente definiamo il lavoro virtuale
 \begin{equation*}
-    \delta L = \vF\cdot \var{\vP} = \sum_{i=1}^n F_i \cdot \var{P_i}.
+    \var{L} = \vF\cdot \var{\vP} = \sum_{i=1}^n F_i \cdot \var{\vP}_i.
 \end{equation*}
 
-Indichiamo con $\var{L}^{(V)}$ il lavoro virtuale delle reazioni vincolari.
+Indichiamo con $\var{L}^{(v)}$ il lavoro virtuale delle reazioni vincolari.
 \begin{proposition}[Vincoli lisci e lavoro virtuale]
 Per un sistema olonomo con vincoli lisci si ha
 \begin{equation*}
-    \var{L}^{(V)} \geq 0 \quad \forall \var{\vP} \text{ spostamento virtuale}.
+    \var{L}^{(v)} \geq 0 \quad \forall \var{\vP} \text{ spostamento virtuale}.
 \end{equation*}
-In particolare, $\var{L}^{(V)} = 0$ per gli spostamenti virtuali reversibili.
+In particolare, $\var{L}^{(v)} = 0$ per gli spostamenti virtuali reversibili.
 \end{proposition}
 
 \begin{definition}
     Diremo \emph{vincoli ideali} tutti i vincoli che verificano la disuguaglianza
     \begin{equation*}
-        \var{L}^{(V)} \geq 0 \quad \forall \var{\vP} \text{ spostamento virtuale}.
+        \var{L}^{(v)} \geq 0 \quad \forall \var{\vP} \text{ spostamento virtuale}.
     \end{equation*}
 \end{definition}
 
@@ -500,7 +500,7 @@ $T^2$ è una forma quadratica definita positiva.
 \end{proof}
 
 \subsection{Tensore di inerzia}\note{Lezione 23/03/2026}
-Cominiciamo la trattazione del tensore di inerzia partendo dal concetto di \emph{momento di inerzia}.
+Cominciamo la trattazione del tensore di inerzia partendo dal concetto di \emph{momento di inerzia}.
 \begin{definition}[Momento di inerzia]
     Considerando un corpo esteso continuo, il \emph{momento di inerzia} rispetto a un asse $a$ è definito come
 \begin{equation*}
@@ -566,7 +566,7 @@ si ottiene
     I_a &= \int_C \rho \vu{u}\cdot \{[\vP\times \vu{u}]\times\vP\}\dd{c} \\
     &= \vu{u}\cdot\int_C \rho\{[\vP\times \vu{u}]\times\vP\}\dd{c}.
 \end{align*}
-Utilizzaimo ora l'identità vettoriale
+Utilizziamo ora l'identità vettoriale
 \begin{equation*}
     \vva \times (\vvb \times \vc) = \vvb (\vva \cdot \vc) - \vc (\vva \cdot \vvb),
 \end{equation*}
@@ -578,9 +578,9 @@ otteniamo quindi
 \end{align}
 Questo ultimo termine permette di definire un endomorfismo sullo spazio vettoriale tridimensionale
 \begin{equation*}
-    \tau(\vv) \defeq \int_C \rho\{ P^2\vv - (\vP\cdot\vv)\vP \}\dd{c} \quad \forall \vv \in E_3,\note{si noti che $\vv$ non è necessarimente unitario}
+    \tau(\vv) \defeq \int_C \rho\{ P^2\vv - (\vP\cdot\vv)\vP \}\dd{c} \quad \forall \vv \in E_3,\note{si noti che $\vv$ non è necessariamente unitario}
 \end{equation*}
-che si chiama \emph{endomorfismo di inerzia} del sistema materiale rispetto l'assse $a$.
+che si chiama \emph{endomorfismo di inerzia} del sistema materiale rispetto all'asse $a$.
 
 Sempre nella medesima configurazione (Figura \ref{fig:tensoreInerzia}), consideriamo una terna $x,y,z$ di assi cartesiani ortogonali, centrati in $O$, con i versori coordinati $\vu{i},\vu{j},\vu{k}$. Poiché $\vu{u}$ è un versore sappiamo che può essere espresso come
 \begin{equation*}
@@ -637,7 +637,7 @@ e otteniamo
 \end{align*}
 
 \begin{remark}
-    La presenza dei prodotti di inerzia portano all'allontanamento dell'asse dal suo assetto originario quando un solido viene posto in rotazione.
+    La presenza dei prodotti di inerzia porta all'allontanamento dell'asse dal suo assetto originario quando un solido viene posto in rotazione.
 \end{remark}
 
 Possiamo scrivere l'ultimo risultato come prodotto di una matrice per un vettore:
@@ -666,7 +666,7 @@ Possiamo scrivere l'ultimo risultato come prodotto di una matrice per un vettore
             -I_{xz} & -I_{yz} & I_z
         \end{pmatrix}
     \end{equation*}
-    si chiama \emph{tensore di inerzia}, o \emph{matrice di inzerzia}, del sistema materiale rispetto al punto $O$.
+    si chiama \emph{tensore di inerzia}, o \emph{matrice di inerzia}, del sistema materiale rispetto al punto $O$.
 \end{definition}
 Il punto $O$ può tanto far parte del corpo quanto essere un punto esterno ad esso.
 
@@ -680,7 +680,7 @@ Abbiamo fatto i nostri calcoli considerando il versore $\vu{u}$, ma nell'atto pr
 Possiamo quindi scrivere il momento di inerzia $I_a$ rispetto all'asse $a$ come
 \begin{align*}
     I_a &= \vu{u}\cdot (\tens{I}_O\,\vu{u}) \\
-    &= (\alpha \beta, \gamma)\begin{pmatrix}
+    &= (\alpha, \beta, \gamma)\begin{pmatrix}
         I_x & -I_{xy} & -I_{xz} \\
         -I_{xy} & I_y & -I_{yz} \\
         -I_{xz} & -I_{yz} & I_z
