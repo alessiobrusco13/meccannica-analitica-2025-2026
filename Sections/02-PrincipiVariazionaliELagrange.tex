@@ -178,11 +178,11 @@ ovvero
 \end{equation*}
 Introducendo la funzione
 \begin{equation*}
-    \LL \defeq T - V,
+    L \defeq T - V,
 \end{equation*}
 detta \emph{lagrangiana} del sistema, possiamo scrivere le equazioni di Lagrange nella loro forma più nota, dette di Eulero--Lagrange:
 \begin{equation*}
-    \dv{t}\pdv{\LL}{\dot{q}_h} - \pdv{\LL}{q_h} = 0
+    \dv{t}\pdv{L}{\dot{q}_h} - \pdv{L}{q_h} = 0
 \end{equation*}
 
 \begin{definition}[Potenziale generalizzato]
@@ -199,7 +199,7 @@ In questo caso, le equazioni di Lagrange si riscrivono come
 \end{equation*}
 ovvero, utilizzando la lagrangiana,
 \begin{equation*}
-    \dv{t}\pdv{\LL}{\dot{q}_h} - \pdv{\LL}{q_h} = 0.
+    \dv{t}\pdv{L}{\dot{q}_h} - \pdv{L}{q_h} = 0.
 \end{equation*}
 
 \begin{example}[Forze derivate da un potenziale generalizzato]
@@ -213,7 +213,7 @@ ovvero, utilizzando la lagrangiana,
 \begin{example}[Applicazione delle equazioni di Lagrange ad un sistema rigido]
     Consideriamo un'asta rigida omogenea, di massa $m$ e lunghezza $\ell$, i cui estremi sono costretti a scorrere in assenza di attrito lungo due assi ortogonali. Si precisa che gli assi costituiscono guide puramente cinematiche e non corpi fisici materiali; il moto dell'asta non è quindi ostacolato dalla loro intersezione.
     
-    \begin{figure}[h]
+    \begin{figure}[ht]
     \centering
     \begin{tikzpicture}
         % Axes (extended slightly into the negative for better visual balance)
@@ -290,13 +290,13 @@ ovvero, utilizzando la lagrangiana,
         T = \frac{1}{2}m\frac{\ell^2}{4}\dot{\theta}^2 + \frac{1}{2}\left(\frac{1}{12}m\ell^2\right)\dot{\theta}^2 = \frac{1}{6}m\ell^2\dot{\theta}^2.
     \end{equation*}
 
-    La lagrangiana del sistema $\LL = T - V$ è quindi:
+    La lagrangiana del sistema $L = T - V$ è quindi:
     \begin{equation*}
-        \LL = \frac{1}{6}m\ell^2\dot{\theta}^2 - mg\frac{\ell}{2}\sin\theta.
+        L = \frac{1}{6}m\ell^2\dot{\theta}^2 - mg\frac{\ell}{2}\sin\theta.
     \end{equation*}
     Scriviamo quindi le equazioni di Lagrange:
     \begin{gather*}
-        \dv{t}\pdv{\LL}{\dot{\theta}} - \pdv{\LL}{\theta} = 0 \\
+        \dv{t}\pdv{L}{\dot{\theta}} - \pdv{L}{\theta} = 0 \\
         \implies \frac{1}{3}m\ell^2\ddot{\theta} + \frac{1}{2}mg\ell\cos\theta = 0.
     \end{gather*}
     Come dalla teoria possiamo scrivere l'equazione in forma normale
@@ -317,46 +317,46 @@ che sia localmente invertibile, ovvero
 \end{equation*}
 vogliamo stabilire che forma prendono le equazioni di Lagrange nelle nuove coordinate $\xi_i$. Definendo la nuova lagrangiana
 \begin{equation*}
-    \LL^* = [\LL(\vq, \dot{\vq}, t)]_{\vq = \vq(\vb{\xi})},
+    L^* = [L(\vq, \dot{\vq}, t)]_{\vq = \vq(\vb{\xi})},
 \end{equation*}
 possiamo scrivere le equazioni di Lagrange nella nuova coordinata $\xi_i$ come
 \begin{equation*}
-    \dv{t}\pdv{\LL^*}{\dot{\xi}_i} - \pdv{\LL^*}{\xi_i} = 0 \qquad i = 1, \dots, n.
+    \dv{t}\pdv{L^*}{\dot{\xi}_i} - \pdv{L^*}{\xi_i} = 0 \qquad i = 1, \dots, n.
 \end{equation*}
 
 \subsection{Leggi di conservazione e teorema di Noether}
 \note{Lezione 07/04/2026}
 
-Consideriamo un sistema di lagrangiana $\LL(\vq, \dot{\vq}, t)$ e un moto del sistema fissando $\vq(t)$ e $\dot{\vq}(t)$. Calcoliamo la derivata totale di $\LL$ rispetto al tempo:
+Consideriamo un sistema di lagrangiana $L(\vq, \dot{\vq}, t)$ e un moto del sistema fissando $\vq(t)$ e $\dot{\vq}(t)$. Calcoliamo la derivata totale di $L$ rispetto al tempo:
 \begin{equation*}
-    \dv{\LL}{t} = \sum_{h=1}^n \pdv{\LL}{q_h}\,\dot{q}_h + \underbrace{\sum_{h=1}^n \pdv{\LL}{\dot{q}_h}\,\ddot{q}_h}_{*} + \pdv{\LL}{t}.
+    \dv{L}{t} = \sum_{h=1}^n \pdv{L}{q_h}\,\dot{q}_h + \underbrace{\sum_{h=1}^n \pdv{L}{\dot{q}_h}\,\ddot{q}_h}_{*} + \pdv{L}{t}.
 \end{equation*}
 Attraverso la regola di derivazione del prodotto, otteniamo
 \begin{align*}
-    \dv{\LL}{t} &= \sum_{h=1}^n \pdv{\LL}{q_h}\,\dot{q}_h + \dv{t}\sum_{h=1}^n \pdv{\LL}{\dot{q}_h}\,\dot{q}_h - \sum_{h=1}^n \dv{t}\pdv{\LL}{\dot{q}_h}\,\dot{q}_h + \pdv{\LL}{t} \\
-    &= \dv{t} \sum_{h=1}^n \pdv{\LL}{\dot{q}_h}\,\dot{q}_h + \sum_{h=1}^n \left(\pdv{\LL}{q_h} - \dv{t}\pdv{\LL}{\dot{q}_h}\right)\dot{q}_h + \pdv{\LL}{t} \\
+    \dv{L}{t} &= \sum_{h=1}^n \pdv{L}{q_h}\,\dot{q}_h + \dv{t}\sum_{h=1}^n \pdv{L}{\dot{q}_h}\,\dot{q}_h - \sum_{h=1}^n \dv{t}\pdv{L}{\dot{q}_h}\,\dot{q}_h + \pdv{L}{t} \\
+    &= \dv{t} \sum_{h=1}^n \pdv{L}{\dot{q}_h}\,\dot{q}_h + \sum_{h=1}^n \left(\pdv{L}{q_h} - \dv{t}\pdv{L}{\dot{q}_h}\right)\dot{q}_h + \pdv{L}{t} \\
 \end{align*}
 Il secondo termine è nullo in virtù delle equazioni di Lagrange. Otteniamo quindi
 \begin{equation*}
-    \dv{\LL}{t} = \dv{t} \sum_{h=1}^n \pdv{\LL}{\dot{q}_h}\,\dot{q}_h + \pdv{\LL}{t}.
+    \dv{L}{t} = \dv{t} \sum_{h=1}^n \pdv{L}{\dot{q}_h}\,\dot{q}_h + \pdv{L}{t}.
 \end{equation*}
 Riordinando i termini, otteniamo
 \begin{equation}
     \label{eq:conservazione_H}
-    \dv{t}\left(\sum_{h=1}^n \pdv{\LL}{\dot{q}_h}\,\dot{q}_h - \LL\right) = -\pdv{\LL}{t}.
+    \dv{t}\left(\sum_{h=1}^n \pdv{L}{\dot{q}_h}\,\dot{q}_h - L\right) = -\pdv{L}{t}.
 \end{equation}
 
 \begin{definition}[Funzione di Jacobi]
     Definiamo \emph{funzione di Jacobi} di un sistema la funzione
     \begin{equation*}
-        h(\vq, \dot{\vq}, t) = \sum_{h=1}^n \pdv{\LL}{\dot{q}_h}\,\dot{q}_h - \LL.
+        h(\vq, \dot{\vq}, t) = \sum_{h=1}^n \pdv{L}{\dot{q}_h}\,\dot{q}_h - L.
     \end{equation*}
 \end{definition}
 
 Dall'equazione \eqref{eq:conservazione_H} segue il seguente teorema di conservazione.
 
 \begin{theorem}
-    Sia $\mathcal{S}$ un sistema di lagrangiana $\LL$. Se $\pdv{\LL}{t} = 0$, allora la funzione di Jacobi $h$ è una costante del moto; cioè:
+    Sia $\mathcal{S}$ un sistema di lagrangiana $L$. Se $\pdv{L}{t} = 0$, allora la funzione di Jacobi $h$ è una costante del moto; cioè:
     \begin{equation*}
         \dv{h}{t} = 0 \iff h = \text{costante}.
     \end{equation*}
@@ -365,7 +365,7 @@ Dall'equazione \eqref{eq:conservazione_H} segue il seguente teorema di conservaz
 \begin{definition}[Momenti generalizzati]
     I momenti generalizzati di un sistema sono le quantità
     \begin{equation*}
-        p_i = \pdv{\LL}{\dot{q}_i} \qquad i = 1, \dots, n.
+        p_i = \pdv{L}{\dot{q}_i} \qquad i = 1, \dots, n.
     \end{equation*}
 \end{definition}
 Questi momenti sono immediate generalizzazioni della quantità di moto Newtoniana
@@ -376,11 +376,11 @@ Questi momenti sono immediate generalizzazioni della quantità di moto Newtonian
 \subsubsection{Conservazione dell'energia}
 Consideriamo ora un sistema meccanico olonomo soggetto a forze attive di potenziale $V(\vq)$, per cui la lagrangiana è, attraverso l'equazione \eqref{eq:energia_cinetica},
 \begin{equation*}
-    \LL = T - V = T_0 + T_1 + T_2- V.
+    L = T - V = T_0 + T_1 + T_2- V.
 \end{equation*}
 Sviluppando la funzione di Jacobi, otteniamo
 \begin{align*}
-    h &= \sum_{h=1}^n \pdv{\LL}{\dot{q}_h}\,\dot{q}_h - \LL \\
+    h &= \sum_{h=1}^n \pdv{L}{\dot{q}_h}\,\dot{q}_h - L \\
     &= \sum_{h=1}^n \left(\pdv{T_1}{\dot{q}_h} + \pdv{T_2}{\dot{q}_h}\right)\dot{q}_h - T_0 - T_1 - T_2 + V.
 \end{align*}
 
@@ -411,7 +411,7 @@ Per cui, quando il sistema è conservativo, la funzione di Jacobi coincide con l
 
 \subsubsection{Generalizzazione delle leggi di conservazione}
 \begin{definition}[Integrale primo]
-    Sia un sistema di lagrangiana $\LL$. Diremo che una funzione $f(\vq, \dot{\vq}, t)$ è un \emph{integrale primo} delle equazioni di Lagrange se $f$ si conserva costante lungo le soluzioni di tali equazioni.
+    Sia un sistema di lagrangiana $L$. Diremo che una funzione $f(\vq, \dot{\vq}, t)$ è un \emph{integrale primo} delle equazioni di Lagrange se $f$ si conserva costante lungo le soluzioni di tali equazioni.
 \end{definition}
 
 In altri termini, presa una soluzione $\vq(t)$ delle equazioni di Lagrange, se $f$ è un integrale primo, si ha
@@ -420,64 +420,232 @@ In altri termini, presa una soluzione $\vq(t)$ delle equazioni di Lagrange, se $
 \end{equation*}
 
 \begin{definition}[Coordinata ciclica]
-    Sia un sistema di lagrangiana $\LL$. Diremo che una coordinata $q_i$ è una \emph{coordinata ciclica} o \emph{ignorabile} se la lagrangiana non dipende esplicitamente da $q_i$, ovvero
+    Sia un sistema di lagrangiana $L$. Diremo che una coordinata $q_i$ è una \emph{coordinata ciclica} o \emph{ignorabile} se la lagrangiana non dipende esplicitamente da $q_i$, ovvero
     \begin{equation*}
-        \pdv{\LL}{q_i} = 0.
+        \pdv{L}{q_i} = 0.
     \end{equation*}
 \end{definition}
 
 \begin{remark}
     Se $q_i$ è una coordinata ciclica, allora il momento $p_i$ generalizzato (o coniugato) a $q_i$ si conserva costante. Questo risultato discende direttamente dalle equazioni di Lagrange, che in questo caso si riducono a
     \begin{equation*}
-        \dv{t}\pdv{\LL}{\dot{q}_i} = \pdv{\LL}{q_i} = 0 \implies \pdv{\LL}{\dot{q}_i} = p_i = \text{costante}.
+        \dv{t}\pdv{L}{\dot{q}_i} = \pdv{L}{q_i} = 0 \implies \pdv{L}{\dot{q}_i} = p_i = \text{costante}.
     \end{equation*}
 \end{remark}
 
 \begin{definition}[Trasformazione di coordinate ammissibile]
-    Sia un sistema di lagrangiana $\LL$. Diremo che una trasformazione di coordinate $Q_i = f_i(\vq)$ indipendente dal tempo è \emph{ammissibile} per $\LL$ se
+    Sia un sistema di lagrangiana $L$. Diremo che una trasformazione di coordinate $Q_i = f_i(\vq)$ indipendente dal tempo è \emph{ammissibile} per $L$ se
     \begin{equation*}
-        \LL(\vQ, \dot{\vQ}) = \LL(\vq, \dot{\vq}).
+        L(\vQ, \dot{\vQ}) = L(\vq, \dot{\vq}).
     \end{equation*}
 \end{definition}
 
 \begin{definition}[Gruppo di trasformazioni ammissibili]
-    Diremo che una famiglia ad un parametro $f(\vq, s)$, con $s \in \R$, di trasformazioni ammissibili costituisce un gruppo di trasformazioni ammissibili per $\LL$ se
+    Diremo che una famiglia ad un parametro $\vf(\vq, s)$, con $s \in \R$, di trasformazioni ammissibili costituisce un gruppo di trasformazioni ammissibili per $L$ se
     \begin{enumerate}[label=($\roman*$)]
-        \item $f(\vq, 0) = \vq \quad \forall \vq$;
-        \item $\vQ = f(\vq, s) \implies \vq = f(\vQ, -s) \quad \forall s$.
-        \item $f(f(\vq, s_1), s_2) = f(\vq, s_1 + s_2) \quad \forall s_1, s_2$.
+        \item $\vf(\vq, 0) = \vq \quad \forall \vq$;
+        \item $\vQ = f(\vq, s) \implies \vq = \vf(\vQ, -s) \quad \forall s$.
+        \item $\vf(\vf(\vq, s_1), s_2) = \vf(\vq, s_1 + s_2) \quad \forall s_1, s_2$.
     \end{enumerate}
 \end{definition}
 
 \begin{theorem}[di Noether]
     \note{del 1918}
-    Sia $f(\vq, s)$ un gruppo di trasformazioni ammissibili per la lagrangiana $\LL$ di un sistema. Allora, la funzione
+    Sia $\vf(\vq, s)$ un gruppo di trasformazioni ammissibili per la lagrangiana $L$ di un sistema. Allora, la funzione
     \begin{equation*}
-        I = \sum_{j=1}^n \pdv{\LL}{\dot{q}_j}\,\pdv{f_j}{s}\bigg|_{s=0}
+        I(\vq, \dot{\vq}) = \sum_{j=1}^n \pdv{L}{\dot{q}_j}\,\pdv{f_j}{s}\bigg|_{s=0}
     \end{equation*}
+    è una costante del moto.
 \end{theorem}
 \begin{proof}
     Osserviamo che
     \begin{equation*}
-        \LL(f(\vq, s), \dot{f}(\vq, s)) = \LL(\vq, \dot{\vq}) \quad \forall s.
+        L(\vf(\vq, s), \dot{\vf}(\vq, s)) = L(\vq, \dot{\vq}) \quad \forall s.
     \end{equation*}
     Derivando rispetto $s$ otteniamo
     \begin{align*}
-        0 = \dv{s} \LL\left(f(\vq, s), \dot{f}(\vq, s)\right) &= \sum_{j=1}^n \pdv{\LL}{q_j}\,\pdv{f_j}{s} + \sum_{j=1}^n \pdv{\LL}{\dot{q}_j}\,\pdv{\dot{f_j}}{s} \\
-        &= \sum_{j=1}^n \pdv{\LL}{q_j}\,\pdv{f_j}{s} + \dv{t}\sum_{j=1}^n \pdv{\LL}{\dot{q}_j}\,\pdv{f_j}{s} - \sum_{j=1}^n \dv{t}\pdv{\LL}{\dot{q}_j}\,\pdv{f_j}{s} \\
-        &=  \sum_{j=1}^n \left(\pdv{\LL}{q_j} - \dv{t}\pdv{\LL}{\dot{q}_j}\right)\pdv{f_j}{s} + \dv{t}\sum_{j=1}^n \pdv{\LL}{\dot{q}_j}\,\pdv{f_j}{s}.
+        0 = \dv{s} L\left(\vf(\vq, s), \dot{\vf}(\vq, s)\right) &= \sum_{j=1}^n \pdv{L}{q_j}\,\pdv{f_j}{s} + \sum_{j=1}^n \pdv{L}{\dot{q}_j}\,\pdv{\dot{f_j}}{s} \\
+        &= \sum_{j=1}^n \pdv{L}{q_j}\,\pdv{f_j}{s} + \dv{t}\sum_{j=1}^n \pdv{L}{\dot{q}_j}\,\pdv{f_j}{s} - \sum_{j=1}^n \dv{t}\pdv{L}{\dot{q}_j}\,\pdv{f_j}{s} \\
+        &=  \sum_{j=1}^n \left(\pdv{L}{q_j} - \dv{t}\pdv{L}{\dot{q}_j}\right)\pdv{f_j}{s} + \dv{t}\sum_{j=1}^n \pdv{L}{\dot{q}_j}\,\pdv{f_j}{s}.
     \end{align*}
 
     Posto $s = 0$, otteniamo
     \begin{equation*}
-        0 = \sum_{j=1}^n \left(\pdv{\LL}{q_j} - \dv{t}\pdv{\LL}{\dot{q}_j}\right)\pdv{f_j}{s}\bigg|_{s=0} + \dv{t}\sum_{j=1}^n \pdv{\LL}{\dot{q}_j}\,\pdv{f_j}{s}\bigg|_{s=0}.
+        0 = \sum_{j=1}^n \left(\pdv{L}{q_j} - \dv{t}\pdv{L}{\dot{q}_j}\right)\pdv{f_j}{s}\bigg|_{s=0} + \dv{t}\sum_{j=1}^n \pdv{L}{\dot{q}_j}\,\pdv{f_j}{s}\bigg|_{s=0}.
     \end{equation*}
     Il primo termine è nullo in virtù delle equazioni di Lagrange e l'assioma $(i)$ del gruppo, per cui
     \begin{equation*}
-        \dv{t}\sum_{j=1}^n \pdv{\LL}{\dot{q}_j}\,\pdv{f_j}{s}\bigg|_{s=0} = 0,
+        \dv{t}\sum_{j=1}^n \pdv{L}{\dot{q}_j}\,\pdv{f_j}{s}\bigg|_{s=0} = 0,
     \end{equation*}
     ovvero
     \begin{equation*}
-        I = \sum_{j=1}^n \pdv{\LL}{\dot{q}_j}\,\pdv{f_j}{s}\bigg|_{s=0} = \text{costante}.
+        I = \sum_{j=1}^n \pdv{L}{\dot{q}_j}\,\pdv{f_j}{s}\bigg|_{s=0} = \text{costante}.
     \end{equation*}
 \end{proof}
+
+\note{Lezione 13/04/2026}
+\begin{example}
+    Consideriamo la seguente famiglia di trasformazioni
+    \begin{equation*}
+        f_j(\vq,s) = \begin{cases}
+        q_i + s,\quad &j=i\\
+        q_j, \quad &j\neq i
+        \end{cases}.
+    \end{equation*}
+    Abbiamo
+    \begin{equation*}
+        \pdv{f_j}{s}\bigg|_{s=0} = \begin{cases}
+        1, \quad &j=i\\
+        0, \quad &j\neq i
+        \end{cases}
+    \end{equation*}
+    e quindi
+    \begin{equation*}
+        I(\vq, \dot{\vq}) = \sum_{j=1}^n \pdv{L}{\dot{q}_j}\,\pdv{f_j}{s}\bigg|_{s=0} = \pdv{L}{\dot{q}_i} = p_i.
+    \end{equation*}
+
+    Per cui se il sistema è invariante per traslazioni lungo la coordinata $q_i$, allora essa è ciclica e il momento generalizzato $p_i$ si conserva costante.
+\end{example}
+
+\subsection{Formulazione variazionale e principio di Hamilton}
+Passiamo ora a una formulazione alternativa della dinamica, basata su principi \emph{variazionali}. L'idea guida è descrivere il moto attraverso un problema di estremo relativo per una quantità integrale.
+
+Un esempio storico fondamentale è il \emph{problema della brachistocrona}, formulato da Johann Bernoulli nel 1696:\note{Il nome "brachistocrona" deriva dal greco "brachistos" (più breve) e "chronos" (tempo), indicando la curva che consente il percorso più rapido tra due punti sotto l'effetto della gravità.}
+\begin{quote}
+    In un piano verticale si considerino due punti $A$ e $B$, non sulla stessa verticale, con $A$ più alto di $B$. Supponiamo, inoltre, di collegare $A$ e $B$ con una guida curva liscia $\gamma$.
+    
+    Qual è la curva $\gamma$ che minimizza il tempo di percorrenza di una particella che, lasciata cadere da $A$ con velocità iniziale nulla, scende lungo la guida fino a raggiungere $B$?
+\end{quote}
+    \begin{figure}[ht]
+        \centering
+        \begin{tikzpicture}[>=stealth, scale=1.15]
+            % Sistema di assi con origine in A e asse y rivolto verso il basso.
+            \draw[thick, ->] (0, 0) -- (5.2, 0) node[right] {$x$};
+            \draw[thick, ->] (0, 0) -- (0, -3.7) node[below] {$y$};
+
+            % Punti iniziale e finale
+            \fill[black] (0, 0) circle (0.08) node[above left] {$A$};
+            \fill[black] (4.25, -2.5) circle (0.08) node[below right] {$B$};
+
+            % Riferimento: percorso rettilineo
+            \draw[dashed, gray, thick] (0, 0) -- (4.25, -2.5) node[midway, above right] {retta};
+
+            % Brachistocrona (arco di cicloide)
+            \draw[thick, BrickRed] plot[domain=0:3.0, samples=150, variable=\t]
+                ({1.4*(\t - sin(\t r))}, {-1.4*(1 - cos(\t r))});
+            \node[BrickRed, below right] at (1, -3) {brachistocrona};
+
+            % Direzione della gravita'
+            \draw[thick, ->, black!70] (4.8, -0.4) -- (4.8, -1.4) node[right] {$\vb{g}$};
+        \end{tikzpicture}
+        \caption{Problema della brachistocrona: confronto tra il percorso rettilineo e la curva cicloidale che minimizza il tempo di discesa da $A$ a $B$.}
+        \label{fig:brachistocrona}
+    \end{figure}
+
+La prima traiettoria che viene in mente è una linea retta, perché minimizza la distanza geometrica. Tuttavia, tenendo conto della gravità, può risultare più conveniente un percorso inizialmente più ripido: la particella acquista velocità prima e il tempo totale di percorrenza si riduce. La soluzione del problema è un arco di cicloide.
+
+Questo problema viene considerato il punto di inizio del calcolo delle variazioni, nonostante la presenza di problemi simili in epoca precedente, come il \emph{problema della Regina Didone}.
+
+Per formulare il problema in modo analitico, consideriamo l'integrale primo dell'energia per il sistema della brachistocrona.
+\begin{equation*}
+    \frac{1}{2}mv^2 - mg y = \frac{1}{2}mv_0^2 + mg y_0 = 0,
+\end{equation*}
+otteniamo quindi
+\begin{equation*}
+    \frac{1}{2}\dv{s}{t}^2 - g y = 0 \implies \dv{s}{t} = \sqrt{2 g y}.
+\end{equation*}
+Separando le variabili, otteniamo
+\begin{equation*}
+    \dd{t} = \frac{\dd{s}}{\sqrt{2 g y}},
+\end{equation*}
+e quindi, integrando 
+\begin{equation*}
+    T = \int_0^T \dd{t} = \int_0^{x_1} \frac{\dd{s}}{\sqrt{2 g y}} = \frac{1}{\sqrt{2g}}\int_0^{x_1} \sqrt{\frac{1+y'^2}{y}}\dd{x}.
+\end{equation*}
+
+Poiché il fattore $\frac{1}{\sqrt{2g}}$ è una costante positiva, minimizzare $T$ equivale a minimizzare il funzionale
+\begin{equation*}
+    \tau = \int_0^{x_1} \sqrt{\frac{1+y'^2}{y}}\dd{x}.
+\end{equation*}
+
+La tecnica appena usata si generalizza a una classe ampia di problemi.
+
+\begin{definition}[Funzionali integrali del calcolo delle variazioni]
+    Un \emph{funzionale integrale} è una funzione che associa ad ogni funzione $y(x)$, definita su un intervallo $[x_0, x_1]$, un numero reale attraverso un'integrazione del tipo
+    \begin{equation*}
+        I[y] = \int_{x_0}^{x_1} F(y, y', x)\dd{x},
+    \end{equation*}
+    dove $y\in C^0([x_0, x_1])\cap C^1(x_0, x_1)$.
+
+    La funzione $F$ è detta \emph{lagrangiana} per analogia con il caso meccanico.
+\end{definition}
+
+Per parlare rigorosamente di estremi relativi, occorre specificare sia il significato di massimo/minimo sia il concetto di vicinanza tra funzioni.
+
+Consideriamo il caso di un massimo. Per analogia con il caso di una funzione reale di una variabile, diremo che $I[y]$ è massimo in $y^*(x)$ se, per ogni funzione $y(x)$ sufficientemente vicina a $y^*(x)$, si ha
+\begin{equation*}
+    I[y] \leq I[y^*].
+\end{equation*}
+
+Definiamo la variazione infinitesima (o perturbazione) di $y^*(x)$ come
+\begin{align*}
+    y(x) = y^*(x) + \alpha \eta(x), \quad &\forall \alpha \in (-\varepsilon, \varepsilon), \\
+    &\forall \eta \in C^0([x_0, x_1])\cap C^1(x_0, x_1): \eta(x_0) = \eta(x_1) = 0.
+\end{align*}
+
+La condizione $\eta(x_0)=\eta(x_1)=0$ è essenziale: significa che le perturbazioni ammissibili non modificano i valori agli estremi, cioè i punti iniziale e finale restano fissati. In questo modo stiamo confrontando curve che soddisfano gli stessi vincoli al bordo; la ricerca dell'estremo relativo avviene quindi solo tra funzioni con i medesimi estremi.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=1.05]
+        % Assi
+        \draw[thick, ->] (-0.2, 0) -- (6.2, 0) node[right] {$x$};
+        \draw[thick, ->] (0, -0.2) -- (0, 3.8) node[above] {$y$};
+
+        % Estremi fissati
+        \coordinate (A) at (1, 1.2);
+        \coordinate (B) at (5, 2.7);
+        \fill[black] (A) circle (0.07) node[below left] {$A$};
+        \fill[black] (B) circle (0.07) node[above right] {$B$};
+
+        % Funzione di riferimento y*
+        \draw[thick, BrickRed, smooth] plot[domain=1:5, samples=120, variable=\x]
+            (\x, {1.2 + 1.5*((\x-1)/4) + 0.45*sin(180*(\x-1)/4)});
+        \node[BrickRed] at (2.2, 2.6) {$y^*(x)$};
+
+        % Variazione y* + alpha eta con stessi estremi
+        \draw[thick, blue!70!black, dashed, smooth] plot[domain=1:5, samples=120, variable=\x]
+            (\x, {1.2 + 1.5*((\x-1)/4) + 0.45*sin(180*(\x-1)/4) + 0.25*sin(180*(\x-1)/4)*sin(360*(\x-1)/4)});
+        \node[blue!70!black] at (4.5, 1.7) {$y^*(x)+\alpha\eta(x)$};
+
+        % Indicatori di estremi fissi
+        \draw[densely dotted, gray] (1, 0) -- (1, 1.2);
+        \draw[densely dotted, gray] (5, 0) -- (5, 2.7);
+        \node[font=\small, gray!70!black] at (3, 0.35) {estremi fissati};
+    \end{tikzpicture}
+    \caption{Esempio di funzione di riferimento $y^*(x)$ e di una variazione ammissibile $y^*(x)+\alpha\eta(x)$: le curve coincidono agli estremi perché $\eta(x_0)=\eta(x_1)=0$.}
+    \label{fig:variazioni_estremi_fissi}
+\end{figure}
+
+\begin{definition}[Estremi relativi di un funzionale]
+    Diremo che $y^*(x)$ è un massimo relativo per il funzionale $I[y]$ se
+    \begin{align*}
+        I[y^*] &\geq I[y^* + \alpha \eta], \quad \forall \alpha \in (-\varepsilon, \varepsilon), \forall \eta.
+    \end{align*}
+    Analogamente, diremo che $y^*(x)$ è un minimo relativo se
+    \begin{align*}
+        I[y^*] &\leq I[y^* + \alpha \eta], \quad \forall \alpha \in (-\varepsilon, \varepsilon), \forall \eta.
+    \end{align*}
+\end{definition}
+
+\begin{theorem}[di Eulero--Lagrange]
+    Sia un funzionale integrale
+    \begin{equation*}
+        I[y] = \int_{x_0}^{x_1} F(y, y', x)\dd{x}.
+    \end{equation*}
+    Una condizione necessaria affinché $y^*(x)$ sia un estremo relativo di $I[y]$ è che essa soddisfi l'equazione
+    \begin{equation*}
+        \pdv{F}{y} - \dv{x}\pdv{F}{y'} = 0,
+    \end{equation*}
+    detta equazione di Eulero--Lagrange del funzionale $I[y]$.
+\end{theorem}
