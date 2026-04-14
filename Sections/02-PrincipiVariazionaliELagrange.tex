@@ -1,4 +1,5 @@
 \section{Principi variazionali e equazioni di Lagrange}
+\subsection{Equazioni di Lagrange}
 Talvolta le equazioni che seguono sono dette di Eulero--Lagrange, ma la derivazione che faremo è propriamente di Lagrange. Risale al 1788, con la pubblicazione del \emph{Mécanique Analytique}.
 
 \note{Lezione 24/03/2026} L'equazione di Newton ha uso eminente nella dinamica del punto in un campo centrale e le equazioni cardinali nella dinamica del corpo rigido. Le equazioni di Lagrange sono invece utili per descrivere la dinamica dei sistemi con vincoli. Dimostreremo la corrispondenza biunivoca fra le equazioni di Newton, e quindi anche le equazioni cardinali, e le equazioni di Lagrange.
@@ -507,7 +508,7 @@ In altri termini, presa una soluzione $\vq(t)$ delle equazioni di Lagrange, se $
     Per cui se il sistema è invariante per traslazioni lungo la coordinata $q_i$, allora essa è ciclica e il momento generalizzato $p_i$ si conserva costante.
 \end{example}
 
-\subsection{Formulazione variazionale e principio di Hamilton}
+\subsection{Formulazione variazionale}
 Passiamo ora a una formulazione alternativa della dinamica, basata su principi \emph{variazionali}. L'idea guida è descrivere il moto attraverso un problema di estremo relativo per una quantità integrale.
 
 Un esempio storico fondamentale è il \emph{problema della brachistocrona}, formulato da Johann Bernoulli nel 1696:\note{Il nome "brachistocrona" deriva dal greco "brachistos" (più breve) e "chronos" (tempo), indicando la curva che consente il percorso più rapido tra due punti sotto l'effetto della gravità.}
@@ -577,25 +578,23 @@ La tecnica appena usata si generalizza a una classe ampia di problemi.
     \end{equation*}
     dove $y\in C^0([x_0, x_1])\cap C^1(x_0, x_1)$.
 
-    La funzione $F$ è detta \emph{lagrangiana} per analogia con il caso meccanico.
+    La funzione $F\in C^2([x_0, x_1] \times \mathbb{R} \times \mathbb{R})$ è detta \emph{lagrangiana} per analogia con il caso meccanico.
 \end{definition}
 
-Per parlare rigorosamente di estremi relativi, occorre specificare sia il significato di massimo/minimo sia il concetto di vicinanza tra funzioni.
+L'insieme di tutte le funzioni $y(x)$ definite su $[x_0, x_1]$ e appartenenti a $C^0([x_0, x_1])\cap C^1(x_0, x_1)$ ha un ruolo analogo al domionino di una funzione reale e viene detto \emph{classe di funzioni ammissibili}.
 
-Consideriamo il caso di un massimo. Per analogia con il caso di una funzione reale di una variabile, diremo che $I[y]$ è massimo in $y^*(x)$ se, per ogni funzione $y(x)$ sufficientemente vicina a $y^*(x)$, si ha
+Consideriamo il caso di un massimo relativo del funzionale. Per analogia con il caso di una funzione reale di una variabile, diremo che $I[y]$ è massimo in $y^*(x)$ se, per ogni funzione $y(x)$ sufficientemente vicina a $y^*(x)$, si ha
 \begin{equation*}
     I[y] \leq I[y^*].
 \end{equation*}
 
-Definiamo la variazione infinitesima (o perturbazione) di $y^*(x)$ come
+Definiamo la variazione infinitesima \note{o perturbazione} di $y^*(x)$ come
 \begin{align*}
     y(x) = y^*(x) + \alpha \eta(x), \quad &\forall \alpha \in (-\varepsilon, \varepsilon), \\
     &\forall \eta \in C^0([x_0, x_1])\cap C^1(x_0, x_1): \eta(x_0) = \eta(x_1) = 0.
 \end{align*}
 
-La condizione $\eta(x_0)=\eta(x_1)=0$ è essenziale: significa che le perturbazioni ammissibili non modificano i valori agli estremi, cioè i punti iniziale e finale restano fissati. In questo modo stiamo confrontando curve che soddisfano gli stessi vincoli al bordo; la ricerca dell'estremo relativo avviene quindi solo tra funzioni con i medesimi estremi.
-
-\begin{figure}[ht]
+\begin{figure}[h!]
     \centering
     \begin{tikzpicture}[>=stealth, scale=1.05]
         % Assi
@@ -627,18 +626,50 @@ La condizione $\eta(x_0)=\eta(x_1)=0$ è essenziale: significa che le perturbazi
     \label{fig:variazioni_estremi_fissi}
 \end{figure}
 
+La condizione $\eta(x_0)=\eta(x_1)=0$ è essenziale: significa che le perturbazioni ammissibili non modificano i valori agli estremi, cioè i punti iniziale e finale restano fissati. In questo modo stiamo confrontando curve che soddisfano gli stessi vincoli al bordo; la ricerca dell'estremo relativo avviene quindi solo tra funzioni con i medesimi estremi.
+
 \begin{definition}[Estremi relativi di un funzionale]
-    Diremo che $y^*(x)$ è un massimo relativo per il funzionale $I[y]$ se
-    \begin{align*}
-        I[y^*] &\geq I[y^* + \alpha \eta], \quad \forall \alpha \in (-\varepsilon, \varepsilon), \forall \eta.
-    \end{align*}
-    Analogamente, diremo che $y^*(x)$ è un minimo relativo se
-    \begin{align*}
-        I[y^*] &\leq I[y^* + \alpha \eta], \quad \forall \alpha \in (-\varepsilon, \varepsilon), \forall \eta.
-    \end{align*}
+        Diremo che $y^*(x)$ è un massimo relativo per il funzionale $I[y]$ se
+        \begin{align*}
+            I[y^*] \geq I[y^* + \alpha \eta], \quad
+            &\forall \alpha \in (-\varepsilon, \varepsilon), \\
+            &\forall \eta \in C^0([x_0, x_1])\cap C^1(x_0, x_1): \eta(x_0) = \eta(x_1) = 0.
+        \end{align*}
+        Analogamente, diremo che $y^*(x)$ è un minimo relativo se
+        \begin{align*}
+            I[y^*] \leq I[y^* + \alpha \eta], \quad 
+            &\forall \alpha \in (-\varepsilon, \varepsilon), \\
+            &\forall \eta \in C^0([x_0, x_1])\cap C^1(x_0, x_1): \eta(x_0) = \eta(x_1) = 0.
+        \end{align*}
 \end{definition}
 
-\begin{theorem}[di Eulero--Lagrange]
+Introduciamo il \emph{lemma fondamentale del calcolo delle variazioni}, che risulta utile per dimostrare il teorema di Eulero che lo segue.
+
+\begin{lemma}[fondamentale del calcolo delle variazioni]
+    Sia $\eta \in C^0([a, b])\cap C^1(a, b)$ con $\eta(a) = \eta(b) = 0$. Se
+    \begin{equation*}
+        \int_{a}^{b} G(x)\,\eta(x)\dd{x} = 0 \quad \forall \eta,
+    \end{equation*}
+    allora $G(x) = 0$ per ogni $x\in [a, b]$.
+\end{lemma}
+\begin{proof}
+    Supponiamo per assurdo che esista $\xi\in (a,b): G(\xi) \neq 0$. Senza perdita di generalità, supponiamo che $G(\xi) > 0$. Per il teorema della permanenza del segno, esiste un intervallo $[\xi_1, \xi_2] \subset (a, b)$, tale che $G(x) > 0\ \forall x\in [\xi_1, \xi_2]$.
+
+    Poniamo
+    \begin{equation*}
+        \eta(x) = \begin{cases}
+            0, \quad &x\in [a, \xi_1]\cup [\xi_2, b] \\
+            (x-\xi_1)^2(\xi_2-x)^2, \quad &x\in [\xi_1, \xi_2]\note{moltiplicando la potenza per $n$ è possibile dimostrare il lemam anche con funzioni $C^n$}
+        \end{cases}.
+    \end{equation*}
+    Ovviamente abbiamo che $\eta\in C^0([a, b])\cap C^1(a, b)$ e $\eta(a) = \eta(b) = 0$. Tuttavia, con questa scelta di $\eta$ otteniamo
+    \begin{equation*}
+        \int_{a}^{b} G(x)\,\eta(x)\dd{x} = \int_{\xi_1}^{\xi_2} G(x)\,(x-\xi_1)^2(\xi_2-x)^2\dd{x} > 0,
+    \end{equation*}
+    in contraddizione con l'ipotesi. Pertanto possiamo concludere che $G(x) = 0$ per ogni $x\in [a, b]$.
+\end{proof}
+
+\begin{theorem}[di Eulero] \note{analogo del teorema di Fermat per le funzioni reali}
     Sia un funzionale integrale
     \begin{equation*}
         I[y] = \int_{x_0}^{x_1} F(y, y', x)\dd{x}.
@@ -649,3 +680,105 @@ La condizione $\eta(x_0)=\eta(x_1)=0$ è essenziale: significa che le perturbazi
     \end{equation*}
     detta equazione di Eulero--Lagrange del funzionale $I[y]$.
 \end{theorem}
+\begin{proof}
+    Supponiamo che $y^*(x)$ sia un massimo relativo per $I$, ovvero
+    \begin{align*}
+        I[y^*] \geq I[y^* + \alpha \eta], \quad
+        &\forall \alpha \in (-\varepsilon, \varepsilon), \\
+        &\forall \eta \in C^0([x_0, x_1])\cap C^1(x_0, x_1): \eta(x_0) = \eta(x_1) = 0.
+    \end{align*}
+    Osserviamo che la funzione 
+    \begin{equation*}
+        \alpha \mapsto I[y^* + \alpha \eta] = \int_{x_0}^{x_1} F(y^* + \alpha \eta, y'^* + \alpha \eta', x)\dd{x}
+    \end{equation*}
+    è una funzione reale di una variabile reale, derivabile rispetto ad $\alpha$. Inoltre ha un massimo in $\alpha = 0$, quindi la sua derivata prima in $\alpha = 0$ è nulla. Calcoliamo allora
+    \begin{align*}
+        \dv{I}{\alpha} &= \dv{\alpha} \int_{x_0}^{x_1} F(y^* + \alpha \eta, y'^* + \alpha \eta', x)\dd{x} \\ 
+        &= \int_{x_0}^{x_1} \left(\pdv{F}{y}\,\eta + \pdv{F}{y'}\,\eta'\right)\dd{x} \\
+        &= \int_{x_0}^{x_1}\left\{ \pdv{F}{y}\eta + \dv{x}\left(\pdv{F}{y'}\eta\right) - \dv{x}\pdv{F}{y'}\eta \right\} \dd{x} \\
+        &= \int_{x_0}^{x_1} \left(\pdv{F}{y} - \dv{x}\pdv{F}{y'}\right)\eta\dd{x} + \int_{x_0}^{x_1} \dv{x}\left(\pdv{F}{y'}\eta\right) \dd{x}\\
+        &= \int_{x_0}^{x_1} \left(\pdv{F}{y} - \dv{x}\pdv{F}{y'}\right)\eta\dd{x} + \left[\pdv{F}{y'}\eta\right]_{x_0}^{x_1}
+    \end{align*}
+    Il secondo termine è nullo in virtù della condizione $\eta(x_0) = \eta(x_1) = 0$, per cui
+    \begin{equation*}
+        \dv{I}{\alpha}\bigg|_{\alpha=0} = \int_{x_0}^{x_1} \left(\pdv{F}{y} - \dv{x}\pdv{F}{y'}\right)\eta\dd{x} = 0 \quad \forall \eta.
+    \end{equation*}
+    Applicando il lemma fondamentale del calcolo delle variazioni, otteniamo
+    \begin{equation*}
+        \pdv{F}{y} - \dv{x}\pdv{F}{y'} = 0,
+    \end{equation*}
+    ovvero $y^*(x)$ soddisfa l'equazione di Eulero--Lagrange del funzionale $I[y]$.
+\end{proof}
+
+Introduciamo la seguente notazione per indicare una variazione infinitesima di $y$:
+\begin{equation*}
+    \var{y} = \alpha \eta.
+\end{equation*}
+Notiamo che vale la seguente relazione
+\begin{equation*}
+    (\var{y})' = \alpha \eta' = \var{y'}.
+\end{equation*}
+
+\begin{definition}[Operatore variazionale di Lagrange]
+    Dato un funzionale $I[y]$, definiamo la \emph{variazione prima di $I$} come
+    \begin{equation*}
+        \var{I} \defeq \left(\dv{I}{\alpha}\right)_{\alpha=0}.
+    \end{equation*}
+\end{definition}
+Sviluppando i conti, otteniamo
+\begin{equation*}
+    \var{I} = \int_{x_0}^{x_1} \left[\pdv{F}{y} - \dv{x} \pdv{F}{y'}\right] \alpha \eta \dd{x} = \int_{x_0}^{x_1} \left[\pdv{F}{y} - \dv{x} \pdv{F}{y'}\right] \var{y} \dd{x}.
+\end{equation*}
+Possiamo quindi ottenere il seguente sviluppo di $I[y^* + \var{y}]$:
+\begin{align*}
+    I[y^* + \var{y}] &= I[y^*] + \alpha \int_{x_0}^{x_1} \left[\pdv{F}{y}\eta - \dv{x} \pdv{F}{y'}\eta'\right]  \dd{x} \dots.
+\end{align*}
+
+Considerando, invece, una n-upla di funzioni, definiamo un funzionale integrale del tipo
+\begin{equation*}
+    I[y_1, \dots, y_n] = I[\vb{y}]= \int_{x_0}^{x_1} F(\vb{y}, \vb{y'}, x)\dd{x}.
+\end{equation*}
+il teorema di Eulero si generalizza in maniera immediata, fornendo un sistema di $n$ equazioni differenziali alle derivate ordinarie:
+\begin{theorem}[di Eulero per più variabili]
+    Sia un funzionale integrale
+    \begin{equation*}        I[\vb{y}, \vb{y'}] = \int_{x_0}^{x_1} F(\vb{y}, \vb{y'}, x)\dd{x}.
+    \end{equation*}
+    Una condizione necessaria affinché $\vb{y}^*(x)$ sia un estremo relativo di $I[\vb{y}, \vb{y'}]$ è che essa soddisfi il sistema di equazioni
+    \begin{equation*}
+        \pdv{F}{y_i} - \dv{x}\pdv{F}{y_i'} = 0 \qquad i = 1, \dots, n.
+    \end{equation*}
+\end{theorem}
+La dimostrazione è del tutto analoga a quella del teorema di Eulero per una sola variabile, con la differenza che si deve considerare una variazione infinitesima di ogni funzione $y_i$, ottenendo alla fine
+\begin{equation*}
+    0 = \left(\dv{I}{\alpha}\right)_{\alpha=0} = \int_{x_0}^{x_1} \sum_{i=1}^n \left[\pdv{F}{y_i} - \dv{x}\pdv{F}{y_i'}\right] \eta_i \dd{x} \quad \forall \eta_1, \dots, \eta_n,
+\end{equation*}
+e quindi
+\begin{equation*}
+    \pdv{F}{y_i} - \dv{x}\pdv{F}{y_i'} = 0 \qquad i = 1, \dots, n.
+\end{equation*}
+
+\begin{definition}[Funzionale stazionario]
+    Sia un funzionale integrale
+    \begin{equation*}
+        I[y] = \int_{x_0}^{x_1} F(y, y', x)\dd{x}.
+    \end{equation*}
+    Diremo che $y^*(x)$ rende \emph{stazionario} il funzionale $I[y]$ se $y^*(x)$ soddisfa l'equazione di Eulero--Lagrange del funzionale $I[y]$ e equivalentemente
+    \begin{equation*}
+        \var{I} = 0.
+    \end{equation*}
+\end{definition}
+
+\subsection{Principio di Hamilton}
+La grande applicazione del calcolo variazionale alla meccanica analitica è il \emph{principio di Hamilton} o \emph{principio di azione stazionaria}. Il principio per secoli è stato detto della \emph{minima} azione, a causa di un'errata convinzione che l'azione fosse sempre minimizzata.
+
+\begin{theorem}[Principio di Hamilton]\note{(1834)}
+    Sia $\mathcal{S}$ un sistema olonomo di coordinate $\vq$ e lagrangiana $L$, $P_0$ e $P_1$ due configurazioni assunte da $\mathcal{S}$ agli istanti $t_0$ e $t_1$, rispettivamente. Tra le possibili traiettorie che collegano $P_0$ a $P_1$\note{$P_0$ e $P_1$ sono punti dello spazio delle configurazioni} in un intervallo di tempo $[t_0, t_1]$, il modo effettivo del sistema è quello in corrispondenza della traiettoria che rende stazionario il funzionale
+    \begin{equation*}
+        A = \int_{t_0}^{t_1} L(\vq, \vq', t) \dd{t},\note{Solitamente si indica con $S$}
+    \end{equation*}
+    detto \emph{azione} del sistema. Ovvero
+    \begin{equation*}
+        \var{A} = 0.
+    \end{equation*}
+\end{theorem}
+È importante sottolineare che il principio di Hamilton non dipende dalla scelte delle coordinate, ma solo dalla lagrangiana, che è una funzione scalare.
