@@ -1,4 +1,4 @@
-\section{Principi variazionali e equazioni di Lagrange}
+\section{Equazioni di Lagrange e principi variazionali}
 \subsection{Equazioni di Lagrange}
 Talvolta le equazioni che seguono sono dette di Eulero--Lagrange, ma la derivazione che faremo è propriamente di Lagrange. Risale al 1788, con la pubblicazione del \emph{Mécanique Analytique}.
 
@@ -588,7 +588,7 @@ Consideriamo il caso di un massimo relativo del funzionale. Per analogia con il 
     I[y] \leq I[y^*].
 \end{equation*}
 
-Definiamo la variazione infinitesima \note{o perturbazione} di $y^*(x)$ come
+Definiamo la \emph{variazione} infinitesima \note{o perturbazione} di $y^*(x)$ come
 \begin{align*}
     y(x) = y^*(x) + \alpha \eta(x), \quad &\forall \alpha \in (-\varepsilon, \varepsilon), \\
     &\forall \eta \in C^0([x_0, x_1])\cap C^1(x_0, x_1): \eta(x_0) = \eta(x_1) = 0.
@@ -772,9 +772,9 @@ e quindi
 La grande applicazione del calcolo variazionale alla meccanica analitica è il \emph{principio di Hamilton} o \emph{principio di azione stazionaria}. Il principio per secoli è stato detto della \emph{minima} azione, a causa di un'errata convinzione che l'azione fosse sempre minimizzata.
 
 \begin{theorem}[Principio di Hamilton]\note{(1834)}
-    Sia $\mathcal{S}$ un sistema olonomo di coordinate $\vq$ e lagrangiana $L$, $P_0$ e $P_1$ due configurazioni assunte da $\mathcal{S}$ agli istanti $t_0$ e $t_1$, rispettivamente. Tra le possibili traiettorie che collegano $P_0$ a $P_1$\note{$P_0$ e $P_1$ sono punti dello spazio delle configurazioni} in un intervallo di tempo $[t_0, t_1]$, il modo effettivo del sistema è quello in corrispondenza della traiettoria che rende stazionario il funzionale
+    Sia $\mathcal{S}$ un sistema olonomo di coordinate $\vq$ e lagrangiana $L$, e siano $P_0$ e $P_1$ due configurazioni assunte da $\mathcal{S}$ agli istanti $t_0$ e $t_1$, rispettivamente. Tra le possibili traiettorie che collegano $P_0$ a $P_1$\note{$P_0$ e $P_1$ sono punti dello spazio delle configurazioni} in un intervallo di tempo $[t_0, t_1]$, il modo effettivo del sistema è quello in corrispondenza della traiettoria che rende stazionario il funzionale
     \begin{equation*}
-        A = \int_{t_0}^{t_1} L(\vq, \vq', t) \dd{t},\note{Solitamente si indica con $S$}
+        A = \int_{t_0}^{t_1} L(\vq, \dot{\vq}, t) \dd{t},\note{Solitamente si indica con $S$}
     \end{equation*}
     detto \emph{azione} del sistema. Ovvero
     \begin{equation*}
