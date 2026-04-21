@@ -658,8 +658,8 @@ Introduciamo il \emph{lemma fondamentale del calcolo delle variazioni}, che risu
     Poniamo
     \begin{equation*}
         \eta(x) = \begin{cases}
-            0, \quad &x\in [a, \xi_1]\cup [\xi_2, b] \\
-            (x-\xi_1)^2(\xi_2-x)^2, \quad &x\in [\xi_1, \xi_2]\note{moltiplicando la potenza per $n$ è possibile dimostrare il lemam anche con funzioni $C^n$}
+            0, \quad &x\in [a, \xi_1)\cup (\xi_2, b] \\
+            (x-\xi_1)^2(\xi_2-x)^2, \quad &x\in [\xi_1, \xi_2]\note{moltiplicando la potenza per $n$ è possibile dimostrare il lemma anche con funzioni $C^n$}
         \end{cases}.
     \end{equation*}
     Ovviamente abbiamo che $\eta\in C^0([a, b])\cap C^1(a, b)$ e $\eta(a) = \eta(b) = 0$. Tuttavia, con questa scelta di $\eta$ otteniamo
@@ -687,13 +687,13 @@ Introduciamo il \emph{lemma fondamentale del calcolo delle variazioni}, che risu
         &\forall \alpha \in (-\varepsilon, \varepsilon), \\
         &\forall \eta \in C^0([x_0, x_1])\cap C^1(x_0, x_1): \eta(x_0) = \eta(x_1) = 0.
     \end{align*}
-    Osserviamo che la funzione 
+    Osserviamo che la mappa 
     \begin{equation*}
-        \alpha \mapsto I[y^* + \alpha \eta] = \int_{x_0}^{x_1} F(y^* + \alpha \eta, y'^* + \alpha \eta', x)\dd{x}
+        \alpha \mapsto I[y^* + \alpha \eta] = \int_{x_0}^{x_1} F(y^* + \alpha \eta, y^{*'} + \alpha \eta', x)\dd{x}
     \end{equation*}
     è una funzione reale di una variabile reale, derivabile rispetto ad $\alpha$. Inoltre ha un massimo in $\alpha = 0$, quindi la sua derivata prima in $\alpha = 0$ è nulla. Calcoliamo allora
     \begin{align*}
-        \dv{I}{\alpha} &= \dv{\alpha} \int_{x_0}^{x_1} F(y^* + \alpha \eta, y'^* + \alpha \eta', x)\dd{x} \\ 
+        \dv{I}{\alpha} &= \dv{\alpha} \int_{x_0}^{x_1} F(y^* + \alpha \eta, y^{*'} + \alpha \eta', x)\dd{x} \\ 
         &= \int_{x_0}^{x_1} \left(\pdv{F}{y}\,\eta + \pdv{F}{y'}\,\eta'\right)\dd{x} \\
         &= \int_{x_0}^{x_1}\left\{ \pdv{F}{y}\eta + \dv{x}\left(\pdv{F}{y'}\eta\right) - \dv{x}\pdv{F}{y'}\eta \right\} \dd{x} \\
         &= \int_{x_0}^{x_1} \left(\pdv{F}{y} - \dv{x}\pdv{F}{y'}\right)\eta\dd{x} + \int_{x_0}^{x_1} \dv{x}\left(\pdv{F}{y'}\eta\right) \dd{x}\\
@@ -725,14 +725,18 @@ Notiamo che vale la seguente relazione
         \var{I} \defeq \left(\dv{I}{\alpha}\right)_{\alpha=0}.
     \end{equation*}
 \end{definition}
-Sviluppando i conti, otteniamo
+Sviluppando i conti, otteniamo il seguente sviluppo:
+\begin{align*}
+    I[y^* + \var{y}] &= I[y^*] + \alpha \int_{x_0}^{x_1} \left[\pdv{F}{y}\eta + \pdv{F}{y'}\eta'\right] \dd{x} + \dots
+\end{align*}
+Integrando per parti il secondo termine e applicando le condizioni al contorno, ricaviamo la variazione prima:
 \begin{equation*}
     \var{I} = \int_{x_0}^{x_1} \left[\pdv{F}{y} - \dv{x} \pdv{F}{y'}\right] \alpha \eta \dd{x} = \int_{x_0}^{x_1} \left[\pdv{F}{y} - \dv{x} \pdv{F}{y'}\right] \var{y} \dd{x}.
 \end{equation*}
-Possiamo quindi ottenere il seguente sviluppo di $I[y^* + \var{y}]$:
-\begin{align*}
-    I[y^* + \var{y}] &= I[y^*] + \alpha \int_{x_0}^{x_1} \left[\pdv{F}{y}\eta - \dv{x} \pdv{F}{y'}\eta'\right]  \dd{x} \dots.
-\end{align*}
+Possiamo quindi riscrivere lo sviluppo finale di $I[y^* + \var{y}]$ in modo rigoroso unendo i due risultati:
+\begin{equation*}
+    I[y^* + \var{y}] = I[y^*] + \int_{x_0}^{x_1} \left[\pdv{F}{y} - \dv{x} \pdv{F}{y'}\right] \var{y} \dd{x} + \dots
+\end{equation*}
 
 Considerando, invece, una n-upla di funzioni, definiamo un funzionale integrale del tipo
 \begin{equation*}
@@ -781,4 +785,27 @@ La grande applicazione del calcolo variazionale alla meccanica analitica è il \
         \var{A} = 0.
     \end{equation*}
 \end{theorem}
-È importante sottolineare che il principio di Hamilton non dipende dalla scelte delle coordinate, ma solo dalla lagrangiana, che è una funzione scalare.
+È importante sottolineare che il principio di Hamilton non dipende dalla scelte delle coordinate, ma solo dalla lagrangiana, che è una funzione scalare. \note{Lezione 21/04/2026} Inoltre, tale formulazione permette di riconoscere i moti \emph{globalmente}, rispetto alla formulazione locale delle equazioni di Lagrange.
+
+Introdotto il principio di Hamilton, è possibile dimostrare la seguente proprietà delle equazioni di Lagrange:
+\begin{proposition}
+    Le equazioni di Lagrange sono invarianti per trasformazioni puntuali di coordinate.
+\end{proposition}
+\begin{proof}
+    Sia $L$ la lagrangiana di un sistema in coordinate $\vq$ e sia $\vQ = \vf(\vq)$ una trasformazione puntuale di coordinate. La lagrangiana del sistema in coordinate $Q_i$ è data da
+    \begin{equation*}
+        L^*(\vQ, \dot{\vQ}, t) = L(\vq, \dot{\vq}, t).
+    \end{equation*}
+    Poiché $L$ e $L^*$ sono la stessa funzione scalare si ha
+    \begin{equation*}
+        \int_{t_1}^{t_2} L^*(\vQ, \dot{\vQ}, t) \dd{t} = \int_{t_1}^{t_2} L(\vq, \dot{\vq}, t) \dd{t} \implies \var{A^*} = \var{A},
+    \end{equation*}
+    dove abbiamo
+    \begin{equation*}
+        \vq(\vQ, t), \quad \dot{\vq}(\vQ, \dot{\vQ}, t).
+    \end{equation*}
+    Pertanto, se $A$ è stazionario, allora anche $A^*$ è stazionario, e viceversa. Di conseguenza, le equazioni di Lagrange in coordinate $\vq$ e in coordinate $\vQ$ sono equivalenti, ovvero
+    \begin{equation*}
+        \pdv{L}{q_i} - \dv{t}\pdv{L}{\dot{q}_i} = 0 \iff \pdv{L^*}{Q_i} - \dv{t}\pdv{L^*}{\dot{Q}_i} = 0.
+    \end{equation*}
+\end{proof}

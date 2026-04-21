@@ -1,0 +1,133 @@
+\section{Equazioni di Hamilton}
+
+Le equazioni trattate in questa sezione vengono dette \emph{equazioni di Hamilton} o \emph{equazioni canoniche della meccanica} e il loro sviluppo è datato al 1834.
+
+\subsection{Trasformata di Legendre}
+
+Consideriamo il calcolo del differenziale di una funzione di due variabili $f(x,y)$:
+\begin{equation*}
+    \dd{f} = \pdv{f}{x} \dd{x} + \pdv{f}{y} \dd{y} = u \dd{x} + v \dd{y}.
+\end{equation*}
+Talvolta può risultare utile scrivere il differenziale di $f$ in termini di $u$ e $v$ invece che di $x$ e $y$. Attraverso la regola di Leibnitz si ha
+\begin{equation*}
+    \dd{f} = \dd{(ux)} - x \dd{u} + \dd{(vy)} - y \dd{v} = \dd{(ux)} - x \dd{u} + v \dd{y},
+\end{equation*}
+e portando al primo membro si ha
+\begin{equation*}
+    \dd{(f - ux)} = - x \dd{u} + v \dd{y}.
+\end{equation*}
+Ponendo $g(u,y) \defeq f(x,y) - ux$ si ha che
+\begin{equation*}
+    \dd{g} = - x \dd{u} + v \dd{y},
+\end{equation*}
+avendo invertito la dipendenza di $f$ da $x$ a $u$, ottenendo la \emph{trasformata di Legendre} di $f$.
+
+\begin{definition}[Trasformata di Legendre]
+Sia $f(x,y)$ una funzione di due variabili. La \emph{trasformata di Legendre} di $f$ è la funzione $g(u,y) = f(x,y) - ux$ ottenuta invertendo la dipendenza di $f$ da $x$ a $u$.
+    \begin{equation*}
+        u = \pdv{f}{x} \iff x = - \pdv{g}{u}.
+    \end{equation*}
+\end{definition}
+
+
+\subsection{Derivazione delle equazioni di Hamilton}
+Partiamo dalle equazioni di Lagrange
+\begin{equation*}
+    \dv{t} \pdv{L}{\dot{q}_i} - \pdv{L}{q_i} = 0.
+\end{equation*}
+Le equazioni possono essere riscritte in termini dei momenti coniugati
+\begin{equation*}
+    p_i = \pdv{L}{\dot{q}_i}, \qquad \dot{p_i} = \pdv{L}{q_i}, \tag{$*$}
+\end{equation*}
+ottenendo $2n$ equazioni differenziali del primo ordine invece di $n$ equazioni differenziali del secondo ordine.
+
+Applichiamo la trasformata di Legendre alla lagrangiana
+\begin{align*}
+    \dd{L} &= \sum_{j=1}^n \left( \pdv{L}{\dot{q}_j} \dd{\dot{q}_j} - \pdv{L}{q_j} \dd{q_j} \right) \\
+    &= \sum_{j=1}^n \dot{p_j} \dd{q_j} +  \sum_{j=1}^n p_j \dd{\dot{q}_j} + \pdv{L}{t} \dd{t} \\
+    &= \sum_{j=1}^n \dot{p_j} \dd{q_j} +  \dd {\left(\sum_{j=1}^n p_j \dot{q}_j\right)} - \sum_{j=1}^n \dot{q_j} \dd{p_j} + \pdv{L}{t} \dd{t}.
+\end{align*}
+Portando al primo membro si ha
+\begin{equation*}
+    \dd \left(\sum_{j=1}^n p_j\dot{q}_j - L\right) = \sum_{j=1}^n \dot{p_j} \dd{q_j} - \sum_{j=1}^n \dot{q_j} \dd{p_j} + \pdv{L}{t} \dd{t}.
+\end{equation*}
+Definiamo quindi la funzione
+\begin{equation*}
+    H(\vq, \vp, t) \defeq \sum_{j=1}^n p_j\dot{q}_j - L(\vq, \dot{\vq}, t),
+\end{equation*}
+ottenendo
+\begin{equation*}
+    -\dd{H} = \sum_{j=1}^n \dot{p_j} \dd{q_j} - \sum_{j=1}^n \dot{q_j} \dd{p_j} + \pdv{L}{t} \dd{t}.
+\end{equation*}
+Il differenziale di $H$ è
+\begin{equation*}
+    \dd{H} = \sum_{j=1}^n \pdv{H}{q_j} \dd{q_j} + \sum_{j=1}^n \pdv{H}{p_j} \dd{p_j} + \pdv{H}{t} \dd{t},
+\end{equation*}
+e confrontando i due differenziali si ha
+\begin{equation*}
+ \dot{q}_j = \pdv{H}{p_j}, \qquad \dot{p}_j = -\pdv{H}{q_j}, \qquad \pdv{H}{t} = -\pdv{L}{t}.
+\end{equation*}
+
+La funzione $H$ è la trasformata di Legendre di $L$ e viene detta \emph{hamiltoniana} del sistema.
+
+Risolvendo le equazioni $(*)$ per $\dot{q}_j$ si ha che $H$ è una funzione di $\vq$, $\vp$ e $t$, e non dipende più da $\dot{\vq}$, ottenendo così una trasformazione che porta da un sistema di coordinate $(\vq, \dot{\vq})$ ad un sistema di coordinate $(\vq, \vp)$:
+\begin{equation*}
+    (\vq, \dot{\vq}) \leftrightarrow (\vq, \vp),
+\end{equation*}
+passando dallo spazio $n$-dimensionale delle configurazioni $\mathcal{C}$ allo spazio $2n$-dimensionale detto \emph{spazio delle fasi} di Gibbs $\Phi_{2n}$.
+
+Le $2n$ equazioni differenziali ordinarie del primo ordine in $2n$ incognite
+\begin{equation*}
+    \begin{cases}
+        \dot{q}_j = \pdv{H}{p_j} \\
+        \dot{p}_j = -\pdv{H}{q_j}
+    \end{cases}
+\end{equation*}
+vengono dette \emph{equazioni di Hamilton} o \emph{equazioni canoniche della meccanica}.
+
+Nel caso meccanico, in un sistema naturale a vincoli scleronomi, la lagrangiana è data da $L = T - V$, e quindi
+\begin{equation*}
+    p_i = \pdv{L}{\dot{q}_i} = \pdv{T}{\dot{q}_i} = \pdv{T_2}{\dot{q}_j} = \sum_{j=1}^n a_{ij} \dot{q}_j.
+\end{equation*}
+Otteniamo quindi un sistema lineare di equazioni
+\begin{equation*}
+    \vp = A \dot{\vq}.
+\end{equation*}
+Sostituendo nella definizione di $H$ si ha
+\begin{equation*}
+    H = \sum_{j=1}^n p_j \dot{q}_j - L = \sum_{i,j=1}^n a_{ij} \dot{q}_i \dot{q}_j - (T - V) = T + V,
+\end{equation*}
+ovvero l'hamiltoniana coincide con l'energia totale del sistema.
+
+\begin{example}[Oscillatore armonico]
+    % Guida orizzontale, molla con coefficiente k nell'origine punto P di massa M
+    Consideriamo un oscillatore armonico, ovvero una massa $m$ che si muove su una guida orizzontale e che è collegata ad una molla con coefficiente elastico $k$ ancorata all'origine. La coordinata generalizzata è data da $q = x$, e la lagrangiana è data da
+    \begin{equation*}
+        L = T - V = \frac{1}{2} m \dot{q}^2 - \frac{1}{2} k q^2.
+    \end{equation*}
+
+    Il momento coniugato è dato da
+    \begin{equation*}
+        p = \pdv{L}{\dot{q}} = m \dot{q},
+    \end{equation*}
+    e l'hamiltoniana è data da
+    \begin{equation*}
+        H = \left[p \dot{q} - L\right]_{\dot{q} = \frac{1}{m} p} = \frac{p^2}{2m} + \frac{1}{2} k q^2 = \frac{1}{2m}\left(p^2 + mk q^2\right) = \frac{1}{2m}\left(p^2 + m^2\omega^2 q^2\right).
+    \end{equation*}
+    Le equazioni di Hamilton sono date da
+    \begin{equation*}
+        \begin{cases}
+            \dot{q} = \pdv{H}{p} = \frac{p}{m} \\
+            \dot{p} = -\pdv{H}{q} = m\omega^2 q
+        \end{cases}
+    \end{equation*}
+\end{example}
+
+Va notato che la funzione $H$ presenta una forma estremamente simila alla funzine $h$ di Jacobi:
+\begin{equation*}
+    H(\vq, \vp, t) = \sum_{j=1}^n p_j \dot{q}_j - L(\vq, \dot{\vq}, t), \qquad h(\vq, \dot{\vq}, t) = \sum_{j=1}^n \pdv{L}{\dot{q}_j} \dot{q}_j - L(\vq, \dot{\vq}, t).
+\end{equation*}
+La differenza però è sostanziale: $H$ è una funzione di $\vq$, $\vp$ e $t$, mentre $h$ è una funzione di $\vq$, $\dot{\vq}$ e $t$, separando nettamente il contesto hamiltoniano da quello lagrangiano.
+
+\subsection{Principio di Hamilton modificato}
+
