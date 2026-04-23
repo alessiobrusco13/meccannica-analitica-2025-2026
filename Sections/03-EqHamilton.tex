@@ -123,11 +123,148 @@ ovvero l'hamiltoniana coincide con l'energia totale del sistema.
     \end{equation*}
 \end{example}
 
-Va notato che la funzione $H$ presenta una forma estremamente simila alla funzine $h$ di Jacobi:
+Va notato che la funzione $H$ presenta una forma estremamente simile alla funzione $h$ di Jacobi:
 \begin{equation*}
     H(\vq, \vp, t) = \sum_{j=1}^n p_j \dot{q}_j - L(\vq, \dot{\vq}, t), \qquad h(\vq, \dot{\vq}, t) = \sum_{j=1}^n \pdv{L}{\dot{q}_j} \dot{q}_j - L(\vq, \dot{\vq}, t).
 \end{equation*}
-La differenza però è sostanziale: $H$ è una funzione di $\vq$, $\vp$ e $t$, mentre $h$ è una funzione di $\vq$, $\dot{\vq}$ e $t$, separando nettamente il contesto hamiltoniano da quello lagrangiano.
+La differenza però è sostanziale: $H$ è una funzione di $\vq$, $\vp$ e $t$, mentre $h$ è una funzione di $\vq$, $\dot{\vq}$ e $t$.
+
+\subsection{Variabili cicliche in un sistema hamiltoniano}
+
+\begin{definition}[Coodinata ciclica in un sistema hamiltoniano]\note{Lezione 23/04/2026}
+    Una coordinata $q_i$ dicesi \emph{ciclica} per il sistema di hamiltoniana $H(\vq, \vp, t)$ se 
+    \begin{equation*}
+        \pdv{H}{q_i} = 0.
+    \end{equation*}
+\end{definition}
+Derivando la relazione di definizione di $H$ rispetto a $q_i$ si ha
+\begin{equation*}
+    \pdv{H}{q_i} = - \pdv{L}{q_i},
+\end{equation*}
+per cui se $q_i$ è ciclica per $H$ allora è ciclica anche per $L$.
+
+Ipotizziamo ora che in un dato sistema hamiltoniano tutte le coordinate $q_i$ siano cicliche e che $H$ non dipenda esplicitamente dal tempo:
+\begin{equation*}
+    \pdv{H}{q_i} = 0, \qquad i = 1, \dots, n.
+\end{equation*}
+In questo caso l'hamiltoniana sarebbe una funzione delle sole $p_i$ e le equazioni di Hamilton sarebbero date da
+\begin{equation*}
+    \begin{cases}
+        \dot{q}_i = \pdv{H}{p_i} \\
+        \dot{p}_i = 0
+    \end{cases}
+\end{equation*}
+per cui i momenti coniugati $p_i$ sarebbero costanti 
+\begin{equation*}
+    p_i = \text{costante} = \alpha_i, \qquad i = 1, \dots, n.
+\end{equation*}
+Definiamo la quantità
+\begin{equation*}
+    \omega_i = \left. \pdv{H}{p_i} \right|_{p_i = \alpha_i},
+\end{equation*}
+e integrando le equazioni di Hamilton si ha
+\begin{align*}
+    \int \dot{q}_i \dd{t} &= \int \omega_i \dd{t} \\
+    \implies q_i &= \omega_i t + \beta_i, \qquad i = 1, \dots, n.
+\end{align*}
+Si ha quindi che se è possibile trovare un sistema di coordinate in cui tutte le coordinate siano cicliche allora il sistema è risolvibile per \emph{quadrature}, ovvero è possibile risolvere le equazioni di Hamilton attraverso un numero finito di integrazioni.
+
+Considerando un moto del sistema $\vq(t)$, $\vp(t)$ e mantenendo l'ipotesi che $\pdv{H}{t} = 0$, calcoliamo
+\begin{align*}
+    \dv{H(\vq(t), \vp(t))}{t} &= \sum_{j=1}^n \left( \pdv{H}{q_j} \dot{q}_j + \pdv{H}{p_j} \dot{p}_j \right) + \pdv{H}{t}
+    \\ &= \sum_{j=1}^n \left( \pdv{H}{q_j} \pdv{H}{p_j} - \pdv{H}{p_j} \pdv{H}{q_j} \right) \\
+    &= \pdv{H}{t} = 0.
+\end{align*}
 
 \subsection{Principio di Hamilton modificato}
+Partiamo dal principio di Hamilton e sostituiamo l'inversa della trasformazione di Legendre della lagrangiana:
+\begin{equation*}
+    \var \int_{t_0}^{t_1} L(\vq, \dot{\vq}, t) \dd{t} = \var \int_{t_0}^{t_1} \left( \sum_{j=1}^n p_j \dot{q}_j - H(\vq, \vp, t) \right) \dd{t} = 0.
+\end{equation*}
+Applicando l'operatore differenziale si ha
+\begin{equation*}
+\var \int_{t_0}^{t_1} L \dd{t} = \int_{t_0}^{t_1} \sum_{k=1}^n \left( \pdv{L}{q_k} - \dv{t}\pdv{L}{\dot{q}_k} \right) \var{q_k} \dd{t} + \left[\sum_{k=1}^n \pdv{L}{\dot{q}_k} \var{q}_k \right]_{t_0}^{t_1}.
+\end{equation*}
+Considerando ora come lagrangiana la funzione
+\begin{equation*}
+    L^*(\vq, \vp, \dot{\vq}, \dot{\vp}, t) = \sum_{j=1}^n p_j \dot{q}_j - H(\vq, \vp, t),
+\end{equation*}
+otteniamo
+\begin{multline*}
+    \var \int_{t_0}^{t_1} L^* \dd{t}
+    = \int_{t_0}^{t_1} \sum_{k=1}^n \left( \pdv{L^*}{q_k} - \dv{t}\pdv{L^*}{\dot{q}_k} \right) \var{q_k} \dd{t}  + \int_{t_0}^{t_1} \sum_{j=1}^n \left( \pdv{L^*}{p_j} - \dv{t}\pdv{L^*}{\dot{p}_j} \right) \var{p_j} \dd{t} + \\
+    + \left[\sum_{j=1}^n \pdv{L^*}{\dot{q}_j} \var{q_j}+ \sum_{j=1}^n \pdv{L^*}{\dot{p}_j} \var{p_j} \right]_{t_0}^{t_1} = 0.
+\end{multline*}
+Notiamo che le sommatorie negli ultimi due termini si annullano, in quanto $\var{q_j}(t_0) = \var{q_j}(t_1) = 0$ e $\pdv{L^*}{\dot{p}_j} = 0$ per ogni $j$.
+Quindi, le equazioni di Eulero-Lagrange per $L^*$ sono
+\begin{align*}
+    \pdv{L^*}{q_j} - \dv{t}\pdv{L^*}{\dot{q}_j} &= - \pdv{H}{q_j} - \dot{p}_j = 0 \iff \pdv{H}{q_j} = - \dot{p}_j \\
+    \pdv{L^*}{p_j} - \dv{t}\pdv{L^*}{\dot{p}_j} &= \dot{q}_j - \pdv{H}{p_j} = 0 \iff \pdv{H}{p_j} = \dot{q}_j
+\end{align*}
+ottenendo così le equazioni di Hamilton.
 
+\subsection{Parentesi di Poisson}
+\begin{definition}[Parentesi di Poisson]
+    Siano $f(\vq, \vp, t)$ e $g(\vq, \vp, t)$ due funzioni di classe $C^1$ nelle variabili canoniche\note{Le variabili canoniche sono le coordinate generalizzate $q_i$ e i momenti coniugati $p_i$}. Si definisce \emph{parentesi di Poisson} di $f$ e $g$
+    \begin{equation*}
+        \{f, g\} \defeq \sum_{j=1}^n \left( \pdv{f}{q_j} \pdv{g}{p_j} - \pdv{f}{p_j} \pdv{g}{q_j} \right).
+    \end{equation*}
+\end{definition}
+
+Analizziamo ora le proprietà delle parentesi di Poisson. Siano $f(\vq, \vp, t)$, $g(\vq, \vp, t)$ e $h(\vq, \vp, t)$ tre funzioni di classe $C^1$ nelle variabili canoniche, allora
+\begin{enumerate}[label=($\roman*$)]
+    \item $\{f, f\} = 0$;
+    \item $\{f, g\} = - \{g, f\}$ (antisimmetria);
+    \item $\{c, f\} = 0$, per ogni $c\in\R$;
+    \item $\{\alpha f + \beta g, h\} = \alpha \{f, h\} + \beta \{g, h\}$, per ogni $\alpha, \beta\in \R$  (linearità);
+    \item $\pdv{t} \{f, g\} = \{\dot{f}, g\} + \{f, \dot{g}\}$;
+    \item $\{f, \{g, h\}\} + \{g, \{h, f\}\} + \{h, \{f, g\}\} = 0$ (identità di Jacobi--Poisson). \note{permutando ciclicamente le funzioni}
+\end{enumerate}
+
+\vspace{1em}
+È interessante notare che la proprietà ($v$) è valida considerando qualsiasi operatore differenziale $\mathcal{D}$ al posto della derivata temporale $\pdv{t}$:
+\begin{equation*}
+    \mathcal{D} \{f, g\} = \{\mathcal{D} f, g\} + \{f, \mathcal{D} g\}.
+\end{equation*}
+
+\begin{definition}[Integrale primo per le equazioni di Hamilton]
+    Una funzione $f(\vq, \vp, t)$ è un \emph{integrale primo} per le equazioni di Hamilton se $f$ si conserva costante sulle soluzioni di tali equazioni.
+\end{definition}
+\begin{remark}
+    $f$ è un integrale primo se e soltanto se 
+    \begin{equation*}
+        \pdv{f}{t} + \{f, H\} = 0.
+    \end{equation*}
+    Infatti data una soluzione $\vq(t)$, $\vp(t)$ delle equazioni di Hamilton, si ha che
+    \begin{align*}
+        \dv{f(\vq(t), \vp(t), t)}{t} &= \pdv{f}{t} + \sum_{j=1}^n \left( \pdv{f}{q_j} \dot{q}_j + \pdv{f}{p_j} \dot{p}_j \right) \\
+        &= \pdv{f}{t} + \sum_{j=1}^n \left(\pdv{f}{q_j} \pdv{H}{p_j} - \pdv{f}{p_j} \pdv{H}{q_j} \right) \\
+        &= \pdv{f}{t} + \{f, H\}.
+    \end{align*}
+\end{remark}
+
+\begin{theorem}[di Jacobi--Poisson]
+    Se $f$ e $g$ sono integrali primi delle equazioni di Hamilton, allora anche $\{f, g\}$ è un integrale primo.
+\end{theorem}
+\begin{proof}
+    Vogliamo dimostrare che 
+    \begin{equation*}
+        \{f,g\} \text{ è un integrale primo} \iff \pdv{t} \{f, g\} + \{\{f, g\}, H\} = 0.
+    \end{equation*}
+    Calcoliamo
+    \begin{align*}
+        \pdv{t} \{f, g\} + \{\{f, g\}, H\} &= \{\dot{f}, g\} + \{f, \dot{g}\} + \{\{f, g\}, H\} \\
+        &= -\{\{f,H\}, g\} - \{f, \{g, H\}\} - \{H, \{f, g\}\} \\
+        &= -\{g, \{H, f\}\} - \{f, \{g, H\}\} - \{H, \{f, g\}\} \\
+        &= 0,
+    \end{align*}
+    avendo utilizzato l'identità di Jacobi--Poisson.
+\end{proof}
+
+Le seguenti relazioni vengono dette \emph{parentesi di Poisson fondamentali}:
+\begin{itemize}
+    \item $\{q_i, q_j\} = 0$;
+    \item $\{p_i, p_j\} = 0$;
+    \item $\{q_i, p_j\} = \delta_{ij}$,
+\end{itemize}
+dove $\delta_{ij}$ è la delta di Kronecker.
