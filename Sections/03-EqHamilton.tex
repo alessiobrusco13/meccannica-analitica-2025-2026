@@ -41,36 +41,40 @@ Le equazioni possono essere riscritte in termini dei momenti coniugati
 \end{equation*}
 ottenendo $2n$ equazioni differenziali del primo ordine invece di $n$ equazioni differenziali del secondo ordine.
 
-Applichiamo la trasformata di Legendre alla lagrangiana
+Calcoliamo il differenziale della lagrangiana e la trasformata di Legendre
 \begin{align*}
-    \dd{L} &= \sum_{j=1}^n \left( \pdv{L}{\dot{q}_j} \dd{\dot{q}_j} - \pdv{L}{q_j} \dd{q_j} \right) \\
+    \dd{L} &= \sum_{j=1}^n \left( \pdv{L}{\dot{q}_j} \dd{\dot{q}_j} + \pdv{L}{q_j} \dd{q_j} \right) + \pdv{L}{t} \dd{t} \\
     &= \sum_{j=1}^n \dot{p_j} \dd{q_j} +  \sum_{j=1}^n p_j \dd{\dot{q}_j} + \pdv{L}{t} \dd{t} \\
     &= \sum_{j=1}^n \dot{p_j} \dd{q_j} +  \dd {\left(\sum_{j=1}^n p_j \dot{q}_j\right)} - \sum_{j=1}^n \dot{q_j} \dd{p_j} + \pdv{L}{t} \dd{t}.
 \end{align*}
 Portando al primo membro si ha
 \begin{equation*}
-    \dd \left(\sum_{j=1}^n p_j\dot{q}_j - L\right) = \sum_{j=1}^n \dot{p_j} \dd{q_j} - \sum_{j=1}^n \dot{q_j} \dd{p_j} + \pdv{L}{t} \dd{t}.
+    \dd \left(L - \sum_{j=1}^n p_j\dot{q}_j \right) = \sum_{j=1}^n \dot{p_j} \dd{q_j} - \sum_{j=1}^n \dot{q_j} \dd{p_j} + \pdv{L}{t} \dd{t}.
 \end{equation*}
 Definiamo quindi la funzione
-\begin{equation*}
+\begin{equation} \label{eq:hamiltoniana}
     H(\vq, \vp, t) \defeq \sum_{j=1}^n p_j\dot{q}_j - L(\vq, \dot{\vq}, t),
-\end{equation*}
+\end{equation}
 ottenendo
 \begin{equation*}
     -\dd{H} = \sum_{j=1}^n \dot{p_j} \dd{q_j} - \sum_{j=1}^n \dot{q_j} \dd{p_j} + \pdv{L}{t} \dd{t}.
 \end{equation*}
-Il differenziale di $H$ è
+Calcolando il differenziale di $H$ dalla \eqref{eq:hamiltoniana} si ha
 \begin{equation*}
     \dd{H} = \sum_{j=1}^n \pdv{H}{q_j} \dd{q_j} + \sum_{j=1}^n \pdv{H}{p_j} \dd{p_j} + \pdv{H}{t} \dd{t},
 \end{equation*}
-e confrontando i due differenziali si ha
+e confrontando le due equazioni si ha
 \begin{equation*}
  \dot{q}_j = \pdv{H}{p_j}, \qquad \dot{p}_j = -\pdv{H}{q_j}, \qquad \pdv{H}{t} = -\pdv{L}{t}.
 \end{equation*}
 
 La funzione $H$ è la trasformata di Legendre di $L$ e viene detta \emph{hamiltoniana} del sistema.
 
-Risolvendo le equazioni $(*)$ per $\dot{q}_j$ si ha che $H$ è una funzione di $\vq$, $\vp$ e $t$, e non dipende più da $\dot{\vq}$, ottenendo così una trasformazione che porta da un sistema di coordinate $(\vq, \dot{\vq})$ ad un sistema di coordinate $(\vq, \vp)$:
+Se la trasformazione di Legendre è regolare, cioè
+\begin{equation*}
+    \det\left(\pdv[2]{L}{\dot{q}_i}{\dot{q}_j}\right) \neq 0,
+\end{equation*}
+allora risolvendo le equazioni $(*)$ per $\dot{q}_j$ si ha che $H$ è una funzione di $\vq$, $\vp$ e $t$, e non dipende più da $\dot{\vq}$, ottenendo così una trasformazione che porta da un sistema di coordinate $(\vq, \dot{\vq})$ ad un sistema di coordinate $(\vq, \vp)$:
 \begin{equation*}
     (\vq, \dot{\vq}) \leftrightarrow (\vq, \vp),
 \end{equation*}
@@ -87,7 +91,7 @@ vengono dette \emph{equazioni di Hamilton} o \emph{equazioni canoniche della mec
 
 Nel caso meccanico, in un sistema naturale a vincoli scleronomi, la lagrangiana è data da $L = T - V$, e quindi
 \begin{equation*}
-    p_i = \pdv{L}{\dot{q}_i} = \pdv{T}{\dot{q}_i} = \pdv{T_2}{\dot{q}_j} = \sum_{j=1}^n a_{ij} \dot{q}_j.
+    p_i = \pdv{L}{\dot{q}_i} = \pdv{T}{\dot{q}_i} = \pdv{T_2}{\dot{q}_i} = \sum_{j=1}^n a_{ij} \dot{q}_j.
 \end{equation*}
 Otteniamo quindi un sistema lineare di equazioni
 \begin{equation*}
@@ -118,7 +122,7 @@ ovvero l'hamiltoniana coincide con l'energia totale del sistema.
     \begin{equation*}
         \begin{cases}
             \dot{q} = \pdv{H}{p} = \frac{p}{m} \\
-            \dot{p} = -\pdv{H}{q} = m\omega^2 q
+            \dot{p} = -\pdv{H}{q} = -m\omega^2 q
         \end{cases}
     \end{equation*}
 \end{example}
@@ -181,7 +185,7 @@ Partiamo dal principio di Hamilton e sostituiamo l'inversa della trasformazione 
 \begin{equation*}
     \var \int_{t_0}^{t_1} L(\vq, \dot{\vq}, t) \dd{t} = \var \int_{t_0}^{t_1} \left( \sum_{j=1}^n p_j \dot{q}_j - H(\vq, \vp, t) \right) \dd{t} = 0.
 \end{equation*}
-Applicando l'operatore differenziale si ha
+Applicando l'operatore variazionale si ha
 \begin{equation*}
 \var \int_{t_0}^{t_1} L \dd{t} = \int_{t_0}^{t_1} \sum_{k=1}^n \left( \pdv{L}{q_k} - \dv{t}\pdv{L}{\dot{q}_k} \right) \var{q_k} \dd{t} + \left[\sum_{k=1}^n \pdv{L}{\dot{q}_k} \var{q}_k \right]_{t_0}^{t_1}.
 \end{equation*}
@@ -192,7 +196,7 @@ Considerando ora come lagrangiana la funzione
 otteniamo
 \begin{multline*}
     \var \int_{t_0}^{t_1} L^* \dd{t}
-    = \int_{t_0}^{t_1} \sum_{k=1}^n \left( \pdv{L^*}{q_k} - \dv{t}\pdv{L^*}{\dot{q}_k} \right) \var{q_k} \dd{t}  + \int_{t_0}^{t_1} \sum_{j=1}^n \left( \pdv{L^*}{p_j} - \dv{t}\pdv{L^*}{\dot{p}_j} \right) \var{p_j} \dd{t} + \\
+    = \int_{t_0}^{t_1} \sum_{j=1}^n \left( \pdv{L^*}{q_j} - \dv{t}\pdv{L^*}{\dot{q}_j} \right) \var{q_j} \dd{t}  + \int_{t_0}^{t_1} \sum_{j=1}^n \left( \pdv{L^*}{p_j} - \dv{t}\pdv{L^*}{\dot{p}_j} \right) \var{p_j} \dd{t} + \\
     + \left[\sum_{j=1}^n \pdv{L^*}{\dot{q}_j} \var{q_j}+ \sum_{j=1}^n \pdv{L^*}{\dot{p}_j} \var{p_j} \right]_{t_0}^{t_1} = 0.
 \end{multline*}
 Notiamo che le sommatorie negli ultimi due termini si annullano, in quanto $\var{q_j}(t_0) = \var{q_j}(t_1) = 0$ e $\pdv{L^*}{\dot{p}_j} = 0$ per ogni $j$.
@@ -268,3 +272,156 @@ Le seguenti relazioni vengono dette \emph{parentesi di Poisson fondamentali}:
     \item $\{q_i, p_j\} = \delta_{ij}$,
 \end{itemize}
 dove $\delta_{ij}$ è la delta di Kronecker.
+
+Calcolando le parentesi di Poisson fra $q_i$ e $H$ e fra $p_i$ e $H$ si ha
+\begin{equation*}
+    \{q_i, H\} = \pdv{H}{p_i}, \qquad \{p_i, H\} = - \pdv{H}{q_i},
+\end{equation*}
+per cui le equazioni di Hamilton possono essere riscritte in termini di parentesi di Poisson
+\begin{equation*}
+    \begin{cases}
+        \dot{q}_i = \{q_i, H\} \\
+        \dot{p}_i = \{p_i, H\}  
+    \end{cases}
+\end{equation*}
+
+\subsection{Elementi dell'approccio geometrico simplettico}
+Introduciamo la quantità
+\begin{equation*}
+    \eta_i = q_i, \qquad \eta_{n+i} = p_i, \qquad i = 1, \dots, n,
+\end{equation*}
+definendo un vettore $\vb{\eta} = (q_1, \dots, q_n, p_1, \dots, p_n)$ che contiene tutte le variabili canoniche. Definiamo inoltre la matrice
+\begin{align*}
+    \tens{J} &= \begin{bmatrix}
+        \tens{0} & \tens{I_n} \\
+        -\tens{I_n} & \tens{0}
+    \end{bmatrix} \\
+    &= \begin{bmatrix}
+        0 & \dots & 0 & 1 & \dots & 0 \\
+        \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+        0 & \dots & 0 & 0 & \dots & 1 \\
+        -1 & \dots & 0 & 0 & \dots & 0 \\
+        \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+        0 & \dots & -1 & 0 & \dots & 0
+    \end{bmatrix}
+\end{align*}
+detta \emph{matrice simplettica}, dove $\tens{0}$ è la matrice nulla $n\times n$ e $\tens{I_n}$ è la matrice identità $n\times n$. Si ha che per questa matrice $\tens{J}^T = \tens{J}^{-1} - \tens{J}$ e $\det \tens{J} = 1$.
+
+Le equazioni di Hamilton possono essere riscritte in forma compatta
+\begin{equation*}
+    \dot{\vb{\eta}} = \tens{J} \grad_{\vb{\eta}} H.
+\end{equation*}
+
+\subsection{Trasformazioni canoniche}
+Le equazioni di Lagrange sono invarianti per trasformazioni di coordinate. L'elevata simmetria delle equazioni di Hamilton rende più complicato questo problema: può accadere che partendo da un sistema hamiltoniano e applicando una trasformazione di coordinate, il sistema trasformato non è più hamiltoniano. 
+
+Spesso cerca una trasformazione di coordinate che semplifichi la risoluzione del problema, poniamo quindi il seguente obbiettivo:
+\begin{quote}
+    Dato un'hamiltoniana $H(\vq,\vp)$, determinare una trasformazione di coordinate $Q_i = Q_i(\vq, \vp)$, $P_i=P_i(\vq,\vp)$ tale che la nuova hamiltoniana $K$ abbia tutte le coordinate $Q$ cicliche.
+\end{quote}
+Come per l'approccio lagrangiano, è fondamentale che la trasformazione di coordinate sia regolare, ovvero che 
+\begin{equation*}
+\det \pdv{(Q_1, \dots, Q_n, P_1, \dots, P_n)}{(q_1, \dots, q_n, p_1, \dots, p_n)} \neq 0.
+\end{equation*}
+
+\begin{definition}[Trasformazione canonica]
+    Una trasformazione di coordinate $Q_i = Q_i(\vq, \vp, t)$, $P_i=P_i(\vq,\vp, t)$ nello spazio delle fasi si dice \emph{canonica} se conserva la struttura canonica delle equazioni, ovvero se le nuove coordinate $Q_i$ e $P_i$ soddisfano le equazioni di Hamilton con una nuova hamiltoniana $K(\vQ, \vP, t)$
+    \begin{equation*}
+        \begin{cases}
+            \dot{Q}_i = \pdv{K}{P_i} \\
+            \dot{P}_i = -\pdv{K}{Q_i}
+        \end{cases}
+    \end{equation*}
+
+    Inoltre, una trasformazione canonica di coordinate indipendente dal tempo si dirà \emph{completamente canonica}.
+\end{definition}
+
+Data una trasformazione canonica, il principio di Hamilton modificato per $H$ e $K$ si scrive come
+\begin{align*}
+    \var \int_{t_0}^{t_1} \left( \sum_{j=1}^n p_j \dot{q}_j - H(\vq, \vp, t) \right) \dd{t} &= 0 \\
+    &\iff \var \int_{t_0}^{t_1} \left( \sum_{j=1}^n P_j \dot{Q}_j - K(\vQ, \vP, t) \right) \dd{t} = 0.
+\end{align*}
+
+La condizione necessaria e sufficiente affinché una trasformazione di coordinate sia canonica è che
+\begin{align*}
+    \lambda \left(\sum_{j=1}^n p_j \dot{q}_j - H(\vq, \vp, t)\right) &= \sum_{j=1}^n P_j \dot{Q}_j - K(\vQ, \vP, t) + \dv{F}{t}.
+\end{align*}
+dove $\lambda$ è una costante reale, detta \emph{valenza della trasformazione}, e $F$ è una funzione delle variabili canoniche e del tempo.
+L'aggiunta del termine $\dv{F}{t}$ all'integranda non modifica le equazioni di Eulero-Lagrange, poiché
+\begin{equation*}
+    \var \int_{t_0}^{t_1} \dv{F}{t} \dd{t} = \var \left[ F(\vq, \vp, t) \right]_{t_0}^{t_1} = 0, \note{$[F]_{t_0}^{t_1}$ non dipende dalla specifica traiettoria scelta, quindi la sua variazione è nulla.}
+\end{equation*}
+avendo che $\var{\vq}(t_0) = \var{\vq}(t_1) = 0$ e $\var{\vp}(t_0) = \var{\vp}(t_1) = 0$.
+
+È equivalente scegliere $F$ come funzione di $\vQ$, $\vP$ e $t$ oppure di $\vq$, $\vp$ e $t$. In particolare, si osserverà che può essere utile assumere $F = F(\vq, \vQ, t)$.
+
+D'ora in avanti considereremo solo le trasformazioni canoniche con valenza $\lambda = 1$, dette \emph{univalenti}.
+
+\begin{theorem}[Condizione di canonicità di Lie]
+    Una trasformazione puntuale nello spazio delle fasi,
+    \begin{equation*}
+        Q_i = Q_i(\vq, t), \qquad P_i = P_i(\vq, t), \qquad i = 1, \dots, n,
+    \end{equation*}
+    è canonica se e solo se 
+    \begin{equation*}
+        \sum_{j=1}^n p_j \dot{q}_j - H(\vq, \vp, t) = \sum_{j=1}^n P_j \dot{Q}_j - K(\vQ, \vP, t) + \dv{F}{t},
+    \end{equation*}
+    dove $F$ è una funzione delle $2n$ variabili canoniche detta \emph{funzione generatrice della trasformazione canonica}.
+\end{theorem}
+\begin{remark}
+    Una trasformazione canonica non è legata a una specifica hamiltoniana, ma è canonica per qualsiasi sistema.
+\end{remark}
+
+La condizione di canonicità si può anche esprimere in forma differenziale:
+\begin{equation*}
+    \sum_{j=1}^n p_j \dd{q}_j - H(\vq, \vp, t) \dd{t} = \sum_{j=1}^n P_j \dd{Q}_j - K(\vQ, \vP, t) \dd{t} + \dd{F}.
+\end{equation*}
+
+\begin{example}[Trasformazione canonica con funzione generatrice delle $\vq$, $\vQ$, $t$]
+    Consideriamo una trasformazione canonica con funzione generatrice $F(\vq, \vQ, t)$. Scrivendo la forma differenziale si ottiene
+    \begin{multline*}
+        \sum_{j=1}^n p_j \dd{q}_j - H(\vq, \vp, t) \dd{t} =
+        \\ =\sum_{j=1}^n P_j \dd{Q}_j - K(\vQ, \vP, t) \dd{t} + \sum_{j=1}^n \pdv{F}{q_j} \dd{q}_j + \sum_{j=1}^n \pdv{F}{Q_j} \dd{Q}_j + \pdv{F}{t} \dd{t}.
+    \end{multline*}
+    Raggruppando i termini simili si ha
+    \begin{equation*}
+        \sum_{j=1}^n \left(p_j - \pdv{F}{q_j}\right) \dd{q}_j - \sum_{j=1}^n \left(P_j + \pdv{F}{Q_j}\right) \dd{Q}_j - \left(H - K + \pdv{F}{t}\right) \dd{t} = 0.
+    \end{equation*}
+    Si ottengono quindi le relazioni
+    \begin{equation*}
+        p_j = \pdv{F}{q_j}, \qquad
+        P_j = - \pdv{F}{Q_j}, \qquad
+        K = H + \pdv{F}{t}.
+    \end{equation*}
+
+    La nuova hamiltoniana $K$ non si ottiene quindi dal solo cambio di variabili, ma riceve anche il contributo della funzione generatrice. Il cambio di variabili resta comunque necessario per esprimere $K$ nelle nuove variabili:
+    \begin{align*}
+        K(\vQ, \vP, t) &= H(\vq, \vp, t) + \pdv{F(\vq, \vQ, t)}{t} \\
+        &= H\left(\vq(\vQ, \vP), \vp(\vQ, \vP), t\right) + \pdv{F(\vq(\vQ, \vP), \vQ, t)}{t}.
+    \end{align*}
+\end{example}
+
+\begin{example}[Trasformazione canonica con funzione generatrice delle $\vq$, $\vP$, $t$]
+    Consideriamo ora una trasformazione canonica con funzione generatrice $F_2(\vq, \vP, t)$. Partendo dal caso precedente, si ha
+    \begin{align*}
+        &\sum_{j=1}^n p_j \dd{q}_j - H(\vq, \vp, t) \dd{t}= \\ &= \sum_{j=1}^n P_j\dd{Q_j}- K\dd{t} + \dd{F} \\
+        &= \dd{\left(\sum_{j=1}^n P_j Q_j\right)} - \sum_{j=1}^n Q_j \dd{P}_j - K\dd{t} + \dd{F}
+    \end{align*}
+    \begin{align*}
+        &= - \sum_{j=1}^n Q_j \dd{P}_j - K\dd{t} + \dd{\underbrace{\left(F + \sum_{j=1}^n P_j Q_j\right)}_{F_2(\vq, \vP, t)}} \\
+        &= - \sum_{j=1}^n Q_j \dd{P}_j - K\dd{t} + \sum_{j=1}^n \pdv{F_2}{q_j} \dd{q}_j + \sum_{j=1}^n \pdv{F_2}{P_j} \dd{P}_j + \pdv{F_2}{t} \dd{t}.
+    \end{align*}
+
+    Abbiamo quindi la trasformazione
+    \begin{equation*}
+        p_j = \pdv{F_2}{q_j}, \qquad
+        Q_j = \pdv{F_2}{P_j}, \qquad
+        K = H + \pdv{F_2}{t},
+    \end{equation*}
+    ipotizzando che $\det\pdv{F_2}{q_j}{P_k} \neq 0$ in modo da poter risolvere le equazioni per $Q_j$ e $p_j$.
+
+    In pratica, $F_2$ si ottiene come trasformata di Legendre di $F$ rispetto alla variabile $Q_j$, cioè
+    \begin{equation*}
+        F_2(\vq, \vP, t) = F(\vq, \vQ, t) + \sum_{j=1}^n P_j Q_j.
+    \end{equation*}
+\end{example}
