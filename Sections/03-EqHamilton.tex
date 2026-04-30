@@ -286,7 +286,7 @@ per cui le equazioni di Hamilton possono essere riscritte in termini di parentes
 \end{equation*}
 
 \subsection{Elementi dell'approccio geometrico simplettico}
-Introduciamo la quantità
+Introduciamo la quantità\note{Lezione 28/04/2026}
 \begin{equation*}
     \eta_i = q_i, \qquad \eta_{n+i} = p_i, \qquad i = 1, \dots, n,
 \end{equation*}
@@ -377,51 +377,183 @@ La condizione di canonicità si può anche esprimere in forma differenziale:
     \sum_{j=1}^n p_j \dd{q}_j - H(\vq, \vp, t) \dd{t} = \sum_{j=1}^n P_j \dd{Q}_j - K(\vQ, \vP, t) \dd{t} + \dd{F}.
 \end{equation*}
 
-\begin{example}[Trasformazione canonica con funzione generatrice delle $\vq$, $\vQ$, $t$]
-    Consideriamo una trasformazione canonica con funzione generatrice $F(\vq, \vQ, t)$. Scrivendo la forma differenziale si ottiene
-    \begin{multline*}
-        \sum_{j=1}^n p_j \dd{q}_j - H(\vq, \vp, t) \dd{t} =
-        \\ =\sum_{j=1}^n P_j \dd{Q}_j - K(\vQ, \vP, t) \dd{t} + \sum_{j=1}^n \pdv{F}{q_j} \dd{q}_j + \sum_{j=1}^n \pdv{F}{Q_j} \dd{Q}_j + \pdv{F}{t} \dd{t}.
-    \end{multline*}
-    Raggruppando i termini simili si ha
+\subsubsection{Costruzione di trasformazioni canoniche fondamentali mediante funzioni generatrici}
+
+Presentiamo ora quattro trasformazioni canoniche notevoli, ottenute mediante successive trasformate di Legendre della funzione generatrice. Queste costruzioni mostrano come il principio di Lie fornisce un metodo sistematico per generare trasformazioni canoniche di varia tipologia.
+
+\vspace{0.8em}
+\noindent\textbf{Tipo I: Generatrice $F_1(\vq, \vQ, t)$}
+
+Consideriamo una trasformazione canonica con funzione generatrice $F_1(\vq, \vQ, t)$. Scrivendo la forma differenziale della condizione di Lie si ottiene
+\begin{multline*}
+    \sum_{j=1}^n p_j \dd{q}_j - H(\vq, \vp, t) \dd{t} =
+    \\ =\sum_{j=1}^n P_j \dd{Q}_j - K(\vQ, \vP, t) \dd{t} + \sum_{j=1}^n \pdv{F_1}{q_j} \dd{q}_j + \sum_{j=1}^n \pdv{F_1}{Q_j} \dd{Q}_j + \pdv{F_1}{t} \dd{t}.
+\end{multline*}
+Raggruppando i termini per differenziale indipendente (tutti i $\dd{q}_j$ insieme, tutti i $\dd{Q}_j$ insieme, e il $\dd{t}$) si ottiene
+\begin{align*}
+    &\sum_{j=1}^n p_j \dd{q}_j + \sum_{j=1}^n P_j \dd{Q}_j - H \dd{t} = \sum_{j=1}^n P_j \dd{Q}_j - K \dd{t} + \sum_{j=1}^n \pdv{F_1}{q_j} \dd{q}_j + \sum_{j=1}^n \pdv{F_1}{Q_j} \dd{Q}_j + \pdv{F_1}{t} \dd{t} \\
+    &\sum_{j=1}^n p_j \dd{q}_j + \sum_{j=1}^n P_j \dd{Q}_j - H \dd{t} - \sum_{j=1}^n P_j \dd{Q}_j + K \dd{t} - \sum_{j=1}^n \pdv{F_1}{q_j} \dd{q}_j - \sum_{j=1}^n \pdv{F_1}{Q_j} \dd{Q}_j - \pdv{F_1}{t} \dd{t} = 0 \\
+    &\sum_{j=1}^n \left(p_j - \pdv{F_1}{q_j}\right) \dd{q}_j - \sum_{j=1}^n \left(P_j + \pdv{F_1}{Q_j}\right) \dd{Q}_j - \left(H - K + \pdv{F_1}{t}\right) \dd{t} = 0
+\end{align*}
+Si ottengono quindi le relazioni
+\begin{equation*}
+    p_j = \pdv{F_1}{q_j}, \qquad
+    P_j = - \pdv{F_1}{Q_j}, \qquad
+    K = H + \pdv{F_1}{t}.
+\end{equation*}
+
+\vspace{0.8em}
+\noindent\textbf{Tipo II: Generatrice $F_2(\vq, \vP, t)$}
+
+Costruiamo questa generatrice applicando la trasformata di Legendre a $F_1$ rispetto alla variabile $Q_j$. Partendo dalla condizione di Lie e applicando $\dd(\sum P_j Q_j) = \sum Q_j \dd P_j + \sum P_j \dd Q_j$, si ha
+\begin{align*}
+    \sum_{j=1}^n p_j \dd{q}_j - H \dd{t} &= \sum_{j=1}^n P_j\dd{Q}_j - K\dd{t} + \dd{F} \\
+    &= \dd{\left(\sum_{j=1}^n P_j Q_j\right)} - \sum_{j=1}^n Q_j \dd{P}_j - K\dd{t} + \dd{F}.
+\end{align*}
+Raggruppando i termini si ha
+\begin{align*}
+    \sum_{j=1}^n p_j \dd{q}_j - H \dd{t} - \dd{\left(\sum_{j=1}^n P_j Q_j\right)} + \sum_{j=1}^n Q_j \dd{P}_j + K\dd{t} &= \dd{F} \\
+    \sum_{j=1}^n p_j \dd{q}_j + \sum_{j=1}^n Q_j \dd{P}_j + (K - H)\dd{t} &= \dd{F} + \dd{\left(\sum_{j=1}^n P_j Q_j\right)} \\
+    \sum_{j=1}^n p_j \dd{q}_j + \sum_{j=1}^n Q_j \dd{P}_j + (K - H)\dd{t} &= \dd{\underbrace{\left(F + \sum_{j=1}^n P_j Q_j\right)}_{F_2(\vq, \vP, t)}}.
+\end{align*}
+Dalle corrispondenze tra i differenziali indipendenti ($\dd{q}_j$, $\dd{P}_j$, $\dd{t}$) si ottiene
+\begin{equation*}
+    p_j = \pdv{F_2}{q_j}, \qquad
+    Q_j = \pdv{F_2}{P_j}, \qquad
+    K = H + \pdv{F_2}{t}.
+\end{equation*}
+
+\vspace{0.8em}
+\noindent\textbf{Tipo III: Generatrice $F_3(\vp, \vQ, t)$}
+
+Questa generatrice si ottiene mediante trasformata di Legendre di $F$ rispetto a $q_j$. Partendo dalla condizione di Lie e applicando $\dd(\sum p_j q_j) = \sum q_j \dd p_j + \sum p_j \dd q_j$, si ha
+\begin{align*}
+    \dd{\left(\sum_{j=1}^n p_j q_j\right)} - \sum_{j=1}^n q_j \dd{p}_j - H\dd{t} &= \sum_{j=1}^n P_j \dd{Q}_j - K \dd{t} + \dd{F}.
+\end{align*}
+Raggruppando i termini
+\begin{align*}
+    - \sum_{j=1}^n q_j \dd{p}_j - H\dd{t} &= \sum_{j=1}^n P_j \dd{Q}_j - K \dd{t} + \dd{F} - \dd{\left(\sum_{j=1}^n p_j q_j\right)} \\
+    - \sum_{j=1}^n q_j \dd{p}_j - H\dd{t} &= \sum_{j=1}^n P_j \dd{Q}_j - K \dd{t} + \dd{\underbrace{\left(F - \sum_{j=1}^n p_j q_j\right)}_{F_3(\vp, \vQ, t)}}.
+\end{align*}
+Le relazioni di trasformazione sono
+\begin{equation*}
+    q_j = - \pdv{F_3}{p_j}, \qquad
+    P_j = -\pdv{F_3}{Q_j}, \qquad
+    K = H + \pdv{F_3}{t}.
+\end{equation*}
+
+\vspace{0.8em}
+\noindent\textbf{Tipo IV: Generatrice $F_4(\vp, \vP, t)$}
+
+La generatrice $F_4$ si ottiene applicando trasformate di Legendre sia rispetto a $q_j$ che rispetto a $Q_j$. Partendo dalla condizione di Lie e combinando $\dd(\sum p_j q_j)$ e $\dd(\sum P_j Q_j)$ si ha
+\begin{align*}
+    \dd{\left(\sum_{j=1}^n p_j q_j\right)} - \sum_{j=1}^n q_j \dd{p}_j - H\dd{t} &= \dd{\left(\sum_{j=1}^n P_j Q_j\right)} - \sum_{j=1}^n Q_j \dd{P}_j - K \dd{t} + \dd{F}.
+\end{align*}
+Raggruppando i termini si ha
+\begin{align*}
+    - \sum_{j=1}^n q_j \dd{p}_j + \sum_{j=1}^n Q_j \dd{P}_j - H\dd{t} &= - K \dd{t} + \dd{F} - \dd{\left(\sum_{j=1}^n p_j q_j\right)} + \dd{\left(\sum_{j=1}^n P_j Q_j\right)} \\
+    - \sum_{j=1}^n q_j \dd{p}_j + \sum_{j=1}^n Q_j \dd{P}_j - H\dd{t} &= - K \dd{t} + \dd{\underbrace{\left(F - \sum_{j=1}^n p_j q_j + \sum_{j=1}^n P_j Q_j\right)}_{F_4(\vp, \vP, t)}}.
+\end{align*}
+Le relazioni di trasformazione sono
+\begin{equation*}
+    q_j = -\pdv{F_4}{p_j}, \qquad
+    Q_j = \pdv{F_4}{P_j}, \qquad
+    K = H + \pdv{F_4}{t}.
+\end{equation*}
+
+\newpage
+
+Alla luce delle quattro trasformazioni fondamentali, riassumiamo le loro caratteristiche principali:
+
+\vspace{1em}
+\begin{center}
+\begin{tabular}{c c c c}
+    \textbf{Tipo} & \textbf{Generatrice} & \textbf{Relazioni} & \textbf{Hamiltoniana} \\[1.2em]
+    \hline
+    \\[-0.8em]
+    I & $F_1(\vq, \vQ, t)$ & 
+    \begin{tabular}[c]{@{}c@{}}
+        $p_j = \pdv{F_1}{q_j}$ \\[0.6em]
+        $P_j = -\pdv{F_1}{Q_j}$
+    \end{tabular} &
+    $K = H + \pdv{F_1}{t}$ \\[1.2em]
+    \hline
+    \\[-0.8em]
+    II & $F_2(\vq, \vP, t)$ & 
+    \begin{tabular}[c]{@{}c@{}}
+        $p_j = \pdv{F_2}{q_j}$ \\[0.6em]
+        $Q_j = \pdv{F_2}{P_j}$
+    \end{tabular} &
+    $K = H + \pdv{F_2}{t}$ \\[1.2em]
+    \hline
+    \\[-0.8em]
+    III & $F_3(\vp, \vQ, t)$ & 
+    \begin{tabular}[c]{@{}c@{}}
+        $q_j = -\pdv{F_3}{p_j}$ \\[0.6em]
+        $P_j = -\pdv{F_3}{Q_j}$
+    \end{tabular} &
+    $K = H + \pdv{F_3}{t}$ \\[1.2em]
+    \hline
+    \\[-0.8em]
+    IV & $F_4(\vp, \vP, t)$ & 
+    \begin{tabular}[c]{@{}c@{}}
+        $q_j = -\pdv{F_4}{p_j}$ \\[0.6em]
+        $Q_j = \pdv{F_4}{P_j}$
+    \end{tabular} &
+    $K = H + \pdv{F_4}{t}$ \\[1.2em]
+    \hline
+\end{tabular}
+\end{center}
+
+\vspace{1em}
+Questi quattro tipi di funzioni generatrici rappresentano i casi più comuni e naturali. Il concetto di trasformazione canonica è tuttavia molto più generale: il vincolo essenziale è che la trasformazione soddisfi la \emph{condizione di Lie}. In linea di principio, nulla ci impedisce di costruire generatrici che dipendono da tutte e quattro le variabili canoniche $p_i$, $q_i$, $P_i$, $Q_i$ e dal tempo $t$. La scelta della generatrice più opportuna è dettata dalla convenienza computazionale e dalla natura del problema da risolvere.
+
+\begin{example}[Oscillatore armonico]
+    L'hamiltoniana dell'oscillatore armonico è
     \begin{equation*}
-        \sum_{j=1}^n \left(p_j - \pdv{F}{q_j}\right) \dd{q}_j - \sum_{j=1}^n \left(P_j + \pdv{F}{Q_j}\right) \dd{Q}_j - \left(H - K + \pdv{F}{t}\right) \dd{t} = 0.
+        H(q, p) = \frac{1}{2m}(p^2 + m^2 \omega^2 q^2).
     \end{equation*}
-    Si ottengono quindi le relazioni
+    Consideriamo la seguente trasformazione
     \begin{equation*}
-        p_j = \pdv{F}{q_j}, \qquad
-        P_j = - \pdv{F}{Q_j}, \qquad
-        K = H + \pdv{F}{t}.
+        q = \frac{f(P)}{m\omega} \sin Q, \qquad p = f(P) \cos Q .
+    \end{equation*}
+    Se questa trasformazione fosse canonica avremmo un'hamiltoniana del tipo
+    \begin{equation*}
+        H = \frac{1}{2m}\left[f^2(P) \cos^2 Q + m^2 \omega^2 f^2(P) \sin^2 Q\right] = \frac{f^2(P)}{2m},
+    \end{equation*}
+    che è indipendente da $Q$, rendendo il sistema integrabile.
+
+    Analizziamo ora se questa trasformazione è effettivamente canonica per qualche scelta di $f$. Consideriamo la funzione generatrice
+    \begin{equation*}
+        F_1(q, Q) = \frac{m\omega q^2}{2}\cot Q.
+    \end{equation*}
+    Per cui
+    \begin{equation*}
+        p = \pdv{F_1}{q} = m\omega q \cot Q, \qquad P = -\pdv{F_1}{Q} = \frac{m\omega q^2}{2\sin^2 Q}.
+    \end{equation*}
+    Da cui si ricava
+    \begin{equation*}
+        q = \sqrt{\frac{2P}{m\omega}} \sin Q, \qquad p = \sqrt{2m\omega P} \cos Q,
+    \end{equation*}
+    ottenendo così la trasformazione desiderata con $f(P) = \sqrt{2m\omega P}$, e quindi
+    \begin{equation*}
+        H = \frac{f^2(P)}{2m} = \omega P.
     \end{equation*}
 
-    La nuova hamiltoniana $K$ non si ottiene quindi dal solo cambio di variabili, ma riceve anche il contributo della funzione generatrice. Il cambio di variabili resta comunque necessario per esprimere $K$ nelle nuove variabili:
-    \begin{align*}
-        K(\vQ, \vP, t) &= H(\vq, \vp, t) + \pdv{F(\vq, \vQ, t)}{t} \\
-        &= H\left(\vq(\vQ, \vP), \vp(\vQ, \vP), t\right) + \pdv{F(\vq(\vQ, \vP), \vQ, t)}{t}.
-    \end{align*}
-\end{example}
-
-\begin{example}[Trasformazione canonica con funzione generatrice delle $\vq$, $\vP$, $t$]
-    Consideriamo ora una trasformazione canonica con funzione generatrice $F_2(\vq, \vP, t)$. Partendo dal caso precedente, si ha
-    \begin{align*}
-        &\sum_{j=1}^n p_j \dd{q}_j - H(\vq, \vp, t) \dd{t}= \\ &= \sum_{j=1}^n P_j\dd{Q_j}- K\dd{t} + \dd{F} \\
-        &= \dd{\left(\sum_{j=1}^n P_j Q_j\right)} - \sum_{j=1}^n Q_j \dd{P}_j - K\dd{t} + \dd{F}
-    \end{align*}
-    \begin{align*}
-        &= - \sum_{j=1}^n Q_j \dd{P}_j - K\dd{t} + \dd{\underbrace{\left(F + \sum_{j=1}^n P_j Q_j\right)}_{F_2(\vq, \vP, t)}} \\
-        &= - \sum_{j=1}^n Q_j \dd{P}_j - K\dd{t} + \sum_{j=1}^n \pdv{F_2}{q_j} \dd{q}_j + \sum_{j=1}^n \pdv{F_2}{P_j} \dd{P}_j + \pdv{F_2}{t} \dd{t}.
-    \end{align*}
-
-    Abbiamo quindi la trasformazione
+    Le equazioni di Hamiloton per questa hamiltoniana sono
     \begin{equation*}
-        p_j = \pdv{F_2}{q_j}, \qquad
-        Q_j = \pdv{F_2}{P_j}, \qquad
-        K = H + \pdv{F_2}{t},
+        \begin{cases}
+            \dot{Q} = \pdv{H}{P} = \omega \\
+            \dot{P} = -\pdv{H}{Q} = 0
+        \end{cases}
     \end{equation*}
-    ipotizzando che $\det\pdv{F_2}{q_j}{P_k} \neq 0$ in modo da poter risolvere le equazioni per $Q_j$ e $p_j$.
-
-    In pratica, $F_2$ si ottiene come trasformata di Legendre di $F$ rispetto alla variabile $Q_j$, cioè
+    da cui si ricava la soluzione generale
     \begin{equation*}
-        F_2(\vq, \vP, t) = F(\vq, \vQ, t) + \sum_{j=1}^n P_j Q_j.
+        Q(t) = \omega t + \alpha, \qquad P(t) = \text{costante} = \frac{E}{\omega}.
     \end{equation*}
+    Per cui, ritornando alle variabili originali, si ha
+    \begin{equation*}
+        q(t) = \sqrt{\frac{2E}{m\omega^2}} \sin(\omega t + \alpha), \qquad p(t) = \sqrt{2m\omega E} \cos(\omega t + \alpha).
+    \end{equation*}
+    Si nota che è questa forma è molto più complessa della soluzione nelle coordinate trasformate.
 \end{example}
