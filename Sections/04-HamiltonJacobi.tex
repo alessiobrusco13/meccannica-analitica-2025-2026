@@ -1,0 +1,183 @@
+\newpage
+\section{Teoria di Hamilton--Jacobi}
+\note{Lezione 05/05/2026}
+
+Ci poniamo il seguente problema:
+\begin{quote}
+    Determinare una trasformazione canonica $Q_i=Q_i(\vq,\vp,t)$, $P_i=P_i(\vq,\vp,t)$ tale che la nuova hamiltoniana $K$ sia identicamente nulla, cioé $K \equiv 0$.
+\end{quote}
+Con una trasformazione canonica che soddisfa questa condizione, le equazioni di Hamilton diventano 
+\begin{equation*}
+    \begin{cases}
+        \dot{Q}_i = \pdv{K}{P_i} = 0 \\
+        \dot{P}_i = -\pdv{K}{Q_i} = 0
+    \end{cases}
+\end{equation*}
+e dunque $Q_i$ e $P_i$ sono costanti di moto
+\begin{equation*}
+    Q_i = \text{costante} = \beta_i, \quad P_i = \text{costante} = \alpha_i.
+\end{equation*}
+
+Determiniamo una tale trasformazione. Sappiamo che una trasformazione canonica può essere ottenuta mediante una funzione generatrice $F_2(\vq,\vP,t)$, con le seguenti relazioni:
+\begin{equation*}
+    \begin{cases}
+        p_i = \pdv{F_2}{q_i} \\
+        Q_i = \pdv{F_2}{P_i} \\
+        K = H + \pdv{F_2}{t}
+    \end{cases}
+\end{equation*}
+posto $\det \left( \pdv{F_2}{q_i}{P_j} \right) \neq 0$ per garantire l'invertibilità della trasformazione. La condizione $K \equiv 0$ implica che
+\begin{equation}
+    \label{eq:hamiltonjacobi-1}
+    H + \pdv{F_2}{t} = 0.
+\end{equation}
+L'hamiltoniana $H$ è una funzione di $\vq$, $\vp$ e $t$, ma possiamo esprimere $\vp$ in funzione di $\vq$, $\vP$ e $t$ tramite la prima relazione della trasformazione, ottenendo così un'equazione differenziale parziale per $F_2(\vq,\vP,t)$:
+\begin{equation*}
+    H\left( \vq, \pdv{F_2}{\vq}, t \right) + \pdv{F_2}{t} = 0.
+\end{equation*}
+
+In letteratura la funzione $F_2$ viene indicata con $S$ e viene detta \emph{funzione principale di Hamilton}
+\begin{align*}
+    S(\vq,\vP,t) &\defeq F_2(\vq,\vP,t)
+\end{align*}
+Sappiamo anche che $P_i = \alpha_i$ è una costante di moto, quindi possiamo riscrivere $S$ come 
+\begin{equation*}
+    S(\vq,\vP,t) = S(\vq,\alpha_1, \dots, \alpha_n, t)
+\end{equation*}
+e la trasformazione canonica diventa
+\begin{equation*}
+    \begin{cases}
+        p_i = \pdv{S}{q_i} \\
+        \beta_i = \pdv{S}{\alpha_i}
+    \end{cases}
+\end{equation*}
+Riscrivendo quindi l'equazione \eqref{eq:hamiltonjacobi-1} ottenendo
+\begin{equation*}
+    H\left( q_1, \dots, q_n, \pdv{S}{q_1}, \dots, \pdv{S}{q_n}, t \right) + \pdv{S}{t} = 0,
+\end{equation*}
+la quale viene detta \emph{equazione di Hamilton--Jacobi}.
+
+\subsection{Soluzioni dell'equazoni di Hamilton--Jacobi}
+
+A differenza delle equazioni di Hamilton, l'equazione che abbiamo ricavato è un'equazione differenziale alle derivate parziali di primo ordine nella funzione incognita $S$. Il problema quindi diventa trovare soluzioni, ricordando che la soluzione generale di un'equazione differenziale alle derivate parziali dipende da funzioni arbitrarie.
+
+Partiamo scrivendo l'equazione di Hamilton--Jacobi
+\begin{equation*}
+    H(q_1, \dots, q_n, \pdv{S}{q_1}, \dots, \pdv{S}{q_n}, t) + \pdv{S}{t} = 0.
+\end{equation*}
+Calcoliamo la derivata totale di $S$ rispetto al tempo
+\begin{equation*}
+    \dv{S}{t} = \sum_{i=1}^n \pdv{S}{q_i} \dot{q}_i + \pdv{S}{t} = \sum_{i=1}^n p_i \dot{q}_i - H = L,
+\end{equation*}
+ritrovando così la lagrangiana $L$. Potrebbe sembrare che il problema sia facilmente risolvible integrando
+\begin{equation*}
+    S = \int L(\vq, \vp, t) \dd{t} + \text{costante},\note{La funzione principale di Hamilton è proprio l'azione}
+\end{equation*}
+tuttavia $L$ è una funzione stessa delle soluzioni, tornando al punto di partenza.
+
+Cerchiamo allora di trovare una sottoclasse di soluzioni.
+
+\begin{definition}[Integrale completo dell'equazione di Hamilton--Jacobi]
+    Una funzione $S(\vq,\alpha_1, \dots, \alpha_n, t)$, dove $\alpha_1, \dots, \alpha_n$ sono costanti arbitrarie, si dice \emph{integrale completo} o \emph{soluzione completa} dell'equazione di Hamilton--Jacobi se è soluzione di tale equazione per ogni scelta delle $\alpha_i$ e verifica la condizione
+    \begin{equation*}
+        \det \left( \pdv{S}{q_i}{\alpha_j} \right) \neq 0.
+    \end{equation*}
+\end{definition}
+
+\begin{theorem}[Jacobi]
+    Se $S(\vq,\alpha_1, \dots, \alpha_n, t)$ è una soluzione completa dell'equazione di Hamilton--Jacobi, allora la soluzione generale delle equazioni di Hamilton è data dalle seguenti:
+    \begin{equation*}
+        p_i = \pdv{S}{q_i}, \quad \beta_i = \pdv{S}{\alpha_i}.
+    \end{equation*}
+\end{theorem}
+
+\begin{remark}
+    Una soluzione completa dell'equazione di Hamilton--Jacobi non è la soluzione generale di tale equazione.
+\end{remark}
+
+
+\textbf{RIVEDERE}
+Nel caso generale di equazioni di questo tipo si ha una cosa del tipo
+\begin{equation*}
+    F(x_1, \dots, x_{n+1}, \pdv{f}{x_1}, \dots, \pdv{f}{x_{n+1}}) = 0,
+\end{equation*}
+giustificando la necessità di $n+1$ costanti arbitrarie. Nel nostro caso il tempo non è una variabile come le altre nell'hamiltoniana e la $(n+1)$-esima costante è una costante additiva, totalmente trascurabile.
+
+Nel caso di un sistema con hamiltoniana indipendente dal tempo si ha
+\begin{equation*}
+    \pdv{H}{t} = 0 \implies H(\vq, \vp, t) = \text{costante} = \gamma,\note{Si noti che $\gamma$ è una costante solo rispetto a tempo}
+\end{equation*}
+e integrando $\dv{S}{t} = -\gamma$, si può cercare una soluzione del tipo
+\begin{equation*}
+    S(\vq,\alpha_1, \dots, \alpha_n, t) = W(\vq,\alpha_1, \dots, \alpha_n) - \gamma t,
+\end{equation*}
+dove in generale $\gamma$ dipende dalle $\alpha_i$ e $W$ è detta \emph{funzione caratteristica di Hamilton}. Sostituendo questa forma nell'equazione di Hamilton--Jacobi si ottiene
+\begin{equation*}
+    H\left( \vq, \pdv{W}{q_1}, \dots, \pdv{W}{q_n} \right) = \gamma,
+\end{equation*}
+la quale è un'equazione differenziale alle derivate parziali di primo ordine per $W$, detta \emph{equazione ridotta di Hamilton--Jacobi}.
+
+Si dimostra che è perfettamente legittimo scegliere $\gamma$ come una delle costanti arbitrarie $\alpha_i$, ad esempio $\gamma = \alpha_1$. In questo modo si ha
+\begin{equation*}
+    H\left( \vq, \pdv{W}{q_1}, \dots, \pdv{W}{q_n} \right) = \alpha_1.
+\end{equation*}
+
+\begin{example}[Applicazione della teoria di Hamilton--Jacobi all'oscillatore armonico]
+    Nel caso dell'oscillatore armonico unidimensionale, l'hamiltoniana è indipendente dal tempo ed è proprio uguale all'energia meccanica $\alpha$
+    \begin{equation*}
+        H(q,p) = \frac{1}{2m}\left( p^2 + m^2 \omega^2 q^2 \right)= \alpha,
+    \end{equation*}
+    dove $\alpha$ è una costante di moto. Pertanto si ha
+    \begin{equation*}
+        S = W(q) - \alpha t,
+    \end{equation*}
+    con le trasformazioni canoniche
+    \begin{equation}
+        \label{eq:oscillatoreHamiltonJacobi}
+        p = \pdv{W}{q}, \quad \beta' = \pdv{W}{\alpha} - t.
+    \end{equation}
+
+    L'equazione ridotta di Hamilton--Jacobi diventa
+    \begin{equation*}
+        \frac{1}{2m}\left[ \left( \pdv{W}{q} \right)^2 + m^2 \omega^2 q^2 \right] = \alpha,
+    \end{equation*}
+    da cui si ricava
+    \begin{equation*}
+        \pdv{W}{q} = \sqrt{2m\alpha - m^2 \omega^2 q^2}
+    \end{equation*}
+    e integrando si ottiene la soluzione
+    \begin{align*}
+        W(q,\alpha) &= \int \sqrt{2m\alpha - m^2 \omega^2 q^2} \dd{q}.
+    \end{align*}
+    Deriviamo rispetto ad $\alpha$
+    \begin{align*}
+        \pdv{W}{\alpha} &= \int \frac{m}{\sqrt{2m\alpha - m^2 \omega^2 q^2}} \dd{q} \\
+        &= \frac{m}{\sqrt{2m\alpha}} \int \frac{1}{\sqrt{1 - \frac{m \omega^2 q^2}{2\alpha}}} \dd{q} \\
+        &= \sqrt{\frac{m}{2\alpha}} \sqrt{\frac{2\alpha}{m\omega^2}} \arcsin \left( q\sqrt{\frac{m\omega^2}{2\alpha}} \right) \\
+        &= \frac{1}{\omega} \arcsin \left( q\sqrt{\frac{m\omega^2}{2\alpha}} \right).
+    \end{align*}
+    Sostituendo questa espressione nella seconda relazione delle trasformazioni canoniche \eqref{eq:oscillatoreHamiltonJacobi} si ottiene
+    \begin{equation*}
+        \arcsin \left( q\sqrt{\frac{m\omega^2}{2\alpha}} \right) = \omega t + \omega \beta'.
+    \end{equation*}
+    Ponendo $\omega \beta' = \beta$ e applicando la funzione seno ad entrambi i membri si ricava la soluzione generale dell'oscillatore armonico
+    \begin{equation*}
+        q(t) = \sqrt{\frac{2\alpha}{m\omega^2}} \sin(\omega t + \beta).
+    \end{equation*}
+
+    Calcolando $p$ tramite la prima relazione delle trasformazioni canoniche \eqref{eq:oscillatoreHamiltonJacobi} si ottiene
+    \begin{align*}
+        p(t) &= \sqrt{2m\alpha} \sqrt{1- \frac{m\omega^2}{2\alpha} q^2} \\
+        &= \sqrt{2m\alpha} \sqrt{1- \sin^2(\omega t + \beta)} \\
+        &= \sqrt{2m\alpha} \cos(\omega t + \beta).
+    \end{align*}
+    
+    Otteniamo facilmente le condizioni iniziali
+    \begin{equation*}
+        q_0 = \sqrt{\frac{2\alpha}{m\omega^2}} \sin(\beta), \quad p_0 = \sqrt{2m\alpha} \cos(\beta)
+    \end{equation*}
+    e quindi, invertendo le relazioni, si ricavano le costanti arbitrarie $\alpha$ e $\beta$ in funzione delle condizioni iniziali
+    \begin{equation*}
+        \alpha = \frac{p_0^2}{2m} + \frac{1}{2} m \omega^2 q_0^2, \quad \beta = \arctan \left( \frac{m\omega q_0}{p_0} \right).
+    \end{equation*}
+\end{example}
