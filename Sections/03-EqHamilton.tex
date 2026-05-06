@@ -9,7 +9,7 @@ Consideriamo il calcolo del differenziale di una funzione di due variabili $f(x,
 \begin{equation*}
     \dd{f} = \pdv{f}{x} \dd{x} + \pdv{f}{y} \dd{y} = u \dd{x} + v \dd{y}.
 \end{equation*}
-Talvolta può risultare utile scrivere il differenziale di $f$ in termini di $u$ e $v$ invece che di $x$ e $y$. Attraverso la regola di Leibnitz si ha
+Talvolta può risultare utile scrivere il differenziale di $f$ in termini di $u$ e $v$ invece che di $x$ e $y$. Attraverso la regola di Leibniz si ha
 \begin{equation*}
     \dd{f} = \dd{(ux)} - x \dd{u} + \dd{(vy)} - y \dd{v} = \dd{(ux)} - x \dd{u} + v \dd{y},
 \end{equation*}
@@ -75,7 +75,7 @@ Se la trasformazione di Legendre è regolare, cioè
 \begin{equation*}
     \det\left(\pdv[2]{L}{\dot{q}_i}{\dot{q}_j}\right) \neq 0,
 \end{equation*}
-allora risolvendo le equazioni $(*)$ per $\dot{q}_j$ si ha che $H$ è una funzione di $\vq$, $\vp$ e $t$, e non dipende più da $\dot{\vq}$, ottenendo così una trasformazione che porta da un sistema di coordinate $(\vq, \dot{\vq})$ ad un sistema di coordinate $(\vq, \vp)$:
+allora risolvendo le equazioni $(*)$ per $\dot{q}_j$ si ha che $H$ è una funzione di $\vq$, $\vp$ e $t$, e non dipende più da $\dot{\vq}$, ottenendo così una trasformazione che porta da un sistema di coordinate $(\vq, \dot{\vq})$ a un sistema di coordinate $(\vq, \vp)$:
 \begin{equation*}
     (\vq, \dot{\vq}) \leftrightarrow (\vq, \vp),
 \end{equation*}
@@ -106,7 +106,7 @@ ovvero l'hamiltoniana coincide con l'energia totale del sistema.
 
 \begin{example}[Oscillatore armonico]
     % Guida orizzontale, molla con coefficiente k nell'origine punto P di massa M
-    Consideriamo un oscillatore armonico, ovvero una massa $m$ che si muove su una guida orizzontale e che è collegata ad una molla con coefficiente elastico $k$ ancorata all'origine. La coordinata generalizzata è data da $q = x$, e la lagrangiana è data da
+    Consideriamo un oscillatore armonico, ovvero una massa $m$ che si muove su una guida orizzontale e che è collegata a una molla con coefficiente elastico $k$ ancorata all'origine. La coordinata generalizzata è data da $q = x$, e la lagrangiana è data da
     \begin{equation*}
         L = T - V = \frac{1}{2} m \dot{q}^2 - \frac{1}{2} k q^2.
     \end{equation*}
@@ -136,7 +136,7 @@ La differenza però è sostanziale: $H$ è una funzione di $\vq$, $\vp$ e $t$, m
 
 \subsection{Variabili cicliche in un sistema hamiltoniano}
 
-\begin{definition}[Coodinata ciclica in un sistema hamiltoniano]\note{Lezione 23/04/2026}
+\begin{definition}[Coordinata ciclica in un sistema hamiltoniano]\note{Lezione 23/04/2026}
     Una coordinata $q_i$ dicesi \emph{ciclica} per il sistema di hamiltoniana $H(\vq, \vp, t)$ se 
     \begin{equation*}
         \pdv{H}{q_i} = 0.
@@ -201,7 +201,7 @@ otteniamo
     + \left[\sum_{j=1}^n \pdv{L^*}{\dot{q}_j} \var{q_j}+ \sum_{j=1}^n \pdv{L^*}{\dot{p}_j} \var{p_j} \right]_{t_0}^{t_1} = 0.
 \end{multline*}
 Notiamo che le sommatorie negli ultimi due termini si annullano, in quanto $\var{q_j}(t_0) = \var{q_j}(t_1) = 0$ e $\pdv{L^*}{\dot{p}_j} = 0$ per ogni $j$.
-Quindi, le equazioni di Eulero-Lagrange per $L^*$ sono
+Quindi, le equazioni di Eulero--Lagrange per $L^*$ sono
 \begin{align*}
     \pdv{L^*}{q_j} - \dv{t}\pdv{L^*}{\dot{q}_j} &= - \pdv{H}{q_j} - \dot{p}_j = 0 \iff \pdv{H}{q_j} = - \dot{p}_j \\
     \pdv{L^*}{p_j} - \dv{t}\pdv{L^*}{\dot{p}_j} &= \dot{q}_j - \pdv{H}{p_j} = 0 \iff \pdv{H}{p_j} = \dot{q}_j
@@ -223,7 +223,7 @@ Analizziamo ora le proprietà delle parentesi di Poisson. Siano $f(\vq, \vp, t)$
     \item $\{c, f\} = 0$, per ogni $c\in\R$;
     \item $\{\alpha f + \beta g, h\} = \alpha \{f, h\} + \beta \{g, h\}$, per ogni $\alpha, \beta\in \R$  (linearità);
     \item $\pdv{t} \{f, g\} = \{\dot{f}, g\} + \{f, \dot{g}\}$;
-    \item $\{f, \{g, h\}\} + \{g, \{h, f\}\} + \{h, \{f, g\}\} = 0$ (identità di Jacobi--Poisson). \note{permutando ciclicamente le funzioni}
+    \item $\{f, \{g, h\}\} + \{g, \{h, f\}\} + \{h, \{f, g\}\} = 0$ (identità di Jacobi--Poisson).\note{permutando ciclicamente le funzioni}
 \end{enumerate}
 
 \vspace{1em}
@@ -306,7 +306,7 @@ definendo un vettore $\vb{\eta} = (q_1, \dots, q_n, p_1, \dots, p_n)$ che contie
         0 & \dots & -1 & 0 & \dots & 0
     \end{bmatrix}
 \end{align*}
-detta \emph{matrice simplettica}, dove $\tens{0}$ è la matrice nulla $n\times n$ e $\tens{I_n}$ è la matrice identità $n\times n$. Si ha che per questa matrice $\tens{J}^T = \tens{J}^{-1} - \tens{J}$ e $\det \tens{J} = 1$.
+detta \emph{matrice simplettica}, dove $\tens{0}$ è la matrice nulla $n\times n$ e $\tens{I_n}$ è la matrice identità $n\times n$. Si ha che per questa matrice $\tens{J}^T = \tens{J}^{-1} = -\tens{J}$ e $\det \tens{J} = 1$.
 
 Le equazioni di Hamilton possono essere riscritte in forma compatta
 \begin{equation*}
@@ -316,7 +316,7 @@ Le equazioni di Hamilton possono essere riscritte in forma compatta
 \subsection{Trasformazioni canoniche}
 Le equazioni di Lagrange sono invarianti per trasformazioni di coordinate. L'elevata simmetria delle equazioni di Hamilton rende più complicato questo problema: può accadere che partendo da un sistema hamiltoniano e applicando una trasformazione di coordinate, il sistema trasformato non è più hamiltoniano. 
 
-Spesso cerca una trasformazione di coordinate che semplifichi la risoluzione del problema, poniamo quindi il seguente obbiettivo:
+Spesso si cerca una trasformazione di coordinate che semplifichi la risoluzione del problema; poniamo quindi il seguente obiettivo:
 \begin{quote}
     Dato un'hamiltoniana $H(\vq,\vp)$, determinare una trasformazione di coordinate $Q_i = Q_i(\vq, \vp)$, $P_i=P_i(\vq,\vp)$ tale che la nuova hamiltoniana $K$ abbia tutte le coordinate $Q$ cicliche.
 \end{quote}
@@ -326,7 +326,7 @@ Come per l'approccio lagrangiano, è fondamentale che la trasformazione di coord
 \end{equation*}
 
 \begin{definition}[Trasformazione canonica]
-    Una trasformazione di coordinate $Q_i = Q_i(\vq, \vp, t)$, $P_i=P_i(\vq,\vp, t)$ nello spazio delle fasi si dice \emph{canonica} se conserva la struttura canonica delle equazioni, ovvero se le nuove coordinate $Q_i$ e $P_i$ soddisfano le equazioni di Hamilton con una nuova hamiltoniana $K(\vQ, \vP, t)$
+    Una trasformazione di coordinate $Q_i = Q_i(\vq, \vp, t)$, $P_i=P_i(\vq,\vp, t)$ nello spazio delle fasi si dice \emph{canonica} se conserva la struttura canonica delle equazioni, ovvero se le nuove coordinate $Q_i$ e $P_i$ soddisfano le equazioni di Hamilton con la nuova hamiltoniana $K(\vQ, \vP, t)$:
     \begin{equation*}
         \begin{cases}
             \dot{Q}_i = \pdv{K}{P_i} \\
@@ -348,13 +348,11 @@ La condizione necessaria e sufficiente affinché una trasformazione di coordinat
     \lambda \left(\sum_{j=1}^n p_j \dot{q}_j - H(\vq, \vp, t)\right) &= \sum_{j=1}^n P_j \dot{Q}_j - K(\vQ, \vP, t) + \dv{F}{t}.
 \end{align*}
 dove $\lambda$ è una costante reale, detta \emph{valenza della trasformazione}, e $F$ è una funzione delle variabili canoniche e del tempo.
-L'aggiunta del termine $\dv{F}{t}$ all'integranda non modifica le equazioni di Eulero-Lagrange, poiché
+L'aggiunta del termine $\dv{F}{t}$ all'integrando non modifica le equazioni di Eulero--Lagrange, poiché
 \begin{equation*}
-    \var \int_{t_0}^{t_1} \dv{F}{t} \dd{t} = \var \left[ F(\vq, \vp, t) \right]_{t_0}^{t_1} = 0, \note{$[F]_{t_0}^{t_1}$ non dipende dalla specifica traiettoria scelta, quindi la sua variazione è nulla.}
+    \var \int_{t_0}^{t_1} \dv{F}{t} \dd{t} = \var \left[ F(\vq, \vp, t) \right]_{t_0}^{t_1} = 0,\note{$[F]_{t_0}^{t_1}$ non dipende dalla specifica traiettoria scelta, quindi la sua variazione è nulla}
 \end{equation*}
 avendo che $\var{\vq}(t_0) = \var{\vq}(t_1) = 0$ e $\var{\vp}(t_0) = \var{\vp}(t_1) = 0$.
-
-È equivalente scegliere $F$ come funzione di $\vQ$, $\vP$ e $t$ oppure di $\vq$, $\vp$ e $t$. In particolare, si osserverà che può essere utile assumere $F = F(\vq, \vQ, t)$.
 
 D'ora in avanti considereremo solo le trasformazioni canoniche con valenza $\lambda = 1$, dette \emph{univalenti}.
 
@@ -367,7 +365,7 @@ D'ora in avanti considereremo solo le trasformazioni canoniche con valenza $\lam
     \begin{equation*}
         \sum_{j=1}^n p_j \dot{q}_j - H(\vq, \vp, t) = \sum_{j=1}^n P_j \dot{Q}_j - K(\vQ, \vP, t) + \dv{F}{t},
     \end{equation*}
-    dove $F$ è una funzione delle $2n$ variabili canoniche detta \emph{funzione generatrice della trasformazione canonica}.
+    dove $F$ è una funzione delle $2n$\note{$2n$ perché $F$ può dipendere sia le nuove che le vecchie variabili} variabili canoniche detta \emph{funzione generatrice della trasformazione canonica}.
 \end{theorem}
 \begin{remark}
     Una trasformazione canonica non è legata a una specifica hamiltoniana, ma è canonica per qualsiasi sistema.
@@ -507,7 +505,7 @@ Alla luce delle quattro trasformazioni fondamentali, riassumiamo le loro caratte
 \end{center}
 
 \vspace{1em}
-Questi quattro tipi di funzioni generatrici rappresentano i casi più comuni e naturali. Il concetto di trasformazione canonica è tuttavia molto più generale: il vincolo essenziale è che la trasformazione soddisfi la \emph{condizione di Lie}. In linea di principio, nulla ci impedisce di costruire generatrici che dipendono da tutte e quattro le variabili canoniche $p_i$, $q_i$, $P_i$, $Q_i$ e dal tempo $t$. La scelta della generatrice più opportuna è dettata dalla convenienza computazionale e dalla natura del problema da risolvere.
+Questi quattro tipi di funzioni generatrici rappresentano i casi più comuni e naturali. Il concetto di trasformazione canonica è tuttavia molto più generale: il vincolo essenziale è che la trasformazione soddisfi la \emph{condizione di Lie}. In linea di principio, nulla ci impedisce di costruire generatrici che dipendono da tutte e quattro le variabili canoniche $p_i$, $q_i$, $P_i$, $Q_i$ e dal tempo $t$ o da qualsiasi combinazione di esse. La scelta della generatrice più opportuna è dettata dalla convenienza computazionale e dalla natura del problema da risolvere.
 
 \begin{example}[Oscillatore armonico]
     L'hamiltoniana dell'oscillatore armonico è
@@ -541,7 +539,7 @@ Questi quattro tipi di funzioni generatrici rappresentano i casi più comuni e n
         H = \frac{f^2(P)}{2m} = \omega P.
     \end{equation*}
 
-    Le equazioni di Hamiloton per questa hamiltoniana sono
+    Le equazioni di Hamilton per questa hamiltoniana sono
     \begin{equation*}
         \begin{cases}
             \dot{Q} = \pdv{H}{P} = \omega \\
@@ -556,5 +554,5 @@ Questi quattro tipi di funzioni generatrici rappresentano i casi più comuni e n
     \begin{equation*}
         q(t) = \sqrt{\frac{2E}{m\omega^2}} \sin(\omega t + \alpha), \qquad p(t) = \sqrt{2m\omega E} \cos(\omega t + \alpha).
     \end{equation*}
-    Si nota che è questa forma è molto più complessa della soluzione nelle coordinate trasformate.
+    Si nota che questa forma è molto più complessa della soluzione nelle coordinate trasformate.
 \end{example}

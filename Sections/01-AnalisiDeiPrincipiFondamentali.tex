@@ -1,7 +1,7 @@
 \section{Analisi dei principi fondamentali}
 Iniziamo fissando il linguaggio di base per descrivere configurazioni, vincoli e coordinate generalizzate. L'obiettivo è ottenere una descrizione compatta del moto.
 
-\subsection{Vincoli e grado di libertà}
+\subsection{Vincoli e gradi di libertà}
 Nel passaggio dai singoli punti materiali a sistemi complessi, i \emph{vincoli} riducono il numero di configurazioni accessibili. Il numero di parametri indipendenti necessari per descrivere una configurazione è il \emph{grado di libertà}. Questa nozione ci dirà quante coordinate saranno necessarie per descrivere il moto.
 
 \begin{definition}[Grado di libertà]
@@ -19,7 +19,7 @@ Gradi di libertà notevoli:
 \end{example}
 
 \note{Lezione 17/03/2026}
-Consideriamo sistemi finiti di punti e corpi rigidi con vincoli che ne limitano le posizioni. I vincoli possono essere in moto assegnato: il loro movimento è prescritto dall'esterno e non risente dell'evoluzione del sistema.
+Consideriamo sistemi finiti di punti e corpi rigidi con vincoli che ne limitano le posizioni. I vincoli possono essere a moto assegnato: il loro movimento è prescritto dall'esterno e non risente dell'evoluzione del sistema.
 
 L'insieme dei parametri che occorrono per determinare la posizione del corpo è
 \begin{equation*}
@@ -288,8 +288,8 @@ Questa è l'espressione analitica del fatto che la reazione vincolare deve esser
 \begin{property}\note{Lezione 19/03/2026}
 Se $\mathcal{S}$ è un sistema a vincoli privi di attrito allora è a vincoli ideali.
 \end{property}
-\subsection{Forze e energia nella formulazione lagrangiana}
-In questa parte fissiamo le considerazioni su forze e energia che useremo per ottenere le equazioni di Lagrange. Consideriamo quindi un sistema olonomo di punti
+\subsection{Forze ed energia nella formulazione lagrangiana}
+In questa parte fissiamo le considerazioni su forze ed energia che useremo per ottenere le equazioni di Lagrange. Consideriamo quindi un sistema olonomo di punti
 \begin{equation*}
     \mathcal{S} = \{(\vP_1, m_1), (\vP_2, m_2), \dots, (\vP_N, m_N)\},
 \end{equation*}
@@ -341,7 +341,7 @@ Con questa definizione otteniamo
         \var{L} = \vF \cdot \var{\vP} = F_x \var{x} + F_y \var{y} + F_z \var{z}.
     \end{gather*}
 
-    In questo caso le componenti lagrangiane della forza corrispondono a quelle lagrangiane. Inoltre, si tratta semplicemente di una forma differenziale lineare in $\var{x}, \var{y}, \var{z}$.
+    In questo caso le componenti lagrangiane della forza corrispondono a quelle cartesiane. Inoltre, si tratta semplicemente di una forma differenziale lineare in $\var{x}, \var{y}, \var{z}$.
 \end{example}
 
 Indichiamo con $Q_h$ le componenti lagrangiane (generalizzate) delle forze.
@@ -402,9 +402,9 @@ per cui l'energia meccanica totale è costante:
 
 Ora, nel sistema oltre alle forze che agiscono sui punti, ci sono anche le forze vincolari, per cui
 \begin{equation*}
-    \dd{T} = \underbrace{\dd{L}^{(a)}}_{\text{conservative}} + \dd{L}^{(v)},
+    \dd{T} = \underbrace{\dd{L}^{(a)}}_{\text{conservativo}} + \dd{L}^{(v)},
 \end{equation*}
-dove $\dd{L}^{(a)}$ è il lavoro reale delle forze attive, mentre $\dd{L}^{(v)}$ è il lavoro reale delle forze vincolari. Se i vincoli sono fissi, quindi il sistema è scleronomo, lisci e bilaterali, allora  si ha
+dove $\dd{L}^{(a)}$ è il lavoro reale delle forze attive, mentre $\dd{L}^{(v)}$ è il lavoro reale delle forze vincolari. Se i vincoli sono fissi, lisci e bilaterali, quindi il sistema è scleronomo, allora si ha
 \begin{equation*}
     \begin{cases}
         \var{L}^{(v)} \geq 0 \\
@@ -479,7 +479,7 @@ $T^2$ è una forma quadratica definita positiva.
         \sum_{h,k=1}^n a_{hk}\, \xi_h \xi_k &= \sum_{h,k=1}^n\left(\sum_{i=1}^N m_i \pdv{\vP_i}{q_h}\cdot \pdv{\vP_i}{q_k}\right)\xi_h \xi_k \\
         &= \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \xi_h \right)^2 \geq 0,
     \end{align*}
-    pertanto è semidefinita positiva. Resta da dimostrare che  è uguale a zero solo se $\xi_h = 0$ per ogni $h = 1, 2, \dots, n$. Se $T^2 = 0$, allora
+    pertanto è semidefinita positiva. Resta da dimostrare che la forma è uguale a zero solo se $\xi_h = 0$ per ogni $h = 1, 2, \dots, n$. Se $T^2 = 0$, allora
     \begin{equation*}
         \sum_{h=1}^n \pdv{\vP_i}{q_h} \xi_h = 0 \quad \forall i = 1, 2, \dots, N.
     \end{equation*}
@@ -575,7 +575,7 @@ otteniamo quindi
     I_a &= \vu{u}\cdot\int_C \rho\{ (\vP\cdot\vP)\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c} \nonumber \\
     &= \vu{u}\cdot\int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c}.
 \end{align}
-Questo ultimo termine permette di definire un endomorfismo sullo spazio vettoriale tridimensionale
+Quest'ultimo termine permette di definire un endomorfismo sullo spazio vettoriale tridimensionale
 \begin{equation*}
     \tau(\vv) \defeq \int_C \rho\{ P^2\vv - (\vP\cdot\vv)\vP \}\dd{c} \quad \forall \vv \in E_3,\note{si noti che $\vv$ non è necessariamente unitario}
 \end{equation*}
@@ -698,7 +698,7 @@ La matrice di inerzia è reale e simmetrica, in quanto $I_{xy} = I_{yx}$, $I_{xz
 Si ha anche che la matrice di inerzia è definita positiva, in quanto, quando la matrice si trova in forma diagonale, tutti i valori sulla diagonale, che corrispondono ai suoi autovalori, sono positivi.
 
 \begin{definition}[Riferimento principale di inerzia]
-    Si dice \emph{riferimento principale di inerzia} di un sistema materiale rispetto ad un punto $O$ ogni riferimento ortonormale levogiro in cui la matrice di inerzia si diagonalizza.
+    Si dice \emph{riferimento principale di inerzia} di un sistema materiale rispetto a un punto $O$ ogni riferimento ortonormale levogiro in cui la matrice di inerzia si diagonalizza.
 \end{definition}
 
 Considerando il generico prodotto
@@ -710,7 +710,7 @@ L'equazione
     \label{eq:ellissoideInerzia}
     I_x x^2 + I_y y^2 + I_z z^2 - 2I_{xy} xy - 2I_{xz} xz - 2I_{yz} yz = 1
 \end{equation}
-definisce una quadrica, una particolare classe di superfici. Nello specifico, rappresenta un'ellissoide
+definisce una quadrica, una particolare classe di superfici. Nello specifico, rappresenta un ellissoide.
 
 \begin{definition}[Ellissoide di inerzia]
     L'ellissoide definito dall'equazione \eqref{eq:ellissoideInerzia} si chiama \emph{ellissoide di inerzia} del sistema materiale rispetto al punto $O$.
@@ -718,7 +718,7 @@ definisce una quadrica, una particolare classe di superfici. Nello specifico, ra
 
 L'ellissoide di inerzia rappresenta la geometria del sistema, con le sue simmetrie di massa. Per esempio l'ellissoide di inerzia di un cubo ha sezione circolare, mentre quello di una sfera è una sfera.
 
-Affrontiamo ora il problema di come determinare i riferimenti principali di inerzia. Un riferimento in cui la matrice di inerzia si diagonalizza è formata dai suoi autovettori. Dovremo quindi risolvere l'equazione caratteristica
+Affrontiamo ora il problema di come determinare i riferimenti principali di inerzia. Un riferimento in cui la matrice di inerzia si diagonalizza è formato dai suoi autovettori. Dovremo quindi risolvere l'equazione caratteristica
 \begin{equation*}
     \det(I_{ij} - \lambda \delta_{ij}) = 0,
 \end{equation*}

@@ -65,11 +65,11 @@
   \ifoddpage\raggedleftmarginnote\else\raggedrightmarginnote\fi
 }
 
-% Single \note command
+% Single\note command
 \newcommand{\note}[1]{%
   \marginnote{%
-    \NoteAlign
-    \NoteFontSize
+   \NoteAlign
+   \NoteFontSize
     \begin{minipage}{\MarginNoteWidth}%
       {\NoteFont\color{\NoteColor}#1}%
     \end{minipage}%

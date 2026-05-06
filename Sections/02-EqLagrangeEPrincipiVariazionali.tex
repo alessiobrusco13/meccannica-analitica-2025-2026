@@ -56,7 +56,7 @@ ovvero la somma di tre lavori, dove $m_i\,\vva_i$ è dimensionalmente una forza,
     \var{L^{(a)}} + \var{L^{(m)}} + \var{L^{(v)}} = 0.
 \end{equation*}
 
-Consideriamo l'ipotesi di vincoli ideali, per cui $\var{L^{(v)}} \geq 0$. \note{Le equazioni di Lagrange possono essere ricavate allo stesso modo introducendo i moltiplicatori di Lagrange} Segue necessariamente 
+Consideriamo l'ipotesi di vincoli ideali, per cui $\var{L^{(v)}} \geq 0$.\note{Le equazioni di Lagrange possono essere ricavate allo stesso modo introducendo i moltiplicatori di Lagrange} Segue necessariamente 
 \begin{equation*}
     \var{L^{(a)}} + \var{L^{(m)}} \leq 0.
 \end{equation*}
@@ -111,7 +111,7 @@ Applicando questa legge alla componente lagrangiana della forza di inerzia, otte
     \tau_h &= \sum_{i=1}^N -m_i\,\vva_i\cdot \pdv{\vP_i}{q_h} \\ 
     &= -\sum_{i=1}^N m_i\,\dv{\vv_i}{t}\cdot \pdv{\vP_i}{q_h} \\
     &= -\dv{t}\sum_{i=1}^N m_i\,\vv_i\cdot \pdv{\vP_i}{q_h} + \sum_{i=1}^N m_i\,\vv_i\cdot \dv{t}\pdv{\vP_i}{q_h} \\
-    &= -\dv{t}\sum_{i=1}^N m_i\,\vv_i\cdot \pdv{\vv}{\dot{q}_h} + \sum_{i=1}^N m_i\,\vv_i\cdot \pdv{\vv}{q_h} \note{Legge di cancellazione dei punti e Teorema di Schwartz}\\
+    &= -\dv{t}\sum_{i=1}^N m_i\,\vv_i\cdot \pdv{\vv}{\dot{q}_h} + \sum_{i=1}^N m_i\,\vv_i\cdot \pdv{\vv}{q_h}\note{Legge di cancellazione dei punti e Teorema di Schwarz}\\
     &= -\dv{t}\pdv{\dot{q}_h}\sum_{i=1}^N \frac{1}{2}m_i\,\vv_i^2 + \pdv{q_h}\sum_{i=1}^N \frac{1}{2}m_i\,\vv_i^2 \\
     &= -\dv{t}\pdv{T}{\dot{q}_h} + \pdv{T}{q_h},
 \end{align*}
@@ -165,7 +165,7 @@ Consideriamo ora un sistema di forze attive indipendenti dalle velocità, quindi
 \begin{equation*}
     Q_h = Q_h(\vq, t) \qquad h = 1, \dots, n,
 \end{equation*}
-e supponiamo che esiste una funzione $V(\vq, t)$, almeno di classe $C^1$, tale che
+e supponiamo che esista una funzione $V(\vq, t)$, almeno di classe $C^1$, tale che
 \begin{equation*}
     Q_h = -\pdv{V}{q_h} \iff \var{L^{(a)}} = -\var{V}.
 \end{equation*}
@@ -213,7 +213,7 @@ ovvero, utilizzando la lagrangiana,
     \end{itemize}
 \end{example}
 
-\begin{example}[Applicazione delle equazioni di Lagrange ad un sistema rigido]
+\begin{example}[Applicazione delle equazioni di Lagrange a un sistema rigido]
     Consideriamo un'asta rigida omogenea, di massa $m$ e lunghezza $\ell$, i cui estremi sono costretti a scorrere in assenza di attrito lungo due assi ortogonali. Si precisa che gli assi costituiscono guide puramente cinematiche e non corpi fisici materiali; il moto dell'asta non è quindi ostacolato dalla loro intersezione.
     
     \begin{figure}[ht]
@@ -302,7 +302,7 @@ ovvero, utilizzando la lagrangiana,
         \dv{t}\pdv{L}{\dot{\theta}} - \pdv{L}{\theta} = 0 \\
         \implies \frac{1}{3}m\ell^2\ddot{\theta} + \frac{1}{2}mg\ell\cos\theta = 0.
     \end{gather*}
-    Come dalla teoria possiamo scrivere l'equazione in forma normale
+    Come previsto dalla teoria possiamo scrivere l'equazione in forma normale
     \begin{equation*}
         \ddot{\theta} = -\frac{3}{2}\frac{g}{\ell}\cos\theta.
     \end{equation*}
@@ -371,7 +371,7 @@ Dall'equazione \eqref{eq:conservazione_H} segue il seguente teorema di conservaz
         p_i = \pdv{L}{\dot{q}_i} \qquad i = 1, \dots, n.
     \end{equation*}
 \end{definition}
-Questi momenti sono immediate generalizzazioni della quantità di moto Newtoniana
+Questi momenti sono immediate generalizzazioni della quantità di moto newtoniana
 \begin{equation*}
     \vp = m\vv,
 \end{equation*}
@@ -444,7 +444,7 @@ In altri termini, presa una soluzione $\vq(t)$ delle equazioni di Lagrange, se $
 \end{definition}
 
 \begin{definition}[Gruppo di trasformazioni ammissibili]
-    Diremo che una famiglia ad un parametro $\vf(\vq, s)$, con $s \in \R$, di trasformazioni ammissibili costituisce un gruppo di trasformazioni ammissibili per $L$ se
+    Diremo che una famiglia a un parametro $\vf(\vq, s)$, con $s \in \R$, di trasformazioni ammissibili costituisce un gruppo di trasformazioni ammissibili per $L$ se
     \begin{enumerate}[label=($\roman*$)]
         \item $\vf(\vq, 0) = \vq \quad \forall \vq$;
         \item $\vQ = f(\vq, s) \implies \vq = \vf(\vQ, -s) \quad \forall s$.
@@ -453,7 +453,7 @@ In altri termini, presa una soluzione $\vq(t)$ delle equazioni di Lagrange, se $
 \end{definition}
 
 \begin{theorem}[Noether]
-    \note{del 1918}
+   \note{del 1918}
     Sia $\vf(\vq, s)$ un gruppo di trasformazioni ammissibili per la lagrangiana $L$ di un sistema. Allora, la funzione
     \begin{equation*}
         I(\vq, \dot{\vq}) = \sum_{j=1}^n \pdv{L}{\dot{q}_j}\,\pdv{f_j}{s}\bigg|_{s=0}
@@ -465,7 +465,7 @@ In altri termini, presa una soluzione $\vq(t)$ delle equazioni di Lagrange, se $
     \begin{equation*}
         L(\vf(\vq, s), \dot{\vf}(\vq, s)) = L(\vq, \dot{\vq}) \quad \forall s.
     \end{equation*}
-    Derivando rispetto $s$ otteniamo
+    Derivando rispetto a $s$ otteniamo
     \begin{align*}
         0 = \dv{s} L\left(\vf(\vq, s), \dot{\vf}(\vq, s)\right) &= \sum_{j=1}^n \pdv{L}{q_j}\,\pdv{f_j}{s} + \sum_{j=1}^n \pdv{L}{\dot{q}_j}\,\pdv{\dot{f_j}}{s} \\
         &= \sum_{j=1}^n \pdv{L}{q_j}\,\pdv{f_j}{s} + \dv{t}\sum_{j=1}^n \pdv{L}{\dot{q}_j}\,\pdv{f_j}{s} - \sum_{j=1}^n \dv{t}\pdv{L}{\dot{q}_j}\,\pdv{f_j}{s} \\
@@ -574,7 +574,7 @@ Poiché il fattore $\frac{1}{\sqrt{2g}}$ è una costante positiva, minimizzare $
 La tecnica appena usata si generalizza a una classe ampia di problemi.
 
 \begin{definition}[Funzionali integrali del calcolo delle variazioni]
-    Un \emph{funzionale integrale} è una funzione che associa ad ogni funzione $y(x)$, definita su un intervallo $[x_0, x_1]$, un numero reale attraverso un'integrazione del tipo
+    Un \emph{funzionale integrale} è una funzione che associa a ogni funzione $y(x)$, definita su un intervallo $[x_0, x_1]$, un numero reale attraverso un'integrazione del tipo
     \begin{equation*}
         I[y] = \int_{x_0}^{x_1} F(y, y', x)\dd{x},
     \end{equation*}
@@ -583,14 +583,14 @@ La tecnica appena usata si generalizza a una classe ampia di problemi.
     La funzione $F\in C^2([x_0, x_1] \times \mathbb{R} \times \mathbb{R})$ è detta \emph{lagrangiana} per analogia con il caso meccanico.
 \end{definition}
 
-L'insieme di tutte le funzioni $y(x)$ definite su $[x_0, x_1]$ e appartenenti a $C^0([x_0, x_1])\cap C^1(x_0, x_1)$ ha un ruolo analogo al domionino di una funzione reale e viene detto \emph{classe di funzioni ammissibili}.
+L'insieme di tutte le funzioni $y(x)$ definite su $[x_0, x_1]$ e appartenenti a $C^0([x_0, x_1])\cap C^1(x_0, x_1)$ ha un ruolo analogo al dominio di una funzione reale e viene detto \emph{classe di funzioni ammissibili}.
 
 Consideriamo il caso di un massimo relativo del funzionale. Per analogia con il caso di una funzione reale di una variabile, diremo che $I[y]$ è massimo in $y^*(x)$ se, per ogni funzione $y(x)$ sufficientemente vicina a $y^*(x)$, si ha
 \begin{equation*}
     I[y] \leq I[y^*].
 \end{equation*}
 
-Definiamo la \emph{variazione} infinitesima \note{o perturbazione} di $y^*(x)$ come
+Definiamo la \emph{variazione} infinitesima\note{o perturbazione} di $y^*(x)$ come
 \begin{align*}
     y(x) = y^*(x) + \alpha \eta(x), \quad &\forall \alpha \in (-\varepsilon, \varepsilon), \\
     &\forall \eta \in C^0([x_0, x_1])\cap C^1(x_0, x_1): \eta(x_0) = \eta(x_1) = 0.
@@ -671,7 +671,7 @@ Introduciamo il \emph{lemma fondamentale del calcolo delle variazioni}, che risu
     in contraddizione con l'ipotesi. Pertanto possiamo concludere che $G(x) = 0$ per ogni $x\in [a, b]$.
 \end{proof}
 
-\begin{theorem}[Eulero] \note{analogo del teorema di Fermat per le funzioni reali}
+\begin{theorem}[Eulero]\note{analogo del teorema di Fermat per le funzioni reali}
     Sia un funzionale integrale
     \begin{equation*}
         I[y] = \int_{x_0}^{x_1} F(y, y', x)\dd{x}.
@@ -689,11 +689,11 @@ Introduciamo il \emph{lemma fondamentale del calcolo delle variazioni}, che risu
         &\forall \alpha \in (-\varepsilon, \varepsilon), \\
         &\forall \eta \in C^0([x_0, x_1])\cap C^1(x_0, x_1): \eta(x_0) = \eta(x_1) = 0.
     \end{align*}
-    Osserviamo che la mappa 
+    Osserviamo che la mappa
     \begin{equation*}
         \alpha \mapsto I[y^* + \alpha \eta] = \int_{x_0}^{x_1} F(y^* + \alpha \eta, y^{*'} + \alpha \eta', x)\dd{x}
     \end{equation*}
-    è una funzione reale di una variabile reale, derivabile rispetto ad $\alpha$. Inoltre ha un massimo in $\alpha = 0$, quindi la sua derivata prima in $\alpha = 0$ è nulla. Calcoliamo allora
+    è una funzione reale di una variabile reale, derivabile rispetto a $\alpha$. Inoltre ha un massimo in $\alpha = 0$, quindi la sua derivata prima in $\alpha = 0$ è nulla. Calcoliamo allora
     \begin{align*}
         \dv{I}{\alpha} &= \dv{\alpha} \int_{x_0}^{x_1} F(y^* + \alpha \eta, y^{*'} + \alpha \eta', x)\dd{x} \\ 
         &= \int_{x_0}^{x_1} \left(\pdv{F}{y}\,\eta + \pdv{F}{y'}\,\eta'\right)\dd{x} \\
@@ -744,10 +744,11 @@ Considerando, invece, una n-upla di funzioni, definiamo un funzionale integrale 
 \begin{equation*}
     I[y_1, \dots, y_n] = I[\vb{y}]= \int_{x_0}^{x_1} F(\vb{y}, \vb{y'}, x)\dd{x}.
 \end{equation*}
-il teorema di Eulero si generalizza in maniera immediata, fornendo un sistema di $n$ equazioni differenziali alle derivate ordinarie:
+il teorema di Eulero si generalizza in maniera immediata, fornendo un sistema di $n$ equazioni differenziali ordinarie:
 \begin{theorem}[Eulero per più variabili]
     Sia un funzionale integrale
-    \begin{equation*}        I[\vb{y}, \vb{y'}] = \int_{x_0}^{x_1} F(\vb{y}, \vb{y'}, x)\dd{x}.
+    \begin{equation*}
+        I[\vb{y}, \vb{y'}] = \int_{x_0}^{x_1} F(\vb{y}, \vb{y'}, x)\dd{x}.
     \end{equation*}
     Una condizione necessaria affinché $\vb{y}^*(x)$ sia un estremo relativo di $I[\vb{y}, \vb{y'}]$ è che essa soddisfi il sistema di equazioni
     \begin{equation*}
@@ -778,7 +779,7 @@ e quindi
 La grande applicazione del calcolo variazionale alla meccanica analitica è il \emph{principio di Hamilton} o \emph{principio di azione stazionaria}. Il principio per secoli è stato detto della \emph{minima} azione, a causa di un'errata convinzione che l'azione fosse sempre minimizzata.
 
 \begin{theorem}[Principio di Hamilton]\note{(1834)}
-    Sia $\mathcal{S}$ un sistema olonomo di coordinate $\vq$ e lagrangiana $L$, e siano $P_0$ e $P_1$ due configurazioni assunte da $\mathcal{S}$ agli istanti $t_0$ e $t_1$, rispettivamente. Tra le possibili traiettorie che collegano $P_0$ a $P_1$\note{$P_0$ e $P_1$ sono punti dello spazio delle configurazioni} in un intervallo di tempo $[t_0, t_1]$, il modo effettivo del sistema è quello in corrispondenza della traiettoria che rende stazionario il funzionale
+    Sia $\mathcal{S}$ un sistema olonomo di coordinate $\vq$ e lagrangiana $L$, e siano $P_0$ e $P_1$ due configurazioni assunte da $\mathcal{S}$ agli istanti $t_0$ e $t_1$, rispettivamente. Tra le possibili traiettorie che collegano $P_0$ a $P_1$\note{$P_0$ e $P_1$ sono punti dello spazio delle configurazioni} in un intervallo di tempo $[t_0, t_1]$, il moto effettivo del sistema è quello in corrispondenza della traiettoria che rende stazionario il funzionale
     \begin{equation*}
         A = \int_{t_0}^{t_1} L(\vq, \dot{\vq}, t) \dd{t},\note{Solitamente si indica con $S$}
     \end{equation*}
@@ -787,7 +788,7 @@ La grande applicazione del calcolo variazionale alla meccanica analitica è il \
         \var{A} = 0.
     \end{equation*}
 \end{theorem}
-È importante sottolineare che il principio di Hamilton non dipende dalla scelte delle coordinate, ma solo dalla lagrangiana, che è una funzione scalare. \note{Lezione 21/04/2026} Inoltre, tale formulazione permette di riconoscere i moti \emph{globalmente}, rispetto alla formulazione locale delle equazioni di Lagrange.
+È importante sottolineare che il principio di Hamilton non dipende dalla scelta delle coordinate, ma solo dalla lagrangiana, che è una funzione scalare.\note{Lezione 21/04/2026} Inoltre, tale formulazione permette di riconoscere i moti \emph{globalmente}, rispetto alla formulazione locale delle equazioni di Lagrange.
 
 Introdotto il principio di Hamilton, è possibile dimostrare la seguente proprietà delle equazioni di Lagrange:
 \begin{proposition}

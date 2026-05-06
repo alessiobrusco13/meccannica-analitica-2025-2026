@@ -4,7 +4,7 @@
 
 Ci poniamo il seguente problema:
 \begin{quote}
-    Determinare una trasformazione canonica $Q_i=Q_i(\vq,\vp,t)$, $P_i=P_i(\vq,\vp,t)$ tale che la nuova hamiltoniana $K$ sia identicamente nulla, cioé $K \equiv 0$.
+    Determinare una trasformazione canonica $Q_i=Q_i(\vq,\vp,t)$, $P_i=P_i(\vq,\vp,t)$ tale che la nuova hamiltoniana $K$ sia identicamente nulla, cioè $K \equiv 0$.
 \end{quote}
 Con una trasformazione canonica che soddisfa questa condizione, le equazioni di Hamilton diventano 
 \begin{equation*}
@@ -13,7 +13,7 @@ Con una trasformazione canonica che soddisfa questa condizione, le equazioni di 
         \dot{P}_i = -\pdv{K}{Q_i} = 0
     \end{cases}
 \end{equation*}
-e dunque $Q_i$ e $P_i$ sono costanti di moto
+e dunque $Q_i$ e $P_i$ sono costanti del moto:
 \begin{equation*}
     Q_i = \text{costante} = \beta_i, \quad P_i = \text{costante} = \alpha_i.
 \end{equation*}
@@ -51,7 +51,7 @@ La trasformazione canonica associata assume quindi la forma
         \beta_i = \pdv{S}{\alpha_i}
     \end{cases}
 \end{equation*}
-Sostituendo questa espressione nella condizione \eqref{eq:hamiltonjacobi-1}, ricaviamo
+e sostituendo questa espressione nella condizione \eqref{eq:hamiltonjacobi-1}, ricaviamo la seguente equazione:
 \begin{equation*}
     H\left( q_1, \dots, q_n, \pdv{S}{q_1}, \dots, \pdv{S}{q_n}, t \right) + \pdv{S}{t} = 0,
 \end{equation*}
@@ -59,7 +59,7 @@ che prende il nome di \emph{equazione di Hamilton--Jacobi}.
 
 \subsection{Soluzioni dell'equazione di Hamilton--Jacobi}
 
-A differenza delle equazioni di Hamilton, che sono equazioni differenziali ordinarie, l'equazione di Hamilton--Jacobi è un'equazione differenziale alle derivate parziali di primo ordine nella funzione incognita $S$. Il problema diventa pertanto determinare soluzioni di questa EDP, ricordando che la soluzione generale dipende genericamente da funzioni arbitrarie.
+A differenza delle equazioni di Hamilton, che sono equazioni differenziali ordinarie, l'equazione di Hamilton--Jacobi è un'equazione differenziale alle derivate parziali di primo ordine nella funzione incognita $S$. Il problema diventa pertanto determinare soluzioni di questa PED, ricordando che la soluzione di un'equazone generica di questo tipo può dipendere da funzioni arbitrarie.
 
 Consideriamo l'equazione di Hamilton--Jacobi
 \begin{equation*}
@@ -69,11 +69,11 @@ Calcoliamo la derivata totale di $S$ rispetto al tempo
 \begin{equation*}
     \dv{S}{t} = \sum_{i=1}^n \pdv{S}{q_i} \dot{q}_i + \pdv{S}{t} = \sum_{i=1}^n p_i \dot{q}_i - H = L,
 \end{equation*}
-ritrovando così la lagrangiana $L$. Potrebbe sembrare che il problema sia facilmente risolvible integrando
+ritrovando così la lagrangiana $L$. Potrebbe sembrare che il problema sia facilmente risolvibile integrando
 \begin{equation*}
     S = \int L(\vq, \vp, t) \dd{t} + \text{costante},\note{La funzione principale di Hamilton è proprio l'azione}
 \end{equation*}
-tuttavia $L$ è una funzione stessa delle soluzioni, tornando al punto di partenza.
+tuttavia $L$ è essa stessa una funzione delle soluzioni, tornando al punto di partenza.
 
 Cerchiamo allora di trovare una sottoclasse di soluzioni.
 
@@ -122,7 +122,7 @@ In questo contesto, è naturale scegliere la costante $\gamma$ come una delle co
 \end{equation*}
 che risulta particolarmente utile nelle applicazioni pratiche.
 
-\begin{example}[Applicazione della teoria di Hamilton--Jacobi all'oscillatore armonico]
+\begin{example}[Oscillatore armonico]
     Nel caso dell'oscillatore armonico unidimensionale, l'hamiltoniana è indipendente dal tempo ed è proprio uguale all'energia meccanica $\alpha$
     \begin{equation*}
         H(q,p) = \frac{1}{2m}\left( p^2 + m^2 \omega^2 q^2 \right)= \alpha,
@@ -160,7 +160,7 @@ che risulta particolarmente utile nelle applicazioni pratiche.
     \begin{equation*}
         \arcsin \left( q\sqrt{\frac{m\omega^2}{2\alpha}} \right) = \omega t + \omega \beta'.
     \end{equation*}
-    Ponendo $\omega \beta' = \beta$ e applicando la funzione seno ad entrambi i membri si ricava la soluzione generale dell'oscillatore armonico
+    Ponendo $\omega \beta' = \beta$ e applicando la funzione seno a entrambi i membri si ricava la soluzione generale dell'oscillatore armonico
     \begin{equation*}
         q(t) = \sqrt{\frac{2\alpha}{m\omega^2}} \sin(\omega t + \beta).
     \end{equation*}
