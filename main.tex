@@ -1,5 +1,5 @@
 % !TEX root = main.tex
-\documentclass[11pt,a4paper]{article}
+\documentclass[11pt,a4paper,oneside]{book}
 
 \usepackage[italian]{babel}
 \usepackage{Setup/Setup}
@@ -10,10 +10,14 @@
 
 \begin{document}
 
+\frontmatter
+\hypersetup{pageanchor=false}
 \maketitle
+\clearpage
+\hypersetup{pageanchor=true}
 \tableofcontents
-\newpage
 
+\mainmatter
 \input{Sections/01-AnalisiDeiPrincipiFondamentali.tex}
 \input{Sections/02-EqLagrangeEPrincipiVariazionali.tex}
 \input{Sections/03-EqHamilton.tex}

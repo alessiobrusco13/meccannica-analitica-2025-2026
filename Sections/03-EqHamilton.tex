@@ -1,9 +1,8 @@
-\newpage
-\section{Equazioni di Hamilton}
+\chapter{Equazioni di Hamilton}
 
 Le equazioni trattate in questa sezione vengono dette \emph{equazioni di Hamilton} o \emph{equazioni canoniche della meccanica} e il loro sviluppo è datato al 1834.
 
-\subsection{Trasformata di Legendre}
+\section{Trasformata di Legendre}
 
 Consideriamo il calcolo del differenziale di una funzione di due variabili $f(x,y)$:
 \begin{equation*}
@@ -31,7 +30,7 @@ Sia $f(x,y)$ una funzione di due variabili. La \emph{trasformata di Legendre} di
 \end{definition}
 
 
-\subsection{Derivazione delle equazioni di Hamilton}
+\section{Derivazione delle equazioni di Hamilton}
 Partiamo dalle equazioni di Lagrange
 \begin{equation*}
     \dv{t} \pdv{L}{\dot{q}_i} - \pdv{L}{q_i} = 0.
@@ -134,7 +133,7 @@ Va notato che la funzione $H$ presenta una forma estremamente simile alla funzio
 \end{equation*}
 La differenza però è sostanziale: $H$ è una funzione di $\vq$, $\vp$ e $t$, mentre $h$ è una funzione di $\vq$, $\dot{\vq}$ e $t$.
 
-\subsection{Variabili cicliche in un sistema hamiltoniano}
+\section{Variabili cicliche in un sistema hamiltoniano}
 
 \begin{definition}[Coordinata ciclica in un sistema hamiltoniano]\note{Lezione 23/04/2026}
     Una coordinata $q_i$ dicesi \emph{ciclica} per il sistema di hamiltoniana $H(\vq, \vp, t)$ se 
@@ -181,7 +180,7 @@ Considerando un moto del sistema $\vq(t)$, $\vp(t)$ e mantenendo l'ipotesi che $
     &= \pdv{H}{t} = 0.
 \end{align*}
 
-\subsection{Principio di Hamilton modificato}
+\section{Principio di Hamilton modificato}
 Partiamo dal principio di Hamilton e sostituiamo l'inversa della trasformazione di Legendre della lagrangiana:
 \begin{equation*}
     \var \int_{t_0}^{t_1} L(\vq, \dot{\vq}, t) \dd{t} = \var \int_{t_0}^{t_1} \left( \sum_{j=1}^n p_j \dot{q}_j - H(\vq, \vp, t) \right) \dd{t} = 0.
@@ -208,7 +207,7 @@ Quindi, le equazioni di Eulero--Lagrange per $L^*$ sono
 \end{align*}
 ottenendo così le equazioni di Hamilton.
 
-\subsection{Parentesi di Poisson}
+\section{Parentesi di Poisson}
 \begin{definition}[Parentesi di Poisson]
     Siano $f(\vq, \vp, t)$ e $g(\vq, \vp, t)$ due funzioni di classe $C^1$ nelle variabili canoniche\note{Le variabili canoniche sono le coordinate generalizzate $q_i$ e i momenti coniugati $p_i$}. Si definisce \emph{parentesi di Poisson} di $f$ e $g$
     \begin{equation*}
@@ -286,7 +285,7 @@ per cui le equazioni di Hamilton possono essere riscritte in termini di parentes
     \end{cases}
 \end{equation*}
 
-\subsection{Elementi dell'approccio geometrico simplettico}
+\section{Elementi dell'approccio geometrico simplettico}
 Introduciamo la quantità\note{Lezione 28/04/2026}
 \begin{equation*}
     \eta_i = q_i, \qquad \eta_{n+i} = p_i, \qquad i = 1, \dots, n,
@@ -313,7 +312,7 @@ Le equazioni di Hamilton possono essere riscritte in forma compatta
     \dot{\vb{\eta}} = \tens{J} \grad_{\vb{\eta}} H.
 \end{equation*}
 
-\subsection{Trasformazioni canoniche}
+\section{Trasformazioni canoniche}
 Le equazioni di Lagrange sono invarianti per trasformazioni di coordinate. L'elevata simmetria delle equazioni di Hamilton rende più complicato questo problema: può accadere che partendo da un sistema hamiltoniano e applicando una trasformazione di coordinate, il sistema trasformato non è più hamiltoniano. 
 
 Spesso si cerca una trasformazione di coordinate che semplifichi la risoluzione del problema; poniamo quindi il seguente obiettivo:
@@ -376,7 +375,7 @@ La condizione di canonicità si può anche esprimere in forma differenziale:
     \sum_{j=1}^n p_j \dd{q}_j - H(\vq, \vp, t) \dd{t} = \sum_{j=1}^n P_j \dd{Q}_j - K(\vQ, \vP, t) \dd{t} + \dd{F}.
 \end{equation*}
 
-\subsubsection{Costruzione di trasformazioni canoniche fondamentali mediante funzioni generatrici}
+\subsection{Costruzione di trasformazioni canoniche fondamentali mediante funzioni generatrici}
 
 Presentiamo ora quattro trasformazioni canoniche notevoli, ottenute mediante successive trasformate di Legendre della funzione generatrice. Queste costruzioni mostrano come il principio di Lie fornisce un metodo sistematico per generare trasformazioni canoniche di varia tipologia.
 

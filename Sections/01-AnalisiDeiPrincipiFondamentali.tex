@@ -1,7 +1,7 @@
-\section{Analisi dei principi fondamentali}
+\chapter{Analisi dei principi fondamentali}
 Iniziamo fissando il linguaggio di base per descrivere configurazioni, vincoli e coordinate generalizzate. L'obiettivo è ottenere una descrizione compatta del moto.
 
-\subsection{Vincoli e gradi di libertà}
+\section{Vincoli e gradi di libertà}
 Nel passaggio dai singoli punti materiali a sistemi complessi, i \emph{vincoli} riducono il numero di configurazioni accessibili. Il numero di parametri indipendenti necessari per descrivere una configurazione è il \emph{grado di libertà}. Questa nozione ci dirà quante coordinate saranno necessarie per descrivere il moto.
 
 \begin{definition}[Grado di libertà]
@@ -59,7 +59,7 @@ dove $\ell$ è il numero di parametri e $\rho$ è il rango della matrice Jacobia
 \end{proposition}
 Per cui si ha che il numero di gradi di libertà è dato dal numero dei parametri meno il numero di vincoli linearmente indipendenti.
 
-\subsection{Coordinate lagrangiane}
+\section{Coordinate lagrangiane}
 Se i vincoli sono olonomi e bilateri, le configurazioni accessibili formano una varietà di dimensione $n = \ell - \rho$ (localmente). È quindi possibile parametrizzare tali configurazioni mediante $n$ coordinate indipendenti; queste saranno le coordinate del moto.
 
 Possiamo dimostrare che esistono $n$ funzioni indipendenti $q_1, q_2, \dots, q_n$ tali che
@@ -99,7 +99,7 @@ Le coordinate lagrangiane non sono univoche: localmente esiste una corrispondenz
 sono coordinate lagrangiane.
 \end{remark}
 
-\subsection{Spostamenti infinitesimi}
+\section{Spostamenti infinitesimi}
 Sia $\mathcal{C}_n$ lo spazio delle configurazioni del sistema. Localmente possiamo identificarlo con $\R^n$\note{Questa identificazione è solo locale, ma è sufficiente per le considerazioni differenziali}.
 
 Un moto del sistema è descritto fissando le funzioni
@@ -164,7 +164,7 @@ Tornando alla particella vincolata a muoversi su una guida ruotante, se consider
 
 Spostamenti virtuali e reali coincidono se si hanno vincoli indipendenti dal tempo.
 
-\subsubsection{Vincoli unilateri e spostamenti ammessi}
+\subsection{Vincoli unilateri e spostamenti ammessi}
 Le coordinate lagrangiane non incorporano automaticamente i vincoli unilaterali; è quindi necessario che gli spostamenti virtuali rispettino anche tali vincoli.
 \begin{equation*}
     \begin{cases}
@@ -240,7 +240,7 @@ Invece una configurazione è di confine se esiste almeno un vincolo unilaterale 
     \qquad \text{per qualche } \abs{\var{q}_k} < \varepsilon.
 \end{align*}
 
-\subsection{Problema meccanico dei vincoli}
+\section{Problema meccanico dei vincoli}
 \begin{proposition}[Postulato delle reazioni vincolari]
 Ogni vincolo può essere sostituito con un sistema di forze, dette \emph{reazioni vincolari}, senza alterare lo stato di quiete o di moto del sistema materiale.
 \end{proposition}
@@ -288,7 +288,7 @@ Questa è l'espressione analitica del fatto che la reazione vincolare deve esser
 \begin{property}\note{Lezione 19/03/2026}
 Se $\mathcal{S}$ è un sistema a vincoli privi di attrito allora è a vincoli ideali.
 \end{property}
-\subsection{Forze ed energia nella formulazione lagrangiana}
+\section{Forze ed energia nella formulazione lagrangiana}
 In questa parte fissiamo le considerazioni su forze ed energia che useremo per ottenere le equazioni di Lagrange. Consideriamo quindi un sistema olonomo di punti
 \begin{equation*}
     \mathcal{S} = \{(\vP_1, m_1), (\vP_2, m_2), \dots, (\vP_N, m_N)\},
@@ -499,7 +499,7 @@ $T^2$ è una forma quadratica definita positiva.
     che ha rango $n$. Per cui la somma è uguale a zero solo se $\xi_h = 0$ per ogni $h = 1, 2, \dots, n$ in quanto le $q_i$ sono indipendenti.
 \end{proof}
 
-\subsection{Tensore di inerzia}\note{Lezione 23/03/2026}
+\section{Tensore di inerzia}\note{Lezione 23/03/2026}
 Cominciamo la trattazione del tensore di inerzia partendo dal concetto di \emph{momento di inerzia}.
 \begin{definition}[Momento di inerzia]
     Considerando un corpo esteso continuo, il \emph{momento di inerzia} rispetto a un asse $a$ è definito come
@@ -692,7 +692,7 @@ Possiamo quindi scrivere il momento di inerzia $I_a$ rispetto all'asse $a$ come
     &= \alpha^2 I_x + \beta^2 I_y + \gamma^2 I_z - 2\alpha\beta I_{xy} - 2\alpha\gamma I_{xz} - 2\beta\gamma I_{yz}.
 \end{align*}
 
-\subsubsection{Riferimenti principali di inerzia}
+\subsection{Riferimenti principali di inerzia}
 La matrice di inerzia è reale e simmetrica, in quanto $I_{xy} = I_{yx}$, $I_{xz} = I_{zx}$ e $I_{yz} = I_{zy}$, per cui è diagonalizzabile.\note{per il teorema spettrale}
 
 Si ha anche che la matrice di inerzia è definita positiva, in quanto, quando la matrice si trova in forma diagonale, tutti i valori sulla diagonale, che corrispondono ai suoi autovalori, sono positivi.
