@@ -8,6 +8,18 @@ Raccolta di appunti redatti in LaTeX durante il corso di Meccanica Analitica, te
 
 ---
 
+## Download degli Appunti (PDF)
+
+Per consultare gli appunti **non è necessario scaricare o compilare il codice sorgente**. 
+
+L'ultima versione precompilata del documento, pronta per la lettura e la stampa, è sempre disponibile per il download:
+
+**[Scarica l'ultimo PDF aggiornato dalle Releases](https://github.com/alessiobrusco13/meccannica-analitica-2025-2026/releases/latest)**
+
+*(Il file allegato alle release viene aggiornato periodicamente seguendo l'avanzamento delle lezioni).*
+
+---
+
 ## Indice degli Argomenti
 
 Il testo si propone di trattare i seguenti argomenti (elenco parziale e in aggiornamento):
@@ -31,21 +43,13 @@ Il progetto è organizzato in modo modulare per facilitare la stesura e la manut
 
 ---
 
-## Utilizzo tramite Overleaf
+## Istruzioni per Compilazione e Contributi
 
-Se si preferisce evitare l'installazione di un ambiente di sviluppo in locale, è possibile compilare e visualizzare gli appunti direttamente online utilizzando [Overleaf](https://www.overleaf.com/). 
+Se desideri modificare gli appunti, proporre correzioni o compilare il documento in autonomia, puoi farlo comodamente online o in locale. I file binari generati dalla compilazione (incluso `main.pdf`) sono intenzionalmente ignorati dal versionamento per mantenere la cronologia di Git pulita.
 
-Per importare il progetto:
-1. Scaricare il codice sorgente di questo repository sotto forma di archivio `.zip` (tramite il tasto "Download ZIP").
-2. Su Overleaf, creare un nuovo progetto selezionando l'opzione **Upload Project** e caricare l'archivio precedentemente scaricato.
-3. Se necessario, verificare nelle impostazioni del progetto (Menu in alto a sinistra) che `main.tex` sia selezionato come *Main document*.
-4. (Opzionale) Se si possiede un account premium collegato a GitHub, è possibile importare il progetto direttamente dal repository tramite l'opzione **Import from GitHub**.
+### Compilazione in Locale
 
----
-
-## Compilazione in Locale
-
-Per generare il documento in formato PDF sul proprio computer, è richiesta una distribuzione TeX locale funzionante (es. TeX Live o MacTeX). 
+È richiesta una distribuzione TeX locale funzionante (es. TeX Live o MacTeX). 
 
 Il metodo consigliato prevede l'utilizzo di `latexmk`, che si occupa automaticamente di gestire le dipendenze e i cicli di compilazione:
 ```bash
@@ -58,10 +62,11 @@ pdflatex main.tex
 pdflatex main.tex
 ```
 
----
+### Utilizzo tramite Overleaf
 
-## Consultazione del PDF
+Se si preferisce evitare l'installazione di un ambiente in locale, è possibile utilizzare [Overleaf](https://www.overleaf.com/):
 
-Al fine di mantenere pulita la cronologia del sistema di versionamento, i file binari e i log di compilazione (incluso il file `main.pdf`) sono ignorati e non tracciati all'interno del repository.
-
-Per consultare gli appunti senza dover compilare i sorgenti, è possibile scaricare l'ultima versione del documento precompilato dalla sezione **Releases** di questo repository. Il PDF allegato alle release verrà aggiornato periodicamente in concomitanza con i progressi nella stesura dei capitoli.
+1. Scaricare il codice sorgente di questo repository come archivio `.zip` (tasto "Download ZIP").
+2. Su Overleaf, creare un nuovo progetto selezionando **Upload Project** e caricare l'archivio.
+3. Nelle impostazioni del progetto, verificare che `main.tex` sia impostato come *Main document*.
+4. (Opzionale) Se si possiede un account premium collegato a GitHub, è possibile importare il repository direttamente tramite l'opzione **Import from GitHub**.
