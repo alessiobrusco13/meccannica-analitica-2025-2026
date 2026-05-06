@@ -38,30 +38,30 @@ L'hamiltoniana $H$ è una funzione di $\vq$, $\vp$ e $t$, ma possiamo esprimere 
 
 In letteratura la funzione $F_2$ viene indicata con $S$ e viene detta \emph{funzione principale di Hamilton}
 \begin{align*}
-    S(\vq,\vP,t) &\defeq F_2(\vq,\vP,t)
+    S(\vq,\vP,t) &\defeq F_2(\vq,\vP,t).
 \end{align*}
-Sappiamo anche che $P_i = \alpha_i$ è una costante di moto, quindi possiamo riscrivere $S$ come 
+Poiché $P_i = \alpha_i$ rappresenta una costante di moto, possiamo riscrivere $S$ come funzione delle sole costanti arbitrarie piuttosto che dei momenti coniugati:
 \begin{equation*}
-    S(\vq,\vP,t) = S(\vq,\alpha_1, \dots, \alpha_n, t)
+    S(\vq,\vP,t) = S(\vq,\alpha_1, \dots, \alpha_n, t).
 \end{equation*}
-e la trasformazione canonica diventa
+La trasformazione canonica associata assume quindi la forma
 \begin{equation*}
     \begin{cases}
         p_i = \pdv{S}{q_i} \\
         \beta_i = \pdv{S}{\alpha_i}
     \end{cases}
 \end{equation*}
-Riscrivendo quindi l'equazione \eqref{eq:hamiltonjacobi-1} ottenendo
+Sostituendo questa espressione nella condizione \eqref{eq:hamiltonjacobi-1}, ricaviamo
 \begin{equation*}
     H\left( q_1, \dots, q_n, \pdv{S}{q_1}, \dots, \pdv{S}{q_n}, t \right) + \pdv{S}{t} = 0,
 \end{equation*}
-la quale viene detta \emph{equazione di Hamilton--Jacobi}.
+che prende il nome di \emph{equazione di Hamilton--Jacobi}.
 
-\subsection{Soluzioni dell'equazoni di Hamilton--Jacobi}
+\subsection{Soluzioni dell'equazione di Hamilton--Jacobi}
 
-A differenza delle equazioni di Hamilton, l'equazione che abbiamo ricavato è un'equazione differenziale alle derivate parziali di primo ordine nella funzione incognita $S$. Il problema quindi diventa trovare soluzioni, ricordando che la soluzione generale di un'equazione differenziale alle derivate parziali dipende da funzioni arbitrarie.
+A differenza delle equazioni di Hamilton, che sono equazioni differenziali ordinarie, l'equazione di Hamilton--Jacobi è un'equazione differenziale alle derivate parziali di primo ordine nella funzione incognita $S$. Il problema diventa pertanto determinare soluzioni di questa EDP, ricordando che la soluzione generale dipende genericamente da funzioni arbitrarie.
 
-Partiamo scrivendo l'equazione di Hamilton--Jacobi
+Consideriamo l'equazione di Hamilton--Jacobi
 \begin{equation*}
     H(q_1, \dots, q_n, \pdv{S}{q_1}, \dots, \pdv{S}{q_n}, t) + \pdv{S}{t} = 0.
 \end{equation*}
@@ -92,16 +92,15 @@ Cerchiamo allora di trovare una sottoclasse di soluzioni.
 \end{theorem}
 
 \begin{remark}
-    Una soluzione completa dell'equazione di Hamilton--Jacobi non è la soluzione generale di tale equazione.
+    Una soluzione completa dell'equazione di Hamilton--Jacobi non è la soluzione generale di tale equazione, bensì una sottoclasse particolare caratterizzata dalla presenza di $n$ costanti arbitrarie.
 \end{remark}
 
 
-\textbf{RIVEDERE}
-Nel caso generale di equazioni di questo tipo si ha una cosa del tipo
+Per inquadrare correttamente il ruolo delle costanti arbitrarie in questa teoria, consideriamo una generica equazione differenziale alle derivate parziali di primo ordine in $n+1$ variabili indipendenti
 \begin{equation*}
     F(x_1, \dots, x_{n+1}, \pdv{f}{x_1}, \dots, \pdv{f}{x_{n+1}}) = 0,
 \end{equation*}
-giustificando la necessità di $n+1$ costanti arbitrarie. Nel nostro caso il tempo non è una variabile come le altre nell'hamiltoniana e la $(n+1)$-esima costante è una costante additiva, totalmente trascurabile.
+la soluzione completa dipende da $n+1$ costanti arbitrarie. Nel nostro caso, tuttavia, il tempo non figura come variabile indipendente alla stessa stregua delle coordinate spaziali nell'hamiltoniana. Pertanto, la $(n+1)$-esima costante si manifesta come una costante additiva in $S$, che risulta fisicamente ininfluente poiché le trasformazioni canoniche dipendono da $\pdv{S}{q_i}$ e $\pdv{S}{\alpha_i}$, annullando tale contributo.
 
 Nel caso di un sistema con hamiltoniana indipendente dal tempo si ha
 \begin{equation*}
@@ -117,10 +116,11 @@ dove in generale $\gamma$ dipende dalle $\alpha_i$ e $W$ è detta \emph{funzione
 \end{equation*}
 la quale è un'equazione differenziale alle derivate parziali di primo ordine per $W$, detta \emph{equazione ridotta di Hamilton--Jacobi}.
 
-Si dimostra che è perfettamente legittimo scegliere $\gamma$ come una delle costanti arbitrarie $\alpha_i$, ad esempio $\gamma = \alpha_1$. In questo modo si ha
+In questo contesto, è naturale scegliere la costante $\gamma$ come una delle costanti arbitrarie $\alpha_i$; ad esempio, ponendo $\gamma = \alpha_1$. La ridotta equazione di Hamilton--Jacobi assume allora la forma
 \begin{equation*}
-    H\left( \vq, \pdv{W}{q_1}, \dots, \pdv{W}{q_n} \right) = \alpha_1.
+    H\left( \vq, \pdv{W}{q_1}, \dots, \pdv{W}{q_n} \right) = \alpha_1,
 \end{equation*}
+che risulta particolarmente utile nelle applicazioni pratiche.
 
 \begin{example}[Applicazione della teoria di Hamilton--Jacobi all'oscillatore armonico]
     Nel caso dell'oscillatore armonico unidimensionale, l'hamiltoniana è indipendente dal tempo ed è proprio uguale all'energia meccanica $\alpha$
