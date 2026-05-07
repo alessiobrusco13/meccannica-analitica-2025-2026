@@ -101,7 +101,7 @@ Per inquadrare correttamente il ruolo delle costanti arbitrarie in questa teoria
 \end{equation*}
 la soluzione completa dipende da $n+1$ costanti arbitrarie. Nel nostro caso, tuttavia, il tempo non figura come variabile indipendente alla stessa stregua delle coordinate spaziali nell'hamiltoniana. Pertanto, la $(n+1)$-esima costante si manifesta come una costante additiva in $S$, che risulta fisicamente ininfluente poiché le trasformazioni canoniche dipendono da $\pdv{S}{q_i}$ e $\pdv{S}{\alpha_i}$, annullando tale contributo.
 
-Nel caso di un sistema con hamiltoniana indipendente dal tempo si ha
+\note{Lezione 07/05/2026} Nel caso di un sistema con hamiltoniana indipendente dal tempo si ha
 \begin{equation*}
     \pdv{H}{t} = 0 \implies H(\vq, \vp, t) = \text{costante} = \gamma,\note{Si noti che $\gamma$ è una costante solo rispetto a tempo}
 \end{equation*}
@@ -109,17 +109,62 @@ e integrando $\dv{S}{t} = -\gamma$, si può cercare una soluzione del tipo
 \begin{equation*}
     S(\vq,\alpha_1, \dots, \alpha_n, t) = W(\vq,\alpha_1, \dots, \alpha_n) - \gamma t,
 \end{equation*}
-dove in generale $\gamma$ dipende dalle $\alpha_i$ e $W$ è detta \emph{funzione caratteristica di Hamilton}. Sostituendo questa forma nell'equazione di Hamilton--Jacobi si ottiene
+dove in generale $\gamma$ dipende dalle $\alpha_i$ e $W$ è detta \emph{funzione caratteristica di Hamilton}. Si noti che in questo modo sono state separate le variabili: la funzione $W$ dipende solo dalle coordinate spaziali e dalle costanti arbitrarie e la dipendenza del tempo è contenuta solo nel secondo termine. Sostituendo questa forma nell'equazione di Hamilton--Jacobi si ottiene
 \begin{equation*}
     H\left( \vq, \pdv{W}{q_1}, \dots, \pdv{W}{q_n} \right) = \gamma,
 \end{equation*}
-la quale è un'equazione differenziale alle derivate parziali di primo ordine per $W$, detta \emph{equazione ridotta di Hamilton--Jacobi}.
+la quale è un'equazione differenziale alle derivate parziali di primo ordine per $W$, detta \emph{equazione ridotta di Hamilton--Jacobi}. La soluzione di questa equazione prende la forma $W=W(\vq,\alpha_1, \dots, \alpha_n)$, con la condizione $\det \left( \pdv{W}{q_i}{\alpha_j} \right) \neq 0$ e le trasformazioni canoniche associate sono
+\begin{equation*}
+    p_i = \pdv{S}{q_i} = \pdv{W}{q_i}, \quad \beta_i = \pdv{S}{\alpha_i} = \pdv{W}{\alpha_i} - \omega_i t,
+\end{equation*}
+con $\omega_i$ costante arbitraria??.
 
-In questo contesto, è naturale scegliere la costante $\gamma$ come una delle costanti arbitrarie $\alpha_i$; ad esempio, ponendo $\gamma = \alpha_1$. La ridotta equazione di Hamilton--Jacobi assume allora la forma
+In questo contesto, è naturale scegliere la costante $\gamma$ come una delle costanti arbitrarie $\alpha_i$; ad esempio, ponendo $\gamma = \alpha_1$. La equazione ridotta di Hamilton--Jacobi assume allora la forma
 \begin{equation*}
     H\left( \vq, \pdv{W}{q_1}, \dots, \pdv{W}{q_n} \right) = \alpha_1,
 \end{equation*}
-che risulta particolarmente utile nelle applicazioni pratiche.
+che risulta particolarmente utile nelle applicazioni pratiche. In questo caso, si ha
+\begin{equation*}
+    p_i = \pdv{W}{q_i}, \quad K = \alpha_1
+\end{equation*}
+e dunque 
+\begin{gather*}
+    \dot{Q_i} = \pdv{K}{P_i} = \pdv{K}{\alpha_i} = \delta_{1i} = \begin{cases}
+        1 & i=1 \\
+        0 & i \neq 1
+    \end{cases} \implies \begin{cases}
+        Q_1 = t + \beta_1 \\
+        Q_j = \beta_j \qquad j \neq 1
+    \end{cases}\\
+     \dot{P_i} = -\pdv{K}{Q_i} = 0 \implies P_i = \alpha_i.
+\end{gather*}
+
+Si ha poi
+\begin{equation*}
+    \begin{cases}
+        \beta_1 = \pdv{W}{\alpha_1} - t \\
+        \beta_j = \pdv{W}{\alpha_j} \qquad j \neq 1.
+    \end{cases}
+\end{equation*}
+Considerando
+\begin{equation*}
+\begin{cases}
+    \beta_2 = \pdv{W}{\alpha_2} \\
+    \vdots \\
+    \beta_n = \pdv{W}{\alpha_n}
+\end{cases}
+\end{equation*}
+abbiamo $n-1$ equazioni nelle $n$ incognite $q_1, \dots, q_n$, che per la condizione $\det \left( \pdv{W}{q_i}{\alpha_j} \right) \neq 0$ possono essere espresse in funzione di $q_1$ e delle costanti arbitrarie $\alpha_2, \dots, \alpha_n, \beta_2, \dots, \beta_n$:
+\begin{equation*}
+    q_j = q_j(q_1; \alpha_2, \dots, \alpha_n; \beta_2, \dots, \beta_n) \quad j=2,\dots,n,
+\end{equation*}
+ottenendo un'equazione dell'orbita per $q_1$. Potremmo ottenere una legge oraria sostituendo nell'espressione per $\beta_1$.
+
+Essendo i momenti $P_i$ costanti $\gamma_i$, la nuova hamiltoniana $K=\alpha_1$ è anch'essa costante, e dunque $Q_i$ evolve linearmente nel tempo:
+\begin{equation*}
+    \dot{Q_i} = \pdv{K}{P_i} = \pdv{K}{\gamma_i} = \omega_i \implies Q_i = \omega_i t + \beta_i,
+\end{equation*}
+BOH??? \textbf{RIVEDERE TUTTO}
 
 \begin{example}[Oscillatore armonico]
     Nel caso dell'oscillatore armonico unidimensionale, l'hamiltoniana è indipendente dal tempo ed è proprio uguale all'energia meccanica $\alpha$
@@ -180,3 +225,48 @@ che risulta particolarmente utile nelle applicazioni pratiche.
         \alpha = \frac{p_0^2}{2m} + \frac{1}{2} m \omega^2 q_0^2, \quad \beta = \arctan \left( \frac{m\omega q_0}{p_0} \right).
     \end{equation*}
 \end{example}
+
+SEPARAZIONE DELLE VARIABILI Nel caso generale abbiamo
+\begin{equation*}
+    W = W_1(q_1) + W'(q_2, \dots, q_n),
+\end{equation*}
+questo perché
+\begin{equation*}
+    \pdv{W}{q_1} = \gamma \implies W = \gamma q_1 + W'(q_2, \dots, q_n),
+\end{equation*}
+e quindi $W=\sum_{i=1}^{n} \gamma_i q_i $ quando tutte le coordinate sono cicliche.
+
+\begin{example}[Moto di un corpo in un campo centrale]
+    % Grafico x,y. Angolo psi, raggio r Vettore r = OP
+    L'hamiltoniana di un corpo di massa $m$ che si muove in un campo centrale è data da
+    \begin{equation*}
+        H = \frac{1}{2m}\left( p_r^2 + \frac{p_\psi^2}{r^2} \right) + V(r),
+    \end{equation*}
+    dove $r$ è la coordinata radiale, $\psi$ è la coordinata angolare e $p_r$, $p_\psi$ sono i corrispondenti momenti coniugati. La coordinata angolare $\psi$ è ciclica, quindi
+    \begin{equation*}
+        W = \alpha_\psi \psi + W_1(r).
+    \end{equation*}
+\end{example}
+
+\textbf{ROBA DOPO}
+
+$H$ dispendente dal tempo:
+\begin{quote}
+    Esiste una trasformazione canonica (generatrice $S$) che trasforma il sistema canonico in uno di hamiltoniana identicamente nulla:
+    \begin{equation*}
+        H(\vq, \pdv{S}{\vq}, t) + \pdv{S}{t} = 0.
+    \end{equation*}
+    e
+    \begin{equation*}
+        K = H + \pdv{S}{t} = 0.
+    \end{equation*}
+\end{quote}
+
+$H$ si conserva ($\pdv{H}{t} = 0$):
+\begin{quote}
+    Esiste una trasformazione completamente canonica determinata da una funzione caratteristica $W=W(q_i, \alpha_i)$ che trsfroma il sistema canonico in uno in cui i momenti canonici sono costanti, in altri termini con coordinate tutte cicliche:
+    \begin{equation*}
+        H\left( \vq, \pdv{W}{\vq} \right) = \alpha_1,
+    \end{equation*}
+    dove $W = W(\vq, \alpha_1, \dots, \alpha_n)$ è una soluzione completa dell'equazione ridotta di Hamilton--Jacobi. In questo caso $S=W-\alpha_1 t$ è una soluzione completa dell'equazione di Hamilton--Jacobi.
+\end{quote}

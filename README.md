@@ -1,6 +1,6 @@
 # Appunti di Meccanica Analitica
 
-Raccolta di appunti redatti in LaTeX durante il corso di Meccanica Analitica, tenuto dal Prof. Gentile per il secondo anno del Corso di Laurea in Fisica (Gruppo 1) presso l'Università degli Studi di Napoli Federico II.
+Raccolta di appunti redatti in LaTeX durante il corso di Meccanica Analitica, tenuto dal Prof. Maurizio Gentile per il secondo anno del Corso di Laurea in Fisica (Gruppo 1) presso l'Università degli Studi di Napoli Federico II.
 
 > **Avvertenza:** Il presente materiale non costituisce documentazione ufficiale del corso. Trattandosi di una trascrizione personale e attualmente in fase di stesura, il testo è soggetto a revisioni e potrebbe presentare errori, imprecisioni o parti incomplete. Contributi sotto forma di segnalazioni (Issues) o correzioni (Pull Requests) sono incoraggiati e benvenuti.
 

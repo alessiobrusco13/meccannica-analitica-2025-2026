@@ -57,7 +57,11 @@
 \providecommand{\MarginNoteWidth}{3.2cm}        % box width
 
 % Margin width
+% The marginparwidth is controlled by the document geometry package.
+% Do not set it here to avoid conflicting with geometry calculations.
 \setlength{\marginparwidth}{\MarginNoteWidth}
+% By default place margin notes on the left to balance visible right-side notes.
+% \reversemarginpar
 
 % Side-aware alignment helper
 \newcommand{\NoteAlign}{%
