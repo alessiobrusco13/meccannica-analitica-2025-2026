@@ -31,6 +31,9 @@
 % Definition equality.
 \newcommand{\defeq}{\overset{\mathrm{def}}{=}}
 
+% Compatibility alias for common typo.
+\providecommand{\displaystile}{\displaystyle}
+
 % Tensor symbols: bold sans-serif.
 \newcommand{\tens}[1]{\boldsymbol{\mathsf{#1}}}
 
@@ -48,6 +51,13 @@
 % Real/imaginary parts as operators (override fraktur defaults).
 \renewcommand{\Re}{\operatorname{Re}}
 \renewcommand{\Im}{\operatorname{Im}}
+
+% Author-only citation that still links to the bibliography entry.
+\DeclareCiteCommand{\citeauthorlink}
+  {}
+  {\printtext[bibhyperref]{\printnames{labelname}}}
+  {\multicitedelim}
+  {}
 
 % ===================== Streamlined margin notes =========================
 % Tweaks (override before loading if you want)

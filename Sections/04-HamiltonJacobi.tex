@@ -1,28 +1,31 @@
 \chapter{Teoria di Hamilton--Jacobi}
 \note{Lezione 05/05/2026}
 
-Ci poniamo il seguente problema:
+Le trasformazioni canoniche forniscono un metodo generale per la soluzione dei problemi meccanici. Un approccio particolarmente potente consiste nel cercare una trasformazione canonica che porti dal sistema di coordinate e momenti $(\vq,\vp)$ all'istante $t$, a un nuovo sistema di grandezze che siano tutte costanti nel tempo (ad esempio, i valori iniziali $\vq_0, \vp_0$). Se riusciamo a trovare una tale trasformazione, le relazioni che legano le vecchie variabili alle nuove rappresentano di fatto la soluzione esplicita del problema meccanico.
+
+\section{Equazione di Hamilton--Jacobi}
+A tal fine, ci poniamo il seguente problema:
 \begin{quote}
     Determinare una trasformazione canonica $Q_i=Q_i(\vq,\vp,t)$, $P_i=P_i(\vq,\vp,t)$ tale che la nuova hamiltoniana $K$ sia identicamente nulla, cioè $K \equiv 0$.
 \end{quote}
 Con una trasformazione canonica che soddisfa questa condizione, le equazioni di Hamilton diventano 
 \begin{equation*}
     \begin{cases}
-        \dot{Q}_i = \pdv{K}{P_i} = 0 \\
-        \dot{P}_i = -\pdv{K}{Q_i} = 0
+        \displaystyle \dot{Q}_i = \pdv{K}{P_i} = 0 \\[0.3cm]
+        \displaystyle \dot{P}_i = -\pdv{K}{Q_i} = 0
     \end{cases}
 \end{equation*}
-e dunque $Q_i$ e $P_i$ sono costanti del moto:
+e dunque le nuove variabili $Q_i$ e $P_i$ sono costanti del moto:
 \begin{equation*}
-    Q_i = \text{costante} = \beta_i, \quad P_i = \text{costante} = \alpha_i.
+    Q_i = \text{costante} \defeq \beta_i, \quad P_i = \text{costante} \defeq \alpha_i.
 \end{equation*}
 
-Determiniamo una tale trasformazione. Sappiamo che una trasformazione canonica può essere ottenuta mediante una funzione generatrice $F_2(\vq,\vP,t)$, con le seguenti relazioni:
+Determiniamo una tale trasformazione. La scelta più naturale per la funzione generatrice è che essa dipenda dalle vecchie coordinate $\vq$, dai nuovi momenti costanti $\vP$ e dal tempo $t$. Sappiamo che una trasformazione di questo tipo può essere ottenuta mediante una funzione generatrice $F_2(\vq,\vP,t)$, per la quale valgono le seguenti relazioni:
 \begin{equation*}
     \begin{cases}
-        p_i = \pdv{F_2}{q_i} \\
-        Q_i = \pdv{F_2}{P_i} \\
-        K = H + \pdv{F_2}{t}
+        \displaystyle p_i = \pdv{F_2}{q_i} \\[0.5cm]
+        \displaystyle Q_i = \pdv{F_2}{P_i} \\[0.5cm]
+        \displaystyle K = H + \pdv{F_2}{t}
     \end{cases}
 \end{equation*}
 posto $\det \left( \pdv{F_2}{q_i}{P_j} \right) \neq 0$ per garantire l'invertibilità della trasformazione. La condizione $K \equiv 0$ implica che
@@ -30,61 +33,58 @@ posto $\det \left( \pdv{F_2}{q_i}{P_j} \right) \neq 0$ per garantire l'invertibi
     \label{eq:hamiltonjacobi-1}
     H + \pdv{F_2}{t} = 0.
 \end{equation}
-L'hamiltoniana $H$ è una funzione di $\vq$, $\vp$ e $t$, ma possiamo esprimere $\vp$ in funzione di $\vq$, $\vP$ e $t$ tramite la prima relazione della trasformazione, ottenendo così un'equazione differenziale parziale per $F_2(\vq,\vP,t)$:
+L'hamiltoniana $H$ è una funzione di $\vq$, $\vp$ e $t$, ma possiamo esprimere $\vp$ in funzione di $\vq$, $\vP$ e $t$ tramite la prima relazione della trasformazione, ottenendo così un'equazione differenziale parziale per la funzione $F_2(\vq,\vP,t)$:
 \begin{equation*}
-    H\left( \vq, \pdv{F_2}{\vq}, t \right) + \pdv{F_2}{t} = 0.
+    H\left( q_1, \dots, q_n; \pdv{F_2}{q_1}, \dots, \pdv{F_2}{q_n}; t \right) + \pdv{F_2}{t} = 0.
 \end{equation*}
 
-In letteratura la funzione $F_2$ viene indicata con $S$ e viene detta \emph{funzione principale di Hamilton}
-\begin{align*}
-    S(\vq,\vP,t) &\defeq F_2(\vq,\vP,t).
-\end{align*}
-Poiché $P_i = \alpha_i$ rappresenta una costante di moto, possiamo riscrivere $S$ come funzione delle sole costanti arbitrarie piuttosto che dei momenti coniugati:
+In letteratura questa particolare funzione $F_2$ viene indicata con $S$ e prende il nome di \emph{funzione principale di Hamilton}:
 \begin{equation*}
-    S(\vq,\vP,t) = S(\vq,\alpha_1, \dots, \alpha_n, t).
+    S(\vq,\vP,t) \defeq F_2(\vq,\vP,t).
 \end{equation*}
-La trasformazione canonica associata assume quindi la forma
+Poiché, come visto, i nuovi momenti coniugati $P_i$ sono le costanti del moto $\alpha_i$, possiamo scrivere la funzione $S$ indicando esplicitamente la dipendenza da tali costanti arbitrarie:
+\begin{equation*}
+    S(\vq;\alpha_1, \dots, \alpha_n; t).
+\end{equation*}
+Sostituendo $S$ nell'equazione differenziale ricavata in precedenza, otteniamo la cosiddetta \emph{equazione di Hamilton--Jacobi}:
+\begin{equation*}
+    H\left( q_1, \dots, q_n; \pdv{S}{q_1}, \dots, \pdv{S}{q_n}; t \right) + \pdv{S}{t} = 0.
+\end{equation*}
+Infine, tenendo conto che anche $Q_i = \beta_i$, le relazioni che definiscono la trasformazione canonica assumono la loro forma definitiva in termini di $S$:
 \begin{equation*}
     \begin{cases}
-        p_i = \pdv{S}{q_i} \\
-        \beta_i = \pdv{S}{\alpha_i}
+        \displaystyle p_i = \pdv{S}{q_i} \\[0.3cm]
+        \displaystyle \beta_i = \pdv{S}{\alpha_i}
     \end{cases}
 \end{equation*}
-e sostituendo questa espressione nella condizione \eqref{eq:hamiltonjacobi-1}, ricaviamo la seguente equazione:
-\begin{equation*}
-    H\left( q_1, \dots, q_n, \pdv{S}{q_1}, \dots, \pdv{S}{q_n}, t \right) + \pdv{S}{t} = 0,
-\end{equation*}
-che prende il nome di \emph{equazione di Hamilton--Jacobi}.
 
-\section{Soluzioni dell'equazione di Hamilton--Jacobi}
+\subsection{Soluzioni dell'equazione di Hamilton--Jacobi}
 
-A differenza delle equazioni di Hamilton, che sono equazioni differenziali ordinarie, l'equazione di Hamilton--Jacobi è un'equazione differenziale alle derivate parziali di primo ordine nella funzione incognita $S$. Il problema diventa pertanto determinare soluzioni di questa EDP, ricordando che la soluzione di un'equazione generica di questo tipo può dipendere da funzioni arbitrarie.
+A differenza delle equazioni di Hamilton, che costituiscono un sistema di equazioni differenziali ordinarie, l'equazione di Hamilton--Jacobi è un'equazione differenziale alle derivate parziali del primo ordine nella funzione incognita $S$. Il problema si sposta pertanto sulla ricerca delle soluzioni di questa EDP, tenendo presente che la soluzione generale di un'equazione di questo tipo può dipendere da funzioni arbitrarie.
 
-Consideriamo l'equazione di Hamilton--Jacobi
-\begin{equation*}
-    H(q_1, \dots, q_n, \pdv{S}{q_1}, \dots, \pdv{S}{q_n}, t) + \pdv{S}{t} = 0.
-\end{equation*}
-Calcoliamo la derivata totale di $S$ rispetto al tempo
+È istruttivo studiare il significato fisico della funzione $S$. Calcoliamo la derivata totale di $S$ rispetto al tempo:
 \begin{equation*}
     \dv{S}{t} = \sum_{i=1}^n \pdv{S}{q_i} \dot{q}_i + \pdv{S}{t} = \sum_{i=1}^n p_i \dot{q}_i - H = L,
 \end{equation*}
-ritrovando così la lagrangiana $L$. Potrebbe sembrare che il problema sia facilmente risolvibile integrando
+ritrovando così la lagrangiana $L$. Potrebbe sembrare che il problema sia facilmente risolvibile integrando direttamente:
 \begin{equation*}
-    S = \int L(\vq, \vp, t) \dd{t} + \text{costante},\note{La funzione principale di Hamilton è proprio l'azione}
+    S = \int L(\vq, \vp, t) \dd{t} + \text{costante},\note{La funzione principale di Hamilton differisce dall'integrale d'azione solo per una costante}
 \end{equation*}
-tuttavia $L$ è essa stessa una funzione delle soluzioni, tornando al punto di partenza.
+tuttavia, per calcolare questo integrale occorrerebbe conoscere già l'evoluzione temporale di $\vq(t)$ e $\vp(t)$, che è esattamente il problema dinamico che stiamo cercando di risolvere, tornando così al punto di partenza.
 
-Cerchiamo allora di trovare una sottoclasse di soluzioni.
+Piuttosto che cercare la soluzione generale, ci accontentiamo allora di trovare una sottoclasse particolare di soluzioni.
 
 \begin{definition}[Integrale completo dell'equazione di Hamilton--Jacobi]
-    Una funzione $S(\vq,\alpha_1, \dots, \alpha_n, t)$, dove $\alpha_1, \dots, \alpha_n$ sono costanti arbitrarie, si dice \emph{integrale completo} o \emph{soluzione completa} dell'equazione di Hamilton--Jacobi se è soluzione di tale equazione per ogni scelta delle $\alpha_i$ e verifica la condizione
+    Una funzione $S(\vq,\alpha_1, \dots, \alpha_n, t)$, dipendente da $n$ costanti di integrazione arbitrarie e indipendenti $\alpha_1, \dots, \alpha_n$, si dice \emph{integrale completo} (o \emph{soluzione completa}) dell'equazione di Hamilton--Jacobi se è soluzione di tale equazione per ogni scelta delle $\alpha_i$ e verifica la condizione
     \begin{equation*}
         \det \left( \pdv{S}{q_i}{\alpha_j} \right) \neq 0.
     \end{equation*}
 \end{definition}
 
+Questa condizione sul determinante jacobiano è di fondamentale importanza: essa garantisce l'invertibilità delle equazioni di trasformazione, permettendo di esprimere effettivamente le coordinate $q_i$ in funzione del tempo e delle costanti $\alpha$ e $\beta$.
+
 \begin{theorem}[Jacobi]
-    Se $S(\vq,\alpha_1, \dots, \alpha_n, t)$ è una soluzione completa dell'equazione di Hamilton--Jacobi, allora la soluzione generale delle equazioni di Hamilton è data dalle seguenti:
+    Se $S(\vq,\alpha_1, \dots, \alpha_n, t)$ è una soluzione completa dell'equazione di Hamilton--Jacobi, allora la soluzione generale delle equazioni di Hamilton è data dalle seguenti relazioni:
     \begin{equation*}
         p_i = \pdv{S}{q_i}, \quad \beta_i = \pdv{S}{\alpha_i}.
     \end{equation*}
@@ -94,181 +94,183 @@ Cerchiamo allora di trovare una sottoclasse di soluzioni.
     Una soluzione completa dell'equazione di Hamilton--Jacobi non è la soluzione generale di tale equazione, bensì una sottoclasse particolare caratterizzata dalla presenza di $n$ costanti arbitrarie.
 \end{remark}
 
-
-Per inquadrare correttamente il ruolo delle costanti arbitrarie in questa teoria, consideriamo una generica equazione differenziale alle derivate parziali di primo ordine in $n+1$ variabili indipendenti
+Per inquadrare correttamente il ruolo delle costanti arbitrarie, ricordiamo che per una generica equazione differenziale alle derivate parziali del primo ordine in $n+1$ variabili indipendenti (nel nostro caso le $n$ coordinate $q_i$ e il tempo $t$),
 \begin{equation*}
-    F(x_1, \dots, x_{n+1}, \pdv{f}{x_1}, \dots, \pdv{f}{x_{n+1}}) = 0,
+    F\left(x_1, \dots, x_{n+1}, \pdv{f}{x_1}, \dots, \pdv{f}{x_{n+1}}\right) = 0,
 \end{equation*}
-la soluzione completa dipende da $n+1$ costanti arbitrarie. Nel nostro caso, tuttavia, il tempo non figura come variabile indipendente alla stessa stregua delle coordinate spaziali nell'hamiltoniana. Pertanto, la $(n+1)$-esima costante si manifesta come una costante additiva in $S$, che risulta fisicamente ininfluente poiché le trasformazioni canoniche dipendono da $\pdv{S}{q_i}$ e $\pdv{S}{\alpha_i}$, annullando tale contributo.
+la soluzione completa dipende da $n+1$ costanti di integrazione. Nell'equazione di Hamilton--Jacobi, tuttavia, la funzione incognita $S$ non compare mai esplicitamente, ma solo attraverso le sue derivate parziali. Pertanto, la $(n+1)$-esima costante si manifesta banalmente come una costante additiva ($S \to S + \alpha_{n+1}$). Tale costante risulta fisicamente ininfluente poiché le trasformazioni canoniche dipendono unicamente dalle derivate $\pdv{S}{q_i}$ e $\pdv{S}{\alpha_i}$, le quali annullano il suo contributo. Per questo motivo, è sufficiente cercare soluzioni dipendenti da sole $n$ costanti essenziali.
 
 \section{Equazione ridotta di Hamilton-Jacobi}
 
-\note{Lezione 07/05/2026} Nel caso di un sistema con hamiltoniana indipendente dal tempo si ha
+\note{Lezione 07/05/2026}
+Quando l'hamiltoniana di un sistema meccanico non dipende esplicitamente dal tempo, essa rappresenta una costante del moto:
 \begin{equation*}
-    \pdv{H}{t} = 0 \implies H(\vq, \vp, t) = \text{costante} = \gamma,\note{Si noti che $\gamma$ è una costante solo rispetto a tempo}
+    \pdv{H}{t} = 0 \implies H(\vq, \vp) = \text{costante} \defeq h.
 \end{equation*}
-e integrando $\dv{S}{t} = -\gamma$, si può cercare una soluzione del tipo
+Sotto questa ipotesi, l'equazione di Hamilton--Jacobi assume la forma
 \begin{equation*}
-    S(\vq,\alpha_1, \dots, \alpha_n, t) = W(\vq,\alpha_1, \dots, \alpha_n) - \gamma t,
+    H\left( \vq, \pdv{S}{q_1}, \dots, \pdv{S}{q_n} \right) + \pdv{S}{t} = 0.
 \end{equation*}
-dove in generale $\gamma$ dipende dalle $\alpha_i$ e $W$ è detta \emph{funzione caratteristica di Hamilton}. Si noti che in questo modo sono state separate le variabili: la funzione $W$ dipende solo dalle coordinate spaziali e dalle costanti arbitrarie e la dipendenza del tempo è contenuta solo nel secondo termine. Sostituendo questa forma nell'equazione di Hamilton--Jacobi si ottiene
+Questa struttura permette di cercare per la funzione principale $S$ una soluzione a variabili separate:
 \begin{equation*}
-    H\left( \vq, \pdv{W}{q_1}, \dots, \pdv{W}{q_n} \right) = \gamma,
+    S(\vq; \alpha_1, \dots, \alpha_n; t) = W(\vq; \alpha_1, \dots, \alpha_n) - h t,
 \end{equation*}
-la quale è un'equazione differenziale alle derivate parziali di primo ordine per $W$, detta \emph{equazione ridotta di Hamilton--Jacobi}. La soluzione di questa equazione prende la forma $W=W(\vq,\alpha_1, \dots, \alpha_n)$, con la condizione $\det \left( \pdv{W}{q_i}{\alpha_j} \right) \neq 0$ e le trasformazioni canoniche associate sono
+dove $W$ è la \emph{funzione caratteristica di Hamilton}. Poiché $h$ è una costante determinata dalle condizioni iniziali, è legittimo sceglierla come la prima delle $n$ costanti di integrazione indipendenti:
 \begin{equation*}
-    p_i = \pdv{S}{q_i} = \pdv{W}{q_i}, \quad \beta_i = \pdv{S}{\alpha_i} = \pdv{W}{\alpha_i} - \omega_i t,
+    h = \alpha_1 \implies H(\vq, \vp) = \alpha_1.
 \end{equation*}
-con $\omega_i$ costante arbitraria??.
+Sostituendo l'espressione di $S$ nell'equazione di Hamilton--Jacobi originaria, il termine $\pdv{S}{t}$ restituisce $-\alpha_1$, conducendo all'\emph{equazione ridotta di Hamilton--Jacobi}:
+\begin{equation}
+    \label{eq:hamilton-jacobi-ridotta}
+    H\left( \vq, \pdv{W}{q_1}, \dots, \pdv{W}{q_n} \right) = \alpha_1.
+\end{equation}
 
-In questo contesto, è naturale scegliere la costante $\gamma$ come una delle costanti arbitrarie $\alpha_i$; ad esempio, ponendo $\gamma = \alpha_1$. La equazione ridotta di Hamilton--Jacobi assume allora la forma
+La funzione $W(\vq; \alpha_1, \dots, \alpha_n)$, essendo un integrale completo dell'equazione differenziale, dipende dalle $n$ vecchie coordinate $q_i$ e da $n$ costanti di integrazione indipendenti $\alpha_i$. Poiché vogliamo utilizzare $W$ come funzione generatrice di tipo $F_2(\vq, \vP)$, ricordiamo che per definizione una generatrice di questo tipo deve dipendere dalle vecchie coordinate e dai \emph{nuovi momenti} $P_i$. Confrontando le dipendenze funzionali $W(\vq; \alpha_1, \dots, \alpha_n)$ e $F_2(\vq, \vP)$, la scelta matematicamente più naturale e diretta è proprio quella di identificare i nuovi momenti canonici con le costanti di integrazione:
 \begin{equation*}
-    H\left( \vq, \pdv{W}{q_1}, \dots, \pdv{W}{q_n} \right) = \alpha_1,
+    P_i = \alpha_i.
 \end{equation*}
-che risulta particolarmente utile nelle applicazioni pratiche. In questo caso, si ha
+Questa identificazione è il cuore del metodo: garantisce per costruzione che i nuovi momenti siano costanti del moto, esattamente come auspicato per semplificare il problema meccanico. Le equazioni di trasformazione associate assumono quindi la forma:
 \begin{equation*}
-    p_i = \pdv{W}{q_i}, \quad K = \alpha_1
+    p_i = \pdv{W}{q_i}, \qquad Q_i = \pdv{W}{P_i} = \pdv{W}{\alpha_i}.
 \end{equation*}
-e dunque 
-\begin{gather*}
-    \dot{Q_i} = \pdv{K}{P_i} = \pdv{K}{\alpha_i} = \delta_{1i} = \begin{cases}
-        1 & i=1 \\
-        0 & i \neq 1
-    \end{cases} \implies \begin{cases}
+
+Poiché la generatrice non dipende esplicitamente dal tempo, la nuova hamiltoniana $K$ coincide con $H$ espressa nelle nuove variabili. Avendo posto $H = \alpha_1$ e $P_1 = \alpha_1$, si ha:
+\begin{equation*}
+    K = \alpha_1 = P_1.
+\end{equation*}
+Le equazioni del moto per le nuove variabili $(\vQ, \vP)$ diventano:
+\begin{align*}
+    \dot{P}_i &= -\pdv{K}{Q_i} = 0 \implies P_i = \alpha_i \\
+    \dot{Q}_i &= \pdv{K}{P_i} = \pdv{P_1}{P_i} = \delta_{1i},
+\end{align*}
+da cui si ottengono le soluzioni:
+\begin{equation}
+    \label{eq:Q_i_evol_fixed}
+    \begin{cases}
         Q_1 = t + \beta_1 \\
-        Q_j = \beta_j \qquad j \neq 1
-    \end{cases}\\
-     \dot{P_i} = -\pdv{K}{Q_i} = 0 \implies P_i = \alpha_i.
-\end{gather*}
+        Q_j = \beta_j \qquad \text{per } j = 2, \dots, n.
+    \end{cases}
+\end{equation}
 
-Si ha poi
+La dipendenza di $W$ dalle vecchie coordinate $q_i$ si ricava risolvendo l'equazione differenziale alle derivate parziali di Hamilton--Jacobi. Una volta nota $W$, le relazioni della trasformazione $Q_i = \pdv{W}{\alpha_i}$ unite alle soluzioni \ref{eq:Q_i_evol_fixed} appena trovate forniscono il seguente sistema:
 \begin{equation*}
     \begin{cases}
-        \beta_1 = \pdv{W}{\alpha_1} - t \\
-        \beta_j = \pdv{W}{\alpha_j} \qquad j \neq 1.
+        \displaystyle \pdv{W}{\alpha_1} = t + \beta_1 \\[0.5cm]
+        \displaystyle \pdv{W}{\alpha_j} = \beta_j \qquad \text{per } j = 2, \dots, n.
     \end{cases}
 \end{equation*}
-Considerando
-\begin{equation*}
-\begin{cases}
-    \beta_2 = \pdv{W}{\alpha_2} \\
-    \vdots \\
-    \beta_n = \pdv{W}{\alpha_n}
-\end{cases}
-\end{equation*}
-abbiamo $n-1$ equazioni nelle $n$ incognite $q_1, \dots, q_n$, che per la condizione $\det \left( \pdv{W}{q_i}{\alpha_j} \right) \neq 0$ possono essere espresse in funzione di $q_1$ e delle costanti arbitrarie $\alpha_2, \dots, \alpha_n, \beta_2, \dots, \beta_n$:
-\begin{equation*}
-    q_j = q_j(q_1; \alpha_2, \dots, \alpha_n; \beta_2, \dots, \beta_n) \quad j=2,\dots,n,
-\end{equation*}
-ottenendo un'equazione dell'orbita per $q_1$. Potremmo ottenere una legge oraria sostituendo nell'espressione per $\beta_1$.
 
-Essendo i momenti $P_i$ costanti $\gamma_i$, la nuova hamiltoniana $K=\alpha_1$ è anch'essa costante, e dunque $Q_i$ evolve linearmente nel tempo:
+Si noterà certamente che $n-1$ di queste equazioni non contengono affatto il tempo. Una delle vecchie coordinate $q_i$ può essere scelta come variabile indipendente, e le rimanenti coordinate si possono quindi esprimere in funzione di essa semplicemente risolvendo il sottosistema delle $n-1$ equazioni non dipendenti dal tempo. In questo modo si ottiene direttamente l'\emph{equazione dell'orbita} del moto nello spazio delle configurazioni\note{ad esempio, per un problema a forze centrali, il metodo fornirebbe direttamente il raggio $r$ in funzione dell'angolo $\theta$}. L'equazione rimanente, quella per $i=1$, è l'unica a dipendere esplicitamente da $t$ e serve a completare la soluzione del problema fornendo la \emph{legge oraria} del moto lungo la traiettoria appena determinata.
+
+Non è sempre necessario, tuttavia, che le costanti di integrazione $\alpha_i$ siano scelte direttamente come i nuovi momenti canonici costanti. A volte risulta molto più conveniente scegliere come momenti trasformati un generico insieme di $n$ funzioni indipendenti delle costanti $\alpha_i$:
 \begin{equation*}
-    \dot{Q_i} = \pdv{K}{P_i} = \pdv{K}{\gamma_i} = \omega_i \implies Q_i = \omega_i t + \beta_i,
+    P_i = \gamma_i(\alpha_1, \dots, \alpha_n).
 \end{equation*}
-BOH??? \textbf{RIVEDERE TUTTO}
+In questo caso, la funzione caratteristica $W$ viene espressa in funzione delle $q_i$ e delle nuove costanti $\gamma_i$. L'hamiltoniana $K$, che coinciderà ancora con la costante $\alpha_1$, dipenderà in genere da più di una delle $\gamma_i$. Di conseguenza, le equazioni del moto per le nuove coordinate $Q_i$ assumeranno la forma:
+\begin{equation*}
+    \dot{Q}_i = \pdv{K}{\gamma_i} \defeq v_i,
+\end{equation*}
+dove le $v_i$, essendo funzioni delle derivate di $K$ rispetto ai soli momenti costanti $\gamma_i$, sono anch'esse delle costanti. Tutte le nuove coordinate diventano quindi funzioni lineari del tempo:
+\begin{equation*}
+    Q_i = v_i t + \beta_i.
+\end{equation*}
+\section{Sintesi e confronto dei metodi di Hamilton--Jacobi}
+
+I due metodi di soluzione di un sistema meccanico attraverso la teoria di Hamilton--Jacobi sono riassunti nei seguenti punti concettuali, seguendo la trattazione di \citeauthorlink{goldstein}.
+
+\subsection*{1. Metodo della funzione principale di Hamilton ($S$)}
+\textbf{Applicabilità:} Il metodo è generale e si applica anche quando l'hamiltoniana dipende esplicitamente dal tempo: $H(\vq, \vp, t)$.
+
+\begin{itemize}
+    \item \textbf{Obiettivo:} Ricavare una trasformazione canonica verso un sistema in cui la nuova hamiltoniana sia identicamente nulla, ovvero $K \equiv 0$. In questo modo, sia le nuove coordinate $Q_i$ che i nuovi momenti $P_i$ sono costanti del moto.
+    \item \textbf{Equazioni del moto e soluzioni:}
+    \begin{equation*}
+        \begin{cases} 
+            \displaystyle \dot{Q}_i = \pdv{K}{P_i} = 0 \implies Q_i = \beta_i \\[0.3cm] 
+             \displaystyle 
+            \displaystyle  \dot{P}_i = -\pdv{K}{Q_i} = 0 \implies P_i = \alpha_i 
+        \end{cases}
+    \end{equation*}
+    \item \textbf{Funzione generatrice:} Si utilizza la funzione principale $S(\vq, \alpha_i t)$, che deve verificare l'equazione differenziale alle derivate parziali di Hamilton--Jacobi:
+    \begin{equation*}
+        H\left( \vq, \pdv{S}{q_1}, \dots, \pdv{S}{q_n}, t \right) + \pdv{S}{t} = 0
+    \end{equation*}
+    Una sua soluzione completa deve contenere $n$ costanti di integrazione non banali $\alpha_1, \dots, \alpha_n$.
+\end{itemize}
+
+\subsection*{2. Metodo della funzione caratteristica di Hamilton ($W$)}
+\textbf{Applicabilità:} Il metodo si applica quando l'hamiltoniana si conserva nel tempo: $H(\vq, \vp) = h$.
+
+\begin{itemize}
+    \item \textbf{Obiettivo:} Ricavare una trasformazione verso un sistema in cui tutti i momenti $P_i$ siano costanti e la nuova hamiltoniana sia ciclica rispetto a tutte le coordinate ($K = \alpha_1$). Il moto risulta così ``raddrizzato''.
+    \item \textbf{Equazioni del moto e soluzioni:}
+    \begin{equation*}
+        \begin{cases} 
+            \displaystyle \dot{Q}_i = \pdv{K}{P_i} = v_i \implies Q_i = v_i t + \beta_i \\[0.3cm]
+            \displaystyle \dot{P}_i = -\pdv{K}{Q_i} = 0 \implies P_i = \alpha_i 
+        \end{cases}
+    \end{equation*}
+    \item \textbf{Funzione generatrice:} Si utilizza la funzione caratteristica $W(\vq, \alpha_i)$, che verifica l'equazione di Hamilton--Jacobi ridotta:
+    \begin{equation*}
+        H\left( \vq, \pdv{W}{q_1}, \dots, \pdv{W}{q_n} \right) = \alpha_1
+    \end{equation*}
+    La soluzione completa dipende da $n-1$ costanti non banali che, insieme ad $\alpha_1$, formano un insieme di $n$ costanti indipendenti.
+\end{itemize}
+
+\vspace{0.3cm}
+\hrule
+\vspace{0.3cm}
+
+\subsection*{La procedura risolutiva del problema meccanico}
+
+Una volta ottenuta una soluzione completa (sia essa la funzione principale $S$ o la funzione caratteristica $W$), il problema dinamico è ridotto a un'operazione puramente algebrica. Il legame tra il formalismo di Hamilton--Jacobi e l'evoluzione fisica del sistema è custodito nelle $2n$ equazioni della trasformazione canonica.
+
+L'integrazione dell'equazione di Hamilton--Jacobi fornisce la dipendenza della funzione generatrice dalle vecchie coordinate $\vq$, dal tempo $t$ e dalle $n$ costanti di integrazione indipendenti $\alpha_1, \dots, \alpha_n$. Queste costanti vengono identificate con i nuovi momenti costanti del moto ($P_i = \alpha_i$).
+
+Il processo di soluzione si articola allora in due fasi distinte:
+
+\begin{enumerate}
+    \item \textbf{Determinazione delle traiettorie:} Si considera la metà delle equazioni di trasformazione che coinvolge le nuove coordinate $Q_i$:
+    \begin{equation*}
+        Q_i = \pdv{S}{\alpha_i} = \beta_i \quad \text{oppure} \quad Q_i = \pdv{W}{\alpha_i} = v_i t + \beta_i
+    \end{equation*}
+    In virtù della condizione di non singolarità della trasformazione, ovvero $\det \pdv{S}{q_i}{\alpha_j} \neq 0$, queste $n$ equazioni possono essere invertite per \emph{estrarre} le vecchie coordinate $\vq$ in funzione del tempo e delle $2n$ costanti arbitrarie $\alpha_i$ e $\beta_i$:
+    \begin{equation*}
+        \vq = \vq(\alpha_1, \dots, \alpha_n, \beta_1, \dots, \beta_n, t).
+    \end{equation*}
+    Questa fase costituisce la soluzione del problema dinamico nello spazio delle configurazioni.
+    
+    \item \textbf{Determinazione dei momenti:} Una volta nota la legge oraria $\vq(t)$, l'altra metà delle equazioni di trasformazione permette di ricavare l'evoluzione temporale dei momenti coniugati $\vp$:
+    \begin{equation*}
+        p_i = \pdv{S}{q_i} \quad \text{oppure} \quad p_i = \pdv{W}{q_i}
+    \end{equation*}
+    Sostituendo in queste relazioni l'espressione di $\vq(t)$ ricavata al punto precedente, si ottiene la soluzione completa del moto nello spazio delle fasi: $\vp = \vp(\alpha_i, \beta_i, t)$.
+\end{enumerate}
+
+Le $2n$ costanti arbitrarie $\alpha_i$ e $\beta_i$ sono univocamente determinate dai valori iniziali delle coordinate $\vq_0$ e dei momenti $\vp_0$ all'istante $t_0$. La teoria di Hamilton--Jacobi agisce quindi come una trasformazione canonica che lega l'evoluzione del sistema direttamente alle sue condizioni iniziali.
+
+\vspace{2em}
 
 \begin{example}[Oscillatore armonico]
-    Nel caso dell'oscillatore armonico unidimensionale, l'hamiltoniana è indipendente dal tempo ed è proprio uguale all'energia meccanica $\alpha$
-    \begin{equation*}
-        H(q,p) = \frac{1}{2m}\left( p^2 + m^2 \omega^2 q^2 \right)= \alpha,
-    \end{equation*}
-    dove $\alpha$ è una costante di moto. Pertanto si ha
-    \begin{equation*}
-        S = W(q) - \alpha t,
-    \end{equation*}
-    con le trasformazioni canoniche
+    Consideriamo l'oscillatore armonico unidimensionale di hamiltoniana $H(q,p) = \frac{1}{2m}(p^2 + m^2\omega^2q^2) = \alpha$. La funzione principale è $S(q; \alpha; t) = W(q; \alpha) - \alpha t$. Le relazioni di trasformazione ricavate nell' equazione \ref{eq:Q_i_evol_fixed} portano a:
     \begin{equation}
-        \label{eq:oscillatoreHamiltonJacobi}
-        p = \pdv{W}{q}, \quad \beta' = \pdv{W}{\alpha} - t.
+        \label{eq:oscillatoreHJ}
+        p = \pdv{W}{q}, \quad Q = \pdv{W}{\alpha} = t + \beta.
     \end{equation}
-
-    L'equazione ridotta di Hamilton--Jacobi diventa
+    L'equazione ridotta \ref{eq:hamilton-jacobi-ridotta} diventa:
     \begin{equation*}
         \frac{1}{2m}\left[ \left( \pdv{W}{q} \right)^2 + m^2 \omega^2 q^2 \right] = \alpha,
     \end{equation*}
-    da cui si ricava
+    da cui si ottiene per quadratura:
     \begin{equation*}
-        \pdv{W}{q} = \sqrt{2m\alpha - m^2 \omega^2 q^2}
+        W(q; \alpha) = \int \sqrt{2m\alpha - m^2 \omega^2 q^2} \dd{q}.
     \end{equation*}
-    e integrando si ottiene la soluzione
-    \begin{align*}
-        W(q,\alpha) &= \int \sqrt{2m\alpha - m^2 \omega^2 q^2} \dd{q}.
-    \end{align*}
-    Deriviamo rispetto ad $\alpha$
-    \begin{align*}
-        \pdv{W}{\alpha} &= \int \frac{m}{\sqrt{2m\alpha - m^2 \omega^2 q^2}} \dd{q} \\
-        &= \frac{m}{\sqrt{2m\alpha}} \int \frac{1}{\sqrt{1 - \frac{m \omega^2 q^2}{2\alpha}}} \dd{q} \\
-        &= \sqrt{\frac{m}{2\alpha}} \sqrt{\frac{2\alpha}{m\omega^2}} \arcsin \left( q\sqrt{\frac{m\omega^2}{2\alpha}} \right) \\
-        &= \frac{1}{\omega} \arcsin \left( q\sqrt{\frac{m\omega^2}{2\alpha}} \right).
-    \end{align*}
-    Sostituendo questa espressione nella seconda relazione delle trasformazioni canoniche \eqref{eq:oscillatoreHamiltonJacobi} si ottiene
+    Derivando rispetto alla costante $\alpha$ e sostituendo nella seconda delle equazioni \ref{eq:oscillatoreHJ}:
     \begin{equation*}
-        \arcsin \left( q\sqrt{\frac{m\omega^2}{2\alpha}} \right) = \omega t + \omega \beta'.
+        \pdv{W}{\alpha} = \int \frac{m}{\sqrt{2m\alpha - m^2 \omega^2 q^2}} \dd{q} = \frac{1}{\omega} \arcsin \left( q\sqrt{\frac{m\omega^2}{2\alpha}} \right) = t + \beta.
     \end{equation*}
-    Ponendo $\omega \beta' = \beta$ e applicando la funzione seno a entrambi i membri si ricava la soluzione generale dell'oscillatore armonico
+    Esplicitando la coordinata $q$ si ritrova la nota legge oraria:
     \begin{equation*}
-        q(t) = \sqrt{\frac{2\alpha}{m\omega^2}} \sin(\omega t + \beta).
-    \end{equation*}
-
-    Calcolando $p$ tramite la prima relazione delle trasformazioni canoniche \eqref{eq:oscillatoreHamiltonJacobi} si ottiene
-    \begin{align*}
-        p(t) &= \sqrt{2m\alpha} \sqrt{1- \frac{m\omega^2}{2\alpha} q^2} \\
-        &= \sqrt{2m\alpha} \sqrt{1- \sin^2(\omega t + \beta)} \\
-        &= \sqrt{2m\alpha} \cos(\omega t + \beta).
-    \end{align*}
-    
-    Otteniamo facilmente le condizioni iniziali
-    \begin{equation*}
-        q_0 = \sqrt{\frac{2\alpha}{m\omega^2}} \sin(\beta), \quad p_0 = \sqrt{2m\alpha} \cos(\beta)
-    \end{equation*}
-    e quindi, invertendo le relazioni, si ricavano le costanti arbitrarie $\alpha$ e $\beta$ in funzione delle condizioni iniziali
-    \begin{equation*}
-        \alpha = \frac{p_0^2}{2m} + \frac{1}{2} m \omega^2 q_0^2, \quad \beta = \arctan \left( \frac{m\omega q_0}{p_0} \right).
+        q(t) = \sqrt{\frac{2\alpha}{m\omega^2}} \sin(\omega t + \omega\beta).
     \end{equation*}
 \end{example}
-
-SEPARAZIONE DELLE VARIABILI Nel caso generale abbiamo
-\begin{equation*}
-    W = W_1(q_1) + W'(q_2, \dots, q_n),
-\end{equation*}
-questo perché
-\begin{equation*}
-    \pdv{W}{q_1} = \gamma \implies W = \gamma q_1 + W'(q_2, \dots, q_n),
-\end{equation*}
-e quindi $W=\sum_{i=1}^{n} \gamma_i q_i $ quando tutte le coordinate sono cicliche.
-
-\begin{example}[Moto di un corpo in un campo centrale]
-    % Grafico x,y. Angolo psi, raggio r Vettore r = OP
-    L'hamiltoniana di un corpo di massa $m$ che si muove in un campo centrale è data da
-    \begin{equation*}
-        H = \frac{1}{2m}\left( p_r^2 + \frac{p_\psi^2}{r^2} \right) + V(r),
-    \end{equation*}
-    dove $r$ è la coordinata radiale, $\psi$ è la coordinata angolare e $p_r$, $p_\psi$ sono i corrispondenti momenti coniugati. La coordinata angolare $\psi$ è ciclica, quindi
-    \begin{equation*}
-        W = \alpha_\psi \psi + W_1(r).
-    \end{equation*}
-\end{example}
-
-\textbf{ROBA DOPO}
-
-$H$ dispendente dal tempo:
-\begin{quote}
-    Esiste una trasformazione canonica (generatrice $S$) che trasforma il sistema canonico in uno di hamiltoniana identicamente nulla:
-    \begin{equation*}
-        H(\vq, \pdv{S}{\vq}, t) + \pdv{S}{t} = 0.
-    \end{equation*}
-    e
-    \begin{equation*}
-        K = H + \pdv{S}{t} = 0.
-    \end{equation*}
-\end{quote}
-
-$H$ si conserva ($\pdv{H}{t} = 0$):
-\begin{quote}
-    Esiste una trasformazione completamente canonica determinata da una funzione caratteristica $W=W(q_i, \alpha_i)$ che trsfroma il sistema canonico in uno in cui i momenti canonici sono costanti, in altri termini con coordinate tutte cicliche:
-    \begin{equation*}
-        H\left( \vq, \pdv{W}{\vq} \right) = \alpha_1,
-    \end{equation*}
-    dove $W = W(\vq, \alpha_1, \dots, \alpha_n)$ è una soluzione completa dell'equazione ridotta di Hamilton--Jacobi. In questo caso $S=W-\alpha_1 t$ è una soluzione completa dell'equazione di Hamilton--Jacobi.
-\end{quote}
