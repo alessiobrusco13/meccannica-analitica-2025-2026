@@ -434,9 +434,13 @@ Teniamo però conto che possiamo esprimere ciascuna velocità come
 per cui otteniamo
 \begin{align*}
     T &= \frac{1}{2} \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t} \right)^2 \\
-    &= \frac{1}{2} \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t} \right)\cdot \left( \sum_{k=1}^n \pdv{\vP_i}{q_k} \dot{q}_k + \pdv{\vP_i}{t} \right) \\
-    &= \frac{1}{2} \sum_{i=1}^N m_i \left[ \sum_{h,k=1}^n \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k} \dot{q}_h \dot{q}_k + 2 \sum_{h=1}^n \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{t} \dot{q}_h + \left(\pdv{\vP_i}{t}\right)^2 \right] \\
-    &= \underbrace{\frac{1}{2} \sum_{h,k=1}^n \left( \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k} \right) \dot{q}_h \dot{q}_k}_{T^2} + \underbrace{\sum_{h=1}^n \left( \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{t} \right) \dot{q}_h}_{T^1} + \underbrace{\frac{1}{2} \sum_{i=1}^N m_i \left(\pdv{\vP_i}{t}\right)^2}_{T^0}\\
+    &= \frac{1}{2} \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t} \right)\cdot \left( \sum_{k=1}^n \pdv{\vP_i}{q_k} \dot{q}_k + \pdv{\vP_i}{t} \right)
+\end{align*}
+\begin{align*}
+    &= \frac{1}{2} \sum_{i=1}^N m_i \Bigg[ \sum_{h,k=1}^n \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k} \dot{q}_h \dot{q}_k \\
+    &\qquad\qquad\quad + 2 \sum_{h=1}^n \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{t} \dot{q}_h + \left(\pdv{\vP_i}{t}\right)^2 \Bigg] \\
+    &= \underbrace{\frac{1}{2} \sum_{h,k=1}^n \left( \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k} \right) \dot{q}_h \dot{q}_k}_{T^2} \\
+    &\quad + \underbrace{\sum_{h=1}^n \left( \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{t} \right) \dot{q}_h}_{T^1} + \underbrace{\frac{1}{2} \sum_{i=1}^N m_i \left(\pdv{\vP_i}{t}\right)^2}_{T^0}\\
     &= T^2 + T^1 + T^0.
 \end{align*}
 Questo è un polinomio di secondo grado in $\dot{q}_i$. Definiamo
@@ -619,9 +623,10 @@ Infine, la terza componente diventa
 
 Per cui, sommando le tre componenti, otteniamo
 \begin{align*}
-    \int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c} = &\vu{i}\left[\alpha\int_C \rho(y^2+z^2) \dd{c} -\beta \int_C \rho x y \dd{c} - \gamma \int_C \rho x z \dd{c}\right] \\
-    + &\vu{j}\left[ \beta\int_C \rho(x^2+z^2) \dd{c} -\alpha \int_C \rho x y \dd{c} - \gamma \int_C \rho y z \dd{c}\right] \\
-    + &\vu{k}\left[ \gamma\int_C \rho(x^2+y^2) \dd{c} -\alpha \int_C \rho x z \dd{c} - \beta \int_C \rho y z \dd{c}\right].
+    \int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c} 
+        = \vu{i}&\Bigg[\alpha\int_C \rho(y^2+z^2) \dd{c} -\beta \int_C \rho x y \dd{c} - \gamma \int_C \rho x z \dd{c}\Bigg] \\
+        \quad + \vu{j}&\Bigg[ \beta\int_C \rho(x^2+z^2) \dd{c} -\alpha \int_C \rho x y \dd{c} - \gamma \int_C \rho y z \dd{c}\Bigg] \\
+        \quad + \vu{k}&\Bigg[ \gamma\int_C \rho(x^2+y^2) \dd{c} -\alpha \int_C \rho x z \dd{c} - \beta \int_C \rho y z \dd{c}\Bigg].
 \end{align*}
 I primi termini di ciascuna componente definiscono i momenti di inerzia rispetto agli assi coordinati, mentre i secondi termini, prodotti misti, definiscono i prodotti di inerzia.\note{o momenti centrifughi} Definiamo quindi
 \begin{gather*}
@@ -630,7 +635,8 @@ I primi termini di ciascuna componente definiscono i momenti di inerzia rispetto
 \end{gather*}
 e otteniamo
 \begin{align*}
-    \int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c} = &\vu{i}\left[\alpha I_{x} -\beta I_{xy} - \gamma I_{xz}\right] \\
+    \int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c}
+    ={}&\vu{i}\left[\alpha I_{x} -\beta I_{xy} - \gamma I_{xz}\right] \\
     + &\vu{j}\left[ \beta I_{y} -\alpha I_{xy} - \gamma I_{yz}\right] \\
     + &\vu{k}\left[ \gamma I_{z} -\alpha I_{xz} - \beta I_{yz}\right].
 \end{align*}

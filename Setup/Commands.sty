@@ -54,29 +54,16 @@
 \providecommand{\NoteFontSize}{\scriptsize}     % note text size
 \providecommand{\NoteFont}{\itshape\sffamily}  % bold typewriter look
 \providecommand{\NoteColor}{black}              % text color
-\providecommand{\MarginNoteWidth}{3.2cm}        % box width
+\providecommand{\MarginNoteWidth}{3.0cm}        % box width
 
-% Margin width
-% The marginparwidth is controlled by the document geometry package.
-% Do not set it here to avoid conflicting with geometry calculations.
-\setlength{\marginparwidth}{\MarginNoteWidth}
-% By default place margin notes on the left to balance visible right-side notes.
-% \reversemarginpar
+% Side-aware alignment helper (simplified for oneside)
+\newcommand{\NoteAlign}{\raggedright}
 
-% Side-aware alignment helper
-\newcommand{\NoteAlign}{%
-  \checkoddpage
-  \ifoddpage\raggedleftmarginnote\else\raggedrightmarginnote\fi
-}
-
-% Single\note command
-\newcommand{\note}[1]{%
+% Single \note command. Optional argument vertically shifts the note.
+\DeclareRobustCommand{\note}[2][0pt]{%
   \marginnote{%
-   \NoteAlign
-   \NoteFontSize
-    \begin{minipage}{\MarginNoteWidth}%
-      {\NoteFont\color{\NoteColor}#1}%
-    \end{minipage}%
-  }%
+    \NoteAlign\NoteFontSize\NoteFont\color{\NoteColor}%
+    \ignorespaces#2%
+  }[#1]%
 }
 % ======================================================================
