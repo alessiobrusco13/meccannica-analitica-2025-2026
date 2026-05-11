@@ -46,7 +46,6 @@ I vincoli \emph{olonomi} non dipendono dalle velocità e impongono condizioni su
 Viceversa si dicono \emph{anolonomi} se dipendono dalle velocità.
 Diremo inoltre \emph{reonomi} i vincoli dipendenti esplicitamente dal tempo e \emph{scleronomi} quelli indipendenti dal tempo.
 \end{definition}
-
 \begin{proposition}[Calcolo dei gradi di libertà]
 Il numero di gradi di libertà del sistema è dato da
 \begin{equation*}
@@ -57,7 +56,31 @@ dove $\ell$ è il numero di parametri e $\rho$ è il rango della matrice Jacobia
     \rho = \rank \left( \frac{\partial (\varphi_1, \varphi_2, \dots, \varphi_r)}{\partial (\xi_1, \xi_2, \dots, \xi_\ell)} \right).
 \end{equation*}
 \end{proposition}
-Per cui si ha che il numero di gradi di libertà è dato dal numero dei parametri meno il numero di vincoli linearmente indipendenti.
+
+\begin{proof}
+Assumendo che la matrice Jacobiana dei vincoli abbia rango $\rho$, possiamo supporre, senza perdita di generalità, che le sue prime $\rho$ colonne siano linearmente indipendenti. Questo implica che la sottomatrice quadrata formata da queste colonne sia invertibile, ovvero che il determinante Jacobiano parziale rispetto alle prime $\rho$ coordinate sia non nullo:
+
+\begin{equation*}
+    \det \left( \frac{\partial(\varphi_1, \varphi_2, \ldots, \varphi_\rho)}{\partial(\xi_1, \xi_2, \ldots, \xi_\rho)} \right) \neq 0.
+\end{equation*}
+
+In virtù del teorema del Dini \note{Analogia con il teorema della funzione implicita in due dimensioni: se $F(x,y) = 0$ e $\frac{\partial F}{\partial y} \neq 0$, allora è possibile esplicitare $y = y(x)$}, questa condizione ci garantisce la possibilità di esplicitare localmente le prime $\rho$ variabili $(\xi_1, \ldots, \xi_\rho)$ in funzione delle restanti $\ell - \rho$ variabili. Possiamo quindi risolvere il sistema delle equazioni vincolari:
+
+\begin{equation*}
+    \begin{cases} 
+        \varphi_1(\xi_1, \xi_2, \ldots, \xi_\rho, \xi_{\rho+1}, \ldots, \xi_\ell) = 0 \\ 
+        \varphi_2(\xi_1, \xi_2, \ldots, \xi_\rho, \xi_{\rho+1}, \ldots, \xi_\ell) = 0 \\ 
+        \vdots \\ 
+        \varphi_\rho(\xi_1, \xi_2, \ldots, \xi_\rho, \xi_{\rho+1}, \ldots, \xi_\ell) = 0 
+    \end{cases}
+\end{equation*}
+
+ottenendo le dipendenze $\xi_k = \xi_k(\xi_{\rho+1}, \ldots, \xi_\ell)$ per $k = 1, \ldots, \rho$. Di conseguenza, la configurazione del sistema risulta univocamente determinata dalle rimanenti $\ell - \rho = n$ variabili indipendenti.
+\end{proof}
+
+\begin{remark}
+    Fisicamente, il numero di gradi di libertà è dato dal numero dei parametri meno il numero di vincoli linearmente indipendenti.
+\end{remark}
 
 \section{Coordinate lagrangiane}
 Se i vincoli sono olonomi e bilateri, le configurazioni accessibili formano una varietà di dimensione $n = \ell - \rho$ (localmente). È quindi possibile parametrizzare tali configurazioni mediante $n$ coordinate indipendenti; queste saranno le coordinate del moto.
