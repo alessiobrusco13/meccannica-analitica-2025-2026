@@ -425,9 +425,8 @@ Raggruppando i termini si ha
 \end{gather*}
 La funzione generatrice $F_2$ è quindi data da
 \begin{equation*}
-    F_2(\vq, \vP, t) = F(\vq, \vQ, t)\eval_{\vQ = \vQ(\vP, \vq, t)} + \sum_{j=1}^n P_j Q_j,
+    F_2(\vq, \vP, t) = \left[ F(\vq, \vQ, t) + \sum_{j=1}^n P_j Q_j \right]_{\vQ = \vQ(\vP, \vq, t)}.
 \end{equation*}
-con i dovuti cambiamenti di variabile.
 Dalle corrispondenze tra i differenziali indipendenti ($\dd{q}_j$, $\dd{P}_j$, $\dd{t}$) si ottiene
 \begin{equation*}
     p_j = \pdv{F_2}{q_j}, \qquad
@@ -443,9 +442,13 @@ Questa generatrice si ottiene mediante trasformata di Legendre di $F=F_1$ rispet
 Raggruppando i termini
 \begin{gather*}
     - \sum_{j=1}^n q_j \dd{p}_j - H\dd{t} = \sum_{j=1}^n P_j \dd{Q}_j - K \dd{t} + \dd{F} - \dd{\left(\sum_{j=1}^n p_j q_j\right)} \\
-    - \sum_{j=1}^n q_j \dd{p}_j - H\dd{t} = \sum_{j=1}^n P_j \dd{Q}_j - K \dd{t} + \dd{\underbrace{\left(F - \sum_{j=1}^n p_j q_j\right)}_{F_3(\vp, \vQ, t)}}.
+    - \sum_{j=1}^n q_j \dd{p}_j - H\dd{t} = \sum_{j=1}^n P_j \dd{Q}_j - K \dd{t} + \dd{\left(F - \sum_{j=1}^n p_j q_j\right)}.
 \end{gather*}
-Le relazioni di trasformazione sono
+La funzione generatrice $F_3$ è quindi data da
+\begin{equation*}
+    F_3(\vp, \vQ, t) = \left[ F(\vp, \vQ, t) - \sum_{j=1}^n p_j q_j \right]_{\vq = \vq(\vp, \vQ, t)}
+\end{equation*}
+e le relazioni di trasformazione sono
 \begin{equation*}
     q_j = - \pdv{F_3}{p_j}, \qquad
     P_j = -\pdv{F_3}{Q_j}, \qquad
@@ -466,9 +469,13 @@ Raggruppando i termini si ha
 \vspace{-1em}
 \begin{multline*}
     - \sum_{j=1}^n q_j \dd{p}_j + \sum_{j=1}^n Q_j \dd{P}_j - H\dd{t} = \\ 
-    = - K \dd{t} + \dd{\underbrace{\left(F - \sum_{j=1}^n p_j q_j + \sum_{j=1}^n P_j Q_j\right)}_{F_4(\vp, \vP, t)}}.
+    = - K \dd{t} + \dd\left(F - \sum_{j=1}^n p_j q_j + \sum_{j=1}^n P_j Q_j\right).
 \end{multline*}
-Le relazioni di trasformazione sono
+La funzione generatrice $F_4$ è quindi data da
+\begin{equation*}
+    F_4(\vp, \vP, t) = \left[ F(\vp, \vQ, t) - \sum_{j=1}^n p_j q_j + \sum_{j=1}^n P_j Q_j \right]_{\substack{\vQ = \vQ(\vp, \vP, t) \\ \vq = \vq(\vp, \vP, t)}}.
+\end{equation*}
+e le relazioni di trasformazione sono
 \begin{equation*}
     q_j = -\pdv{F_4}{p_j}, \qquad
     Q_j = \pdv{F_4}{P_j}, \qquad
