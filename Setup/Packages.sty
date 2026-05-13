@@ -13,7 +13,9 @@
   geometry,
   graphicx,
   microtype,
-  physics
+  physics,
+  caption,
+  subcaption
 }
 
 \RequirePackage[dvipsnames]{xcolor}
@@ -21,3 +23,6 @@
 \RequirePackage{csquotes}
 \RequirePackage[backend=biber,style=numeric]{biblatex}
 \RequirePackage{tikz}
+
+% Load tikz libraries correctly
+\usetikzlibrary{arrows.meta, backgrounds}

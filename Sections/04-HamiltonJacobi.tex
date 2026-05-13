@@ -181,7 +181,7 @@ dove le $v_i$, essendo funzioni delle derivate di $K$ rispetto ai soli momenti c
 
 I due metodi di soluzione di un sistema meccanico attraverso la teoria di Hamilton--Jacobi sono riassunti nei seguenti punti concettuali, seguendo la trattazione di \citeauthorlink{goldstein}.
 
-\subsection{Metodo della funzione principale di Hamilton ($S$)}
+\subsection{Metodo della funzione principale di Hamilton (\texorpdfstring{$S$}{S})}
 \textbf{Applicabilità:} Il metodo è generale e si applica anche quando l'hamiltoniana dipende esplicitamente dal tempo: $H(\vq, \vp, t)$.
 
 \begin{itemize}
@@ -201,7 +201,7 @@ I due metodi di soluzione di un sistema meccanico attraverso la teoria di Hamilt
     Una sua soluzione completa deve contenere $n$ costanti di integrazione non banali $\alpha_1, \dots, \alpha_n$.
 \end{itemize}
 
-\subsection{Metodo della funzione caratteristica di Hamilton ($W$)}
+\subsection{Metodo della funzione caratteristica di Hamilton (\texorpdfstring{$W$}{W})}
 \textbf{Applicabilità:} Il metodo si applica quando l'hamiltoniana si conserva nel tempo: $H(\vq, \vp) = h$.
 
 \begin{itemize}
@@ -261,7 +261,8 @@ Le $2n$ costanti arbitrarie $\alpha_i$ e $\beta_i$ sono univocamente determinate
 \vspace{2em}
 
 \begin{example}[Oscillatore armonico]
-    Consideriamo l'oscillatore armonico unidimensionale di hamiltoniana $H(q,p) = \frac{1}{2m}(p^2 + m^2\omega^2q^2) = \alpha$. La funzione principale è $S(q; \alpha; t) = W(q; \alpha) - \alpha t$. Le relazioni di trasformazione ricavate nell'equazione \ref{eq:Q_i_evol_fixed} portano a:
+    Consideriamo l'oscillatore armonico unidimensionale di hamiltoniana $$H(q,p) = \frac{1}{2m}(p^2 + m^2\omega^2q^2) = \alpha.$$ 
+    L'hamiltoniana è indipendente dal tempo per cui procediamo con il metodo della funzione caratteristica $W$. Le relazioni di trasformazione ricavate nell'equazione \ref{eq:Q_i_evol_fixed} portano a:
     \begin{equation}
         \label{eq:oscillatoreHJ}
         p = \pdv{W}{q}, \quad Q = \pdv{W}{\alpha} = t + \beta.
@@ -341,38 +342,251 @@ Le $2n$ costanti arbitrarie $\alpha_i$ e $\beta_i$ sono univocamente determinate
     con $k$ costante positiva.
 \end{example}
 
-\section{Variabili azione--angolo}
-\textbf{RIVEDERE}
+\section{Moti periodici e variabili azione--angolo}
 %inciso sul pendolo con grafico nello spazio delle fasi con punti di equilibrio stabili e instabili, e traiettorie chiuse e aperte. Moti periodici (anche quelli p(q) periodica). Moti di libera azione e di rotazione
 
-Consideriamo un sistema meccanico ad un grado di libertà, descritto da un'hamiltoniana $H(q,p)$ che non dipende esplicitamente dal tempo, per cui
-\begin{equation*}
-    H\left( q, p \right) = \alpha_1,
+Consideriamo un sistema ad un grado di libertà, descritto da un'hamiltoniana $H(q,p)$ che non dipende esplicitamente dal tempo, per cui
+\begin{equation} \label{eq:hamilton-jacobi-1d}
+    H\left( q, p \right) = \alpha_1. 
+\end{equation}
+Risolvendo rispetto al momento, otteniamo 
+\begin{equation*} \label{eq:orbita-1d}
+    p = p(q, \alpha_1),
 \end{equation*}
-e risolviamo per $p=p(q, \alpha_1)$.
+che è l'equazione dell'orbita del sistema nello spazio delle fasi. È possibile stabilire la perioditicità di un moto a seconda della forma che l'orbita assume nello spazio delle fasi. Distinguiamo due casi di moti periodici:
+\begin{enumerate}
+    \item Se l'orbita è chiusa, il moto si dice di \emph{librazione} (figura \ref{fig:librazione}). In questo sia $q$ che $p$ sono funzioni periodiche del tempo, e il sistema torna esattamente alla stessa configurazione dopo un certo intervallo di tempo $\tau$. Questo è il caso dell'oscillatore armonico unidimensionale.
+    \item Se l'orbita è tale che $p$ è una qualche funzione periodica di $q$, allora il moto si dice di \emph{rotazione} (figura \ref{fig:rotazione}). Se indichiamo con $q_0$ il periodo della funzione $p(q)$, allora si ha che la configurazione del sistema si ripete ogni volta che $q$ aumenta di $q_0$. \par L'esempio più familiare è quello di un corpo rigido vincolato a ruotare attorno a un dato asse, prendendo come $q$ l'angolo di rotazione. In questo caso, un'incremento di $q$ di $2\pi$ non produce alcun sostanziale mutamento nello stato fisico del sistema.
+\end{enumerate}
 
-Possiamo definire la \emph{variabile di azione} $J$ come l'integrale di linea
+\begin{figure}[t]
+    \centering
+    
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \draw[->] (-0.5, 0) -- (5, 0) node[below] {$q$};
+            \draw[->] (0, -0.5) -- (0, 4) node[left] {$p$};
+            
+            \draw[thick] plot [smooth cycle] coordinates {
+                (1, 1.8) (1.5, 3) (3, 3.5) (4, 2.2) (3.2, 0.5) (1.8, 0.8)
+            };
+            
+            \draw[dashed] (0.8, 1.9) -- (4.2, 1.8);
+        \end{tikzpicture}
+        \caption{Librazione}
+        \label{fig:librazione}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \draw[->] (-0.5, 0) -- (6, 0) node[below] {$q$};
+            \draw[->] (0, -0.5) -- (0, 4) node[left] {$p$};
+            
+            \draw[thick] plot [smooth] coordinates {
+                (0.2, 2.8) (0.8, 3.8) (1.5, 0.5) (2.2, 2.5) 
+                (2.7, 1.8) (3.2, 3.8) (3.9, 0.5) (4.6, 2.5) (5.1, 1.8)
+            };
+            
+            \draw[dashed] (0.8, 0) -- (0.8, 4);
+            \draw[dashed] (3.2, 0) -- (3.2, 4);
+            
+            \draw[<->] (0.8, 0.4) -- (3.2, 0.4) node[midway, above] {$q_0$};
+        \end{tikzpicture}
+        \caption{Rotazione}
+        \label{fig:rotazione}
+    \end{subfigure}
+    
+    \caption{Orbite del punto rappresentativo di un sistema nello spazio delle fasi per un moto periodico di un sistema unidimensionale.}
+    \label{fig:spazio_fasi}
+\end{figure}
+
+È interessante osservare che entrambi i tipi di periodicità possono verificarsi nello stesso sitema fisico. Considerimo il seguente esempio.
+\begin{example}[Pendolo semplice]
+    Scegliamo come coordinata l'angolo $\theta$ di deflessione rispetto l'asse verticale. Se $l$ è la lunghezza del pendolo, $m$ la sua massa e lo zero dell'energia potenziale viene scelto nel punto di sospensione, l'hamiltoniana è 
+    \begin{equation*}
+        H(\theta, p_\theta) = \frac{p_\theta^2}{2ml^2} - mgl\cos\theta = \alpha_1,
+    \end{equation*}
+    e rappresenta una costante del moto. Risolvendo per $p_\theta$ si ottiene l'equazione dell'orbita
+    \begin{equation*}
+        p_\theta = \pm \sqrt{2ml^2\left[\alpha_1 + mgl\cos\theta\right]},
+    \end{equation*}
+    raffigurata in figura \ref{fig:pendolo_fasi_extended}.
+
+    \begin{figure}[t]
+        \centering
+        \resizebox{0.78\textwidth}{!}{%
+        \begin{tikzpicture}[xscale=0.75, yscale=1.1, inner sep=0pt, outer sep=0pt]
+            
+            \def\tpi{3.1415926535}
+            \def\dtpi{6.283185307}
+            
+            \begin{scope}
+                \clip (-7.4, -4.2) rectangle (7.4, 4.2);
+                
+                \draw[thick, smooth, domain=-9:9, samples=200] plot (\x, {2*cos(\x/2 * 180/\tpi)});
+                \draw[thick, smooth, domain=-9:9, samples=200] plot (\x, {-2*cos(\x/2 * 180/\tpi)});
+                
+                \draw[thick, smooth, domain=-9:9, samples=200] plot (\x, {sqrt(2*(1.5 + cos(\x*180/\tpi)))});
+                \draw[thick, smooth, domain=-9:9, samples=200] plot (\x, {-sqrt(2*(1.5 + cos(\x*180/\tpi)))});
+                \draw[thick, smooth, domain=-9:9, samples=200] plot (\x, {sqrt(2*(2.5 + cos(\x*180/\tpi)))});
+                \draw[thick, smooth, domain=-9:9, samples=200] plot (\x, {-sqrt(2*(2.5 + cos(\x*180/\tpi)))});
+                
+                \foreach \shift in {-\dtpi, 0, \dtpi} {
+                    \draw[thick, shift={(\shift, 0)}] 
+                        plot[smooth, domain=-1.57:1.57, samples=150] (\x, {sqrt(2.0*cos(\x*180/\tpi))}) -- 
+                        plot[smooth, domain=1.57:-1.57, samples=150] (\x, {-sqrt(2.0*cos(\x*180/\tpi))}) -- cycle;
+                    \draw[thick, shift={(\shift, 0)}] 
+                        plot[smooth, domain=-2.498:2.498, samples=150] (\x, {sqrt(2*(0.8 + cos(\x*180/\tpi)))}) -- 
+                        plot[smooth, domain=2.498:-2.498, samples=150] (\x, {-sqrt(2*(0.8 + cos(\x*180/\tpi)))}) -- cycle;
+                }
+                
+                \foreach \cx in {-\tpi, \tpi} {
+                    \draw[thin] (\cx - 0.15, 0.15) -- (\cx + 0.15, -0.15);
+                    \draw[thin] (\cx - 0.15, -0.15) -- (\cx + 0.15, 0.15);
+                }
+            \end{scope}
+
+            \draw[->, thin] (-7.8, 0) -- (8.0, 0) node[below, yshift=-0.5em] {$\theta$};
+            \draw[->, thin] (0, -4.5) -- (0, 4.5) node[left, xshift=-0.5em] {$p_\theta$};
+            
+            \draw[thin] (-\dtpi, -0.1) -- (-\dtpi, 0.1);
+            \node[below, fill=white, inner sep=1.5pt] at (-\dtpi, -0.3) {$-2\pi$};
+            
+            \draw[thin] (\dtpi, -0.1) -- (\dtpi, 0.1);
+            \node[below, fill=white, inner sep=1.5pt] at (\dtpi, -0.3) {$2\pi$};
+            
+            \draw[thin] (-\tpi, -0.1) -- (-\tpi, 0.1);
+            \node[below, fill=white, inner sep=1.5pt] at (-\tpi, -0.3) {$-\pi$};
+            
+            \draw[thin] (\tpi, -0.1) -- (\tpi, 0.1);
+            \node[below, fill=white, inner sep=1.5pt] at (\tpi, -0.3) {$\pi$};
+            
+            \node[fill=white, inner sep=1.5pt] at (1.1, 1.0) {\footnotesize 1};
+            \node[fill=white, inner sep=1.5pt] at (1.4, 2.0) {\footnotesize 2};
+            \node[fill=white, inner sep=1.5pt] at (1.4, -2.0) {\footnotesize $2'$};
+            \node[fill=white, inner sep=1.5pt] at (1.5, 2.8) {\footnotesize 3};
+
+        \end{tikzpicture}
+        }
+        \caption{Orbite nello spazio delle fasi di un pendolo semplice.}
+        \label{fig:pendolo_fasi_extended}
+    \end{figure}
+
+    Analizziamo le possibili orbite a seconda del valore di $\alpha_1$.
+    \begin{enumerate}
+        \item Se $\alpha_1 < mgl$, il moto è fisicamente possibile solo per valori di $\theta$ compresi tra $-\theta'$ e $\theta'$, dove 
+        $$\cos\theta' = -\frac{\alpha_1}{mgl}.$$
+        In questo caso si ha un moto di tipo librazionale, rappresentato dall'orbita chiusa indicata con 1 in figura.
+
+        \item Se invece $\alpha_1 > mgl$, allora tutti i valori di $\theta$ corrispondono a configurazioni fisicamente ammissibili e la coordinata può crescere indefinitamente. In questo caso si ha un moto di tipo rotazionale, rappresentato dall'orbita aperta indicata con 3 in figura. Ciò che avviene fisicamente è che il pendolo ha un'energia tale da oltrepassare la verticale $\theta = \pi$ e continuare a ruotare.
+
+        \item Infine, il caso $\alpha_1 = mgl$ è descritto dalle curve indicate con 2 e $2'$ in figura. Con questo valore di energia, il pendolo raggiunge la posizione verticale $\theta = \pi$ con $p_\theta = 0$\note{Il punto $(\pi, 0)$ corrisponde a un punto di sella dell'hamiltoniana e si è in presenza di un fenomeno detto \emph{biforccazione}, con due percorsi a $H$ costante che si intersecano} e il sistema si trova in una condizione di equilibrio instabile. In linea teorica potrebbe rimanere in questa configurazione indefinitamente. Tuttavia, la più piccola perturbazione causerà la ripresa del moto lungo una qualunque delle curve 2 o $2'$,
+    \end{enumerate}
+\end{example}
+
+In entrambi i casi di moto periodico, risulta utile introdurre una nuova variabile che sostituisca $\alpha_1$.
+
+\begin{definition}[Variabile di azione]
+    Si dice \emph{variabile di azione} $J$ l'integrale di linea
+    \begin{equation*}
+    J \defeq \frac{1}{2\pi}\oint_\gamma p \dd{q},\note{Si tratta di un'integrale curvilineo di una forma differenziale}
+    \end{equation*}
+    dove $\gamma$ è la traiettoria descritta da un intero periodo del moto nello spazio delle fasi.
+\end{definition}
+
+\begin{remark}
+    La variabile appena introdotta viene chiamata \emph{di azione} in quanto è legata all'azione hamiltoniana nel caso di \emph{azione ridotta}, ovvero quando l'hamiltoniana è costante. Infatti, l'integrale di azione è
+    \begin{equation*}
+        \int_{t_0}^{t_1} \qty(p \dot{q} - H) \dd{t} = \int_{t_0}^{t_1} p \dot{q} \dd{t} -  \alpha_1\qty(t_1 - t_0)
+    \end{equation*}
+    e tenendo conto che $\alpha_1\qty(t_1 - t_0)$ è una costante, si ha che 
+    \begin{equation*}
+        \int_{t_0}^{t_1} p \dot{q} \dd{t} = \oint_\gamma p \dd{q} = 2\pi J,\note{$\dd{q} = \dot{q} \dd{t}$}
+    \end{equation*}
+    da cui si evince che $J$ è proporzionale all'azione hamiltoniana ridotta.
+\end{remark}
+
+Dalle equazioni \eqref{eq:hamilton-jacobi-1d} e \eqref{eq:orbita-1d} si evince che $J$ è una funzione della $\alpha_1$, infatti
 \begin{equation*}
-    J \defeq \frac{1}{2\pi}\oint_\gamma p \dd{q},
+    J \propto \oint_\gamma p\dd{q} = \oint_\gamma p(q, \alpha_1) \dd{q}.
 \end{equation*}
-dove $\gamma$ è la traiettoria descritta da un intero periodo del moto di liberazione o di rotazione.
+Per cui, si ha
+\begin{equation*}
+    \alpha_1 \defeq H = H(J).
+\end{equation*}
+Possiamo quindi scrivere la funzione caratteristica di hamilton come $W = W(q, J)$.
 
-L'azione hamiltoniana è data da
-\begin{align*}
-    S = \int_{t_0}^{t_1} L \dd{t} = \int_{t_0}^{t_1} (\sum_{i=1}^n p_i \dot{q}_i - H) \dd{t} &= \int_{t_0}^{t_1} \sum_{i=1}^n p \dd{q} - \int_{t_0}^{t_1} H \dd{t} \\
-    &= \int_{t_0}^{t_1} \sum_{i=1}^n p \dd{q} - \underbrace{\alpha_1 (t_1 - t_0)}_{\text{costante}} \\
-    &= \int_{t_0}^{t_1} \sum_{i=1}^n p\dd{q},
-\end{align*}
-che è proprio l'integrale di una forma differenziale lungo una curva chiusa $\gamma$ nello spazio delle fasi. L'azione quando $H$ è costante viene detta azione ridotta.
-
-Abbiamo quindi una funzione caratteristica $W = W(q,J)$. Definiamo la variabile di angolo $\psi$\note{\citeauthorlink{goldstein} la indicano con $w$} come 
+Introduciamo ora la coordinata coniugata a $J$, che indichiamo con $\psi$\note{\citeauthorlink{goldstein} la indicano con $w$} e chiamiamo \emph{variabile d'angolo}, definita dall'equazione di trasformazione
 \begin{equation*}
     \psi = \pdv{W}{J}.
 \end{equation*}
+Le equazioni di Hamilton in queste nuove variabili sono
+\begin{equation*}
+    \begin{cases}
+        \displaystyle \dot{\psi} = \pdv{H(J)}{J} \\[0.5cm]
+        \displaystyle \dot{J} = -\pdv{H(J)}{\psi} = 0,
+    \end{cases}
+\end{equation*}
+da cui ricaviamo che
+\begin{equation*}
+    \dot{\psi} = \omega(J),
+\end{equation*}
+dove $\omega(J)$ è una funzione costante, in quanto $H$ dipende solo da $J$ che è a sua volta costante nel tempo. Otteniamo quindi che $\psi$ è lineare nel tempo:
+\begin{equation} \label{eq:psi-lineare-tempo}
+    \psi(t) = \omega t + \beta.
+\end{equation}
 
-Abbiamo quindi
+\note{Lezione 12/05/2026}La grande utilità delle variabili azione--angolo risiede nel significato fisico che si può attribuire a $\omega$. Si consideri la variazione di $\psi$ rispetto a $q$ lungo un intero periodo del moto:
 \begin{align*}
     \Delta \psi = \oint_\gamma \pdv{\psi}{q} \dd{q} = \oint_\gamma \pdv{W}{J}{q} \dd{q} = \dv{J}\oint_\gamma \pdv{W}{q} \dd{q} &= \dv{J}\oint_\gamma p \dd{q} \\
     &= 2\pi \dv{J}\left(\frac{1}{2\pi} \oint_\gamma p\dd{q}\right) \\
-    &= 2\pi \dv{J}{J} = 2\pi,
+    &= 2\pi \dv{J}{J} = 2\pi.
 \end{align*}
+Se si indica con $\tau$ il periodo del moto, dalla \eqref{eq:psi-lineare-tempo} segue che
+\begin{equation*}
+    \Delta \psi = 2\pi = \omega \tau,
+\end{equation*}
+da cui si evince che $\omega$ è la frequenza del moto periodico, in quanto rappresenta il numero di \emph{cicli} completati per unità di tempo.
+
+\begin{example}[Oscillatore armonico]
+    \begin{figure}[h]
+            \centering
+            \begin{tikzpicture}[scale=0.8]
+                \draw[->] (-3.2,0) -- (3.2,0) node[right] {$q$};
+                \draw[->] (0,-2.3) -- (0,2.3) node[above] {$p$};
+                \draw[thick,black] (0,0) ellipse (2.6 and 1.6);
+                \node[black] at (1.55,0.9) {$\gamma$};
+                \fill (2.6,0) circle (1.2pt) node[below right] {$\sqrt{\frac{2\alpha}{m\omega^2}}$};
+                \fill (0,1.6) circle (1.2pt) node[above right] {$\sqrt{2m\alpha}$};
+            \end{tikzpicture}
+            \caption{Traiettoria ellittica nello spazio delle fasi per l'oscillatore armonico.}
+            \label{fig:ellisse-oscillatore}
+    \end{figure}
+
+    Consideriamo un oscillatore armonico unidimensionale con hamiltoniana
+    \begin{equation*}
+        H = \frac{1}{2m}(p^2 + m^2 \omega^2 q^2).
+    \end{equation*}
+    Come già visto, otteniamo per quadrature la funzione caratteristica $W$ e l'equazione dell'orbita $p=p(q, \alpha)$:
+    \begin{equation*}
+        p = \pdv{W}{q} = \sqrt{2m\alpha - m^2 \omega^2 q^2}.
+    \end{equation*}
+    Come visto nell'esempio \ref{ex:oscillatore-armonico-hamilton}, otteniamo
+    \begin{equation*}
+        \begin{cases}
+            p = \sqrt{2m\alpha} \cos(\theta) \\
+            q = \sqrt{\frac{2\alpha}{m\omega^2}} \sin(\theta).
+        \end{cases}
+    \end{equation*}
+
+    Osserviamo che la traiettoria nello spazio delle fasi è un'ellisse, come visibile in figura \ref{fig:ellisse-oscillatore}.
+
+    Calcoliamo quindi la variabile di azione $J$:
+    \begin{align*}
+        J = \frac{1}{2\pi} \oint_\gamma p \dd{q} &= \frac{1}{2\pi} \int_0^{2\pi} \sqrt{2m\alpha} \cos(\theta) \sqrt{\frac{2\alpha}{m\omega^2}} \cos(\theta) \dd{\theta} \\
+        & = \frac{\alpha}{\pi \omega} \oint_0^{2\pi} \cos^2(\theta) \dd{\theta} \\
+        & = \frac{\alpha}{\pi \omega} \cdot \pi = \frac{\alpha}{\omega}.
+    \end{align*}
+\end{example}

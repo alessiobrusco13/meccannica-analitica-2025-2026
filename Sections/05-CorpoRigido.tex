@@ -1,0 +1,76 @@
+\chapter{Corpo rigido}
+
+Come da quanto visto quando abbiamo introdotto il tensore di inerzia nella Sezione~\ref{sec:tensoreInerzia}, il momento di inerzia è dato da
+\begin{equation*}
+    I_a = \tens{I_O}\vu{u},
+\end{equation*}
+dove $\vu{u}$ è il versore che definisce la direzione dell'asse $a$ e $\tens{I_O}$ è il tensore di inerzia calcolato rispetto a un punto $O$ qualsiasi. Il tensore di inerzia è una matrice simmetrica, e quindi diagonalizzabile. Un riferimento di autovettore in cui si diagonalizza il tensore di inerzia è detto \emph{riferimento principale}.
+
+Solidi a struttura giroscopica due momenti principali sono uguali l'altro asse giroscopico.
+
+\section{Solido con punto fisso e liscio}
+%Disegno solido tipo trottola
+Consideriamo un solido di massa $m$ con un punto fisso e liscio.
+
+In questi casi il lavoro virtuale delle forze vincolari è nullo in quanto abbiamo un vincolo bilaterale e liscio. Consideriamo il riferimento $\{\vb{O}, \vu{i}_1, \vu{i}_2, \vu{i}_3\}$, fisso, e $\{\vb{O}, \vu{e}_1, \vu{e}_2, \vu{e}_3\}$, solidale al corpo e principale di inerzia.
+
+Il piano descritto da $\vu{e}_1$ e $\vu{e}_2$ incontra quello descritto da $\vu{i}_1$ e $\vu{i}_2$ lungo un'asse che chiamiamo $\vu{n}$, detto \emph{linea dei nodi}. L'angolo tra i due piani è detto \emph{angolo di precessione} e lo indichiamo con $\psi$. L'angolo tra $\vu{e}_3$ e $\vu{\imath}_3$ è detto \emph{angolo di nutazione} e lo indichiamo con $\theta$. Infine, l'angolo di rotazione del corpo attorno a $\vu{e}_3$ è detto \emph{angolo di rotazione propria} e lo indichiamo con $\varphi$. Questi sono detti angoli di eulero.
+
+I corpi rigidi hanno 6 gradi di libertà, ma in questo caso un punto è vincolato, per cui ne rimangono 3, che sono proprio gli angoli di eulero, che indichiamo con $\vb{\Theta}=(\theta, \psi, \varphi)$.
+
+Scriviamo le equazioni cardinali separando le forze esterne e i momenti in attivi e vincolari:
+\begin{equation*}
+    \begin{cases}
+        m\vb{a}_G = \vb{R}^{(e)} = \vb{R}^{(a)} + \vb{R}^{(v)} \\
+        \dot{\vb{K}}_O = \vb{M}_O^{(e)} = \vb{M}_O^{(a)} + \vb{M}_O^{(v)}.\note{Non sono forze applicate ad un punto. Il dispositivo è esteso. Consideriamo un sistema di forze, equivalente ad una forza agente in un punto e un momento}
+    \end{cases}
+\end{equation*}
+Queste sono 6 equazioni scalari. Suddividiamo le incognite in:
+\begin{enumerate}[label=$\roman*.$]
+    \item Incognite cinematiche: angoli di eulero $\vb{\Theta}$ (3);
+    \item Incognite dinamiche: forze e momenti attivi $\vb{R}^{(v)}$ e $\vb{M}_O^{(v)}$ (6).
+\end{enumerate}
+Abbiamo 9 incognite e 6 equazioni, per cui il sistema è indeterminato.
+Tuttavia, essendo il vincolo liscio, il momento relativo alle forze vincolari è nullo, $\vb{M}_O^{(v)} = 0$. In un sistma rigido possiamo scrivere il lavoro virtuale come
+\begin{equation*}
+    \var{L^{(v)}} = \underbrace{\vb{R}^{(v)} \cdot \var{\vb{O}}}_{\var{\vb{O}} = 0} + \vb{M}_O^{(v)} \cdot \var{\vb*{\varepsilon}'} = 0 \quad \forall \vb*{\varepsilon}'
+    \implies \vb{M}_O^{(v)} = 0.
+\end{equation*}
+
+dal caso generale:
+\begin{equation*}
+    \var{L} = \vb{R}\cdot \var{\vb{O}} + \vb{M}_O \cdot \var{\vb*{\varepsilon}'},
+\end{equation*}
+che cazzo è sta cosa??
+
+A questo punto abbiamo 6 equazioni scalare in 6 incognite.
+Introduciamo la velocità angolare del sistema
+\begin{equation*}
+    \vb*{\omega} =  \omega_1 \vu{e}_1 + \omega_2 \vu{e}_2 + \omega_3 \vu{e}_3,
+\end{equation*}
+
+derivata assoluta e derivata relativa di un vettore:
+\begin{equation*}
+    \begin{cases}
+        \left(\dv{\vb{A}}{t}\right)_{\text{assoluta}} = \left(\dv{\vb{A}}{t}\right)_{\text{relativa}} + \vb{\omega} \times \vb{A} \\
+        \left(\dv{\vb{A}}{t}\right)_{\text{relativa}} = \left(\dv{\vb{A}}{t}\right)_{\text{assoluta}} - \vb{\omega} \times \vb{A}
+    \end{cases}
+\end{equation*}
+
+\begin{equation*}
+    \vb{K}_Q = (\vb{G}-\vb{Q})\times m\vb{v}_Q + \tens{I}_Q \vb*{\omega},
+\end{equation*}
+\begin{remark}
+    Se $\vb{Q}$ è un punto fisso allora $K_Q = \tens{I}_Q \vb*{\omega}$, e quindi il momento angolare è direttamente proporzionale alla velocità angolare tramite il tensore di inerzia.
+\end{remark}
+
+Per cui
+\begin{equation*}
+    \dot{\vb{K}}_O = \vb{K}_0' + \vb*{\omega}\times \vb{K}_O = \left(\tens{I}_O \vb*{\omega}\right)' + \vb*{\omega}\times (\tens{I}_O\vb*{\omega}) = \tens{I}_O \dot{\vb*{\omega}} + \vb*{\omega} \times (\tens{I}_O \vb*{\omega}),
+\end{equation*}
+e quindi la nostra equazione cardinale diventa
+\begin{equation*}
+    \tens{I}_O \dot{\vb*{\omega}} + \vb*{\omega} \times (\tens{I}_O \vb*{\omega}) = \vb{M}_O^{(a)}.
+\end{equation*}
+
+\textbf{TODO:} Mettere in ordine e introdurre i concetti di derivata assoluta e relativa.

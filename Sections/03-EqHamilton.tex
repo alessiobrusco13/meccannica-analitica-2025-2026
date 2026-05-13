@@ -90,6 +90,14 @@ Le $2n$ equazioni differenziali ordinarie del primo ordine in $2n$ incognite
 \end{equation*}
 vengono dette \emph{equazioni di Hamilton} o \emph{equazioni canoniche della meccanica}.
 
+\begin{remark}
+    Nella formulazione dello spazio delle fasi il tempo può essere trattato come una coordinata generalizzata; in tale contesto il suo momento coniugato è legato all'hamiltoniana, con la convenzione usuale
+    \begin{equation*}
+        p_t = -H.
+    \end{equation*}
+    In altre parole, \emph{l'energia} gioca il ruolo del momento generalizzato associato alla variabile tempo, a meno del segno che dipende dalla convenzione scelta.
+\end{remark}
+
 Nel caso meccanico, in un sistema naturale a vincoli scleronomi, la lagrangiana è data da $L = T - V$, e quindi
 \begin{equation*}
     p_i = \pdv{L}{\dot{q}_i} = \pdv{T}{\dot{q}_i} = \pdv{T_2}{\dot{q}_i} = \sum_{j=1}^n a_{ij} \dot{q}_j.
@@ -267,13 +275,15 @@ Analizziamo ora le proprietà delle parentesi di Poisson. Siano $f(\vq, \vp, t)$
     avendo utilizzato l'identità di Jacobi--Poisson.
 \end{proof}
 
-Le seguenti relazioni vengono dette \emph{parentesi di Poisson fondamentali}:
-\begin{itemize}
-    \item $\{q_i, q_j\} = 0$;
-    \item $\{p_i, p_j\} = 0$;
-    \item $\{q_i, p_j\} = \delta_{ij}$,
-\end{itemize}
-dove $\delta_{ij}$ è la delta di Kronecker.
+\begin{definition}
+    Si dicono \emph{parentesi di Poisson fondamentali} le seguenti relazioni fra le variabili canoniche $q_i$ e $p_i$:
+    \begin{itemize}
+        \item $\{q_i, q_j\} = 0$;
+        \item $\{p_i, p_j\} = 0$;
+        \item $\{q_i, p_j\} = \delta_{ij}$,
+    \end{itemize}
+    dove $\delta_{ij}$ è la delta di Kronecker.
+\end{definition}
 
 Calcolando le parentesi di Poisson fra $q_i$ e $H$ e fra $p_i$ e $H$ si ha
 \begin{equation*}
@@ -344,7 +354,8 @@ Data una trasformazione canonica, il principio di Hamilton modificato per $H$ e 
     \iff \var \int_{t_0}^{t_1} \left( \sum_{j=1}^n P_j \dot{Q}_j - K(\vQ, \vP, t) \right) \dd{t} &= 0.
 \end{align*}
 
-La condizione necessaria e sufficiente affinché una trasformazione di coordinate sia canonica è che
+\subsection{Condizioni di canonicità}
+Una condizione necessaria e sufficiente affinché una trasformazione di coordinate sia canonica è che
 \begin{align*}
     \lambda \left(\sum_{j=1}^n p_j \dot{q}_j - H(\vq, \vp, t)\right) &= \sum_{j=1}^n P_j \dot{Q}_j - K(\vQ, \vP, t) + \dv{F}{t}.
 \end{align*}
@@ -376,6 +387,22 @@ La condizione di canonicità si può anche esprimere in forma differenziale:
 \begin{equation*}
     \sum_{j=1}^n p_j \dd{q}_j - H(\vq, \vp, t) \dd{t} = \sum_{j=1}^n P_j \dd{Q}_j - K(\vQ, \vP, t) \dd{t} + \dd{F}.
 \end{equation*}
+
+Ulteriori condizioni per la canonicità di una trasformazione di coordinate sono le seguenti.
+
+\begin{proposition}
+    Una trasformazione di coordinate $Q_i = Q_i(\vq, \vp, t)$, $P_i = P_i(\vq, \vp, t)$ è canonica se e solo se conserva le parentesi di Poisson fondamentali, ovvero se
+    \begin{equation*}
+        \pb{Q_i}{Q_j} = 0, \qquad \pb{P_i}{P_j} = 0, \qquad \pb{Q_i}{P_j} = \delta_{ij}.
+    \end{equation*}
+\end{proposition}
+
+\begin{proposition}
+    Una trasformazione di coordinate $Q_i = Q_i(\vq, \vp, t)$, $P_i = P_i(\vq, \vp, t)$ è canonica se e solo se
+    \begin{equation*}
+        \det \pdv{(Q_1, \dots, Q_n, P_1, \dots, P_n)}{(q_1, \dots, q_n, p_1, \dots, p_n)} = 1.
+    \end{equation*}
+\end{proposition}
 
 \subsection{Costruzione di trasformazioni canoniche fondamentali mediante funzioni generatrici}
 
@@ -528,7 +555,7 @@ Alla luce delle quattro trasformazioni fondamentali, riassumiamo le loro caratte
 \vspace{1em}
 Questi quattro tipi di funzioni generatrici rappresentano i casi più comuni e naturali. Il concetto di trasformazione canonica è tuttavia molto più generale: il vincolo essenziale è che la trasformazione soddisfi la \emph{condizione di Lie}. In linea di principio, nulla ci impedisce di costruire generatrici che dipendono da tutte e quattro le variabili canoniche $p_i$, $q_i$, $P_i$, $Q_i$ e dal tempo $t$ o da qualsiasi combinazione di esse. La scelta della generatrice più opportuna è dettata dalla convenienza computazionale e dalla natura del problema da risolvere.
 
-\begin{example}[Oscillatore armonico]
+\begin{example}[Oscillatore armonico] \label{ex:oscillatore-armonico-hamilton}
     L'hamiltoniana dell'oscillatore armonico è
     \begin{equation*}
         H(q, p) = \frac{1}{2m}(p^2 + m^2 \omega^2 q^2).
