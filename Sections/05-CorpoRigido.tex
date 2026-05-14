@@ -41,22 +41,22 @@ dal caso generale:
 \begin{equation*}
     \var{L} = \vb{R}\cdot \var{\vb{O}} + \vb{M}_O \cdot \var{\vb*{\varepsilon}'},
 \end{equation*}
-che cazzo è sta cosa??
 
 A questo punto abbiamo 6 equazioni scalare in 6 incognite.
-Introduciamo la velocità angolare del sistema
+Introduciamo la velocità angolare del sistema e la proiettiamo sulla base solidale al corpo:
 \begin{equation*}
     \vb*{\omega} =  \omega_1 \vu{e}_1 + \omega_2 \vu{e}_2 + \omega_3 \vu{e}_3,
 \end{equation*}
 
-derivata assoluta e derivata relativa di un vettore:
+In un sistema rigido, possiamo esprirme la velocità di un qualsiasi punto $P$ del corpo come
 \begin{equation*}
-    \begin{cases}
-        \left(\dv{\vb{A}}{t}\right)_{\text{assoluta}} = \left(\dv{\vb{A}}{t}\right)_{\text{relativa}} + \vb{\omega} \times \vb{A} \\
-        \left(\dv{\vb{A}}{t}\right)_{\text{relativa}} = \left(\dv{\vb{A}}{t}\right)_{\text{assoluta}} - \vb{\omega} \times \vb{A}
-    \end{cases}
+    \vb{v}_P = \vb{v}_Q + \vb*{\omega} \times (\vb{P} - \vb{Q}).
 \end{equation*}
-
+Il momento angolare del corpo rispetto a un punto $Q$ è dato da
+\begin{equation*}
+    \vb{K}_Q = \sum_{i=1}^N m_i (\vb{r}_i - \vb{Q}) \times \vb{v}_i = \sum_{i=1}^N m_i (\vb{r}_i - \vb{Q}) \times \left( \vb{v}_Q + \vb*{\omega} \times (\vb{r}_i - \vb{Q})\right),
+\end{equation*}
+per cui si ha
 \begin{equation*}
     \vb{K}_Q = (\vb{G}-\vb{Q})\times m\vb{v}_Q + \tens{I}_Q \vb*{\omega},
 \end{equation*}
@@ -64,13 +64,170 @@ derivata assoluta e derivata relativa di un vettore:
     Se $\vb{Q}$ è un punto fisso allora $K_Q = \tens{I}_Q \vb*{\omega}$, e quindi il momento angolare è direttamente proporzionale alla velocità angolare tramite il tensore di inerzia.
 \end{remark}
 
-Per cui
+Si ha inoltre per il punto $\vb{O}$: \note{Lezione 14/05/2026}
 \begin{equation*}
-    \dot{\vb{K}}_O = \vb{K}_0' + \vb*{\omega}\times \vb{K}_O = \left(\tens{I}_O \vb*{\omega}\right)' + \vb*{\omega}\times (\tens{I}_O\vb*{\omega}) = \tens{I}_O \dot{\vb*{\omega}} + \vb*{\omega} \times (\tens{I}_O \vb*{\omega}),
-\end{equation*}
-e quindi la nostra equazione cardinale diventa
-\begin{equation*}
-    \tens{I}_O \dot{\vb*{\omega}} + \vb*{\omega} \times (\tens{I}_O \vb*{\omega}) = \vb{M}_O^{(a)}.
+    \vb{K}_O = \tens{I}_O \vb*{\omega} = \begin{pmatrix}
+        I_{1} & 0 & 0 \\
+        0 & I_{2} & 0 \\
+        0 & 0 & I_{3}
+    \end{pmatrix}
+    \begin{pmatrix}
+        \omega_1 \\
+        \omega_2 \\
+        \omega_3
+    \end{pmatrix} =
+    I_1 \omega_1 \vu{e}_1 + I_2 \omega_2 \vu{e}_2 + I_3 \omega_3 \vu{e}_3.
 \end{equation*}
 
-\textbf{TODO:} Mettere in ordine e introdurre i concetti di derivata assoluta e relativa.
+Dalle formule di Poisson, si ha che
+\begin{equation*}
+    \dot{\vb{K}}_O = \vb{K}_O' + \vb*{\omega} \times \vb{K}_O = \tens{I}_O \dot{\vb*{\omega}} + \vb*{\omega} \times (\tens{I}_O \vb*{\omega}).
+\end{equation*}
+Infatti per la velocità angolare la derivata assoluta e relativa coincidono:
+\begin{equation*}
+    \dot{\vb*{\omega}} = \vb*{\omega}' + \vb*{\omega} \times \vb*{\omega} = \vb*{\omega}'.
+\end{equation*}
+
+Infine calcoliamo
+\begin{multline*}
+    \vb*{\omega} \times (\tens{I}_O \vb*{\omega}) = \begin{vmatrix}
+        \vu{e}_1 & \vu{e}_2 & \vu{e}_3 \\
+        \omega_1 & \omega_2 & \omega_3 \\
+        I_1 \omega_1 & I_2 \omega_2 & I_3 \omega_3
+    \end{vmatrix} = (I_3 - I_2) \omega_2 \omega_3 \vu{e}_1 + (I_1 - I_3) \omega_3 \omega_1 \vu{e}_2 +\\ + (I_2 - I_1) \omega_1 \omega_2 \vu{e}_3.
+\end{multline*}
+
+\textbf{C'è corrispondenza biunivoca tra i moti possibili e le soluzioni delle equazioni cardinali}.
+
+Proiettiamo la seconda equazione cardinale 
+\begin{equation*}
+    \tens{I}_O \dot{\vb*{\omega}} + \vb*{\omega} \times (\tens{I}_O \vb*{\omega}) = \vb{M}_O^{(a)}
+\end{equation*}
+sugli assi solidale al corpo $\vu{e}_1, \vu{e}_2, \vu{e}_3$:
+\begin{equation*}
+    \begin{cases}
+        I_1 \dot{\omega}_1 - (I_2 - I_3) \omega_2 \omega_3 = M_{O,1}^{(a)} \\[0.5em]
+        I_2 \dot{\omega}_2 - (I_3 - I_1) \omega_3 \omega_1 = M_{O,2}^{(a)} \\[0.5em]
+        I_3 \dot{\omega}_3 - (I_1 - I_2) \omega_1 \omega_2 = M_{O,3}^{(a)}.
+    \end{cases}
+\end{equation*}
+Queste spno dette \emph{equazioni di Eulero} per un solido. Ogni equaione deriva da un'altra con una specifica permutazione cilcica degli indici $1, 2, 3$.
+
+Dalla trasformazione di coordinate fra la base solidale al corpo e quella fissa, si ha che
+\begin{equation*}
+    \begin{cases}
+        \omega_1 = \dot{\theta} \cos\varphi +\dot{\psi} \sin\theta \sin\varphi \\
+        \omega_2 = - \dot{\theta} \sin\varphi + \dot{\psi} \sin\theta \cos\varphi  \\
+        \omega_3 = \dot{\psi} \cos\theta + \dot{\varphi}.
+    \end{cases}
+\end{equation*}
+
+Per cui i momenti sono funzioni degli angoli di eulero, delle loro derivate ed evuentaulmente dal tempo:
+\begin{equation*}
+    \begin{cases}
+        M_{O,1}^{(a)} = M_{O,1}^{(a)}(\vb{\Theta}, \dot{\vb{\Theta}}, t) \\[0.5em]
+        M_{O,2}^{(a)} = M_{O,2}^{(a)}(\vb{\Theta}, \dot{\vb{\Theta}}, t) \\[0.5em]
+        M_{O,3}^{(a)} = M_{O,3}^{(a)}(\vb{\Theta}, \dot{\vb{\Theta}}, t).
+    \end{cases}
+\end{equation*}
+
+Le equazioni di Eulero sono quindi un sistema di 3 equazioni differenziali del seconodo ordine nelle incognite $\theta(t), \psi(t), \varphi(t)$, esprimibili in forma normale. Per il teorema di esistenza di Cauchy, esiste una soluzione unica per ogni condizione iniziale.
+
+\emph{RIvedi questa parte}
+Il tutto è esprimibile in forma matriciale come dall'espressione matriciale degli angoli di eulero in funzione della velocità angolare:
+\begin{equation*}
+    \begin{pmatrix}
+        \omega_1 \\
+        \omega_2 \\
+        \omega_3
+    \end{pmatrix} =
+    \begin{pmatrix}
+        \cos\varphi & 0 & \sin\theta \sin\varphi \\
+        -\sin\varphi & 0 & \sin\theta \cos\varphi  \\
+        0 & 1 & \cos\theta
+    \end{pmatrix}
+    \begin{pmatrix}
+        \dot{\theta} \\
+        \dot{\psi} \\
+        \dot{\varphi}
+    \end{pmatrix}.
+\end{equation*}
+la quale è invertibile.
+
+\begin{definition}[Moti alla Poinsot]
+    Diremo che il moto di un solido $\mathcal{S}$ è \emph{alla Poinsot}, o \emph{per inerzia}, se il momento delle forze attive è nullo,
+    \begin{equation*}
+        \vb{M}_Q^{(a)} = 0,
+    \end{equation*}
+    con $Q$ fisso o coincidente con il centro di massa $G$.
+\end{definition}
+
+Nel caso dei moti alla Poinsot, le equazioni di Eulero si riducono a
+\begin{equation*}
+    \begin{cases}
+        I_1 \dot{\omega}_1 - (I_2 - I_3) \omega_2 \omega_3 = 0 \\[0.5em]
+        I_2 \dot{\omega}_2 - (I_3 - I_1) \omega_3 \omega_1 = 0 \\[0.5em]
+        I_3 \dot{\omega}_3 - (I_1 - I_2) \omega_1 \omega_2 = 0.
+    \end{cases}
+\end{equation*}
+In questo caso è più conveniente considerare queste come equazioni differenziali del primo ordine nelle incognite $\omega_1(t), \omega_2(t), \omega_3(t)$.
+
+\begin{definition}[Solido a struttura giroscopica]
+    Diremo che un solido $\mathcal{S}$ è a \emph{struttura giroscopica} rispetto al punto $\vb{Q}$ se la matrice di inerzia 
+    \begin{equation*}
+        \tens{I}_Q = \begin{pmatrix}
+            I_1 & 0 & 0 \\
+            0 & I_2 & 0 \\
+            0 & 0 & I_3
+        \end{pmatrix}
+    \end{equation*}
+    presenta due momenti uguali ad esempio $I_1 = I_2 \neq I_3$. In questo caso, l'asse $\vu{e}_3$ del riferimento è detto \emph{asse giroscopico}.
+    Inoltre, se $\vb{Q}$ corrisponde al baricentro $\vb{G}$, allora diremo che il solido è un \emph{giroscopio}.
+\end{definition}
+\begin{remark}
+    I momenti principali di inerzia sono gli autovalori della matrice di inerzia. Per cui un solido a struttura giroscopica ha due autovalori coincidenti.
+\end{remark}
+
+Consideriamo il seguente problema:
+\begin{quote}
+    Per un solido con un punto fisso e liscio, sono ammessi i moti rotatori uniformi? Attorno a quali assi?\note{Nella letteratura si parla di \emph{rotazioni permanenti}}
+\end{quote}
+Nell'ipotesi di moto alla Poinsot tali moti esistono.
+
+Abbiamo quindi supposto fisso il movimento solidale:
+\begin{equation*}
+    \vb*{\omega} = \text{cost} \iff \dot{\vb*{\omega}} = 0
+\end{equation*}
+poiché $\dot{\vb*{\omega}} = \vb*{\omega}'$.
+Sostituendo nell'equazione di Eulero, si ha
+\begin{equation*}
+    \vb*{\omega} \times (\tens{I}_O \vb*{\omega}) = 0,
+\end{equation*}
+per cui $\vb*{\omega}$ è un autovettore della matrice di inerzia e i moti rotatori uniformi possono avvenire solo attorno a tali assi. 
+
+\begin{theorem}
+    Un moto di un solido $\mathcal{S}$ con un punto fisso $\vb{O}$ è una rotazione permanente se e solo se l'atto di moto all'istante iniziale è rotatorio intorno ad un asse principale di inerzia.
+\end{theorem}
+
+\begin{definition}[Moti precessionali]
+    Un moto polare di centro $\vb{O}$ di un solido $\mathcal{S}$ dicesi \emph{precessione} se esistono due rette $r$ e $s$ passanti per $\vb{O}$, con $r$ fissa e $s$ solidale al corpo, tali che l'angolo $\theta$ tra le due rette si mantiene costante durante il moto.
+\end{definition}
+
+\begin{proposition}
+    Il moto d un solido con un punto fisso $\vb{O}$ è una precessione se e solo se
+    \begin{equation*}
+        \vb*{\omega} = \lambda \vu{e}_3 + \mu \vu{i}_3,
+    \end{equation*}
+    dove $\vu{e}_3$ è un versore solidale al solido e $\vu{i}_3$ è un versore fisso. Se $\lambda$ e $\mu$ sono indipendenti dal tempo, diremo che la precessione è \emph{uniforme}.
+\end{proposition}
+\begin{proof}[Necessità]
+    L'angolo tra $r$ e $s$ è costante e
+    \begin{equation*}
+        \cos\theta = \vu{e}_3 \cdot \vu{i}_3.
+    \end{equation*}
+    Derivando rispetto al tempo, per le formule di Poisson, si ha
+    \begin{equation*}
+        \dv{\vu{e}_3}{t} \cdot \vu{i}_3  = \vb*{\omega}\cross\vu{e}_3\cdot\vu{i}_3 = 0,
+    \end{equation*}
+    da cui $\vb*{\omega} \cross \vu{e}_3$ è ortogonale a $\vu{i}_3$. Analogamente, si ha che $\vb*{\omega} \cross \vu{i}_3$ è ortogonale a $\vu{e}_3$. Per cui $\vb*{\omega}$ è ortogonale a entrambi i versori, e quindi è una combinazione lineare dei due.
+\end{proof}
