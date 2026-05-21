@@ -308,9 +308,9 @@ In particolare, $\var{L}^{(v)} = 0$ per gli spostamenti virtuali reversibili.
 
 Questa è l'espressione analitica del fatto che la reazione vincolare deve essere normale alla superficie di contatto.
 
-\begin{property}\note{Lezione 19/03/2026}
+\begin{proposition}\note{Lezione 19/03/2026}
 Se $\mathcal{S}$ è un sistema a vincoli privi di attrito allora è a vincoli ideali.
-\end{property}
+\end{proposition}
 \section{Forze ed energia nella formulazione lagrangiana}
 In questa parte fissiamo le considerazioni su forze ed energia che useremo per ottenere le equazioni di Lagrange. Consideriamo quindi un sistema olonomo di punti
 \begin{equation*}
@@ -427,7 +427,7 @@ Ora, nel sistema oltre alle forze che agiscono sui punti, ci sono anche le forze
 \begin{equation*}
     \dd{T} = \underbrace{\dd{L}^{(a)}}_{\text{conservativo}} + \dd{L}^{(v)},
 \end{equation*}
-dove $\dd{L}^{(a)}$ è il lavoro reale delle forze attive, mentre $\dd{L}^{(v)}$ è il lavoro reale delle forze vincolari. Se i vincoli sono fissi, lisci e bilaterali, quindi il sistema è scleronomo, allora si ha
+dove $\dd{L}^{(a)}$ è il lavoro reale delle forze attive, mentre $\dd{L}^{(v)}$ è il lavoro reale delle forze vincolari. Se i vincoli sono fissi, lisci e bilaterali, e quindi il sistema è scleronomo, allora si ha
 \begin{equation*}
     \begin{cases}
         \var{L}^{(v)} \geq 0 \\
@@ -498,9 +498,9 @@ La parte quadratica dell'energia cinetica definisce la matrice
 detta \emph{matrice di massa}. Essa \`e simmetrica, poich\'e $a_{hk}=a_{kh}$.
 \end{definition}
 
-\begin{property}
+\begin{proposition}
 $T^2$ è una forma quadratica definita positiva.
-\end{property}
+\end{proposition}
 \begin{proof}
     \begin{align*}
         \sum_{h,k=1}^n a_{hk}\, \xi_h \xi_k &= \sum_{h,k=1}^n\left(\sum_{i=1}^N m_i \pdv{\vP_i}{q_h}\cdot \pdv{\vP_i}{q_k}\right)\xi_h \xi_k \\
@@ -739,7 +739,7 @@ L'equazione
     \label{eq:ellissoideInerzia}
     I_x x^2 + I_y y^2 + I_z z^2 - 2I_{xy} xy - 2I_{xz} xz - 2I_{yz} yz = 1
 \end{equation}
-definisce una quadrica, una particolare classe di superfici. Nello specifico, rappresenta un ellissoide.
+definisce una quadrica\note{Le quadriche sono una particolare classe di superfici} e, nello specifico, rappresenta un ellissoide.
 
 \begin{definition}[Ellissoide di inerzia]
     L'ellissoide definito dall'equazione \eqref{eq:ellissoideInerzia} si chiama \emph{ellissoide di inerzia} del sistema materiale rispetto al punto $O$.
@@ -747,10 +747,8 @@ definisce una quadrica, una particolare classe di superfici. Nello specifico, ra
 
 L'ellissoide di inerzia rappresenta la geometria del sistema, con le sue simmetrie di massa. Per esempio l'ellissoide di inerzia di un cubo ha sezione circolare, mentre quello di una sfera è una sfera.
 
-Affrontiamo ora il problema di come determinare i riferimenti principali di inerzia. Un riferimento in cui la matrice di inerzia si diagonalizza è formato dai suoi autovettori. Dovremo quindi risolvere l'equazione caratteristica
+Affrontiamo ora il problema di come determinare i riferimenti principali di inerzia. Poiché un riferimento in cui la matrice di inerzia si diagonalizza è formato dai suoi autovettori, dovremo risolvere l'equazione caratteristica
 \begin{equation*}
     \det(I_{ij} - \lambda \delta_{ij}) = 0,
 \end{equation*}
-per determinare gli autovalori $\lambda$ e poi trovare i corrispondenti autovettori.
-
-Tuttavia, se il sistema materiale presenta un piano di simmetria geometrico e di massa, allora i prodotti di inerzia che coinvolgono l'asse normale al piano di simmetria sono nulli, per cui la matrice di inerzia si diagonalizza già nella base ortonormale $x,y,z$ in cui l'asse $z$ è normale al piano di simmetria. In questo caso, il riferimento principale di inerzia coincide con il riferimento ortonormale $x,y,z$.
+per determinare gli autovalori $\lambda$ e poi trovare i corrispondenti autovettori. Tuttavia, se il sistema materiale presenta un piano di simmetria geometrico e di massa, allora i prodotti di inerzia che coinvolgono l'asse normale al piano di simmetria sono nulli, per cui la matrice di inerzia si diagonalizza già nella base ortonormale $\vu{x},\vu{y},\vu{z}$ in cui l'asse $\vu{z}$ è normale al piano di simmetria. In questo caso, il riferimento principale di inerzia coincide con il riferimento ortonormale $\vu{x},\vu{y},\vu{z}$.
