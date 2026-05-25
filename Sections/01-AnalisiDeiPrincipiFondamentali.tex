@@ -121,7 +121,7 @@ sono coordinate lagrangiane.
     Fissato un istante $t$, la \emph{configurazione istantanea} di un sistema è univocamente individuata dai valori delle $n$ coordinate generalizzate $q_1, q_2, \dots, q_n$. Geometricamente, possiamo associare tale stato a un punto in uno spazio astratto di dimensione $n$. L'insieme di tutte le configurazioni fisicamente ammissibili prende il nome di \emph{spazio delle configurazioni} $\mathcal{C}_n$.
 \end{definition}
 
-Lo spazio $\mathcal{C}_n$ è, in generale, una varietà differenziabile (può presentare curvature o topologie non banali, come la superficie di una sfera o di un toro). Tuttavia, è sufficiente sapere che localmente esso è sempre assimilabile allo spazio cartesiano $\R^n$. D'ora in avanti considereremo sistemi soggetti esclusivamente a vincoli olonomi bilateri.
+Lo spazio $\mathcal{C}_n$ è, in generale, una varietà differenziabile e può presentare curvature o topologie non banali, come la superficie di una sfera o di un toro. Tuttavia, è sufficiente sapere che localmente esso è sempre assimilabile allo spazio cartesiano $\R^n$. D'ora in avanti considereremo sistemi soggetti esclusivamente a vincoli olonomi bilateri.
 
 In questo quadro geometrico, il moto del sistema in un intervallo di tempo $[t_1, t_2]$ è descritto da una curva continua $\vq(t)$ all'interno dello spazio delle configurazioni, definita dalle funzioni:
 \begin{equation*}
@@ -129,13 +129,13 @@ In questo quadro geometrico, il moto del sistema in un intervallo di tempo $[t_1
 \end{equation*}
 Si richiede comunemente che tali funzioni siano di classe $C^2([t_1, t_2])$ per garantire l'esistenza di velocità e accelerazioni. Descrivere il moto in questo modo, utilizzando le coordinate libere, incorpora in modo automatico e implicito il perfetto rispetto dei vincoli.
 
-Per collegare la descrizione configurazionale alla cinematica, introduciamo il concetto di \emph{spostamenti infinitesimi} o \emph{variazioni}.\note{Non ci sono approssimazioni: le espressioni sono esatte a livello differenziale}
+Per collegare la descrizione configurazionale alla cinematica, introduciamo il concetto di \emph{spostamenti infinitesimi} o \emph{variazioni}.
 
 Consideriamo il sistema di coordinate lagrangiane
 \begin{equation*}
     \vP = \vP(q_1, q_2, \dots, q_n; t).
 \end{equation*}
-Possiamo calcolare la velocità del punto materiale (di posizione $\vP$) come
+Possiamo calcolare la velocità del punto materiale di posizione $\vP$ come
 \begin{equation*}
     \vv = \dv{\vP}{t} = \sum_{h=1}^n \pdv{\vP}{q_h} \dot{q}_h + \pdv{\vP}{t},
 \end{equation*}
@@ -153,7 +153,7 @@ Il versore radiale è
 \[
 \vu{u}_r = (\cos\theta\,\vu{i} + \sin\theta\,\vu{j})
 \]
-e il versore trasversale (tangente) è
+e il versore tangente è
 \[
     \vu{u}_\tau = (-\sin\theta\,\vu{i} + \cos\theta\,\vu{j}).
 \]
@@ -169,17 +169,17 @@ che mostra come la variazione infinitesima sia tangente alla traiettoria.
 \end{example}
 
 \begin{definition}[Spostamenti reali e virtuali]
-Parliamo di spostamenti \emph{reali} quando $\dd{t} \neq 0$ e di spostamenti \emph{virtuali} quando $\dd{t} = 0$.\note{Probabilmente Stevino nel '500 è stato il primo a parlare di spostamenti virtuali, con maggiore sistematizzazione da parte di Bernoulli e poi Lagrange}
-Per cui abbiamo:
+Definiamo uno spostamento reale $\dd{\vP}$ come una variazione infinitesima della posizione in un intervallo di tempo $\dd{t}$ non nullo, che tiene quindi conto di un eventuale moto del vincolo.\note{Il concetto di spostamento virtuale affonda le radici nei lavori di Stevino nel '500, per essere poi formalizzato da Bernoulli e Lagrange.} Uno spostamento virtuale $\var{\vP}$ è invece una variazione infinitesima a tempo congelato, cioè con $\dd{t} = 0$, mantenendo anche i vincoli bloccati.
+
+Si ha quindi:
 \begin{align*}
-    \dd{\vP} &= \sum_{h=1}^n \pdv{\vP}{q_h} \dd{q_h} + \pdv{\vP}{t} \dd{t} \quad &\text{spostamenti reali} \\
-    \var{\vP} &= \sum_{h=1}^n \pdv{\vP}{q_h} \var{q}_h \quad &\text{spostamenti virtuali}.
+    \dd{\vP} &= \sum_{h=1}^n \pdv{\vP}{q_h} \dd{q_h} + \pdv{\vP}{t} \dd{t} \\
+    \var{\vP} &= \sum_{h=1}^n \pdv{\vP}{q_h} \var{q}_h
 \end{align*}
+Per visualizzare la differenza, riprendiamo l'esempio della particella sulla guida ruotante. Il movimento della particella è la somma di due contributi: lo scorrimento lungo la guida, ovvero il moto relativo, e la rotazione della guida stessa, che costituisce il moto di trascinamento. Lo spostamento reale $\dd{\vP}$ tra $t$ e $t + \dd{t}$ li include entrambi, poiché al trascorrere del tempo la guida si sposta. Al contrario, lo spostamento virtuale $\var{\vP}$ congela il tempo all'istante $t$: il trascinamento viene azzerato, poiché la guida è temporaneamente bloccata, e l'unico movimento ammesso è il puro scorrimento lungo la guida.
+
+È immediato notare dalle formule che se i vincoli sono fissi, e quindi indipendenti dal tempo, gli spostamenti virtuali coincidono esattamente con quelli reali.
 \end{definition}
-
-Tornando alla particella vincolata a muoversi su una guida ruotante, se consideriamo l'istante $t + \dd{t}$, si ha uno spostamento possibile $\dd{\vP}$ che include l'effetto della rotazione della guida. Se invece consideriamo il vincolo "congelato" all'istante $t$ (cioè la guida fissata), lo spostamento virtuale $\var{\vP}$ descrive la variazione compatibile con i vincoli a tempo fissato.
-
-Spostamenti virtuali e reali coincidono se si hanno vincoli indipendenti dal tempo.
 
 \subsection{Vincoli unilateri e spostamenti ammessi}
 Le coordinate lagrangiane non incorporano automaticamente i vincoli unilaterali; è quindi necessario che gli spostamenti virtuali rispettino anche tali vincoli.
