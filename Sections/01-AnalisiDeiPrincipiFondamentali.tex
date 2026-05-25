@@ -46,7 +46,7 @@ I vincoli \emph{olonomi} non dipendono dalle velocità e impongono condizioni su
 Viceversa si dicono \emph{anolonomi} se dipendono dalle velocità.
 Diremo inoltre \emph{reonomi} i vincoli dipendenti esplicitamente dal tempo e \emph{scleronomi} quelli indipendenti dal tempo.
 \end{definition}
-\begin{proposition}[Calcolo dei gradi di libertà]
+\begin{proposition}[Calcolo dei gradi di libertà]\label{prop:gradoLiberta}
 Il numero di gradi di libertà del sistema è dato da
 \begin{equation*}
     n = \ell - \rho,
@@ -104,7 +104,7 @@ Consideriamo un punto che può scorrere liberamente su una guida rettilinea ruot
 \[
     \vP = x\,\vu{i} + y\,\vu{j}.
 \]
-Sia $\delta=\abs{\vP - O}$ la distanza tra il punto e l'origine. Le coordinate sono
+Sia $\delta=\abs{\vP}$ la distanza tra il punto e l'origine. Le coordinate sono
 \begin{equation*}
     \begin{cases}
         x = \delta \cos(\omega t) \\
@@ -279,11 +279,11 @@ In questa ipotesi, le reazioni vincolari non compiono lavoro virtuale sugli spos
 
 Se $\vF$ è la forza applicata a un punto materiale e $\dd{\vP}$ il suo spostamento infinitesimo possibile, il lavoro elementare è
 \begin{equation*}
-    \dd{L} = \vF\cdot \dd{\vP} = \sum_{i=1}^n F_i \cdot \dd{P_i}.
+    \dd{L} = \vF\cdot \dd{\vP} = \sum_{i=1}^n F_i\,\dd{P_i}.
 \end{equation*}
 Analogamente definiamo il lavoro virtuale
 \begin{equation*}
-    \var{L} = \vF\cdot \var{\vP} = \sum_{i=1}^n F_i \cdot \var{\vP}_i.
+    \var{L} = \vF\cdot \var{\vP} = \sum_{i=1}^n F_i\,\var{P_i}.
 \end{equation*}
 
 Indichiamo con $\var{L}^{(v)}$ il lavoro virtuale delle reazioni vincolari.
@@ -367,7 +367,7 @@ Con questa definizione otteniamo
     In questo caso le componenti lagrangiane della forza corrispondono a quelle cartesiane. Inoltre, si tratta semplicemente di una forma differenziale lineare in $\var{x}, \var{y}, \var{z}$.
 \end{example}
 
-Indichiamo con $Q_h$ le componenti lagrangiane (generalizzate) delle forze.
+Indichiamo con $Q_h$ le componenti lagrangiane delle forze.
 Le $Q_h$ sono funzioni
 \begin{equation*}
     Q_h = Q_h(q_1, q_2, \dots, q_n; \dot{q}_1, \dot{q}_2, \dots, \dot{q}_n; t).
@@ -493,7 +493,7 @@ Si ricorda che gli elementi $a_{hk}$ dipendono in generale dalle coordinate lagr
 \begin{definition}[Matrice di massa]
 La parte quadratica dell'energia cinetica definisce la matrice
 \[
-    A = (a_{hk}), \qquad a_{hk} = \sum_{i=1}^N m_i \pdv{\vP_i}{q_h}\cdot \pdv{\vP_i}{q_k},
+    \tens{A} = (a_{hk}), \qquad a_{hk} = \sum_{i=1}^N m_i \pdv{\vP_i}{q_h}\cdot \pdv{\vP_i}{q_k},
 \]
 detta \emph{matrice di massa}. Essa \`e simmetrica, poich\'e $a_{hk}=a_{kh}$.
 \end{definition}
@@ -513,242 +513,15 @@ $T^2$ è una forma quadratica definita positiva.
 
     Notiamo che la somma delle derivate $\pdv{\vP_i}{q_h}$ rappresenta una combinazione lineare delle colonne della matrice Jacobiana delle coordinate
     \begin{equation*}
-        \left(\begin{array}{cccc}
-            \pdv{x_1}{q_1} & \pdv{x_1}{q_2} & \dots & \pdv{x_1}{q_n} \\[0.2cm]
-            \pdv{y_1}{q_1} & \pdv{y_1}{q_2} & \dots & \pdv{y_1}{q_n} \\[0.2cm]
-            \pdv{z_1}{q_1} & \pdv{z_1}{q_2} & \dots & \pdv{z_1}{q_n} \\[0.2cm]
-            \vdots & \vdots & \ddots & \vdots \\[0.2cm]
-            \pdv{x_N}{q_1} & \pdv{x_N}{q_2} & \dots & \pdv{x_N}{q_n} \\[0.2cm]
-            \pdv{y_N}{q_1} & \pdv{y_N}{q_2} & \dots & \pdv{y_N}{q_n} \\[0.2cm]
-            \pdv{z_N}{q_1} & \pdv{z_N}{q_2} & \dots & \pdv{z_N}{q_n}
-        \end{array}\right)
-    \end{equation*}
+                \begin{pmatrix}
+                    \displaystyle\pdv{x_1}{q_1} & \displaystyle\pdv{x_1}{q_2} & \cdots & \displaystyle\pdv{x_1}{q_n} \\[0.7em]
+                    \displaystyle\pdv{y_1}{q_1} & \displaystyle\pdv{y_1}{q_2} & \cdots & \displaystyle\pdv{y_1}{q_n} \\[0.7em]
+                    \displaystyle\pdv{z_1}{q_1} & \displaystyle\pdv{z_1}{q_2} & \cdots & \displaystyle\pdv{z_1}{q_n} \\[0.7em]
+                    \vdots & \vdots & \ddots & \vdots \\[0.7em]
+                    \displaystyle\pdv{x_N}{q_1} & \displaystyle\pdv{x_N}{q_2} & \cdots & \displaystyle\pdv{x_N}{q_n} \\[0.7em]
+                    \displaystyle\pdv{y_N}{q_1} & \displaystyle\pdv{y_N}{q_2} & \cdots & \displaystyle\pdv{y_N}{q_n} \\[0.7em]
+                    \displaystyle\pdv{z_N}{q_1} & \displaystyle\pdv{z_N}{q_2} & \cdots & \displaystyle\pdv{z_N}{q_n}
+                \end{pmatrix}
+            \end{equation*}
     che ha rango $n$. Per cui la somma è uguale a zero solo se $\xi_h = 0$ per ogni $h = 1, 2, \dots, n$ in quanto le $q_i$ sono indipendenti.
 \end{proof}
-
-\section{Tensore di inerzia}\note{Lezione 23/03/2026}\label{sec:tensoreInerzia}
-Cominciamo la trattazione del tensore di inerzia partendo dal concetto di \emph{momento di inerzia}.
-\begin{definition}[Momento di inerzia]
-    Considerando un corpo esteso continuo, il \emph{momento di inerzia} rispetto a un asse $a$ è definito come
-\begin{equation*}
-    I_{a} = \int_C \rho\, d^2 \dd{c},\note{questo integrale potrebbe essere un integrale di linea, di superficie o di volume a seconda della distribuzione di massa del corpo}
-\end{equation*}
-dove $\rho$ è la densità di massa del corpo, $C$ è una generica regione dove è distribuita la massa e $d$ è la distanza di un generico punto dall'asse $a$.
-
-Analogamente per un sistema discreto di punti materiali, il momento di inerzia rispetto a un asse $a$ è definito come
-\begin{equation*}
-    I_{a} = \sum_{i=1}^N m_i d_i^2.
-\end{equation*}
-\end{definition}
-
-\begin{theorem}[Huygens-Steiner]
-    Il momento di inerzia $I_a$ di un corpo rispetto a un asse $a$ è uguale al momento di inerzia $I_{a'}$ rispetto a un asse parallelo $a'$ che passa per il centro di massa del corpo, più il prodotto della massa totale $M$ del corpo per il quadrato della distanza $d$ fra i due assi:
-    \begin{equation*}
-        I_a = I_{a'} + M d^2.
-    \end{equation*}
-\end{theorem}
-
-Consideriamo ora un asse $a$ con versore $\vu{u}$ e un punto in posizione $P$.
-
-\begin{figure}[h]
-\centering
-\begin{tikzpicture}[>=stealth, line cap=round, line join=round, rotate=10]
-    \coordinate (O) at (0,0);
-    \coordinate (A1) at (-0.8,0);
-    \coordinate (A2) at (4.8,0);
-    \coordinate (U1) at (3.8,0.18);
-    \coordinate (U2) at (4.5,0.18);
-    \coordinate (P) at (2.4,-1.1);
-    \coordinate (H) at (2.4,0);
-    \pgfmathanglebetweenpoints{\pgfpointanchor{O}{center}}{\pgfpointanchor{P}{center}}
-    \let\ang\pgfmathresult
-    \pgfmathsetmacro{\angcw}{-abs(\ang)}
-
-    \draw[thick] (A1) -- (A2) node[above right] {$a$};
-    \draw[->,thin] (U1) -- (U2) node[midway, above] {$\vu{u}$};
-    \draw[->,thick] (O) -- (P) node[below right] {$P$};
-    \draw[thin] (0.6,0) arc (0:{\ang-360}:0.6) node[midway, right] {$\alpha$};
-    \draw[BrickRed,thin] (H) -- (P) node[midway, right] {$d$};
-    \node[left] at (0,0.2) {$O$};
-\end{tikzpicture}
-\caption{Distanza perpendicolare di un punto da un asse.}
-\label{fig:tensoreInerzia}
-\end{figure}
-Si nota che la distanza $d$ può essere espressa come
-\begin{equation*}
-    d = \abs{\vP\times \vu{u}} = \vP \sin\alpha,
-\end{equation*}
-Calcoliamo il momento di inerzia $I_a$ di un corpo con densità $\rho$
-\begin{equation*}
-    I_a = \int_C \rho\, d^2 \dd{c} = \int_C \rho \abs{\vP\times \vu{u}}^2 \dd{c}= \int_C \rho (\vP\times \vu{u})\cdot(\vP\times \vu{u}) \dd{c}.
-\end{equation*}
-
-Utilizzando l'identità vettoriale
-\begin{equation*}
-    \vva \times \vvb \cdot \vc = \vc\times\vva \cdot \vvb = \vvb \times \vc \cdot \vva,
-\end{equation*}
-si ottiene
-\begin{align*}
-    I_a &= \int_C \rho \vu{u}\cdot \{[\vP\times \vu{u}]\times\vP\}\dd{c} \\
-    &= \vu{u}\cdot\int_C \rho\{[\vP\times \vu{u}]\times\vP\}\dd{c}.
-\end{align*}
-Utilizziamo ora l'identità vettoriale
-\begin{equation*}
-    \vva \times (\vvb \times \vc) = \vvb (\vva \cdot \vc) - \vc (\vva \cdot \vvb),
-\end{equation*}
-otteniamo quindi
-\begin{align}
-    \label{eq:tensoreInerzia}
-    I_a &= \vu{u}\cdot\int_C \rho\{ (\vP\cdot\vP)\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c} \nonumber \\
-    &= \vu{u}\cdot\int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c}.
-\end{align}
-Quest'ultimo termine permette di definire un endomorfismo sullo spazio vettoriale tridimensionale
-\begin{equation*}
-    \tau(\vv) \defeq \int_C \rho\{ P^2\vv - (\vP\cdot\vv)\vP \}\dd{c} \quad \forall \vv \in E_3,\note{si noti che $\vv$ non è necessariamente unitario}
-\end{equation*}
-che si chiama \emph{endomorfismo di inerzia} del sistema materiale rispetto all'asse $a$.
-
-Sempre nella medesima configurazione (figura \ref{fig:tensoreInerzia}), consideriamo una terna $x,y,z$ di assi cartesiani ortogonali, centrati in $O$, con i versori coordinati $\vu{i},\vu{j},\vu{k}$. Poiché $\vu{u}$ è un versore sappiamo che può essere espresso come
-\begin{equation*}
-    \vu{u} = \alpha \vu{i} + \beta \vu{j} + \gamma \vu{k},
-\end{equation*}
-con $\alpha^2 + \beta^2 + \gamma^2 = 1$. Inoltre, possiamo esprimere il punto $P$ come
-\begin{equation*}
-    \vP = x\vu{i} + y\vu{j} + z\vu{k}.
-\end{equation*}
-Sostituendo nell'integrale in equazione \eqref{eq:tensoreInerzia} otteniamo
-\begin{align*}
-    \int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c}
-    = &\vu{i}\int_C \rho \{ (x^2+y^2+z^2)\alpha - (x\alpha + y\beta + z\gamma)x \} \dd{c} \\
-    + &\vu{j}\int_C \rho \{ (x^2+y^2+z^2)\beta - (x\alpha + y\beta + z\gamma)y \} \dd{c} \\
-    + &\vu{k}\int_C \rho \{ (x^2+y^2+z^2)\gamma - (x\alpha + y\beta + z\gamma)z \} \dd{c}.
-\end{align*}
-Notiamo che nel primo integrale si elidono i termini $\alpha x^2$, nel secondo i termini $\beta y^2$, e nel terzo i termini $\gamma z^2$, per cui otteniamo
-\begin{align*}
-    \int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c}
-    = &\vu{i}\int_C \rho \{ (y^2+z^2)\alpha - ( y\beta + z\gamma)x \} \dd{c} \\
-    + &\vu{j}\int_C \rho \{ (x^2+z^2)\beta - (x\alpha + z\gamma)y \} \dd{c} \\
-    + &\vu{k}\int_C \rho \{ (x^2+y^2)\gamma - (x\alpha + y\beta)z \} \dd{c}.
-\end{align*}
-
-Soffermiamoci ora componente per componente. La prima componente diventa
-\begin{equation*}
-    \vu{i}\left[\alpha\int_C \rho(y^2+z^2) \dd{c} -\beta \int_C \rho x y \dd{c} - \gamma \int_C \rho x z \dd{c}\right]. 
-\end{equation*}
-Analogamente, la seconda componente diventa
-\begin{equation*}
-    \vu{j}\left[ \beta\int_C \rho(x^2+z^2) \dd{c} -\alpha \int_C \rho x y \dd{c} - \gamma \int_C \rho y z \dd{c}\right].
-\end{equation*}
-Infine, la terza componente diventa
-\begin{equation*}
-    \vu{k}\left[ \gamma\int_C \rho(x^2+y^2) \dd{c} -\alpha \int_C \rho x z \dd{c} - \beta \int_C \rho y z \dd{c}\right].
-\end{equation*}
-
-Per cui, sommando le tre componenti, otteniamo
-\begin{align*}
-    \int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c} 
-        = \vu{i}&\Bigg[\alpha\int_C \rho(y^2+z^2) \dd{c} -\beta \int_C \rho x y \dd{c} - \gamma \int_C \rho x z \dd{c}\Bigg] \\
-        \quad + \vu{j}&\Bigg[ \beta\int_C \rho(x^2+z^2) \dd{c} -\alpha \int_C \rho x y \dd{c} - \gamma \int_C \rho y z \dd{c}\Bigg] \\
-        \quad + \vu{k}&\Bigg[ \gamma\int_C \rho(x^2+y^2) \dd{c} -\alpha \int_C \rho x z \dd{c} - \beta \int_C \rho y z \dd{c}\Bigg].
-\end{align*}
-I primi termini di ciascuna componente definiscono i momenti di inerzia rispetto agli assi coordinati, mentre i secondi termini, prodotti misti, definiscono i prodotti di inerzia.\note{o momenti centrifughi} Definiamo quindi
-\begin{gather*}
-    I_{x} = \int_C \rho(y^2+z^2) \dd{c}, \quad I_{y} = \int_C \rho(x^2+z^2) \dd{c}, \quad I_{z} = \int_C \rho(x^2+y^2) \dd{c}, \\
-    I_{xy} = \int_C \rho x y \dd{c}, \quad I_{xz} = \int_C \rho x z \dd{c}, \quad I_{yz} = \int_C \rho y z \dd{c},
-\end{gather*}
-e otteniamo
-\begin{align*}
-    \int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c}
-    ={}&\vu{i}\left[\alpha I_{x} -\beta I_{xy} - \gamma I_{xz}\right] \\
-    + &\vu{j}\left[ \beta I_{y} -\alpha I_{xy} - \gamma I_{yz}\right] \\
-    + &\vu{k}\left[ \gamma I_{z} -\alpha I_{xz} - \beta I_{yz}\right].
-\end{align*}
-
-\begin{remark}
-    La presenza dei prodotti di inerzia porta all'allontanamento dell'asse dal suo assetto originario quando un solido viene posto in rotazione.
-\end{remark}
-
-Possiamo scrivere l'ultimo risultato come prodotto di una matrice per un vettore:
-\begin{align*}
-    \int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c} &=
-    \begin{pmatrix}
-        I_x & -I_{xy} & -I_{xz} \\
-        -I_{xy} & I_y & -I_{yz} \\
-        -I_{xz} & -I_{yz} & I_z
-    \end{pmatrix}
-    \begin{pmatrix}
-        \alpha \\
-        \beta \\
-        \gamma
-    \end{pmatrix} \\
-    &= \tens{I}_O\,\vu{u}
-\end{align*}
-
-\begin{definition}[Tensore di inerzia]
-    La matrice
-    \begin{equation*}
-        \tens{I}_O=
-        \begin{pmatrix}
-            I_x & -I_{xy} & -I_{xz} \\
-            -I_{xy} & I_y & -I_{yz} \\
-            -I_{xz} & -I_{yz} & I_z
-        \end{pmatrix}
-    \end{equation*}
-    si chiama \emph{tensore di inerzia}, o \emph{matrice di inerzia}, del sistema materiale rispetto al punto $O$.
-\end{definition}
-Il punto $O$ può tanto far parte del corpo quanto essere un punto esterno ad esso.
-
-Più precisamente, il tensore di inerzia è l'endomorfismo introdotto precedentemente, rappresentato nella base ortonormale $x,y,z$ dagli elementi della matrice $\tens{I}_O$. Non è molto diverso rispetto a considerare un vettore e la terna che si usa per rappresentarlo. Per i tensori le seguenti notazioni sono analoghe:
-\begin{equation*}
-    \tens{I}_O, \qquad \tenq{I}_O.
-\end{equation*}
-
-Abbiamo fatto i nostri calcoli considerando il versore $\vu{u}$, ma nell'atto pratico non abbiamo usato la proprietà $\alpha^2 + \beta^2 + \gamma^2 = 1$, per cui il risultato è valido per qualsiasi vettore $\vv$, arrivando alla definizione di endomorfismo di inerzia data precedentemente.
-
-Possiamo quindi scrivere il momento di inerzia $I_a$ rispetto all'asse $a$ come
-\begin{align*}
-    I_a &= \vu{u}\cdot (\tens{I}_O\,\vu{u}) \\
-    &= (\alpha, \beta, \gamma)\begin{pmatrix}
-        I_x & -I_{xy} & -I_{xz} \\
-        -I_{xy} & I_y & -I_{yz} \\
-        -I_{xz} & -I_{yz} & I_z
-    \end{pmatrix}
-    \begin{pmatrix}
-        \alpha \\
-        \beta \\
-        \gamma
-    \end{pmatrix} \\
-    &= \alpha^2 I_x + \beta^2 I_y + \gamma^2 I_z - 2\alpha\beta I_{xy} - 2\alpha\gamma I_{xz} - 2\beta\gamma I_{yz}.
-\end{align*}
-
-\subsection{Riferimenti principali di inerzia}
-La matrice di inerzia è reale e simmetrica, in quanto $I_{xy} = I_{yx}$, $I_{xz} = I_{zx}$ e $I_{yz} = I_{zy}$, per cui è diagonalizzabile.\note{per il teorema spettrale}
-
-Si ha anche che la matrice di inerzia è definita positiva, in quanto, quando la matrice si trova in forma diagonale, tutti i valori sulla diagonale, che corrispondono ai suoi autovalori, sono positivi.
-
-\begin{definition}[Riferimento principale di inerzia]
-    Si dice \emph{riferimento principale di inerzia} di un sistema materiale rispetto a un punto $O$ ogni riferimento ortonormale levogiro in cui la matrice di inerzia si diagonalizza.
-\end{definition}
-
-Considerando il generico prodotto
-\begin{equation*}
-    (x,y,z)\cdot(\tens{I}_O\cdot(x,y,z)) = I_x x^2 + I_y y^2 + I_z z^2 - 2I_{xy} xy - 2I_{xz} xz - 2I_{yz} yz.
-\end{equation*}
-L'equazione
-\begin{equation}
-    \label{eq:ellissoideInerzia}
-    I_x x^2 + I_y y^2 + I_z z^2 - 2I_{xy} xy - 2I_{xz} xz - 2I_{yz} yz = 1
-\end{equation}
-definisce una quadrica\note{Le quadriche sono una particolare classe di superfici} e, nello specifico, rappresenta un ellissoide.
-
-\begin{definition}[Ellissoide di inerzia]
-    L'ellissoide definito dall'equazione \eqref{eq:ellissoideInerzia} si chiama \emph{ellissoide di inerzia} del sistema materiale rispetto al punto $O$.
-\end{definition}
-
-L'ellissoide di inerzia rappresenta la geometria del sistema, con le sue simmetrie di massa. Per esempio l'ellissoide di inerzia di un cubo ha sezione circolare, mentre quello di una sfera è una sfera.
-
-Affrontiamo ora il problema di come determinare i riferimenti principali di inerzia. Poiché un riferimento in cui la matrice di inerzia si diagonalizza è formato dai suoi autovettori, dovremo risolvere l'equazione caratteristica
-\begin{equation*}
-    \det(I_{ij} - \lambda \delta_{ij}) = 0,
-\end{equation*}
-per determinare gli autovalori $\lambda$ e poi trovare i corrispondenti autovettori. Tuttavia, se il sistema materiale presenta un piano di simmetria geometrico e di massa, allora i prodotti di inerzia che coinvolgono l'asse normale al piano di simmetria sono nulli, per cui la matrice di inerzia si diagonalizza già nella base ortonormale $\vu{x},\vu{y},\vu{z}$ in cui l'asse $\vu{z}$ è normale al piano di simmetria. In questo caso, il riferimento principale di inerzia coincide con il riferimento ortonormale $\vu{x},\vu{y},\vu{z}$.

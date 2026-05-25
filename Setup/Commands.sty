@@ -77,3 +77,17 @@
   }[#1]%
 }
 % ======================================================================
+
+\newcommand{\vud}[1]{\dot{\bm{\hat{\mathrm{#1}}}}}
+
+\NewDocumentCommand{\dva}{ m g }{%
+  \IfNoValueTF{#2}
+    {\frac{\dd_a}{\dd #1}} % Se c'è 1 solo argomento (Forma operatoriale)
+    {\frac{\dd_a #1}{\dd #2}} % Se ci sono 2 argomenti (Derivata completa)
+}
+
+\NewDocumentCommand{\dvr}{ m g }{%
+  \IfNoValueTF{#2}
+    {\frac{\dd_r}{\dd #1}} % Se c'è 1 solo argomento (Forma operatoriale)
+    {\frac{\dd_r #1}{\dd #2}} % Se ci sono 2 argomenti (Derivata completa)
+}

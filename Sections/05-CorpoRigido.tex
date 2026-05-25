@@ -1,70 +1,745 @@
 \chapter{Corpo rigido}
 
-Come da quanto visto quando abbiamo introdotto il tensore di inerzia nella Sezione~\ref{sec:tensoreInerzia}, il momento di inerzia è dato da
+Questo capitolo è dedicato allo studio del moto di un corpo rigido. Discuteremo prima il caso di un corpo rigido con un punto fisso, soggetto a vincoli lisci, e poi il caso di un corpo rigido libero. Prima di affrontare la dinamica è però necessario richiamare alcune nozioni di cinematica del corpo rigido e dei moti relativi, che saranno usate nell'analisi successiva.
+
+\section{Cinematica del corpo rigido e dei moti relativi} 
+\begin{definition}[Corpo rigido]\note{Trattato durante varie lezioni, sia all'inizio che alla fine del corso}
+    Un corpo $\mathcal{S}$ si dice \emph{rigido} se le mutue distanze fra due suoi punti qualsiasi rimangono invariate nel tempo, ovvero
+    \begin{equation*}
+        \abs{\vb{P}(t) - \vb{Q}(t)} = \text{cost} \quad \forall P, Q \in \mathcal{S}, \forall t.
+    \end{equation*}
+\end{definition}
+
+Indicando con $\vb{P}_i$ i vettori posizione dei punti del corpo, il \emph{vincolo di rigidità} può essere espresso nella forma
 \begin{equation*}
-    I_a = \tens{I_O}\vu{u},
+    \varphi_{ij}(\vb{P}_1, \dots, \vb{P}_N)
+    \defeq \abs{\vb{P}_i - \vb{P}_j}^2 - d_{ij}^2 = 0,
+    \qquad i,j = 1,\dots,N.
 \end{equation*}
-dove $\vu{u}$ è il versore che definisce la direzione dell'asse $a$ e $\tens{I_O}$ è il tensore di inerzia calcolato rispetto a un punto $O$ qualsiasi. Il tensore di inerzia è una matrice simmetrica, e quindi diagonalizzabile. Un riferimento di autovettore in cui si diagonalizza il tensore di inerzia è detto \emph{riferimento principale}.
+Qui $d_{ij}$ indica la distanza costante tra i punti $P_i$ e $P_j$. Tali relazioni sono equazioni nelle sole coordinate dei punti del corpo, e quindi rappresentano vincoli bilateri, olonomi e scleronomi.
 
-Solidi a struttura giroscopica due momenti principali sono uguali l'altro asse giroscopico.
+La natura di questi vincoli gioca un ruolo cruciale nel determinare le configurazioni accessibili del sistema. Poiché le distanze relative sono prefissate, per individuare univocamente la posizione e l'orientazione dell'intero solido nello spazio tridimensionale non è necessario tracciare le coordinate di ogni singola particella; è sufficiente conoscere la posizione di soli tre suoi punti qualsiasi non allineati, che indichiamo con $\vb{P}_1, \vb{P}_2$ e $\vb{P}_3$.
 
-\section{Solido con punto fisso e liscio}
-%Disegno solido tipo trottola
-Consideriamo un solido di massa $m$ con un punto fisso e liscio.
+Se questi tre punti fossero completamente liberi, il sistema possiederebbe $9$ coordinate spaziali indipendenti. Tuttavia, il vincolo di rigidità impone che le distanze reciproche tra questi tre punti rimangano strettamente costanti nel tempo. Questo si traduce in tre equazioni scalari indipendenti
+\begin{align*}
+    \abs{\vb{P}_1 - \vb{P}_2}^2 &= d_{12}^2, \\
+    \abs{\vb{P}_2 - \vb{P}_3}^2 &= d_{23}^2, \\
+    \abs{\vb{P}_3 - \vb{P}_1}^2 &= d_{31}^2.
+\end{align*}
 
-In questi casi il lavoro virtuale delle forze vincolari è nullo in quanto abbiamo un vincolo bilaterale e liscio. Consideriamo il riferimento $\{\vb{O}, \vu{i}_1, \vu{i}_2, \vu{i}_3\}$, fisso, e $\{\vb{O}, \vu{e}_1, \vu{e}_2, \vu{e}_3\}$, solidale al corpo e principale di inerzia.
+Attraverso la Proposizione~\ref{prop:gradoLiberta}, si evince chiaramente che il numero totale di gradi di libertà $n$ per un corpo rigido libero nello spazio è pari a
+$$ n = 9 - 3 = 6. $$
 
-Il piano descritto da $\vu{e}_1$ e $\vu{e}_2$ incontra quello descritto da $\vu{i}_1$ e $\vu{i}_2$ lungo un'asse che chiamiamo $\vu{n}$, detto \emph{linea dei nodi}. L'angolo tra i due piani è detto \emph{angolo di precessione} e lo indichiamo con $\psi$. L'angolo tra $\vu{e}_3$ e $\vu{i}_3$ è detto \emph{angolo di nutazione} e lo indichiamo con $\theta$. Infine, l'angolo di rotazione del corpo attorno a $\vu{e}_3$ è detto \emph{angolo di rotazione propria} e lo indichiamo con $\varphi$. Questi sono detti angoli di eulero.
+La scomposizione cinematica naturale del moto di un corpo rigido è in una traslazione di un polo qualsiasi del corpo, ad esempio il centro di massa $G$, e una rotazione attorno a tale polo. Il moto traslazionale è descritto dalle tre coordinate spaziali del polo rispetto ad un riferimento fisso, mentre il moto rotazionale è descritto dai tre angoli che sono definiti di seguito.
 
-I corpi rigidi hanno 6 gradi di libertà, ma in questo caso un punto è vincolato, per cui ne rimangono 3, che sono proprio gli angoli di eulero, che indichiamo con $\vb{\Theta}=(\theta, \psi, \varphi)$.
+\subsection{Angoli di Eulero}
 
-Scriviamo le equazioni cardinali separando le forze esterne e i momenti in attivi e vincolari:
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[>=stealth, scale=2.5, line join=round, line cap=round]
+    \tikzset{
+        x={(-0.6cm,-0.4cm)},
+        y={(1cm,-0.1cm)},
+        z={(0cm,1cm)}
+    }
+
+    \colorlet{colFisso}{black!80}
+    \colorlet{colMobile}{blue!70!black}   % come s(e3) nella precessione
+    \colorlet{colNodi}{purple!80!black}   % come mu i3 nella precessione
+    \colorlet{colSpin}{orange!90!black}   % come lambda e3 nella precessione
+    \colorlet{colAngolo}{black!70}
+
+    \def\angPsi{45}
+    \def\angTheta{40}
+    \def\angPhi{30}
+
+    \pgfmathsetmacro{\nx}{cos(\angPsi)}
+    \pgfmathsetmacro{\ny}{sin(\angPsi)}
+
+    \pgfmathsetmacro{\eZx}{sin(\angTheta)*sin(\angPsi)}
+    \pgfmathsetmacro{\eZy}{-sin(\angTheta)*cos(\angPsi)}
+    \pgfmathsetmacro{\eZz}{cos(\angTheta)}
+
+    \pgfmathsetmacro{\eXx}{cos(\angPhi)*cos(\angPsi) - sin(\angPhi)*cos(\angTheta)*sin(\angPsi)}
+    \pgfmathsetmacro{\eXy}{cos(\angPhi)*sin(\angPsi) + sin(\angPhi)*cos(\angTheta)*cos(\angPsi)}
+    \pgfmathsetmacro{\eXz}{sin(\angPhi)*sin(\angTheta)}
+
+    \pgfmathsetmacro{\eYx}{-sin(\angPhi)*cos(\angPsi) - cos(\angPhi)*cos(\angTheta)*sin(\angPsi)}
+    \pgfmathsetmacro{\eYy}{-sin(\angPhi)*sin(\angPsi) + cos(\angPhi)*cos(\angTheta)*cos(\angPsi)}
+    \pgfmathsetmacro{\eYz}{cos(\angPhi)*sin(\angTheta)}
+
+    % Assi fissi (nero, come r(i3) nella precessione)
+    \draw[->, thick, colFisso] (0,0,0) -- (1.5,0,0) node[above left] {$\vu{i}_1$};
+    \draw[->, thick, colFisso] (0,0,0) -- (0,1.5,0) node[right] {$\vu{i}_2$};
+    \draw[->, thick, colFisso] (0,0,0) -- (0,0,1.5) node[above] {$\vu{i}_3$};
+
+    % Linea dei nodi (viola, come mu i3 nella precessione)
+    \draw[->, thick, dashed, colNodi] (0,0,0) -- (1.5*\nx, 1.5*\ny, 0) 
+        node[below right] {$\vu{n}$};
+
+    % Assi mobili e1, e2 (arancione, come lambda e3)
+    \draw[->, thick, colSpin] (0,0,0) -- (1.5*\eXx, 1.5*\eXy, 1.5*\eXz) 
+        node[below right] {$\vu{e}_1$};
+    \draw[->, thick, colSpin] (0,0,0) -- (1.5*\eYx, 1.5*\eYy, 1.5*\eYz) 
+        node[above right] {$\vu{e}_2$};
+
+    % Asse mobile e3 (blu, come s(e3) nella precessione)
+    \draw[->, ultra thick, colMobile] (0,0,0) -- (1.5*\eZx, 1.5*\eZy, 1.5*\eZz) 
+        node[above left] {$\vu{e}_3$};
+
+    % Arco psi (precessione, nel piano i1-i2)
+    \draw[->, colNodi, thick] plot[domain=0:\angPsi, samples=20] 
+        ({0.7*cos(\x)}, {0.7*sin(\x)}, 0);
+    \node[colNodi] at ({0.85*cos(\angPsi/2)}, {0.85*sin(\angPsi/2)}, 0) {$\psi$};
+
+    % Arco theta (nutazione, da i3 verso e3)
+    \draw[->, colAngolo, thick] plot[domain=0:\angTheta, samples=20] 
+        ({0.7*sin(\x)*sin(\angPsi)}, {-0.7*sin(\x)*cos(\angPsi)}, {0.7*cos(\x)});
+    \node[colAngolo] at 
+        ({0.85*sin(\angTheta/2)*sin(\angPsi)}, {-0.85*sin(\angTheta/2)*cos(\angPsi)}, 
+         {0.85*cos(\angTheta/2)}) {$\theta$};
+
+    % Arco phi (rotazione propria, da n a e1 nel piano perp. a e3)
+    \draw[->, colSpin, thick] plot[domain=0:\angPhi, samples=20]
+        ({0.6*(cos(\x)*cos(\angPsi) - sin(\x)*cos(\angTheta)*sin(\angPsi))},
+         {0.6*(cos(\x)*sin(\angPsi) + sin(\x)*cos(\angTheta)*cos(\angPsi))},
+         {0.6*sin(\x)*sin(\angTheta)});
+    \node[colSpin] at 
+        ({0.75*(cos(\angPhi/2)*cos(\angPsi) - sin(\angPhi/2)*cos(\angTheta)*sin(\angPsi))},
+         {0.75*(cos(\angPhi/2)*sin(\angPsi) + sin(\angPhi/2)*cos(\angTheta)*cos(\angPsi))},
+         {0.75*sin(\angPhi/2)*sin(\angTheta)}) {$\varphi$};
+
+    \fill[black] (0,0,0) circle (0.4pt) node[below left, xshift=1ex] {$O$};
+
+\end{tikzpicture}
+\caption{Rappresentazione dei tre angoli di Eulero ($\psi, \theta, \varphi$) che legano 
+la terna fissa $\{\vu{i}_1, \vu{i}_2, \vu{i}_3\}$ alla terna solidale 
+$\{\vu{e}_1, \vu{e}_2, \vu{e}_3\}$.}
+\label{fig:angoli_eulero}
+\end{figure}
+
+Al fine di quantificare la rotazione del corpo, consideriamo due sistemi di riferimento con l'origine coincidente nel polo scelto $O$, che può rappresentare il punto fisso del solido o il suo centro di massa (figura~\ref{fig:angoli_eulero}): una terna fissa $\{O, \vu{i}_1, \vu{i}_2, \vu{i}_3\}$ e una terna mobile $\{O, \vu{e}_1, \vu{e}_2, \vu{e}_3\}$ solidale al corpo. Il piano descritto da $\vu{e}_1$ e $\vu{e}_2$ incontra quello descritto da $\vu{i}_1$ e $\vu{i}_2$ lungo un asse $n$, di versore direttore $\vu{n}$, detto \emph{linea dei nodi}.
+
+\begin{definition}[Angoli di Eulero]
+    L'orientazione della terna solidale rispetto a quella fissa è individuata da tre angoli, detti \emph{angoli di Eulero}:
+    \begin{itemize}
+        \item l'angolo di \emph{precessione} $\psi$, compreso tra l'asse fisso $\vu{i}_1$ e la linea dei nodi $\vu{n}$;
+        \item l'angolo \emph{di nutazione} $\theta$, compreso tra l'asse fisso $\vu{i}_3$ e l'asse solidale $\vu{e}_3$\note{pari all'inclinazione tra i due piani};
+        \item l'angolo \emph{di rotazione propria} $\varphi$, compreso tra la linea dei nodi $\vu{n}$ e l'asse solidale $\vu{e}_1$.
+    \end{itemize}
+\end{definition}
+
+\note{Non trattato durante il corso}
+Per comprendere cosa avviene geometricamente durante queste trasformazioni, seguiamo la trattazione di \citeauthorlink{goldstein} introducendo i sistemi di riferimento intermedi che descrivono il passaggio progressivo dalla terna fissa a quella solidale.
+
+La prima rotazione avviene di un angolo $\psi$ attorno all'asse fisso $\vu{i}_3$. Questa operazione ruota gli assi $\vu{i}_1$ e $\vu{i}_2$ sul piano orizzontale, definendo un primo sistema intermedio in cui il vecchio asse delle ascisse si sposta fino a coincidere con la linea dei nodi $\vu{n}$. La matrice associata è $\tens{D}$
+\begin{equation*}
+    \tens{D} = \begin{pmatrix} 
+        \cos\psi & \sin\psi & 0 \\ 
+        -\sin\psi & \cos\psi & 0 \\ 
+        0 & 0 & 1 
+    \end{pmatrix}.
+\end{equation*}
+
+La seconda rotazione avviene di un angolo $\theta$ attorno alla linea dei nodi $\vu{n}$ appena configurata. Questo movimento solleva il vecchio piano orizzontale e inclina l'asse verticale $\vu{i}_3$, proiettandolo nella sua posizione definitiva $\vu{e}_3$ e lasciando invariata la linea dei nodi. La matrice associata è $\tens{C}$
+\begin{equation*}
+    \tens{C} = \begin{pmatrix} 
+        1 & 0 & 0 \\ 
+        0 & \cos\theta & \sin\theta \\ 
+        0 & -\sin\theta & \cos\theta 
+    \end{pmatrix}.
+\end{equation*}
+
+L'ultima rotazione avviene di un angolo $\varphi$ attorno all'asse verticale finale $\vu{e}_3$. Questo movimento descrive lo spostamento proprio del corpo attorno al suo asse di simmetria, ruotando il piano che contiene la linea dei nodi fino a farla coincidere con l'asse solidale delle ascisse $\vu{e}_1$. La matrice $\tens{B}$ completa la trasformazione
+\begin{equation*}
+    \tens{B} = \begin{pmatrix} 
+        \cos\varphi & \sin\varphi & 0 \\ 
+        -\sin\varphi & \cos\varphi & 0 \\ 
+        0 & 0 & 1 
+    \end{pmatrix}.
+\end{equation*}
+
+La matrice della trasformazione complessiva risulterà dal prodotto d'insieme delle tre rotazioni $\tens{A} = \tens{B}\tens{C}\tens{D}$
+\begin{equation} \label{eq:matriceEulero}
+    \tens{A} = \begin{pmatrix} 
+        \cos\varphi\cos\psi - \cos\theta\sin\psi\sin\varphi & \cos\varphi\sin\psi + \cos\theta\cos\psi\sin\varphi & \sin\varphi\sin\theta \\ 
+        -\sin\varphi\cos\psi - \cos\theta\sin\psi\cos\varphi & -\sin\varphi\sin\psi + \cos\theta\cos\psi\cos\varphi & \cos\varphi\sin\theta \\ 
+        \sin\theta\sin\psi & -\sin\theta\cos\psi & \cos\theta 
+    \end{pmatrix}.
+\end{equation}
+
+Essendo il prodotto di trasformazioni ortogonali, la matrice $\tens{A}$ è anch'essa ortogonale e soddisfa la relazione $\tens{A}^{-1} = \tens{A}^T$. In aggiunta, poiché $\det\tens{A} = 1$, la trasformazione appartiene al gruppo ortogonale speciale $SO(3)$.
+
+\subsection{Derivata temporale di un vettore}
+
+Il moto del corpo rigido $\mathcal{S}$ comporta la continua variazione dell'orientazione della base solidale $\{O, \vu{e}_1, \vu{e}_2, \vu{e}_3\}$ rispetto al riferimento fisso $\{O, \vu{i}_1, \vu{i}_2, \vu{i}_3\}$. Il legame cinematico tra i due sistemi è interamente racchiuso nelle derivate temporali dei versori mobili, le quali, a causa del vincolo di rigidità, sono governate dal seguente teorema.
+
+\begin{theorem}[Formule di Poisson]
+    Esiste un unico vettore $\vb*{\omega}=\vb*{\omega}(t)$, indipendente dal riferimento solidale e detto \emph{velocità angolare}, tale che
+    \begin{equation*}
+        \begin{cases}
+            \displaystyle \dv{\vu{e}_1}{t} = \vb*{\omega} \cross \vu{e}_1 \\[0.7em]
+            \displaystyle \dv{\vu{e}_2}{t} = \vb*{\omega} \cross \vu{e}_2 \\[0.7em]
+            \displaystyle \dv{\vu{e}_3}{t} = \vb*{\omega} \cross \vu{e}_3
+        \end{cases}
+    \end{equation*}
+    Inoltre, se $\vb{u}$ è un qualsiasi vettore solidale a $\mathcal{S}$, resulta
+    \begin{equation*}
+        \dv{\vb{u}}{t} = \vb*{\omega} \cross \vb{u}.
+    \end{equation*}
+\end{theorem}
+
+L'introduzione della velocità angolare e delle formule di Poisson permette di mettere in relazione in modo sistematico le variazioni temporali dei vettori misurate in sistemi di riferimento differenti. Dato un generico vettore $\vb{u}(t)$, lo si esprima tramite le sue componenti nella base solidale a $\mathcal{S}$
+\begin{equation*}
+    \vb{u}(t) = \sum_{i=1}^3 u_i(t) \vu{e}_i.
+\end{equation*}
+Calcolando la derivata temporale di $\vb{u}$ rispetto alla terna fissa $\{O, \vu{i}_1, \vu{i}_2, \vu{i}_3\}$, si definisce la \emph{derivata assoluta}, indicata con l'operatore $\dva{t}$ o con il punto sovrascritto. Applicando la regola di derivazione del prodotto si ottiene
+\begin{equation}
+    \label{eq:derivataAssoluta}
+    \dva{\vb{u}}{t} \equiv \dot{\vb{u}} \defeq \sum_{i=1}^3 \dot{u}_i \vu{e}_i + \sum_{i=1}^3 u_i \vud{e}_i.
+\end{equation}
+Il primo termine a secondo membro quantifica la variazione del vettore così come viene percepita dall'osservatore solidale, per il quale i versori $\vu{e}_i$ appaiono temporalmente costanti. Tale termine definisce la \emph{derivata relativa} di $\vb{u}$, indicata con l'operatore $\dvr{t}$ o con l'apice
+\begin{equation*}
+    \dvr{\vb{u}}{t} \equiv \vb{u}' \defeq \sum_{i=1}^3 \dot{u}_i \vu{e}_i.
+\end{equation*}
+Il secondo termine della \eqref{eq:derivataAssoluta} può essere riscritto attraverso le formule di Poisson, ottenendo lo sviluppo
+\begin{equation*}
+    \sum_{i=1}^3 u_i \vud{e}_i = \sum_{i=1}^3 u_i (\vb*{\omega} \cross \vu{e}_i) = \vb*{\omega} \cross \left( \sum_{i=1}^3 u_i \vu{e}_i \right) = \vb*{\omega} \cross \vb{u}.
+\end{equation*}
+
+Sostituendo questi risultati nell'espressione iniziale si ricava l'identità fondamentale della cinematica relativa, oggetto del seguente teorema.
+
+\begin{theorem}[Teorema di derivazione cinematica]
+    Per ogni vettore $\vb{u}$ espresso nella base mobile solidale al corpo rigido $\mathcal{S}$, sussiste la relazione tra la derivata temporale assoluta e la derivata temporale relativa
+    \begin{equation*}
+        \dva{\vb{u}}{t} = \dvr{\vb{u}}{t} + \vb*{\omega} \cross \vb{u},
+    \end{equation*}
+    la quale, attraverso le rispettive notazioni compatte, assume la forma
+    \begin{equation*}
+        \dot{\vb{u}} = \vb{u}' + \vb*{\omega} \cross \vb{u}.
+    \end{equation*}
+\end{theorem}
+
+Data l'assoluta arbitrarietà nella scelta del vettore $\vb{u}$, la relazione può essere espressa direttamente nella sua forma operatoriale
+\begin{equation*}
+    \dva{t} = \qty(\dvr{t} + \vb*{\omega} \cross).
+\end{equation*}
+
+\begin{remark}
+    Applicando il teorema di derivazione cinematica al vettore velocità angolare $\vb*{\omega}$, poiché $\vb*{\omega} \cross \vb*{\omega} = 0$, si ottiene
+    \begin{equation*}
+        \dot{\vb*{\omega}} = \vb*{\omega}'.
+    \end{equation*}
+    L'\emph{accelerazione angolare} $\dot{\vb*{\omega}}$ è pertanto una grandezza cinematica invariante rispetto alla scelta dell'osservatore.
+\end{remark}
+
+\subsection{Distribuzione delle velocità e delle accelerazioni}
+
+L'invarianza delle distanze all'interno di un corpo rigido impone una precisa struttura geometrica alle velocità dei suoi punti. Tale distribuzione spaziale assume un'importanza centrale nello studio della cinematica.
+
+\begin{definition}[Atto di moto]
+    Si definisce \emph{atto di moto} di un sistema materiale a un dato istante $t$ il campo vettoriale delle velocità di tutti i punti appartenenti al sistema in quell'istante.
+\end{definition}
+
+Il comportamento di questo campo vettoriale per un sistema rigido è descritto tramite la relazione fondamentale della cinematica rispetto a un polo mobile $Q$.
+
+\begin{theorem}[Legge fondamentale della cinematica rigida]
+    Sia $\mathcal{S}$ un sistema materiale in moto. Condizione necessaria e sufficiente affinché il moto sia rigido è che, per ogni coppia di punti $P, Q \in \mathcal{S}$, la velocità obbedisca alla relazione
+    \begin{equation}
+        \label{eq:legge_cinematica}
+        \vb{v}_P = \vb{v}_Q + \vb*{\omega} \cross (\vb{P} - \vb{Q}).
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    Siano $P$ e $Q$ due punti arbitrari appartenenti al corpo rigido. La posizione spaziale del punto $P$ può essere relazionata a quella del polo $Q$ attraverso la scomposizione vettoriale geometrica
+    \begin{equation*}
+        \vb{P} = \vb{Q} + (\vb{P} - \vb{Q}).
+    \end{equation*}
+    Calcolando la derivata temporale di ambo i membri rispetto all'osservatore spaziale fisso si ottiene la relazione tra le velocità assolute
+    \begin{equation*}
+        \vb{v}_P = \vb{v}_Q + \dva{(\vb{P} - \vb{Q})}{t}.
+    \end{equation*}
+    Il vincolo di rigidità impone che la distanza reciproca tra i punti non vari nel tempo. Di conseguenza, il vettore posizione relativa $(\vb{P} - \vb{Q})$ è stazionario per un osservatore solidale a $\mathcal{S}$, implicando l'annullamento della sua derivata temporale relativa
+    \begin{equation*}
+        \dvr{(\vb{P} - \vb{Q})}{t} = 0.
+    \end{equation*}
+    Applicando il teorema di derivazione cinematica al vettore della posizione relativa, la variazione temporale assoluta si riduce al solo contributo di trascinamento rotazionale
+    \begin{equation*}
+        \dva{(\vb{P} - \vb{Q})}{t} = \dvr{(\vb{P} - \vb{Q})}{t} + \vb*{\omega} \cross (\vb{P} - \vb{Q}) = \vb*{\omega} \cross (\vb{P} - \vb{Q}).
+    \end{equation*}
+    Sostituendo questo termine nell'espressione della velocità assoluta del punto $P$ si ricava la tesi.
+\end{proof}
+
+La distribuzione delle accelerazioni si ottiene come diretta estensione della legge cinematica appena dimostrata.
+
+\begin{theorem}[Teorema di Rivals]
+    Siano $P$ e $Q$ due punti qualsiasi di un corpo rigido $\mathcal{S}$ in moto con velocità angolare $\vb*{\omega}$ e accelerazione angolare $\dot{\vb*{\omega}}$. Le accelerazioni assolute dei due punti sono legate dalla relazione
+    \begin{equation}
+        \vb{a}_P = \vb{a}_Q + \dot{\vb*{\omega}} \cross (\vb{P} - \vb{Q}) + \vb*{\omega} \cross \left[ \vb*{\omega} \cross (\vb{P} - \vb{Q}) \right].
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    Il campo delle accelerazioni all'interno del corpo rigido si determina derivando la legge fondamentale della cinematica rigida \eqref{eq:legge_cinematica} rispetto all'osservatore fisso
+    \begin{equation*}
+        \vb{a}_P = \dva{\vb{v}_P}{t} = \dva{\vb{v}_Q}{t} + \dva{}{t} \left[ \vb*{\omega} \cross (\vb{P} - \vb{Q}) \right].
+    \end{equation*}
+    Il primo termine a secondo membro rappresenta per definizione l'accelerazione assoluta $\vb{a}_Q$ del polo $Q$. Sviluppando il secondo termine attraverso la regola di Leibniz per la derivazione del prodotto vettoriale si ottiene lo sviluppo
+    \begin{equation*}
+        \vb{a}_P = \vb{a}_Q + \dva{\vb*{\omega}}{t} \cross (\vb{P} - \vb{Q}) + \vb*{\omega} \cross \dva{(\vb{P} - \vb{Q})}{t}.
+    \end{equation*}
+    La derivata assoluta del vettore posizione relativa, come ricavato nella dimostrazione precedente, è pari a $\vb*{\omega} \cross (\vb{P} - \vb{Q})$. Inoltre, scriviamo $\dva{\vb*{\omega}}{t}$ come $\dot{\vb*{\omega}}$. Sostituendo queste relazioni si giunge all'espressione definitiva
+    \begin{equation*}
+        \vb{a}_P = \vb{a}_Q + \dot{\vb*{\omega}} \cross (\vb{P} - \vb{Q}) + \vb*{\omega} \cross \left[ \vb*{\omega} \cross (\vb{P} - \vb{Q}) \right].
+    \end{equation*}
+\end{proof}
+
+\section{Tensore di inerzia}\note{Lezione 23/03/2026}\label{sec:tensoreInerzia}
+Cominciamo la trattazione del tensore di inerzia partendo dal concetto di \emph{momento di inerzia}.
+
+\begin{definition}[Momento di inerzia]
+    Considerando un corpo esteso continuo, il \emph{momento di inerzia} rispetto a un asse $a$ è definito come
+    \begin{equation*}
+        I_{a} = \int_C \rho\, d^2 \dd{c},\note{questo integrale potrebbe essere un integrale di linea, di superficie o di volume a seconda della distribuzione di massa del corpo}
+    \end{equation*}
+    dove $\rho$ è la densità di massa del corpo, $C$ è una generica regione dove è distribuita la massa e $d$ è la distanza di un generico punto dall'asse $a$. Analogamente, per un sistema discreto di punti materiali, il momento di inerzia rispetto a un asse $a$ è definito come
+    \begin{equation*}
+        I_{a} = \sum_{i=1}^N m_i d_i^2.
+    \end{equation*}
+\end{definition}
+
+\begin{theorem}[Huygens-Steiner]
+    Il momento di inerzia $I_a$ di un corpo rispetto a un asse $a$ è uguale al momento di inerzia $I_{a'}$ rispetto a un asse parallelo $a'$ che passa per il centro di massa del corpo, più il prodotto della massa totale $M$ del corpo per il quadrato della distanza $d$ fra i due assi
+    \begin{equation*}
+        I_a = I_{a'} + M d^2.
+    \end{equation*}
+\end{theorem}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[>=stealth, line cap=round, line join=round, rotate=10]
+    \coordinate (O) at (0,0);
+    \coordinate (A1) at (-0.8,0);
+    \coordinate (A2) at (4.8,0);
+    \coordinate (U1) at (3.8,0.18);
+    \coordinate (U2) at (4.5,0.18);
+    \coordinate (P) at (2.4,-1.1);
+    \coordinate (H) at (2.4,0);
+    \pgfmathanglebetweenpoints{\pgfpointanchor{O}{center}}{\pgfpointanchor{P}{center}}
+    \let\ang\pgfmathresult
+    \pgfmathsetmacro{\angcw}{-abs(\ang)}
+
+    \draw[thick] (A1) -- (A2) node[above right] {$a$};
+    \draw[->,thin] (U1) -- (U2) node[midway, above] {$\vu{u}$};
+    \draw[->,thick] (O) -- (P) node[below right] {$P$};
+    \draw[thin] (0.6,0) arc (0:{\ang-360}:0.6) node[midway, right] {$\alpha$};
+    \draw[BrickRed,thin] (H) -- (P) node[midway, right] {$d$};
+    \node[left] at (0,0.2) {$O$};
+\end{tikzpicture}
+\caption{Distanza perpendicolare di un punto da un asse.}
+\label{fig:tensoreInerzia}
+\end{figure}
+
+Consideriamo ora un asse $a$ con versore $\vu{u}$ e un punto in posizione $P$ (figura \ref{fig:tensoreInerzia}). Si nota che la distanza $d$ può essere espressa come
+\begin{equation*}
+    d = \abs{\vP\cross \vu{u}} =\abs{\vP} \sin\alpha.
+\end{equation*}
+Calcoliamo il momento di inerzia $I_a$ di un corpo con densità $\rho$
+\begin{equation*}
+    I_a = \int_C \rho\, d^2 \dd{c} = \int_C \rho \abs{\vP\cross \vu{u}}^2 \dd{c}= \int_C \rho (\vP\cross \vu{u})\cdot(\vP\cross \vu{u}) \dd{c}.
+\end{equation*}
+Utilizzando l'identità vettoriale
+\begin{equation*}
+    \vva \cross \vvb \cdot \vc = \vc\cross\vva \cdot \vvb = \vvb \cross \vc \cdot \vva,
+\end{equation*}
+si ottiene
+\begin{align*}
+    I_a &= \int_C \rho \vu{u}\cdot \{[\vP\cross \vu{u}]\cross\vP\}\dd{c} \\
+    &= \vu{u}\cdot\int_C \rho\{[\vP\cross \vu{u}]\cross\vP\}\dd{c}.
+\end{align*}
+Utilizziamo ora l'identità vettoriale
+\begin{equation*}
+    \vva \cross (\vvb \cross \vc) = \vvb (\vva \cdot \vc) - \vc (\vva \cdot \vvb),
+\end{equation*}
+otteniamo quindi
+\begin{align}
+    \label{eq:tensoreInerzia}
+    I_a &= \vu{u}\cdot\int_C \rho\{ (\vP\cdot\vP)\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c} \nonumber \\
+    &= \vu{u}\cdot\int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c}.
+\end{align}
+Quest'ultimo termine permette di definire un endomorfismo sullo spazio vettoriale tridimensionale
+\begin{equation*}
+    \tau(\vv) \defeq \int_C \rho\{ P^2\vv - (\vP\cdot\vv)\vP \}\dd{c} \quad \forall \vv \in E_3,\note{si noti che $\vv$ non è necessariamente unitario}
+\end{equation*}
+che si chiama \emph{endomorfismo di inerzia} del sistema materiale rispetto all'asse $a$.
+
+Sempre nella medesima configurazione (figura \ref{fig:tensoreInerzia}), consideriamo una terna $x,y,z$ di assi cartesiani ortogonali, centrati in $O$, con i versori coordinati $\vu{i},\vu{j},\vu{k}$. Poiché $\vu{u}$ è un versore sappiamo che può essere espresso come
+\begin{equation*}
+    \vu{u} = \alpha \vu{i} + \beta \vu{j} + \gamma \vu{k},
+\end{equation*}
+con $\alpha^2 + \beta^2 + \gamma^2 = 1$. Inoltre, possiamo esprimere il punto $P$ come
+\begin{equation*}
+    \vP = x\vu{i} + y\vu{j} + z\vu{k}.
+\end{equation*}
+Sostituendo nell'integrale in equazione \eqref{eq:tensoreInerzia} otteniamo
+\begin{align*}
+    \int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c}
+    = &\vu{i}\int_C \rho \{ (x^2+y^2+z^2)\alpha - (x\alpha + y\beta + z\gamma)x \} \dd{c} \\
+    + &\vu{j}\int_C \rho \{ (x^2+y^2+z^2)\beta - (x\alpha + y\beta + z\gamma)y \} \dd{c} \\
+    + &\vu{k}\int_C \rho \{ (x^2+y^2+z^2)\gamma - (x\alpha + y\beta + z\gamma)z \} \dd{c}.
+\end{align*}
+Notiamo che nel primo integrale si elidono i termini $\alpha x^2$, nel secondo i termini $\beta y^2$, e nel terzo i termini $\gamma z^2$, per cui otteniamo
+\begin{align*}
+    \int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c}
+    = &\vu{i}\int_C \rho \{ (y^2+z^2)\alpha - ( y\beta + z\gamma)x \} \dd{c} \\
+    + &\vu{j}\int_C \rho \{ (x^2+z^2)\beta - (x\alpha + z\gamma)y \} \dd{c} \\
+    + &\vu{k}\int_C \rho \{ (x^2+y^2)\gamma - (x\alpha + y\beta)z \} \dd{c}.
+\end{align*}
+
+Soffermiamoci ora componente per componente. La prima componente diventa
+\begin{equation*}
+    \vu{i}\left[\alpha\int_C \rho(y^2+z^2) \dd{c} -\beta \int_C \rho x y \dd{c} - \gamma \int_C \rho x z \dd{c}\right]. 
+\end{equation*}
+Analogamente, la seconda componente diventa
+\begin{equation*}
+    \vu{j}\left[ \beta\int_C \rho(x^2+z^2) \dd{c} -\alpha \int_C \rho x y \dd{c} - \gamma \int_C \rho y z \dd{c}\right].
+\end{equation*}
+Infine, la terza componente diventa
+\begin{equation*}
+    \vu{k}\left[ \gamma\int_C \rho(x^2+y^2) \dd{c} -\alpha \int_C \rho x z \dd{c} - \beta \int_C \rho y z \dd{c}\right].
+\end{equation*}
+Per cui, sommando le tre componenti, otteniamo
+\begin{align*}
+    \int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c} 
+        = \vu{i}&\Bigg[\alpha\int_C \rho(y^2+z^2) \dd{c} -\beta \int_C \rho x y \dd{c} - \gamma \int_C \rho x z \dd{c}\Bigg] \\
+        \quad + \vu{j}&\Bigg[ \beta\int_C \rho(x^2+z^2) \dd{c} -\alpha \int_C \rho x y \dd{c} - \gamma \int_C \rho y z \dd{c}\Bigg] \\
+        \quad + \vu{k}&\Bigg[ \gamma\int_C \rho(x^2+y^2) \dd{c} -\alpha \int_C \rho x z \dd{c} - \beta \int_C \rho y z \dd{c}\Bigg].
+\end{align*}
+I primi termini di ciascuna componente definiscono i momenti di inerzia rispetto agli assi coordinati, mentre i secondi termini, prodotti misti, definiscono i prodotti di inerzia.\note{o momenti centrifughi} Definiamo quindi
+\begin{gather*}
+    I_{x} = \int_C \rho(y^2+z^2) \dd{c}, \quad I_{y} = \int_C \rho(x^2+z^2) \dd{c}, \quad I_{z} = \int_C \rho(x^2+y^2) \dd{c}, \\
+    I_{xy} = \int_C \rho x y \dd{c}, \quad I_{xz} = \int_C \rho x z \dd{c}, \quad I_{yz} = \int_C \rho y z \dd{c},
+\end{gather*}
+e otteniamo
+\begin{align*}
+    \int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c}
+    ={}&\vu{i}\left[\alpha I_{x} -\beta I_{xy} - \gamma I_{xz}\right] \\
+    + &\vu{j}\left[ \beta I_{y} -\alpha I_{xy} - \gamma I_{yz}\right] \\
+    + &\vu{k}\left[ \gamma I_{z} -\alpha I_{xz} - \beta I_{yz}\right].
+\end{align*}
+
+\begin{remark}
+    La presenza dei prodotti di inerzia porta all'allontanamento dell'asse dal suo assetto originario quando un solido viene posto in rotazione.
+\end{remark}
+
+Possiamo scrivere l'ultimo risultato come prodotto di una matrice per un vettore
+\begin{align*}
+    \int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c} &=
+    \begin{pmatrix}
+        I_x & -I_{xy} & -I_{xz} \\
+        -I_{xy} & I_y & -I_{yz} \\
+        -I_{xz} & -I_{yz} & I_z
+    \end{pmatrix}
+    \begin{pmatrix}
+        \alpha \\
+        \beta \\
+        \gamma
+    \end{pmatrix} \\
+    &= \tens{I}_O\,\vu{u}.
+\end{align*}
+
+\begin{definition}[Tensore di inerzia]
+    La matrice
+    \begin{equation*}
+        \tens{I}_O=
+        \begin{pmatrix}
+            I_x & -I_{xy} & -I_{xz} \\
+            -I_{xy} & I_y & -I_{yz} \\
+            -I_{xz} & -I_{yz} & I_z
+        \end{pmatrix}
+    \end{equation*}
+    si chiama \emph{tensore di inerzia}, o \emph{matrice di inerzia}, del sistema materiale rispetto al punto $O$.
+\end{definition}
+Il punto $O$ può tanto far parte del corpo quanto essere un punto esterno ad esso.
+
+Più precisamente, il tensore di inerzia è l'endomorfismo introdotto precedentemente, rappresentato nella base ortonormale $x,y,z$ dagli elementi della matrice $\tens{I}_O$. Non è molto diverso rispetto a considerare un vettore e la terna che si usa per rappresentarlo. Per i tensori le seguenti notazioni sono analoghe
+\begin{equation*}
+    \tens{I}_O, \qquad \tenq{I}_O.
+\end{equation*}
+
+Abbiamo fatto i nostri calcoli considerando il versore $\vu{u}$, ma nell'atto pratico non abbiamo usato la proprietà $\alpha^2 + \beta^2 + \gamma^2 = 1$, per cui il risultato è valido per qualsiasi vettore $\vv$, arrivando alla definizione di endomorfismo di inerzia data precedentemente.
+
+Possiamo quindi scrivere il momento di inerzia $I_a$ rispetto all'asse $a$ come
+\begin{align*}
+    I_a &= \vu{u}\cdot (\tens{I}_O\,\vu{u}) \\
+    &= (\alpha, \beta, \gamma)\begin{pmatrix}
+        I_x & -I_{xy} & -I_{xz} \\
+        -I_{xy} & I_y & -I_{yz} \\
+        -I_{xz} & -I_{yz} & I_z
+    \end{pmatrix}
+    \begin{pmatrix}
+        \alpha \\
+        \beta \\
+        \gamma
+    \end{pmatrix} \\
+    &= \alpha^2 I_x + \beta^2 I_y + \gamma^2 I_z - 2\alpha\beta I_{xy} - 2\alpha\gamma I_{xz} - 2\beta\gamma I_{yz}.
+\end{align*}
+
+\subsection{Riferimenti principali di inerzia}
+La matrice di inerzia è reale e simmetrica, in quanto $I_{xy} = I_{yx}$, $I_{xz} = I_{zx}$ e $I_{yz} = I_{zy}$, per cui è diagonalizzabile.\note{per il teorema spettrale}
+Inoltre, poiché tutti gli autovalori sono strettamente positivi, la matrice di inerzia è definita positiva.
+
+\begin{definition}[Riferimento principale di inerzia]
+    Si dice \emph{riferimento principale di inerzia} di un sistema materiale rispetto a un punto $O$ ogni riferimento ortonormale levogiro in cui il tensore di inerzia si diagonalizza.
+\end{definition}
+
+Considerando il generico prodotto
+\begin{equation*}
+    (x,y,z)\,\tens{I}_O\,(x,y,z)^T = I_x x^2 + I_y y^2 + I_z z^2 - 2I_{xy} xy - 2I_{xz} xz - 2I_{yz} yz.
+\end{equation*}
+L'equazione
+\begin{equation}
+    \label{eq:ellissoideInerzia}
+    I_x x^2 + I_y y^2 + I_z z^2 - 2I_{xy} xy - 2I_{xz} xz - 2I_{yz} yz = 1
+\end{equation}
+definisce una quadrica\note{Le quadriche sono una particolare classe di superfici} e, nello specifico, rappresenta un ellissoide.
+
+\begin{definition}[Ellissoide di inerzia]
+    L'ellissoide definito dall'equazione \eqref{eq:ellissoideInerzia} si chiama \emph{ellissoide di inerzia} del sistema materiale rispetto al punto $O$.
+\end{definition}
+
+L'ellissoide di inerzia rappresenta la geometria del sistema, con le sue simmetrie geometriche e di massa. Per esempio l'ellissoide di inerzia di un cubo ha sezione circolare, mentre quello di una sfera è proprio una sfera.
+
+Un caso particolarmente simmetrico è il seguente.
+\begin{definition}[Solido a struttura giroscopica]
+    Diremo che un solido $\mathcal{S}$ è a \emph{struttura giroscopica} rispetto al punto $Q$ se il suo tensore di inerzia presenta due momenti principali uguali tra loro.
+    L'asse principale di inerzia associato al terzo momento, distinto dai primi due, prende il nome di \emph{asse giroscopico}.
+    Inoltre, se $Q$ corrisponde al baricentro $G$, allora diremo che il solido è un \emph{giroscopio}.
+\end{definition}
+
+Affrontiamo ora il problema di come determinare i riferimenti principali di inerzia. Poiché un riferimento principale di inerzia è formato dagli autovettori della matrice di inerzia, dovremo risolvere l'equazione caratteristica
+\begin{equation*}
+    \det(I_{ij} - \lambda \delta_{ij}) = 0
+\end{equation*}
+per determinare gli autovalori $\lambda$ e poi trovare i corrispondenti autovettori. Tuttavia, lo studio delle proprietà geometriche e di massa del sistema permette spesso di ricavare gli assi principali per via simmetrica.
+
+
+\begin{definition}[Piano di simmetria materiale]\note{Lezione 21/05/2026}
+    Un piano $\pi$ si definisce \emph{piano di simmetria materiale} per un sistema $\mathcal{S}$ se $\forall P\in\mathcal{S},\, \exists P'\in\mathcal{S}$ tale che
+    \begin{enumerate}[label=$\roman*.$]
+        \item la retta passante per $P$ e $P'$ è perpendicolare a $\pi$;
+        \item il punto $M = PP'\cap\pi$ è il punto medio del segmento $PP'$;
+        \item $\rho\qty(P) = \rho\qty(P')$ o nel caso discreto $m\qty(P) = m\qty(P')$.
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+    Ogni asse perpendicolare ad un piano di simmetria materiale è un asse principale di inerzia.
+\end{proposition}
+
+Per comprendere a fondo l'effetto delle simmetrie materiali sul tensore di inerzia, è utile ricordare il significato fisico dei prodotti di inerzia $I_{xy}, I_{xz}, I_{yz}$. Essi quantificano il grado di asimmetria nella distribuzione della massa rispetto a coppie di assi coordinati. La presenza di piani di simmetria materiale annulla sistematicamente questi termini attraverso la cancellazione reciproca dei contributi positivi e negativi all'interno degli integrali di volume. Di seguito viene analizzato in dettaglio ognuno dei tre casi.
+
+\subsubsection*{Caso 1: Un solo piano di simmetria materiale}
+Se il sistema ammette un unico piano di simmetria materiale $\pi$, conviene orientare il riferimento in modo che tale piano coincida con il piano coordinato $xy$. L'asse $z$, di conseguenza, risulta normale a $\pi$. Per la definizione stessa di simmetria materiale, a ogni elemento di massa posizionato in $P=(x, y, z)$ corrisponde un elemento di massa identico nel punto speculare $P'=(x, y, -z)$. Quando si calcolano i prodotti di inerzia che coinvolgono la coordinata $z$, i contributi si elidono esattamente a vicenda
+\begin{align*}
+    I_{xz} &= \int_C \rho x z \dd{c} = 0, \\
+    I_{yz} &= \int_C \rho y z \dd{c} = 0.
+\end{align*}
+Il tensore di inerzia si riduce pertanto alla forma parzialmente diagonalizzata
+\begin{equation*}
+    \tens{I}_O = \begin{pmatrix}
+        I_x & -I_{xy} & 0 \\
+        -I_{xy} & I_y & 0 \\
+        0 & 0 & I_z
+    \end{pmatrix}.
+\end{equation*}
+Questo implica che l'asse normale al piano di simmetria (l'asse $z$) è già un asse principale di inerzia. Gli altri due assi principali sono costretti a giacere all'interno del piano di simmetria $\pi$ e possono essere individuati ruotando gli assi $x$ e $y$ di un opportuno angolo attorno a $z$ fino ad annullare il termine residuo $I_{xy}$.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=stealth, scale=2.2, line join=round, line cap=round]
+    % Assi di riferimento
+    \draw[->, thick] (0,0,0) -- (1.8,0,0) node[right] {$x$};
+    \draw[->, thick] (0,0,0) -- (0,1.5,0) node[above] {$z\perp\pi$)};
+    \draw[->, thick] (0,0,0) -- (0,0,1.8) node[left] {$y$};
+    
+    % Disegno del piano di simmetria \pi (piano xy)
+    \fill[black!10, opacity=0.5] (-0.5,0,-0.5) -- (1.5,0,-0.5) -- (1.5,0,1.5) -- (-0.5,0,1.5) -- cycle;
+    \draw[dashed, black!60] (-0.5,0,-0.5) -- (1.5,0,-0.5) -- (1.5,0,1.5) -- (-0.5,0,1.5) -- cycle;
+    \node[right] at (1.6,0,1) {$\pi$};
+
+    % Punti speculari P e P'
+    \coordinate (P) at (1.1, 0.8, 0.6);
+    \coordinate (Pprime) at (1.1, -0.8, 0.6);
+    \coordinate (M) at (1.1, 0, 0.6);
+
+    % Linee di proiezione e simmetria
+    \draw[dashed, blue!60!black] (P) -- (Pprime);
+    \draw[->, thin, black!70] (0,0,0) -- (P) node[above right] {$P(x,y,z)$};
+    \draw[->, thin, black!70] (0,0,0) -- (Pprime) node[below right] {$P'(x,y,-z)$};
+
+    % Nodi e punti
+    \fill[red!80!black] (P) circle (1pt);
+    \fill[red!80!black] (Pprime) circle (1pt);
+    \fill[black] (M) circle (0.8pt) node[below left] {$M$};
+    
+    % Indicazione delle distanze z e -z
+    \draw[<->, thin, black!70] (1.2, 0, 0.6) -- (1.2, 0.8, 0.6) node[midway, right] {$+z$};
+    \draw[<->, thin, black!70] (1.2, -0.8, 0.6) -- (1.2, 0, 0.6) node[midway, right] {$-z$};
+\end{tikzpicture}
+\caption{Rappresentazione di un singolo piano di simmetria materiale $\pi$. I contributi simmetrici legati alle coordinate $+z$ e $-z$ annullano i prodotti di inerzia $I_{xz}$ e $I_{yz}$.}
+\label{fig:simmetria_singola}
+\end{figure}
+
+\subsubsection*{Caso 2: Due piani di simmetria materiale perpendicolari}
+Siano $\pi_1$ e $\pi_2$ due piani di simmetria materiale disposti ortogonalmente tra loro. Scegliamo un riferimento in cui l'asse $z$ è perpendicolare al piano $\pi_1$ e l'asse $y$ è perpendicolare al piano $\pi_2$. L'asse $x$, essendo ortogonale a entrambi, coincide necessariamente con la retta di intersezione dei due piani. L'applicazione del caso precedente al primo piano $\pi_1$ garantisce immediatamente che
+\begin{equation*}
+    I_{xz} = I_{zx} = 0, \qquad I_{yz} = I_{zy} = 0.
+\end{equation*}
+Allo stesso modo, l'applicazione al secondo piano $\pi_2$ garantisce che
+\begin{equation*}
+    I_{xy} = I_{yx} = 0, \qquad I_{yz} = I_{zy} = 0.
+\end{equation*}
+L'azione congiunta delle due simmetrie annulla contemporaneamente tutti e tre i prodotti di inerzia del sistema. Di conseguenza, il tensore assume una forma completamente diagonale
+\begin{equation*}
+    \tens{I}_O = \begin{pmatrix}
+        I_x & 0 & 0 \\
+        0 & I_y & 0 \\
+        0 & 0 & I_z
+    \end{pmatrix}.
+\end{equation*}
+La terna $\{O, x, y, z\}$ così costruita costituisce un riferimento principale di inerzia completo. Dal punto di vista geometrico, i tre assi principali coincidono con le due normali ai piani e con la loro retta di intersezione.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=stealth, scale=2.2, line join=round, line cap=round]
+    % Assi di riferimento
+    \draw[->, thick] (0,0,0) -- (1.8,0,0) node[right] {$x \equiv \pi_1 \cap \pi_2$};
+    \draw[->, thick] (0,0,0) -- (0,1.6,0) node[above] {$z \perp \pi_1$};
+    \draw[->, thick] (0,0,0) -- (0,0,1.8) node[left] {$y \perp \pi_2$};
+
+    % Piano \pi_1 (piano xy, orizzontale)
+    \fill[blue!10, opacity=0.4] (-0.5,0,0) -- (1.6,0,0) -- (1.6,0,1.4) -- (-0.5,0,1.4) -- cycle;
+    \draw[blue!60!black, dashed] (-0.5,0,0) -- (1.6,0,0) -- (1.6,0,1.4) -- (-0.5,0,1.4) -- cycle;
+    \node[blue!60!black, right] at (1.6,0,1.4) {$\pi_1$};
+
+    % Piano \pi_2 (piano xz, verticale)
+    \fill[red!10, opacity=0.4] (-0.5,0,0) -- (1.6,0,0) -- (1.6,1.4,0) -- (-0.5,1.4,0) -- cycle;
+    \draw[red!60!black, dashed] (-0.5,0,0) -- (1.6,0,0) -- (1.6,1.4,0) -- (-0.5,1.4,0) -- cycle;
+    \node[red!60!black, above right] at (1.6,1.4,0) {$\pi_2$};
+    
+    % Evidenziazione dell'asse x di intersezione
+    \draw[->, ultra thick, black!70] (0,0,0) -- (1.5,0,0);
+\end{tikzpicture}
+\caption{Due piani di simmetria materiale mutuamente perpendicolari. Le rispettive normali ($y, z$) e la linea d'intersezione ($x$) formano automaticamente la terna principale di inerzia.}
+\label{fig:simmetria_ortogonale}
+\end{figure}
+
+\subsubsection*{Caso 3: Due piani di simmetria materiale non perpendicolari}
+Consideriamo infine la situazione in cui il solido ammetta due piani di simmetria materiale $\pi_1$ e $\pi_2$ inclinati di un angolo generico $\alpha \neq 90^\circ$. Siano $x$ l'asse ortogonale a $\pi_1$ e $y$ l'asse ortogonale a $\pi_2$. Per le considerazioni precedenti, sia $x$ che $y$ devono essere assi principali di inerzia, ovvero autovettori del tensore di inerzia. 
+
+Tuttavia, poiché i piani $\pi_1$ e $\pi_2$ non sono perpendicolari, anche i loro assi normali $x$ e $y$ non sono ortogonali tra loro. Il teorema spettrale per operatori simmetrici impone che gli autovettori associati ad autovalori distinti debbano essere ortogonali. Poiché $\vu{x}$ e $\vu{y}$ non lo sono, l'unica condizione ammissibile è che essi siano associati allo stesso autovalore
+\begin{equation*}
+    I_x = I_y.
+\end{equation*}
+Se due momenti principali sono uguali, l'autospazio associato diventa bidimensionale: questo significa che qualsiasi retta giacente nel piano $xy$ è un asse principale di inerzia. Il corpo assume così una struttura giroscopica rispetto al polo scelto, dove la retta di intersezione dei due piani (l'asse $z$) funge da asse giroscopico.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=stealth, scale=2.2, line join=round, line cap=round]
+    % Linea di intersezione (Asse z)
+    \draw[->, thick] (0,0,-0.5) -- (0,0,1.8) node[left] {$z$};
+    \draw[->, thick] (0,0,0) -- (1.5,0,0) node[right] {$x \perp \pi_1$};
+    
+    % Rotazione per trovare la normale al secondo piano (angolo alpha = 30 gradi)
+    \draw[->, thick] (0,0,0) -- ({1.5*cos(30)},{1.5*sin(30)},0) node[above right] {$y \perp \pi_2$};
+    \draw[thin, black!70] (0.5,0,0) arc (0:30:0.5) node[midway, right, xshift=2pt, yshift=2pt] {$\alpha \neq 90^\circ$};
+
+    % Piano 1 (\pi_1, traccia verticale, ortogonale a x)
+    \fill[black!10, opacity=0.3] (0,-0.8,0) -- (0,1.4,0) -- (0,1.4,1.3) -- (0,-0.8,1.3) -- cycle;
+    \draw[black!60, dashed] (0,-0.8,0) -- (0,1.4,0) -- (0,1.4,1.3) -- (0,-0.8,1.3) -- cycle;
+    \node[left] at (0,1.4,1.3) {$\pi_1$};
+
+    % Piano 2 (\pi_2, perpendicolare a y, traccia a 90+30 = 120 gradi)
+    \fill[black!20, opacity=0.3] 
+        ({-0.8*cos(120)},{-0.8*sin(120)},0) -- ({1.4*cos(120)},{1.4*sin(120)},0) -- 
+        ({1.4*cos(120)},{1.4*sin(120)},1.3) -- ({-0.8*cos(120)},{-0.8*sin(120)},1.3) -- cycle;
+    \draw[black!70, dashed] 
+        ({-0.8*cos(120)},{-0.8*sin(120)},0) -- ({1.4*cos(120)},{1.4*sin(120)},0) -- 
+        ({1.4*cos(120)},{1.4*sin(120)},1.3) -- ({-0.8*cos(120)},{-0.8*sin(120)},1.3) -- cycle;
+    \node[above right] at ({1.4*cos(120)},{1.4*sin(120)},1.3) {$\pi_2$};
+
+    % Evidenziazione dell'asse z comune di intersezione
+    \draw[->, ultra thick, blue!60!black] (0,0,0) -- (0,0,1.5);
+\end{tikzpicture}
+\caption{Due piani di simmetria materiale non perpendicolari incidenti ad un angolo $\alpha$. Le normali non ortogonali costringono i momenti d'inerzia ad accoppiarsi ($I_x = I_y$), generando una struttura giroscopica attorno all'asse di intersezione $z$.}
+\label{fig:simmetria_non_ortogonale}
+\end{figure}
+
+\section{Moto di un solido con un punto fisso e liscio}\note{Lezioni 19/05/2026 e 21/05/2026}
+Consideriamo un solido di massa $m$ vincolato a ruotare attorno a un suo punto $O$, supposto fisso e liscio. La presenza di un vincolo bilaterale privo di attrito garantisce che il lavoro virtuale delle reazioni vincolari sia nullo per ogni spostamento virtuale reversibile.
+
+Al fine di descriverne la dinamica, introduciamo due sistemi di riferimento con l'origine coincidente nel punto fisso $O$: una terna fissa $\{O, \vu{i}_1, \vu{i}_2, \vu{i}_3\}$ e una terna mobile $\{O, \vu{e}_1, \vu{e}_2, \vu{e}_3\}$ solidale al corpo e scelta in modo da coincidere con un riferimento principale di inerzia. Poiché il punto $O$ è fisso, il sistema perde i tre gradi di libertà traslazionali; i restanti tre gradi di libertà rotazionali sono univocamente descritti dagli angoli di Eulero $\vb{\Theta}=(\theta, \psi, \varphi)$.
+
+Scriviamo le equazioni cardinali della dinamica separando i contributi delle forze e dei momenti in attivi $(a)$ e vincolari $(v)$:
 \begin{equation*}
     \begin{cases}
         m\vb{a}_G = \vb{R}^{(e)} = \vb{R}^{(a)} + \vb{R}^{(v)} \\
-        \dot{\vb{K}}_O = \vb{M}_O^{(e)} = \vb{M}_O^{(a)} + \vb{M}_O^{(v)}.\note{Non sono forze applicate ad un punto. Il dispositivo è esteso. Consideriamo un sistema di forze, equivalente ad una forza agente in un punto e un momento}
+        \dot{\vb{K}}_O = \vb{M}_O^{(e)} = \vb{M}_O^{(a)} + \vb{M}_O^{(v)}.
     \end{cases}
 \end{equation*}
-Queste sono 6 equazioni scalari. Suddividiamo le incognite in:
+Questo sistema vettoriale corrisponde a 6 equazioni scalari, mentre le incognite del problema si suddividono in:
 \begin{enumerate}[label=$\roman*.$]
-    \item Incognite cinematiche: angoli di eulero $\vb{\Theta}$ (3);
-    \item Incognite dinamiche: forze e momenti attivi $\vb{R}^{(v)}$ e $\vb{M}_O^{(v)}$ (6).
+    \item Incognite cinematiche: i 3 angoli di Eulero $\vb{\Theta}(t)$;
+    \item Incognite dinamiche: le 3 componenti della reazione vincolare $\vb{R}^{(v)}$ e le 3 componenti del momento vincolare $\vb{M}_O^{(v)}$.
 \end{enumerate}
-Abbiamo 9 incognite e 6 equazioni, per cui il sistema è indeterminato.
-Tuttavia, essendo il vincolo liscio, il momento relativo alle forze vincolari è nullo, $\vb{M}_O^{(v)} = 0$. In un sistma rigido possiamo scrivere il lavoro virtuale come
+A fronte di 6 equazioni, la presenza di 9 incognite renderebbe il problema indeterminato. Tuttavia, la natura liscia del vincolo ci permette di ricavare una limitazione fondamentale sulle componenti dinamiche attraverso il calcolo del lavoro virtuale del corpo rigido.
+
+Consideriamo un sistema di forze $\vb{F}_i$ applicate ai punti $P_i$ del corpo. Il lavoro virtuale è definito come
 \begin{equation*}
-    \var{L^{(v)}} = \underbrace{\vb{R}^{(v)} \cdot \var{\vb{O}}}_{\var{\vb{O}} = 0} + \vb{M}_O^{(v)} \cdot \var{\vb*{\varepsilon}'} = 0 \quad \forall \vb*{\varepsilon}'
-    \implies \vb{M}_O^{(v)} = 0.
+    \var{L} = \sum_i \vb{F}_i \cdot \var{\vb{P}_i}.
+\end{equation*}
+Sfruttando la formula fondamentale della cinematica rigida applicata al campo degli spostamenti virtuali, lo spostamento di un generico punto $P_i$ può essere espresso in funzione dello spostamento traslazionale del polo $O$ e di una rotazione virtuale $\var{\vb*{\epsilon}}$ dell'intero solido come
+\begin{equation*}
+    \var{\vb{P}_i} = \var{\vb{O}} + \var{\vb*{\epsilon}} \cross (\vb{P}_i - \vb{O}).
+\end{equation*}
+Sostituendo questa relazione nella definizione di lavoro virtuale si ottiene lo sviluppo
+\begin{align*}
+    \var{L} &= \sum_i \vb{F}_i \cdot \left[ \var{\vb{O}} + \var{\vb*{\epsilon}} \cross (\vb{P}_i - \vb{O}) \right] \\
+    &= \left( \sum_i \vb{F}_i \right) \cdot \var{\vb{O}} + \sum_i \vb{F}_i \cdot \left[ \var{\vb*{\epsilon}} \cross (\vb{P}_i - \vb{O}) \right].
+\end{align*}
+Il primo termine al secondo membro fa emergere la forza risultante $\vb{R}$. Per il secondo termine, sfruttando l'invarianza del prodotto misto sotto permutazione ciclica, possiamo scrivere
+\begin{equation*}
+    \vb{F}_i \cdot \left[ \var{\vb*{\epsilon}} \cross (\vb{P}_i - \vb{O}) \right] = \var{\vb*{\epsilon}} \cdot \left[ (\vb{P}_i - \vb{O}) \cross \vb{F}_i \right].
+\end{equation*}
+Raccogliendo la rotazione virtuale $\var{\vb*{\epsilon}}$, che costituisce un parametro globale indipendente dal singolo indice dei punti, si riconosce la definizione del momento risultante $\vb{M}_O$ rispetto al polo scelto
+\begin{equation*}
+    \var{L} = \vb{R} \cdot \var{\vb{O}} + \var{\vb*{\epsilon}} \cdot \sum_i (\vb{P}_i - \vb{O}) \cross \vb{F}_i = \vb{R} \cdot \var{\vb{O}} + \vb{M}_O \cdot \var{\vb*{\epsilon}}.
 \end{equation*}
 
-dal caso generale:
+Applicando questo formalismo generale alle sole sollecitazioni vincolari, il loro lavoro virtuale assume la forma
 \begin{equation*}
-    \var{L} = \vb{R}\cdot \var{\vb{O}} + \vb{M}_O \cdot \var{\vb*{\varepsilon}'},
+    \var{L^{(v)}} = \vb{R}^{(v)} \cdot \var{\vb{O}} + \vb{M}_O^{(v)} \cdot \var{\vb*{\epsilon}}.
+\end{equation*}
+Nel caso specifico di un solido con un punto fisso $O$, il vincolo impedisce qualsiasi spostamento del polo, imponendo la condizione cinematica $\var{\vb{O}} = 0$. L'espressione del lavoro virtuale vincolare si riduce pertanto a
+\begin{equation*}
+    \var{L^{(v)}} = \vb{M}_O^{(v)} \cdot \var{\vb*{\epsilon}}.
+\end{equation*}
+Poiché il vincolo è bilaterale e liscio, il postulato delle reazioni vincolari impone che il lavoro virtuale $\var{L^{(v)}}$ sia nullo per ogni spostamento virtuale compatibile. Essendo la rotazione virtuale $\var{\vb*{\epsilon}}$ completamente libera e arbitraria nello spazio tridimensionale, l'unica condizione geometrica che garantisca l'annullamento del prodotto scalare per qualsiasi scelta di $\var{\vb*{\epsilon}}$ è che il vettore momento si annulli identicamente
+\begin{equation*}
+    \vb{M}_O^{(v)} = 0.
+\end{equation*}
+Il momento delle forze vincolari rispetto al punto fisso è nullo. La seconda equazione cardinale si disaccoppia così dalla prima, fornendo un sistema di 3 equazioni differenziali nelle sole 3 incognite cinematiche:
+\begin{equation*}
+    \begin{cases}
+        m\vb{a}_G = \vb{R}^{(a)} + \vb{R}^{(v)} \\
+        \dot{\vb{K}}_O = \vb{M}_O^{(a)}.
+    \end{cases}
 \end{equation*}
 
-A questo punto abbiamo 6 equazioni scalare in 6 incognite.
-Introduciamo la velocità angolare del sistema e la proiettiamo sulla base solidale al corpo:
-\begin{equation*}
-    \vb*{\omega} =  \omega_1 \vu{e}_1 + \omega_2 \vu{e}_2 + \omega_3 \vu{e}_3,
-\end{equation*}
-
-In un sistema rigido, possiamo esprirme la velocità di un qualsiasi punto $P$ del corpo come
-\begin{equation*}
-    \vb{v}_P = \vb{v}_Q + \vb*{\omega} \times (\vb{P} - \vb{Q}).
-\end{equation*}
-Il momento angolare del corpo rispetto a un punto $Q$ è dato da
-\begin{equation*}
-    \vb{K}_Q = \sum_{i=1}^N m_i (\vb{r}_i - \vb{Q}) \times \vb{v}_i = \sum_{i=1}^N m_i (\vb{r}_i - \vb{Q}) \times \left( \vb{v}_Q + \vb*{\omega} \times (\vb{r}_i - \vb{Q})\right),
-\end{equation*}
-per cui si ha
-\begin{equation*}
-    \vb{K}_Q = (\vb{G}-\vb{Q})\times m\vb{v}_Q + \tens{I}_Q \vb*{\omega},
-\end{equation*}
-\begin{remark}
-    Se $\vb{Q}$ è un punto fisso allora $K_Q = \tens{I}_Q \vb*{\omega}$, e quindi il momento angolare è direttamente proporzionale alla velocità angolare tramite il tensore di inerzia.
-\end{remark}
-
-Si ha inoltre per il punto $\vb{O}$: \note{Lezione 14/05/2026}
+\subsection{Equazioni di Eulero}
+Concentriamoci sulla seconda equazione cardinale $\dot{\vb{K}}_O = \vb{M}_O^{(a)}$. Come visto nella trattazione cinematica, per un solido con un punto fisso il momento angolare è legato alla velocità angolare $\vb*{\omega} = \omega_1 \vu{e}_1 + \omega_2 \vu{e}_2 + \omega_3 \vu{e}_3$ tramite il tensore di inerzia rispetto al polo $O$. Essendo la base solidale coincidente con un riferimento principale di inerzia, il tensore si presenta in forma diagonale e si ha
 \begin{equation*}
     \vb{K}_O = \tens{I}_O \vb*{\omega} = \begin{pmatrix}
         I_{1} & 0 & 0 \\
@@ -79,62 +754,32 @@ Si ha inoltre per il punto $\vb{O}$: \note{Lezione 14/05/2026}
     I_1 \omega_1 \vu{e}_1 + I_2 \omega_2 \vu{e}_2 + I_3 \omega_3 \vu{e}_3.
 \end{equation*}
 
-Dalle formule di Poisson, si ha che
+Calcoliamo la derivata temporale assoluta del momento angolare applicando il teorema di derivazione cinematica
 \begin{equation*}
-    \dot{\vb{K}}_O = \vb{K}_O' + \vb*{\omega} \times \vb{K}_O = \tens{I}_O \dot{\vb*{\omega}} + \vb*{\omega} \times (\tens{I}_O \vb*{\omega}).
+    \dot{\vb{K}}_O = \vb{K}_O' + \vb*{\omega} \cross \vb{K}_O = \tens{I}_O \dot{\vb*{\omega}} + \vb*{\omega} \cross (\tens{I}_O \vb*{\omega}).
 \end{equation*}
-Infatti per la velocità angolare la derivata assoluta e relativa coincidono:
-\begin{equation*}
-    \dot{\vb*{\omega}} = \vb*{\omega}' + \vb*{\omega} \times \vb*{\omega} = \vb*{\omega}'.
-\end{equation*}
-
-Infine calcoliamo
+Sviluppando esplicitamente il prodotto vettoriale si ottiene
 \begin{multline*}
-    \vb*{\omega} \times (\tens{I}_O \vb*{\omega}) = \begin{vmatrix}
+    \vb*{\omega} \cross (\tens{I}_O \vb*{\omega}) = \begin{vmatrix}
         \vu{e}_1 & \vu{e}_2 & \vu{e}_3 \\
         \omega_1 & \omega_2 & \omega_3 \\
         I_1 \omega_1 & I_2 \omega_2 & I_3 \omega_3
-    \end{vmatrix} = (I_3 - I_2) \omega_2 \omega_3 \vu{e}_1 + (I_1 - I_3) \omega_3 \omega_1 \vu{e}_2 +\\ + (I_2 - I_1) \omega_1 \omega_2 \vu{e}_3.
+    \end{vmatrix} \\
+    = (I_3 - I_2) \omega_2 \omega_3 \vu{e}_1 + (I_1 - I_3) \omega_3 \omega_1 \vu{e}_2 + (I_2 - I_1) \omega_1 \omega_2 \vu{e}_3.
 \end{multline*}
 
-\textbf{C'è corrispondenza biunivoca tra i moti possibili e le soluzioni delle equazioni cardinali}.
-
-Proiettiamo la seconda equazione cardinale 
-\begin{equation*}
-    \tens{I}_O \dot{\vb*{\omega}} + \vb*{\omega} \times (\tens{I}_O \vb*{\omega}) = \vb{M}_O^{(a)}
-\end{equation*}
-sugli assi solidale al corpo $\vu{e}_1, \vu{e}_2, \vu{e}_3$:
-\begin{equation*}
+Proiettando l'equazione vettoriale $\dot{\vb{K}}_O = \vb{M}_O^{(a)}$ sui tre assi del riferimento principale di inerzia solidale $\vu{e}_1, \vu{e}_2, \vu{e}_3$, giungiamo al sistema delle \emph{equazioni di Eulero} per la dinamica del solido
+\begin{equation}
+    \label{eq:equazioni_eulero_solido}
     \begin{cases}
         I_1 \dot{\omega}_1 - (I_2 - I_3) \omega_2 \omega_3 = M_{O,1}^{(a)} \\[0.5em]
         I_2 \dot{\omega}_2 - (I_3 - I_1) \omega_3 \omega_1 = M_{O,2}^{(a)} \\[0.5em]
         I_3 \dot{\omega}_3 - (I_1 - I_2) \omega_1 \omega_2 = M_{O,3}^{(a)}.
     \end{cases}
-\end{equation*}
-Queste spno dette \emph{equazioni di Eulero} per un solido. Ogni equaione deriva da un'altra con una specifica permutazione cilcica degli indici $1, 2, 3$.
+\end{equation}
+Ciascuna equazione differenziale deriva dalla precedente attraverso una permutazione ciclica degli indici $1, 2, 3$. I momenti attivi $M_{O,i}^{(a)}$ sono in generale funzioni degli angoli di Eulero, delle loro derivate temporali e del tempo $t$.
 
-Dalla trasformazione di coordinate fra la base solidale al corpo e quella fissa, si ha che
-\begin{equation*}
-    \begin{cases}
-        \omega_1 = \dot{\theta} \cos\varphi +\dot{\psi} \sin\theta \sin\varphi \\
-        \omega_2 = - \dot{\theta} \sin\varphi + \dot{\psi} \sin\theta \cos\varphi  \\
-        \omega_3 = \dot{\psi} \cos\theta + \dot{\varphi}.
-    \end{cases}
-\end{equation*}
-
-Per cui i momenti sono funzioni degli angoli di eulero, delle loro derivate ed evuentaulmente dal tempo:
-\begin{equation*}
-    \begin{cases}
-        M_{O,1}^{(a)} = M_{O,1}^{(a)}(\vb{\Theta}, \dot{\vb{\Theta}}, t) \\[0.5em]
-        M_{O,2}^{(a)} = M_{O,2}^{(a)}(\vb{\Theta}, \dot{\vb{\Theta}}, t) \\[0.5em]
-        M_{O,3}^{(a)} = M_{O,3}^{(a)}(\vb{\Theta}, \dot{\vb{\Theta}}, t).
-    \end{cases}
-\end{equation*}
-
-Le equazioni di Eulero sono quindi un sistema di 3 equazioni differenziali del seconodo ordine nelle incognite $\theta(t), \psi(t), \varphi(t)$, esprimibili in forma normale. Per il teorema di esistenza di Cauchy, esiste una soluzione unica per ogni condizione iniziale.
-
-\emph{RIvedi questa parte}
-Il tutto è esprimibile in forma matriciale come dall'espressione matriciale degli angoli di eulero in funzione della velocità angolare:
+Le componenti della velocità angolare sono legate agli angoli di Eulero dalle relazioni cinematiche espresse in forma matriciale
 \begin{equation*}
     \begin{pmatrix}
         \omega_1 \\
@@ -152,215 +797,178 @@ Il tutto è esprimibile in forma matriciale come dall'espressione matriciale deg
         \dot{\varphi}
     \end{pmatrix}.
 \end{equation*}
-la quale è invertibile.
+Poiché tale matrice di trasformazione è invertibile, sostituendo queste relazioni nel sistema \eqref{eq:equazioni_eulero_solido} si ottiene un sistema di 3 equazioni differenziali del secondo ordine nelle incognite $\theta(t), \psi(t), \varphi(t)$, esprimibili in forma normale. Il teorema di esistenza e unicità di Cauchy garantisce che esista una soluzione unica date le condizioni iniziali, sancendo la corrispondenza biunivoca tra i moti fisicamente possibili del solido e le soluzioni analitiche delle equazioni cardinali.
+
+\subsection{Moti alla Poinsot e precessioni}
+Un regime dinamico di notevole interesse si realizza quando il momento risultante delle forze attive rispetto al polo è nullo, configurando un moto puramente guidato dalle proprietà inerziali del corpo.
 
 \begin{definition}[Moti alla Poinsot]
-    Diremo che il moto di un solido $\mathcal{S}$ è \emph{alla Poinsot}, o \emph{per inerzia}, se il momento delle forze attive è nullo,
+    Diremo che il moto di un solido $\mathcal{S}$ è \emph{alla Poinsot}, o \emph{per inerzia}, se il momento risultante delle forze attive calcolato rispetto a un generico polo $Q$ è nullo
     \begin{equation*}
-        \vb{M}_Q^{(a)} = 0,
+        \vb{M}_Q^{(a)} = 0.
     \end{equation*}
-    con $Q$ fisso o coincidente con il centro di massa $G$.
 \end{definition}
 
-Nel caso dei moti alla Poinsot, le equazioni di Eulero si riducono a
-\begin{equation*}
-    \begin{cases}
-        I_1 \dot{\omega}_1 - (I_2 - I_3) \omega_2 \omega_3 = 0 \\[0.5em]
-        I_2 \dot{\omega}_2 - (I_3 - I_1) \omega_3 \omega_1 = 0 \\[0.5em]
-        I_3 \dot{\omega}_3 - (I_1 - I_2) \omega_1 \omega_2 = 0.
-    \end{cases}
-\end{equation*}
-In questo caso è più conveniente considerare queste come equazioni differenziali del primo ordine nelle incognite $\omega_1(t), \omega_2(t), \omega_3(t)$.
+Nella trattazione successiva, considereremo come polo $Q$ il punto fisso $O$ del solido, nel caso di moto polare, oppure il suo centro di massa $G$, nel caso di solido libero.
 
-\begin{definition}[Solido a struttura giroscopica]
-    Diremo che un solido $\mathcal{S}$ è a \emph{struttura giroscopica} rispetto al punto $\vb{Q}$ se la matrice di inerzia 
-    \begin{equation*}
-        \tens{I}_Q = \begin{pmatrix}
-            I_1 & 0 & 0 \\
-            0 & I_2 & 0 \\
-            0 & 0 & I_3
-        \end{pmatrix}
-    \end{equation*}
-    presenta due momenti uguali ad esempio $I_1 = I_2 \neq I_3$. In questo caso, l'asse $\vu{e}_3$ del riferimento è detto \emph{asse giroscopico}.
-    Inoltre, se $\vb{Q}$ corrisponde al baricentro $\vb{G}$, allora diremo che il solido è un \emph{giroscopio}.
-\end{definition}
-\begin{remark}
-    I momenti principali di inerzia sono gli autovalori della matrice di inerzia. Per cui un solido a struttura giroscopica ha due autovalori coincidenti.
-\end{remark}
+Nel caso dei moti alla Poinsot, le equazioni di Eulero si omogeneizzano riducendosi a un sistema di equazioni differenziali del primo ordine nelle incognite cinematiche $\omega_1(t), \omega_2(t), \omega_3(t)$. In questo contesto, analizziamo se siano ammessi moti rotatori uniformi, detti nella letteratura rotazioni permanenti.
 
-Consideriamo il seguente problema:
-\begin{quote}
-    Per un solido con un punto fisso e liscio, sono ammessi i moti rotatori uniformi? Attorno a quali assi?\note{Nella letteratura si parla di \emph{rotazioni permanenti}}
-\end{quote}
-Nell'ipotesi di moto alla Poinsot tali moti esistono.
-
-Abbiamo quindi supposto fisso il movimento solidale:
+Un moto rotatorio uniforme richiede che la velocità angolare sia costante nel tempo sia in modulo che in direzione, implicando $\vb*{\omega} = \text{costante}$, ovvero $\dot{\vb*{\omega}} = 0 = \vb*{\omega}'$ in virtù dell'invarianza dell'accelerazione angolare. Sostituendo questa condizione nelle equazioni di Eulero private dei momenti attivi, si ottiene la relazione vettoriale
 \begin{equation*}
-    \vb*{\omega} = \text{cost} \iff \dot{\vb*{\omega}} = 0
+    \vb*{\omega} \cross (\tens{I}_O \vb*{\omega}) = 0.
 \end{equation*}
-poiché $\dot{\vb*{\omega}} = \vb*{\omega}'$.
-Sostituendo nell'equazione di Eulero, si ha
-\begin{equation*}
-    \vb*{\omega} \times (\tens{I}_O \vb*{\omega}) = 0,
-\end{equation*}
-per cui $\vb*{\omega}$ è un autovettore della matrice di inerzia e i moti rotatori uniformi possono avvenire solo attorno a tali assi. 
+Affinché il prodotto vettoriale sia nullo, il vettore velocità angolare $\vb*{\omega}$ deve risultare parallelo al vettore momento angolare $\tens{I}_O \vb*{\omega}$. Questo accade se e solo se $\vb*{\omega}$ costituisce un autovettore del tensore di inerzia, formalizzando il seguente teorema.
 
 \begin{theorem}
-    Un moto di un solido $\mathcal{S}$ con un punto fisso $\vb{O}$ è una rotazione permanente se e solo se l'atto di moto all'istante iniziale è rotatorio intorno ad un asse principale di inerzia.
+    Un moto di un solido $\mathcal{S}$ con un punto fisso $O$ è una rotazione permanente se e solo se l'atto di moto all'istante iniziale è rotatorio intorno ad un asse principale di inerzia.
 \end{theorem}
 
+Oltre alle rotazioni permanenti, i moti per inerzia possono dare origine a soluzioni precessionali regolari quando il solido presenta particolari simmetrie di massa.
+
 \begin{definition}[Moti precessionali]
-    Un moto polare di centro $\vb{O}$ di un solido $\mathcal{S}$ dicesi \emph{precessione} se esistono due rette $r$ e $s$ passanti per $\vb{O}$, con $r$ fissa e $s$ solidale al corpo, tali che l'angolo $\theta$ tra le due rette si mantiene costante durante il moto.
+    Un moto polare di centro $O$ di un solido $\mathcal{S}$ dicesi \emph{precessione} se esistono due rette $r$ e $s$ passanti per $O$, con $r$ fissa nello spazio e $s$ solidale al corpo, tali che l'angolo $\theta$ tra le due rette si mantiene costante durante il moto.
 \end{definition}
 
 \begin{proposition} \label{prop:precessione}
-    Il moto di un solido con un punto fisso $\vb{O}$ è una precessione se e solo se
+    Il moto di un solido con un punto fisso $O$ è una precessione se e solo se la velocità angolare può essere espressa nella forma
     \begin{equation*}
-        \vb*{\omega} = \lambda \vu{e}_3 + \mu \vu{i}_3,\note{$\lambda$ e $\mu$ sono funzioni scalari del tempo}
+        \vb*{\omega} = \lambda \vu{e}_3 + \mu \vu{i}_3,
     \end{equation*}
-    dove $\vu{e}_3$ è un versore solidale al solido e $\vu{i}_3$ è un versore fisso. Se $\lambda$ e $\mu$ sono indipendenti dal tempo, diremo che la precessione è \emph{regolare}.
+    dove $\vu{e}_3$ è il versore della retta solidale $s$, $\vu{i}_3$ è il versore della retta fissa $r$, e $\lambda, \mu$ sono funzioni scalari del tempo. Se $\lambda$ e $\mu$ sono indipendenti dal tempo, la precessione si dice \emph{regolare}.
 \end{proposition}
-\begin{proof}
-    Dimostriamo la necessità. L'angolo tra $r$ e $s$ è costante per ipotesi e, identificando $r$ con $\vu{i}_3$ e $s$ con $\vu{e}_3$, si ha che
-    \begin{equation*}
-        \cos\theta = \vu{e}_3 \cdot \vu{i}_3.
-    \end{equation*}
-    Derivando rispetto al tempo, per le formule di Poisson, si ha
-    \begin{equation*}
-        \dv{\vu{e}_3}{t} \cdot \vu{i}_3  = \vb*{\omega}\cross\vu{e}_3\cdot\vu{i}_3 = 0,
-    \end{equation*}
-    da cui si ha che $\vb*{\omega} \cross \vu{e}_3$ è ortogonale a $\vu{i}_3$. Analogamente, si ha che $\vb*{\omega} \cross \vu{i}_3$ è ortogonale a $\vu{e}_3$. Per cui $\vb*{\omega}$ è ortogonale a entrambi i versori, e quindi è una combinazione lineare dei due. Questo prodotto misto è il determinante della matrice costituita dai tre vettori, e quindi è nullo se e solo se i tre vettori sono complanari.
 
-    Dimostriamo ora la sufficienza. Per ipotesi,
+\begin{proof}
+    Dimostriamo la necessità. L'angolo tra le due rette è costante per ipotesi; identificando la direzione fissa $r$ con il versore $\vu{i}_3$ e la direzione solidale $s$ con il versore $\vu{e}_3$, il loro prodotto scalare soddisfa la relazione 
     \begin{equation*}
-        \vb*{\omega} = \lambda \vu{e}_3 + \mu \vu{i}_3.
-    \end{equation*}
-    Consideriamo la retta passante per $\vb{O}$ avente direzione $\vu{e}_3$ e quella passante per $\vb{O}$ avente direzione $\vu{i}_3$. L'angolo tra le due rette è dato da
+        \cos\theta = \vu{e}_3 \cdot \vu{i}_3 = \text{costante}.
+    \end{equation*} 
+    Derivando rispetto al tempo, in virtù delle formule di Poisson, si ottiene
     \begin{equation*}
-        \cos\theta = \vu{e}_3 \cdot \vu{i}_3.
+        \dv{\vu{e}_3}{t} \cdot \vu{i}_3 = (\vb*{\omega} \cross \vu{e}_3) \cdot \vu{i}_3 = 0.
     \end{equation*}
-    Tenuto conto che $\vu{i}_3$ è fisso, derivando rispetto il tempo si ha
+    L'annullamento di questo prodotto misto implica che i tre vettori $\vb*{\omega}$, $\vu{e}_3$ e $\vu{i}_3$ siano complanari. Di conseguenza, il vettore velocità angolare $\vb*{\omega}$ deve potersi esprimere come combinazione lineare dei versori direttori $\vu{e}_3$ e $\vu{i}_3$.
+
+    Dimostriamo ora la sufficienza. Sia per ipotesi $\vb*{\omega} = \lambda \vu{e}_3 + \mu \vu{i}_3$. Valutiamo la derivata temporale del coseno dell'angolo compreso tra le due direzioni, ricordando che il versore $\vu{i}_3$ è invariante rispetto al tempo nel riferimento inerziale
     \begin{equation*}
-        \dv{t}\qty(\vu{e}_3 \cdot \vu{i}_3) = \dv{\vu{e}_3}{t} \cdot \vu{i}_3 = (\vb*{\omega} \cross \vu{e}_3) \cdot \vu{i}_3 = 0,
+        \dv{t}\qty(\vu{e}_3 \cdot \vu{i}_3) = \dv{\vu{e}_3}{t} \cdot \vu{i}_3 = (\vb*{\omega} \cross \vu{e}_3) \cdot \vu{i}_3.
     \end{equation*}
-    da cui si ha che $\vu{e}_3$ e $\vu{i}_3$ sono combinazione lineare di $\vb*{\omega}$.
+    Sostituendo l'espressione dell'ipotesi per la velocità angolare, si sviluppa il prodotto misto
+    \begin{equation*}
+        \qty[\qty(\lambda \vu{e}_3 + \mu \vu{i}_3) \cross \vu{e}_3] \cdot \vu{i}_3 = \mu \qty(\vu{i}_3 \cross \vu{e}_3) \cdot \vu{i}_3 = 0,
+    \end{equation*}
+    dove l'ortogonalità intrinseca del prodotto vettoriale $\vu{i}_3 \cross \vu{e}_3$ rispetto a $\vu{i}_3$ annulla l'espressione, dimostrando la costanza nel tempo dell'angolo $\theta$.
 \end{proof}
 
-\note{Lezione 19/05/2026}
-\textbf{Sarebbe opportuno riograginzzare la struttura incorporando una sottosezione sui moti alla Poinsot e i solidi a struttura giroscopica. CINEMATICA DEI MOTI RELATIVI: Legge delle acceleraziioni, distribuzione della velocità, fomrule di Poisson, derivata relativa e assoluta.}
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[>=stealth, line join=round, line cap=round, scale=0.8]
+    
+    % 1. Cono di precessione
+    \draw[dashed, black!20, thick] (0,0) -- (-2.3, 4);
+    \draw[dashed, black!20, thick] (0,0) -- (2.3, 4);
+    \draw[dashed, black!30, thick] (0, 4) ellipse (2.3 and 0.5);
+    
+    % 2. Assi fissi
+    \draw[->, thick, black!40] (0,0) -- (-2.5,-1.2) node[below left] {$\vu{i}_1$};
+    \draw[->, thick, black!40] (0,0) -- (3.5,-0.5) node[below right] {$\vu{i}_2$};
+    
+    % 3. Corpo rigido (ruotato di -30 gradi)
+    % Punta di lambda*e3 in coordinate globali: rot(-30) * (0, 2.5) = (1.25, 2.165)
+    % Punta di s in coordinate globali: rot(-30) * (0, 5.5) = (2.75, 4.763)
+    \begin{scope}[rotate=-30]
+        \draw[->, ultra thick, blue!70!black] (0,0) -- (0,5.5) 
+            node[above right] {$s$ ($\vu{e}_3$)};
+        \draw[->, very thick, orange!90!black] (0,0) -- (0, 2.5) 
+            node[right=4pt] {$\lambda\,\vu{e}_3$};
+        % Simbolo rotazione propria lambda
+        \draw[->, thick, orange!90!black] (-0.5, 3.8) arc (180:390:0.5 and 0.18) 
+            node[right=2pt] {$\lambda$};
+    \end{scope}
 
-Consideriamo un giroscopio, con tensore di inerzia
-\begin{equation*}
-    \tens{I}_G = \begin{pmatrix}
-        I_{G,1} & 0 & 0 \\
-        0 & I_{G,1} & 0 \\
-        0 & 0 & I_{G,3}
-    \end{pmatrix}.
-\end{equation*}
-Preso un punto $\vb{Q}$, appartenente all'asse giroscopico, si ha che
-\begin{equation*}
-    \tens{I}_Q = \begin{pmatrix}
-        I_{1} & 0 & 0 \\
-        0 & I_{1} & 0 \\
-        0 & 0 & I_{3}
-    \end{pmatrix},
-\end{equation*}
-e lo si dimostra facilmente attraveros il teorema di Huygens-Steiner.
+    % 4. Retta fissa r
+    \draw[->, ultra thick, black!80] (0,0) -- (0,6) node[above] {$r$ ($\vu{i}_3$)};
+    \draw[->, very thick, purple!80!black] (0,0) -- (0, 3.46) node[left] {$\mu\,\vu{i}_3$};
 
-Siano un corpo rigido in moto con un riferimento fisso $\{\vb{O}, \vu{i}_1, \vu{i}_2, \vu{i}_3\}$ e un riferimento solidale al corpo $\{\vb{Q}, \vu{e}_1, \vu{e}_2, \vu{e}_3\}$. La derivata temporale dei vettori della base solidale del corpo è data da
-\begin{equation*}
-    \begin{cases}
-        \displaystyle \dv{{\vu{e}}_1}{t} = \vb*{\omega} \cross \vu{e}_1 \\[0.7em]
-        \displaystyle \dv{{\vu{e}}_2}{t} = \vb*{\omega} \cross \vu{e}_2 \\[0.7em]
-        \displaystyle \dv{{\vu{e}}_3}{t} = \vb*{\omega} \cross \vu{e}_3,
-    \end{cases}
-\end{equation*}
-dove i versori $\vu{e}_i$ sono scomposti nella base fissa $\{\vu{i}_j\}$. Queste formule sono dette \emph{formule di Poisson}.
+    % 5. omega come somma vettoriale: mu*i3 + lambda*e3
+    % mu*i3 arriva a (0, 3.46)
+    % lambda*e3 in coordinate globali arriva a (1.25, 2.165)
+    % omega = (0,3.46) + (1.25, 2.165) = (1.25, 5.625)
+    \draw[dashed, black!60] (0, 3.46) -- (1.25, 5.625); % da mu*i3 parallelo a lambda*e3
+    \draw[dashed, black!60] (1.25, 2.165) -- (1.25, 5.625); % da lambda*e3 parallelo a mu*i3
+    \draw[->, ultra thick, green!60!black] (0,0) -- (1.25, 5.625) 
+        node[above right] {$\vb*{\omega}$};
 
-Consideriamo ora un solido con un punto fisso e liscio, giroscopico e in moto alla Poinsot. La seconda equazione cardinale si riduce a 
-\begin{equation*}
-\dot{\vb{K}}_O = 0\implies \vb{K}_O = \text{cost} = \vb{K}_O^0,
-\end{equation*}
-ovvero il momento angolare si conserva.
-Abbiamo quindi che
-\begin{align*}
-    \vb{K}_O &= I_1 \omega_1 \vu{e}_1 + I_1 \omega_2 \vu{e}_2 + I_3 \omega_3 \vu{e}_3 \\
-    &= I_1\qty(\omega_1 \vu{e}_1 + \omega_2 \vu{e}_2) + I_3 \omega_3 \vu{e}_3 + I_1 \omega_3 \vu{e}_3 - I_1 \omega_3 \vu{e}_3 \\
-    &= I_1 \vb*{\omega} + (I_3 - I_1) \omega_3 \vu{e}_3.
-\end{align*}
+    % 6. Arco precessione mu
+    \draw[->, thick, purple!80!black] (0, 5.2) arc (90:-15:2.55 and 0.55) node[left] {$\mu$};
+    
+    % 7. Angolo nutazione theta
+    \draw[<->, thin, black!80] (0, 2) arc (90:60:2);
+    \node[black!90] at (0.6, 1.6) {$\theta$};
 
-Le equazioni di Eulero si riducono a
-\begin{equation*}
-    \begin{cases}
-        I_1 \dot{\omega}_1 - (I_1 - I_3 ) \omega_2 \omega_3 = 0 \\[0.5em]
-        I_1 \dot{\omega}_2 - (I_3 - I_1) \omega_3 \omega_1 = 0 \\[0.5em]
-        I_3 \dot{\omega}_3 = 0,
-    \end{cases}
-\end{equation*}
-in quanto $I_1 = I_2$.
-Dalla terza equazione si ha che $\omega_3$ è costante, che chiamiamo $\omega_3 = \omega_3^0$. Sostituendo nell'equazione per il momento angolare, si ha che
-\begin{equation*}
-    \vb{K}_O = I_1 \vb*{\omega} + (I_3 - I_1) \omega_3^0 \vu{e}_3
-\end{equation*}
-da cui si ricava che
-\begin{equation*}
-    \vb*{\omega} = \frac{1}{I_1} \vb{K}_O - \frac{I_3 - I_1}{I_1} \omega_3^0 \vu{e}_3.
-\end{equation*}
-Chiamando $\vb*{\omega}_1=\frac{1}{I_1} \vb{K}_O$ e $\vb*{\omega}_2 = - \frac{I_3 - I_1}{I_1} \omega_3^0 \vu{e}_3$, si ha che 
-$$\vb*{\omega} = \vb*{\omega}_1 + \vb*{\omega}_2,$$
-dove $\vb*{\omega}_1$ è un un vettore costante nello spazio fisso e $\vb*{\omega}_2$ è un vettore costante nello spazio solidale al corpo. Quindi, per la proposizione \ref{prop:precessione}, il moto del solido è una precessione regolare.
+    \fill[black] (0,0) circle (1.5pt) node[below] {$O$};
+\end{tikzpicture}
+\caption[Geometria del moto precessionale]{Moto precessionale: $\theta$ costante, l'asse $s$ descrive un cono attorno a $r$. La velocità angolare $\vb*{\omega}$ è somma della precessione $\mu\,\vu{i}_3$ e della rotazione propria $\lambda\,\vu{e}_3$.}
+\label{fig:moto_precessionale}
+\end{figure}
 
-Si ha quindi che nell'ipotesi di moto alla Poinsot, il più generale moto del solido $\mathcal{S}$ introno al barcientro (cioè nel riferimento $\{\vb{G}, \vu{e}_1, \vu{e}_2, \vu{e}_3\}$) è una precessione regolare, con
-\begin{enumerate}[label=$\roman*.$]
-    \item asse di figura coincidente con l'asse giroscopico;
-    \item asse di precessione che è un asse principale di inerzia.
-\end{enumerate}
+L'applicazione più significativa di questo teorema si riscontra nello studio del moto per inerzia di un solido a struttura giroscopica. Consideriamo un giroscopio avente il polo coincidente con il punto fisso $O$, il cui tensore di inerzia nel riferimento principale assume la forma diagonale con $I_1 = I_2 \neq I_3$. Sotto le ipotesi di moto alla Poinsot, la seconda equazione cardinale impone la conservazione del vettore momento angolare rispetto allo spazio fisso
+\begin{equation*}
+    \dot{\vb{K}}_O = 0 \implies \vb{K}_O = \text{costante} = \vb{K}_O^0.
+\end{equation*}
+Espandiamo il vettore momento angolare sfruttando la simmetria dei primi due momenti principali di inerzia
+\begin{align}
+    \vb{K}_O &= I_1 \omega_1 \vu{e}_1 + I_1 \omega_2 \vu{e}_2 + I_3 \omega_3 \vu{e}_3 \nonumber \\
+    &= I_1 \qty(\omega_1 \vu{e}_1 + \omega_2 \vu{e}_2 + \omega_3 \vu{e}_3) + I_3 \omega_3 \vu{e}_3 - I_1 \omega_3 \vu{e}_3 \nonumber \\
+    &= I_1 \vb*{\omega} + (I_3 - I_1) \omega_3 \vu{e}_3. \label{eq:momentoAngolareGiroscopio}
+\end{align}
 
-\section{Solido libero}
-Consideriamo un solido libero con un riferimento fisso $\{\vb{O}, \vu{i}_1, \vu{i}_2, \vu{i}_3\}$ e un riferimento principale di inerzia solidale al corpo $\{\vb{G}, \vu{e}_1, \vu{e}_2, \vu{e}_3\}$, dove $\vb{G}$ è il baricentro del corpo. Le equazioni cardinali, con polo il baricentro, sono
+Contemporaneamente, valutiamo l'effetto della struttura giroscopica sulla terza delle equazioni di Eulero \eqref{eq:equazioni_eulero_solido}
+\begin{equation*}
+    I_3 \dot{\omega}_3 - (I_1 - I_1) \omega_1 \omega_2 = 0 \implies I_3 \dot{\omega}_3 = 0.
+\end{equation*}
+Si ricava immediatamente che la componente della velocità angolare lungo l'asse giroscopico è una costante del moto, che battezziamo $\omega_3 = \omega_3^0$. Sostituendo questa costanza nell'equazione \eqref{eq:momentoAngolareGiroscopio} ed esplicitando il vettore velocità angolare si ottiene la scomposizione
+\begin{equation*}
+    \vb*{\omega} = \frac{1}{I_1} \vb{K}_O^0 - \frac{I_3 - I_1}{I_1} \omega_3^0 \vu{e}_3.
+\end{equation*}
+Definiamo il vettore $\vb*{\omega}_1 = \frac{1}{I_1} \vb{K}_O^0$, il quale risulta statico e costante nello spazio riferimento fisso in quanto proporzionale al momento angolare conservato, e il vettore $\vb*{\omega}_2 = - \frac{I_3 - I_1}{I_1} \omega_3^0 \vu{e}_3$, il quale è costante nel riferimento solidale al corpo. La velocità angolare complessiva si riduce alla somma vettoriale
+\begin{equation*}
+    \vb*{\omega} = \vb*{\omega}_1 + \vb*{\omega}_2,
+\end{equation*}
+la quale soddisfa pienamente i requisiti geometrici della proposizione \ref{prop:precessione}. 
+
+Si conclude che il più generale moto per inerzia di un giroscopio attorno a un punto fisso è una precessione regolare, caratterizzata da\note{L'\emph{asse di figura} è l'asse di simmetria materiale del solido, mentre l'\emph{asse di precessione} è la retta fissa nello spazio attorno alla quale l'asse di figura ruota.} un asse di figura coincidente con l'asse giroscopico del solido e da un asse di precessione coincidente con la direzione fissa spaziale impressa dal momento angolare iniziale.
+
+\section{Moto di un solido libero}
+Consideriamo in ultima istanza il problema del moto di un corpo rigido completamente libero da vincoli cinematici esterni. Introduciamo un sistema di riferimento fisso inerziale $\{O, \vu{i}_1, \vu{i}_2, \vu{i}_3\}$ \note{Un riferimento principale di inerzia con origine nel baricentro di un solido è detto \emph{centrale}.}e un riferimento principale di inerzia $\{G, \vu{e}_1, \vu{e}_2, \vu{e}_3\}$ solidale al corpo e avente l'origine coincidente con il baricentro $G$ del solido.
+
+Scegliendo il baricentro $G$ come polo per il calcolo dei momenti, le equazioni cardinali della dinamica assumono una forma che separa formalmente l'evoluzione traslazionale da quella rotazionale\note{Se avessimo scelto un generico polo mobile $Q$, la seconda equazione avrebbe presentato il termine aggiuntivo $\vb{v}_Q \cross m\vb{v}_G$, che si annulla identicamente ponendo $Q \equiv G$.}
 \begin{equation*}
     \begin{cases}
         m\vb{a}_G = \vb{R}^{(e)} \\
         \dot{\vb{K}}_G = \vb{M}_G^{(e)}.
     \end{cases}
 \end{equation*}
-Proiettiamo la prima equazione sulla base fissa, e la seconda sulla base solidale al corpo. Indichiamo la terna delle coordinate del baricentro come $\vb{G} = (x_G, y_G, z_G)$ e la terna degli angoli di Eulero come $\vb{\Theta} = (\theta, \psi, \varphi)$. La prima equazione si riduce a
+
+Indichiamo con $\vb{G} = (x_G, y_G, z_G)$ le coordinate del baricentro rispetto alla terna fissa e con $\vb{\Theta} = (\theta, \psi, \varphi)$ gli angoli di Eulero. 
+
+Proiettando la prima equazione cardinale sugli assi della terna fissa e la seconda equazione cardinale sulle direzioni mobili del riferimento solidale, otteniamo
 \begin{equation*}
     \begin{cases}
         m\ddot{x}_G = R_x^{(e)}(\vb{G}, \dot{\vb{G}}, \vb{\Theta}, \dot{\vb{\Theta}}, t) \\[0.5em]
         m\ddot{y}_G = R_y^{(e)}(\vb{G}, \dot{\vb{G}}, \vb{\Theta}, \dot{\vb{\Theta}}, t) \\[0.5em]
-        m\ddot{z}_G = R_z^{(e)}(\vb{G}, \dot{\vb{G}}, \vb{\Theta}, \dot{\vb{\Theta}}, t),
-    \end{cases}
-\end{equation*}
-mentre la seconda equazione si riduce a
-\begin{equation*}
-    \begin{cases}
-        I_1 \dot{\omega}_1 - (I_2 - I_3 ) \omega_2 \omega_3 = M_{G,1}^{(e)}(\vb{G}, \dot{\vb{G}}, \vb{\Theta}, \dot{\vb{\Theta}}, t)\note{Le velocità angolari sono espresse in funzione degli angoli di Eulero e delle loro derivate} \\[0.5em]
+        m\ddot{z}_G = R_z^{(e)}(\vb{G}, \dot{\vb{G}}, \vb{\Theta}, \dot{\vb{\Theta}}, t) \\[0.5em]
+        I_1 \dot{\omega}_1 - (I_2 - I_3 ) \omega_2 \omega_3 = M_{G,1}^{(e)}(\vb{G}, \dot{\vb{G}}, \vb{\Theta}, \dot{\vb{\Theta}}, t)\note{Le componenti della velocità angolare $\omega_i$ sono espresse in funzione degli angoli di Eulero e delle loro derivate prime attraverso le relazioni cinematiche di trasformazione.} \\[0.5em]
         I_2 \dot{\omega}_2 - (I_3 - I_1) \omega_3 \omega_1 = M_{G,2}^{(e)}(\vb{G}, \dot{\vb{G}}, \vb{\Theta}, \dot{\vb{\Theta}}, t) \\[0.5em]
         I_3 \dot{\omega}_3 - (I_1 - I_2) \omega_1 \omega_2 = M_{G,3}^{(e)}(\vb{G}, \dot{\vb{G}}, \vb{\Theta}, \dot{\vb{\Theta}}, t).
     \end{cases}
 \end{equation*}
 
-Abiamo quindi sei equazioni differenziali ordinarie del secondo ordine in sei incognite, che sono le coordinate del baricentro $x_G(t), y_G(t), z_G(t)$ e gli angoli di eulero $\theta(t), \psi(t), \varphi(t)$, esprimibili in forma normale.
+Il problema dinamico del solido libero si riduce dal punto di vista matematico alla risoluzione di un sistema accoppiato di sei equazioni differenziali ordinarie del secondo ordine nelle sei incognite fondamentali $x_G(t), y_G(t), z_G(t)$, $\theta(t), \psi(t), \varphi(t)$. Il sistema è configurabile in forma normale, garantendo determinazione e unicità della traiettoria del solido.
 
 \begin{example}[Satellite in orbita attorno alla Terra] \note{Lezione 21/05/2026}
-    Nel caso di un satellite artificiale in orbita intorno alla Terra, supponendo che sia schematizzabile come un corpo rigido a struttura giroscopica (ad esempio un cilindro), possiamo scrivere le equazioni cardinali con il polo il baricentro come
+    Nel caso di un satellite artificiale in orbita intorno alla Terra, supponendo che il corpo sia schematizzabile come un solido a struttura giroscopica omogeneo a simmetria cilindrica, l'analisi del moto traslazionale del baricentro viene governata dalla prima equazione cardinale impostata nella forma
     \begin{equation*}
-        \begin{cases}
-            \displaystyle m\vb{a}_G = -h\frac{m M_T}{\abs{\vb{O}- \vb{G}}^2} \operatorname{vers}\qty(\vb{O} - \vb{G}) \\[0.5em]
-            
-        \end{cases}
+        m\vb{a}_G = -h\frac{m M_T}{\abs{\vb{O} - \vb{G}}^2} \operatorname{vers}\qty(\vb{O} - \vb{G}),
     \end{equation*}
-
-    Consideriamo un sistema di riferimento $\mathcal{E}_T$ \emph{terrestre--stellare} che pul considerarsi inerziale per intervalli di tempo molto minori di un anno solare.
+    dove lo studio del moto viene condotto introducendo un sistema di riferimento $\mathcal{E}_T$ di tipo terrestre--stellare, il quale, per intervalli temporali significativamente inferiori alla durata dell'anno solare, può essere considerato a tutti gli effetti un riferimento galileiano inerziale.
 \end{example}
-
-Tornand al problema di determinazione degli assi prinicipali di inerzia, se $\pi$ è un piano di simmetria materiale per $\mathcal{S}$, ovvero che $\forall \vb{P}\in\mathcal{S},\, \exists \vb{P}'\in\mathcal{S}$ tale che:
-\begin{enumerate}[label=$\roman*.$]
-    \item $\vb{PP'} \perp \pi$;
-    \item l'intersezione $M$ di $\vb{PP'}$ con $\pi$ è il punto medio di $\vb{PP'}$;
-    \item $\rho\qty(\vb{P}) = \rho\qty(\vb{P'})$ o nel caso discreto $m\qty(\vb{P}) = m\qty(\vb{P'})$,
-\end{enumerate}
-allora ogni asse perpendicolare a $\pi$ è un asse principale di inerzia.
-
-Siano ora $\pi_1$ e $\pi_2$ due piani di simmetria materiale per $\mathcal{S}$, tali che $\pi_1 \perp \pi_2$. La retta $z$, perperndicolare al piano $\pi_1$ è un'asse principale di inerzia. La retta $y$ perpendicolare a $\pi_2$ è un'asse principale di inerzia. La retta $x$ perpendicolare a entrambe è un'asse principale di inerzia. Quindi, se un solido presenta due piani di simmetria materiale perpendicolari, allora i tre assi principali di inerzia sono ortogonali e coincidenti con le rette perpendicolari ai piani di simmetria.

@@ -306,7 +306,121 @@ ovvero, utilizzando la lagrangiana,
 \end{example}
 
 
-\section{Trasformazioni di coordinate}
+\begin{example}[Doppio pendolo] \note{Lezione 21/05/2026}
+    Consideriamo un doppio pendolo piano costituito da due aste rigide omogenee, ciascuna di massa $m$ e lunghezza $\ell$. La prima asta ha estremi $O$ e $A$, la seconda ha estremi $A$ e $B$. Il punto $O$ è fisso ed è l'origine del riferimento $\{O,x,y\}$, con l'asse $y$ diretto verso il basso. Indichiamo con $\theta$ l'angolo tra l'asse $y$ e l'asta $OA$, e con $\varphi$ l'angolo tra la proiezione di $AB$ sull'asse $y$ e l'asta $AB$.
+
+    \begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=latex, line cap=round, line join=round, scale=0.95]
+        \coordinate (O) at (0,0);
+        \coordinate (A) at (1.25,-2.28);
+        \coordinate (B) at (3.09,-4.12);
+        \coordinate (G1) at (0.625,-1.14);
+        \coordinate (G2) at (2.17,-3.20);
+        \coordinate (Adown) at (1.25,-3.20);
+
+        \draw[->, thick] (-0.35,0) -- (4.1,0) node[right] {$x$};
+        \draw[->, thick] (0,0.35) -- (0,-4.85) node[below] {$y$};
+
+        \draw[line width=2pt] (O) -- (A);
+        \draw[line width=2pt] (A) -- (B);
+        \draw[dashed, black!45] (A) -- (Adown);
+
+        \fill[black] (O) circle (0.07) node[above left] {$O$};
+        \fill[black] (A) circle (0.07) node[right] {$A$};
+        \fill[black] (B) circle (0.07) node[right] {$B$};
+
+        \fill[gray] (G1) circle (0.07);
+        \fill[gray] (G2) circle (0.07);
+        \draw[thin, black!60] (G1) (1.5,-1.18) node[left] {$G_1$};
+        \draw[thin, black!60] (G2) (2.3,-3.2) node[right] {$G_2$};
+
+        \draw[->] (0,-0.7) arc (-90:-61:0.7);
+        \node at (0.29,-0.92) {$\theta$};
+
+        \draw[->] (1.25,-2.83) arc (-90:-45:0.55);
+        \node at (1.59,-3.02) {$\varphi$};
+
+        \draw[->, thick] (3.75,-0.55) -- (3.75,-1.45) node[midway, right] {$\vb{g}$};
+    \end{tikzpicture}
+    \caption{Doppio pendolo formato da due aste omogenee uguali.}
+    \end{figure}
+
+    Le coordinate lagrangiane naturali sono quindi
+    \begin{equation*}
+        q_1 = \theta, \qquad q_2 = \varphi.
+    \end{equation*}
+    Le posizioni dei baricentri delle due aste sono
+    \begin{equation*}
+        \begin{cases}
+            x_{G_1} = \frac{\ell}{2}\sin\theta, \\
+            y_{G_1} = \frac{\ell}{2}\cos\theta,
+        \end{cases}
+        \qquad
+        \begin{cases}
+            x_{G_2} = \ell\sin\theta + \frac{\ell}{2}\sin\varphi, \\
+            y_{G_2} = \ell\cos\theta + \frac{\ell}{2}\cos\varphi.
+        \end{cases}
+    \end{equation*}
+
+    Calcoliamo l'energia cinetica con il teorema di König. Poiché il momento di inerzia di ciascuna asta rispetto al proprio baricentro è $I_G = \frac{1}{12}m\ell^2$, si ha
+    \begin{equation*}
+        T_1 = \frac{1}{2}m v_{G_1}^2 + \frac{1}{2}I_G\dot{\theta}^2
+            = \frac{1}{6}m\ell^2\dot{\theta}^2.
+    \end{equation*}
+    Per la seconda asta,
+    \begin{equation*}
+        v_{G_2}^2 = \ell^2\dot{\theta}^2 + \frac{\ell^2}{4}\dot{\varphi}^2
+        + \ell^2\cos(\theta-\varphi)\dot{\theta}\dot{\varphi},
+    \end{equation*}
+    e quindi
+    \begin{equation*}
+        T_2 = \frac{1}{2}m\ell^2\dot{\theta}^2
+        + \frac{1}{6}m\ell^2\dot{\varphi}^2
+        + \frac{1}{2}m\ell^2\cos(\theta-\varphi)\dot{\theta}\dot{\varphi}.
+    \end{equation*}
+    L'energia cinetica totale è dunque
+    \begin{equation*}
+        T = \frac{2}{3}m\ell^2\dot{\theta}^2
+        + \frac{1}{6}m\ell^2\dot{\varphi}^2
+        + \frac{1}{2}m\ell^2\cos(\theta-\varphi)\dot{\theta}\dot{\varphi}.
+    \end{equation*}
+
+    Poiché l'asse $y$ è orientato verso il basso, il potenziale gravitazionale è
+    \begin{equation*}
+        V = -mg(y_{G_1}+y_{G_2})
+        = -mg\ell\left(\frac{3}{2}\cos\theta + \frac{1}{2}\cos\varphi\right).
+    \end{equation*}
+    La lagrangiana $L = T - V$ risulta quindi
+    \begin{equation*}
+        L = \frac{2}{3}m\ell^2\dot{\theta}^2
+        + \frac{1}{6}m\ell^2\dot{\varphi}^2
+        + \frac{1}{2}m\ell^2\cos(\theta-\varphi)\dot{\theta}\dot{\varphi}
+        + mg\ell\left(\frac{3}{2}\cos\theta + \frac{1}{2}\cos\varphi\right).
+    \end{equation*}
+    Applicando le equazioni di Lagrange si ottiene il sistema
+    \begin{equation*}
+        \begin{cases}
+            \displaystyle
+            \frac{4}{3}\ddot{\theta}
+            + \frac{1}{2}\cos(\theta-\varphi)\ddot{\varphi}
+            + \frac{1}{2}\sin(\theta-\varphi)\dot{\varphi}^2
+            + \frac{3g}{2\ell}\sin\theta = 0, \\[0.8em]
+            \displaystyle
+            \frac{1}{3}\ddot{\varphi}
+            + \frac{1}{2}\cos(\theta-\varphi)\ddot{\theta}
+            - \frac{1}{2}\sin(\theta-\varphi)\dot{\theta}^2
+            + \frac{g}{2\ell}\sin\varphi = 0.
+        \end{cases}
+    \end{equation*}
+
+    \begin{remark}
+        Il doppio pendolo è uno dei più classici esempi di un sistema che mostra un comportamento caotico, ovvero una sensibilità estrema alle condizioni iniziali. Piccole variazioni nelle condizioni iniziali possono portare a traiettorie completamente diverse nel tempo, rendendo il sistema imprevedibile a lungo termine.
+    \end{remark}
+\end{example}
+
+
+\section{Trasformazioni di coordinate} \note{Lezione 24/03/2026}
 Stabilita una trasformazione di coordinate nello spazio delle configurazioni
 \begin{equation*}
     \xi_i = \xi_i(\vq, t) \qquad i = 1, \dots, n,
