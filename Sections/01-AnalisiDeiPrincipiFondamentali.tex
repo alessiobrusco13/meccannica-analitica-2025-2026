@@ -1,117 +1,111 @@
 \chapter{Analisi dei principi fondamentali}
-Iniziamo fissando il linguaggio di base per descrivere configurazioni, vincoli e coordinate generalizzate. L'obiettivo è ottenere una descrizione compatta del moto.
+In questo capitolo introduciamo il linguaggio geometrico e cinematico di base, fondamentale per tutto lo sviluppo successivo della meccanica analitica. Definiremo i concetti di vincolo, grado di libertà e coordinate generalizzate, strumenti indispensabili per descrivere il moto dei sistemi vincolati. Introdurremo inoltre le nozioni di spostamento e lavoro virtuale, che ci permetteranno di gestire le reazioni vincolari incognite. Questi concetti di base costituiscono il punto di partenza necessario per poter ricavare, nei capitoli successivi, le equazioni di Lagrange e i principi variazionali.
 
 \section{Vincoli e gradi di libertà}
-Nel passaggio dai singoli punti materiali a sistemi complessi, i \emph{vincoli} riducono il numero di configurazioni accessibili. Il numero di parametri indipendenti necessari per descrivere una configurazione è il \emph{grado di libertà}. Questa nozione ci dirà quante coordinate saranno necessarie per descrivere il moto.
+Iniziamo considerando un sistema libero costituito da $N$ punti materiali. 
 
-\begin{definition}[Grado di libertà]
-Dato un sistema materiale di un numero finito di punti e corpi rigidi, chiamiamo \emph{grado di libertà} il numero di parametri reali indipendenti che permettono di individuare univocamente la configurazione del sistema.
-\end{definition}
+Al fine di mantenere un'impostazione geometrica intrinseca, ovvero indipendente dalla scelta di uno specifico sistema di riferimento, introduciamo lo spazio vettoriale euclideo tridimensionale $E_3$. Questo spazio accoglie tutti i vettori liberi della meccanica, come le posizioni e le velocità. L'identificazione di $E_3$ con l'usuale spazio cartesiano $\R^3$ si realizza unicamente nel momento in cui viene fissata una base.
 
-\begin{example}
-Gradi di libertà notevoli:
+La posizione dell'intero sistema in un dato istante è completamente determinata dai vettori $\vP_1, \dots, \vP_N \in E_3$, per cui l'insieme di tutte le possibili configurazioni libere del sistema corrisponde all'insieme prodotto $E_3^N$. Più in generale, descriveremo la configurazione del sistema tramite un insieme di $\ell$ parametri scalari. Questa configurazione sarà identificata globalmente dal vettore $\vb*{\xi} = (\xi_1, \dots, \xi_\ell) \in \R^\ell$.
+
+\begin{definition}[Vincolo]
+Un \emph{vincolo} è una qualunque condizione, geometrica o cinematica, che limita le posizioni accessibili o le velocità assumibili dai punti di un sistema meccanico.
+
+I vincoli si distinguono in:
 \begin{itemize}
-    \item Punto libero nello spazio: 3 gradi di libertà.
-    \item Punto vincolato a una sfera di raggio $R$ ($x^2 + y^2 + z^2 = R^2$): 2 gradi di libertà.
-    \item Punto su una superficie regolare ($\varphi(x,y,z) = 0$): 2 gradi di libertà.
-    \item Asticella rigida di lunghezza $\ell$ con estremi $A$ e $B$ ($(x_A - x_B)^2 + (y_A - y_B)^2 = \ell^2$): 5 gradi di libertà.
+    \item \emph{olonomi}: impongono restrizioni analitiche esclusivamente sulle posizioni del sistema e, possibilmente, sul tempo. A loro volta si suddividono in:
+    \begin{itemize}
+        \item \emph{bilateri}: espressi da equazioni $\varphi(\xi_1, \dots, \xi_\ell, t) = 0$;
+        \item \emph{unilaterali}: espressi da disequazioni $\psi(\xi_1, \dots, \xi_\ell, t) \geq 0$.
+    \end{itemize}
+    In ogni caso assumiamo che le funzioni $\varphi$ e $\psi$ siano almeno differenziabili.
+    \item \emph{anolonomi}: impongono restrizioni \emph{non integrabili} che coinvolgono, oltre alle posizioni, anche le velocità.
 \end{itemize}
-\end{example}
+
+Indipendentemente da questa classificazione, un vincolo è detto \emph{reonomo} o mobile se la sua espressione analitica dipende esplicitamente dal tempo $t$, mentre è detto \emph{scleronomo} o fisso se ne è indipendente.
+\end{definition}
 
 \note{Lezione 17/03/2026}
-Consideriamo sistemi finiti di punti e corpi rigidi con vincoli che ne limitano le posizioni. I vincoli possono essere a moto assegnato: il loro movimento è prescritto dall'esterno e non risente dell'evoluzione del sistema.
-
-L'insieme dei parametri che occorrono per determinare la posizione del corpo è
+Nel seguito della trattazione ci concentreremo principalmente su sistemi soggetti a un insieme di $r$ vincoli olonomi bilateri, descritti dal sistema di equazioni:
 \begin{equation*}
-    \xi_1, \xi_2, \dots, \xi_\ell.
+    \varphi_\alpha(\xi_1, \dots, \xi_\ell, t) = 0, \qquad \alpha = 1, \dots, r.
 \end{equation*}
-La forma dei vincoli stabilisce quali configurazioni sono ammesse all'interno di questo spazio dei parametri.
+La presenza di tali vincoli riduce la dimensione dello spazio delle configurazioni assumibili dal sistema. Definiamo in questo contesto la matrice Jacobiana dei vincoli rispetto alle coordinate $\vb*{\xi}$:
+\begin{equation*}
+    \tens{J} = \frac{\partial(\varphi_1, \varphi_2, \dots, \varphi_r)}{\partial(\xi_1, \xi_2, \dots, \xi_\ell)} = 
+    \begin{pmatrix}
+        \displaystyle \pdv{\varphi_1}{\xi_1} & \cdots & \displaystyle \pdv{\varphi_1}{\xi_\ell} \\[0.7em]
+        \vdots & \ddots & \vdots \\
+        \displaystyle \pdv{\varphi_r}{\xi_1} & \cdots & \displaystyle \pdv{\varphi_r}{\xi_\ell}
+    \end{pmatrix}.
+\end{equation*}
+Il rango di $\tens{J}$, che indicheremo con $\rho$, rappresenta il numero di vincoli \emph{linearmente indipendenti}. Naturalmente si ha $\rho \leq r \leq \ell$. 
 
-\begin{definition}[Vincoli olonomi, anolonomi, bilateri e unilateri]
-I vincoli \emph{olonomi} non dipendono dalle velocità e impongono condizioni sulle sole coordinate (e, eventualmente, sul tempo).  Si distinguono in:
-\begin{itemize}
-    \item \emph{vincoli bilateri}, espressi da equazioni
-    \[
-        \varphi_\alpha(\xi_1, \xi_2, \dots, \xi_\ell, t) = 0,
-        \qquad \alpha = 1, 2, \dots, r,
-    \]
-    che possono essere soddisfatte “da entrambi i lati” (la configurazione è forzata a restare sulla varietà $\varphi_\alpha=0$);
-    \item \emph{vincoli unilaterali}, espressi da disequazioni
-    \[
-        \psi_\beta(\xi_1, \xi_2, \dots, \xi_\ell, t) \geq 0,
-        \qquad \beta = 1, 2, \dots, s,
-    \]
-    che ammettono solo un lato della superficie di confine $\psi_\beta=0$.
-\end{itemize}
-Viceversa si dicono \emph{anolonomi} se dipendono dalle velocità.
-Diremo inoltre \emph{reonomi} i vincoli dipendenti esplicitamente dal tempo e \emph{scleronomi} quelli indipendenti dal tempo.
+\begin{definition}[Grado di libertà]
+Il numero di \emph{gradi di libertà} $n$ di un sistema meccanico è il numero di parametri indipendenti strettamente necessari e sufficienti per individuare univocamente una configurazione del sistema nel rispetto di tutti i vincoli.
 \end{definition}
+
 \begin{proposition}[Calcolo dei gradi di libertà]\label{prop:gradoLiberta}
-Il numero di gradi di libertà del sistema è dato da
+Se il sistema è descritto da $\ell$ parametri liberi ed è soggetto a $r$ vincoli olonomi bilateri con matrice Jacobiana di rango $\rho$, il numero di gradi di libertà è dato da:
 \begin{equation*}
-    n = \ell - \rho,
-\end{equation*}
-dove $\ell$ è il numero di parametri e $\rho$ è il rango della matrice Jacobiana dei vincoli, ovvero
-\begin{equation*}
-    \rho = \rank \left( \frac{\partial (\varphi_1, \varphi_2, \dots, \varphi_r)}{\partial (\xi_1, \xi_2, \dots, \xi_\ell)} \right).
+    n = \ell - \rho.
 \end{equation*}
 \end{proposition}
 
 \begin{proof}
-Assumendo che la matrice Jacobiana dei vincoli abbia rango $\rho$, possiamo supporre, senza perdita di generalità, che le sue prime $\rho$ colonne siano linearmente indipendenti. Questo implica che la sottomatrice quadrata formata da queste colonne sia invertibile, ovvero che il determinante Jacobiano parziale rispetto alle prime $\rho$ coordinate sia non nullo:
-
+Assumendo che la matrice Jacobiana $\tens{J}$ abbia rango $\rho$, possiamo supporre, senza perdita di generalità (eventualmente riordinando vincoli e coordinate), che le sue prime $\rho$ colonne e prime $\rho$ righe siano linearmente indipendenti. Questo implica che la corrispondente sottomatrice quadrata $\rho \times \rho$ sia invertibile, ovvero che il determinante Jacobiano parziale sia non nullo:
 \begin{equation*}
     \det \left( \frac{\partial(\varphi_1, \varphi_2, \ldots, \varphi_\rho)}{\partial(\xi_1, \xi_2, \ldots, \xi_\rho)} \right) \neq 0.
 \end{equation*}
 
-In virtù del teorema del Dini \note{Analogia con il teorema della funzione implicita in due dimensioni: se $F(x,y) = 0$ e $\pdv{F}{y} \neq 0$, allora è possibile esplicitare $y = y(x)$}, questa condizione ci garantisce la possibilità di esplicitare localmente le prime $\rho$ variabili $(\xi_1, \ldots, \xi_\rho)$ in funzione delle restanti $\ell - \rho$ variabili. Possiamo quindi risolvere il sistema delle equazioni vincolari:
-
+In virtù del teorema del Dini\note{Analogamente in due dimensioni se $F(x,y) = 0$ e $\pdv{F}{y} \neq 0$, allora è possibile esplicitare $y = y(x)$}, questa condizione garantisce la possibilità di esplicitare localmente le prime $\rho$ variabili $(\xi_1, \ldots, \xi_\rho)$ in funzione delle restanti $\ell - \rho$ variabili e del tempo. Possiamo quindi risolvere il sottosistema delle prime $\rho$ equazioni vincolari
 \begin{equation*}
     \begin{cases} 
-        \varphi_1(\xi_1, \xi_2, \ldots, \xi_\rho, \xi_{\rho+1}, \ldots, \xi_\ell) = 0 \\ 
-        \varphi_2(\xi_1, \xi_2, \ldots, \xi_\rho, \xi_{\rho+1}, \ldots, \xi_\ell) = 0 \\ 
+        \varphi_1(\xi_1, \xi_2, \ldots, \xi_\rho, \xi_{\rho+1}, \ldots, \xi_\ell, t) = 0 \\ 
+        \varphi_2(\xi_1, \xi_2, \ldots, \xi_\rho, \xi_{\rho+1}, \ldots, \xi_\ell, t) = 0 \\ 
         \vdots \\ 
-        \varphi_\rho(\xi_1, \xi_2, \ldots, \xi_\rho, \xi_{\rho+1}, \ldots, \xi_\ell) = 0 
+        \varphi_\rho(\xi_1, \xi_2, \ldots, \xi_\rho, \xi_{\rho+1}, \ldots, \xi_\ell, t) = 0 
     \end{cases}
 \end{equation*}
-
-ottenendo le dipendenze $\xi_k = \xi_k(\xi_{\rho+1}, \ldots, \xi_\ell)$ per $k = 1, \ldots, \rho$. Di conseguenza, la configurazione del sistema risulta univocamente determinata dalle rimanenti $\ell - \rho = n$ variabili indipendenti.
+ottenendo le dipendenze $\xi_k = \xi_k(\xi_{\rho+1}, \ldots, \xi_\ell, t)$ per $k = 1, \ldots, \rho$. Di conseguenza, in ogni istante $t$, la configurazione del sistema risulta univocamente e localmente determinata dalle rimanenti $\ell - \rho = n$ variabili indipendenti, dimostrando così che il sistema possiede $n$ gradi di libertà.
 \end{proof}
 
-\begin{remark}
-    Fisicamente, il numero di gradi di libertà è dato dal numero dei parametri meno il numero di vincoli linearmente indipendenti.
-\end{remark}
+\begin{example}
+Gradi di libertà notevoli:
+\begin{itemize}
+    \item Punto libero nello spazio: nessun vincolo ($\ell=3, \rho=0$), quindi $n = 3$.
+    \item Punto vincolato a una sfera fissa di raggio $R$: l'equazione del vincolo bilatero e olonomo è $x^2 + y^2 + z^2 - R^2 = 0$. In questo caso $\ell=3$ e $\rho=1$, perciò $n = 2$.
+    \item Punto su una superficie regolare ($\varphi(x,y,z) = 0$): similmente alla sfera, $\ell=3, \rho=1 \implies n=2$.
+    \item Asticella rigida di lunghezza $L$ con estremi nei punti $A$ e $B$: le coordinate dei due estremi forniscono $\ell=6$ parametri, soggetti al vincolo olonomo della distanza costante $(x_A - x_B)^2 + (y_A - y_B)^2 + (z_A - z_B)^2 - L^2 = 0$. Dunque $\rho=1$ e $n = 6 - 1 = 5$ gradi di libertà.
+\end{itemize}
+\end{example}
 
 \section{Coordinate lagrangiane}
-Se i vincoli sono olonomi e bilateri, le configurazioni accessibili formano una varietà di dimensione $n = \ell - \rho$ (localmente). È quindi possibile parametrizzare tali configurazioni mediante $n$ coordinate indipendenti; queste saranno le coordinate del moto.
-
-Possiamo dimostrare che esistono $n$ funzioni indipendenti $q_1, q_2, \dots, q_n$ tali che
+Se i vincoli sono olonomi e bilateri, l'insieme delle configurazioni accessibili costituisce localmente uno spazio\note{Sarebbe più appropriato parlare di varietà} di dimensione $n = \ell - \rho$. Possiamo dimostrare che esistono $n$ funzioni indipendenti $q_1, q_2, \dots, q_n$ tali che
 \begin{equation*}
-    \xi_i = \xi_i(q_1, q_2, \dots, q_n, t) \quad i = 1, 2, \dots, \ell.
+    \xi_i = \xi_i(q_1, q_2, \dots, q_n, t) \quad i = 1, 2, \dots, \ell,
 \end{equation*}
-La dipendenza dal tempo è presente solo se almeno uno dei vincoli è reonomo.
+dove la dipendenza dal tempo è presente solo se almeno uno dei vincoli è reonomo.
 
 \begin{remark}
-    Questo procedimento è la generalizzazione dell'espressione di $x$ e $y$ in funzione di $\theta$ per le coordinate polari.
+    Questo procedimento è la generalizzazione dell'espressione di $x$ e $y$ in funzione di $\theta$ per le coordinate polari sulla circonferenza unitaria.
 \end{remark}
 
 \begin{definition}[Coordinate lagrangiane]
-Questi $n$ parametri $q_1, q_2, \dots, q_n$ sono detti \emph{coordinate lagrangiane}, \emph{coordinate generalizzate} o \emph{coordinate libere}\note{libere enfatizza il fatto che siano indipendenti} del sistema.
+Questi $n$ parametri $q_1, q_2, \dots, q_n$ sono detti \emph{coordinate lagrangiane}, \emph{coordinate generalizzate} o \emph{coordinate libere} del sistema.
 \end{definition}
 
 \begin{example}[Guida rettilinea ruotante]
-Consideriamo un punto che può scorrere liberamente su una guida rettilinea ruotante nel piano $(O, x, y)$ con versori $\vu{i}, \vu{j}$, che si muove con velocità angolare $\omega > 0$. La posizione è descritta dal vettore
-\[
-    \vP = x\,\vu{i} + y\,\vu{j}.
-\]
-Sia $\delta=\abs{\vP}$ la distanza tra il punto e l'origine. Le coordinate sono
+Questo esempio illustra il concetto di vincolo dipendente dal tempo (reonomo). Consideriamo un punto materiale che può scorrere liberamente lungo un'asta (la guida) vincolata a ruotare nel piano cartesiano $(O, x, y)$ attorno all'origine con velocità angolare costante $\omega > 0$. 
+
+Il punto si muove in un piano (2 dimensioni), ma dovendo restare sull'asta è soggetto a 1 vincolo, avendo così un solo grado di libertà. La coordinata lagrangiana naturale per descrivere la sua configurazione è la distanza $\delta = \abs{\vP}$ dall'origine. Le equazioni di trasformazione dalle coordinate cartesiane alla coordinata lagrangiana sono:
 \begin{equation*}
     \begin{cases}
         x = \delta \cos(\omega t) \\
         y = \delta \sin(\omega t)
     \end{cases}
 \end{equation*}
-avendo quindi una dipendenza esplicita dal tempo dovuta al vincolo reonomo (la guida ruota).
+In un sistema a vincoli fissi, le coordinate cartesiane dipenderebbero solo da quelle lagrangiane. In questo caso, invece, vi è una dipendenza \emph{esplicita} dal tempo: anche mantenendo fissa la coordinata lagrangiana (cioè con il punto fermo rispetto alla guida, $\delta = \text{costante}$), le coordinate spaziali $(x,y)$ cambiano a causa della rotazione dell'asta (il vincolo stesso si muove).
 \end{example}
 
 \begin{remark}
@@ -268,9 +262,9 @@ Invece una configurazione è di confine se esiste almeno un vincolo unilaterale 
 Ogni vincolo può essere sostituito con un sistema di forze, dette \emph{reazioni vincolari}, senza alterare lo stato di quiete o di moto del sistema materiale.
 \end{proposition}
 
-Nel seguito distingueremo tra forze attive (esterne o applicate) e forze vincolari. Supporremo vincoli \emph{lisci} (cioè privi di attrito).
+Nel seguito distingueremo tra forze attive, esterne o applicate, e forze vincolari. Supporremo vincoli \emph{lisci}, cioè privi di attrito.
 \begin{definition}[Superficie liscia]
-    Diremo che una superficie è liscia, o priva di attrito, se è in grado di esercitare tutte e sole le reazioni vincolari ad essa normali e rivolte verso l'esterno, cioè verso la regione in cui il sistema può muoversi.
+    Diremo che una superficie è \emph{liscia}, o priva di attrito, se è in grado di esercitare tutte e sole le reazioni vincolari ad essa normali e rivolte verso l'esterno, cioè verso la regione in cui il sistema può muoversi.
 \end{definition}
 
 Diremo che un sistema materiale ha vincoli privi di attrito se tutte le superfici degli ostacoli esterni e dei corpi del sistema sono lisce.
