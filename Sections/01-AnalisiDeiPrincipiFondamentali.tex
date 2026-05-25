@@ -169,93 +169,43 @@ che mostra come la variazione infinitesima sia tangente alla traiettoria.
 \end{example}
 
 \begin{definition}[Spostamenti reali e virtuali]
-Definiamo uno spostamento reale $\dd{\vP}$ come una variazione infinitesima della posizione in un intervallo di tempo $\dd{t}$ non nullo, che tiene quindi conto di un eventuale moto del vincolo.\note{Il concetto di spostamento virtuale affonda le radici nei lavori di Stevino nel '500, per essere poi formalizzato da Bernoulli e Lagrange.} Uno spostamento virtuale $\var{\vP}$ è invece una variazione infinitesima a tempo congelato, cioè con $\dd{t} = 0$, mantenendo anche i vincoli bloccati.
+    Definiamo uno spostamento reale $\dd{\vP}$ come una variazione infinitesima della posizione in un intervallo di tempo $\dd{t}$ non nullo, che tiene quindi conto di un eventuale moto del vincolo.\note{Il concetto di spostamento virtuale affonda le radici nei lavori di Stevino nel '500, per essere poi formalizzato da Bernoulli e Lagrange.} Uno spostamento virtuale $\var{\vP}$ è invece una variazione infinitesima a tempo congelato, cioè con $\dd{t} = 0$, mantenendo anche i vincoli bloccati.
+    \begin{align*}
+        \dd{\vP} &= \sum_{h=1}^n \pdv{\vP}{q_h} \dd{q_h} + \pdv{\vP}{t} \dd{t} \\
+        \var{\vP} &= \sum_{h=1}^n \pdv{\vP}{q_h} \var{q}_h
+    \end{align*}
+\end{definition}
 
-Si ha quindi:
-\begin{align*}
-    \dd{\vP} &= \sum_{h=1}^n \pdv{\vP}{q_h} \dd{q_h} + \pdv{\vP}{t} \dd{t} \\
-    \var{\vP} &= \sum_{h=1}^n \pdv{\vP}{q_h} \var{q}_h
-\end{align*}
 Per visualizzare la differenza, riprendiamo l'esempio della particella sulla guida ruotante. Il movimento della particella è la somma di due contributi: lo scorrimento lungo la guida, ovvero il moto relativo, e la rotazione della guida stessa, che costituisce il moto di trascinamento. Lo spostamento reale $\dd{\vP}$ tra $t$ e $t + \dd{t}$ li include entrambi, poiché al trascorrere del tempo la guida si sposta. Al contrario, lo spostamento virtuale $\var{\vP}$ congela il tempo all'istante $t$: il trascinamento viene azzerato, poiché la guida è temporaneamente bloccata, e l'unico movimento ammesso è il puro scorrimento lungo la guida.
 
-È immediato notare dalle formule che se i vincoli sono fissi, e quindi indipendenti dal tempo, gli spostamenti virtuali coincidono esattamente con quelli reali.
-\end{definition}
+È immediato notare dalle formule che se i vincoli sono fissi (indipendenti dal tempo), l'ultimo termine dello spostamento reale si annulla e gli spostamenti virtuali coincidono esattamente con quelli reali.
 
 \subsection{Vincoli unilateri e spostamenti ammessi}
-Le coordinate lagrangiane non incorporano automaticamente i vincoli unilaterali; è quindi necessario che gli spostamenti virtuali rispettino anche tali vincoli.
+Finora abbiamo ipotizzato che i vincoli siano descritti da equazioni (vincoli bilateri), le quali vengono incorporate in modo naturale nella definizione delle coordinate lagrangiane. Tuttavia, in presenza di vincoli \emph{unilaterali}, espressi da disequazioni della forma
 \begin{equation*}
-    \begin{cases}
-        g_j(q_1, q_2, \dots, q_n, t) \geq 0 \\
-        j = 1, 2, \dots, s
-    \end{cases}
+    g_j(q_1, \dots, q_n, t) \geq 0 \qquad (j = 1, \dots, s),
 \end{equation*}
-Nelle configurazioni di confine ($g_j = 0$) gli spostamenti virtuali ammessi devono soddisfare la disuguaglianza linearizzata
-\[
-    \sum_{k=1}^n \pdv{g_j}{q_k}\,\var{q}_k \geq 0,
-    \qquad \text{per ogni vincolo attivo } g_j=0.
-\]
-In altre parole, a contatto con il vincolo possiamo muoverci solo verso la regione ammessa.
+le coordinate non garantiscono più automaticamente il rispetto di queste condizioni. È quindi necessario imporre che gli spostamenti virtuali $\var{\vq}$ siano \emph{compatibili} con la presenza degli ostacoli.
 
-\begin{example}[Punto in una circonferenza]
-Consideriamo un punto che si muove all'interno di una circonferenza di raggio $r$ con centro nell'origine. Nel piano con versori $\vu{i}, \vu{j}$ la posizione è
-\[
-    \vP = x\,\vu{i} + y\,\vu{j}.
-\]
-\begin{equation*}
-    \begin{cases}
-        x = \rho \cos \theta \\
-        y = \rho \sin \theta
-    \end{cases}
-\end{equation*}
-Il vincolo unilaterale che abbiamo è
-\begin{equation*}
-    x^2 + y^2 \leq r^2 \implies \rho \leq r.
-\end{equation*}
+Per capire quali spostamenti siano ammessi, è essenziale classificare le configurazioni del sistema in due categorie:
+\begin{itemize}
+    \item \textbf{Configurazioni ordinarie:} Tutti i vincoli unilaterali sono soddisfatti in modo stretto ($g_j > 0$). Il sistema si trova "lontano" dagli ostacoli, pienamente all'interno della regione permessa.
+    \item \textbf{Configurazioni di confine:} Almeno un vincolo unilaterale è \emph{attivo}, ovvero è soddisfatto come uguaglianza ($g_j = 0$). Il sistema si trova a diretto contatto con uno degli ostacoli.
+\end{itemize}
 
-Tutti i vincoli unilaterali sono soddisfatti come disuguaglianze strette, dandoci le posizioni (o configurazioni) ordinarie
+Nelle configurazioni ordinarie, un qualsiasi spostamento virtuale $\var{\vq}$ sufficientemente piccolo manterrà il sistema all'interno della regione permessa. Ne consegue che ogni spostamento è \emph{reversibile}: se $\var{\vq}$ è ammissibile, lo è necessariamente anche il suo opposto $-\var{\vq}$.
+
+Nelle configurazioni di confine, invece, il sistema non può muoversi verso l'esterno dell'ostacolo. Per ogni vincolo attivo ($g_j = 0$), gli spostamenti virtuali ammessi devono puntare verso l'interno della regione permessa (o sfiorare il bordo), soddisfacendo la condizione linearizzata
 \begin{equation*}
-    x^2 + y^2 < r^2 \implies \rho < r.
+    \sum_{k=1}^n \pdv{g_j}{q_k}\,\var{q}_k \geq 0.
 \end{equation*}
-Invece parliamo di posizioni di confine quando almeno una delle disequazioni è verificata come uguaglianza, in questo caso avremo
-\begin{equation*}
-    x^2 + y^2 = r^2 \implies \rho = r.
-\end{equation*}
+Se questa somma è positiva, il sistema si allontana dall'ostacolo; se è nulla, "scivola" lungo il bordo. Uno spostamento che renda la somma negativa è fisicamente vietato. Pertanto, nelle configurazioni di confine esistono spostamenti \emph{irreversibili}: un movimento verso l'interno ($\var{\vq}$) è ammesso, ma il suo opposto verso l'esterno ($-\var{\vq}$) non lo è.
+
+\begin{example}[Particella in un dominio circolare]
+Consideriamo un punto vincolato a non uscire da un disco di raggio $R(t)$, eventualmente variabile nel tempo. Il vincolo si scrive come $g(\vP, t) = R(t) - r(\vP) \geq 0$, dove $r(\vP)$ è la distanza del punto dal centro.
+Quando il punto si trova strettamente all'interno ($r < R$), ci troviamo in una configurazione ordinaria: ogni piccolo spostamento in qualsiasi direzione è ammissibile e reversibile.
+Se invece il punto si trova esattamente sul bordo ($r = R$), siamo in una configurazione di confine. Calcolando lo spostamento virtuale (che avviene a "tempo congelato", ignorando la possibile espansione del disco), questo sarà ammesso solo se diretto verso l'interno del disco o lungo la tangente al bordo. Uno spostamento radiale verso l'esterno è vietato, il che rende gli spostamenti verso l'interno irreversibili.
 \end{example}
-
-Ci sono spostamenti infinitesimi consentiti, che rispettano i vincoli unilaterali, e spostamenti infinitesimi non consentiti, che violano almeno uno dei vincoli unilaterali, per esempio uscendo dalla circonferenza.
-
-\begin{definition}[Reversibilità]
-Diremo che uno spostamento virtuale è \emph{reversibile} se il suo opposto è anch'esso uno spostamento virtuale, altrimenti diremo che è \emph{irreversibile}.
-\end{definition}
-
-Per fissare le idee, consideriamo un vincolo unilaterale geometrico con dipendenza temporale esplicita: la regione ammessa cambia nel tempo, ma lo spostamento virtuale si valuta a tempo fissato.
-
-\begin{example}[Disco che si espande]
-Se un punto materiale deve rimanere all'esterno di un disco di raggio $R(t)$, il vincolo si scrive
-\begin{equation*}
-    g(\vq,t) \ge 0, \qquad g(\vq,t) = r(\vq) - R(t).
-\end{equation*}
-Quando il punto è in contatto con il bordo ($g=0$), uno spostamento virtuale verso l'esterno aumenta $g$ e quindi è ammesso; uno spostamento verso l'interno diminuisce $g$ e violerebbe il vincolo. In questo senso, in configurazioni di confine gli spostamenti virtuali possono essere irreversibili.
-\end{example}
-
-\begin{remark}
-Nelle configurazioni ordinarie, quando tutti i vincoli unilaterali sono soddisfatti strettamente, gli spostamenti virtuali sufficientemente piccoli sono reversibili; nelle configurazioni di confine compaiono spostamenti virtuali irreversibili.
-\end{remark}
-
-Matematicamente, una configurazione è ordinaria se
-\begin{align*}
-    g_j(q_1, q_2, \dots, q_n, t) &> 0 \qquad \forall j = 1, 2, \dots, s, \\
-    g_j(q_1 \pm \var{q}_1, q_2 \pm \var{q}_2, \dots, q_n \pm \var{q}_n, t) &> 0
-    \qquad \forall j,\ \forall \abs{\var{q}_k} < \varepsilon.
-\end{align*}
-Invece una configurazione è di confine se esiste almeno un vincolo unilaterale attivo, cioè
-\begin{align*}
-    \exists j^*:\ g_{j^*}(q_1, q_2, \dots, q_n, t) &= 0, \\
-    g_{j^*}(q_1 + \var{q}_1, q_2 + \var{q}_2, \dots, q_n + \var{q}_n, t) &> 0
-    \qquad \forall \abs{\var{q}_k} < \varepsilon, \\
-    g_{j^*}(q_1 - \var{q}_1, q_2 - \var{q}_2, \dots, q_n - \var{q}_n, t) &< 0
-    \qquad \text{per qualche } \abs{\var{q}_k} < \varepsilon.
-\end{align*}
 
 \section{Problema meccanico dei vincoli}
 \begin{proposition}[Postulato delle reazioni vincolari]
