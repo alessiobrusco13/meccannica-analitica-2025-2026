@@ -38,19 +38,19 @@ Partiamo dalle equazioni di Lagrange
 Le equazioni possono essere riscritte in termini dei momenti coniugati
 \begin{equation}
     \label{eq:momenticoniugati}
-    p_i = \pdv{L}{\dot{q}_i}, \qquad \dot{p_i} = \pdv{L}{q_i}, \tag{$*$}
+    p_i = \pdv{L}{\dot{q}_i}, \qquad \dot{p_i} = \pdv{L}{q_i},
 \end{equation}
 ottenendo $2n$ equazioni differenziali del primo ordine invece di $n$ equazioni differenziali del secondo ordine.
 
 Calcoliamo il differenziale della lagrangiana e la trasformata di Legendre
 \begin{align*}
-    \dd{L} &= \sum_{j=1}^n \left( \pdv{L}{\dot{q}_j} \dd{\dot{q}_j} + \pdv{L}{q_j} \dd{q_j} \right) + \pdv{L}{t} \dd{t} \\
-    &= \sum_{j=1}^n \dot{p_j} \dd{q_j} +  \sum_{j=1}^n p_j \dd{\dot{q}_j} + \pdv{L}{t} \dd{t} \\
-    &= \sum_{j=1}^n \dot{p_j} \dd{q_j} +  \dd {\left(\sum_{j=1}^n p_j \dot{q}_j\right)} - \sum_{j=1}^n \dot{q_j} \dd{p_j} + \pdv{L}{t} \dd{t}.
+    \dd{L} &= \sum_{j=1}^n \left( \pdv{L}{\dot{q}_j} \dd{\dot{q_j}} + \pdv{L}{q_j} \dd{q_j} \right) + \pdv{L}{t} \dd{t} \\
+    &= \sum_{j=1}^n \dot{p}_j \dd{q_j} +  \sum_{j=1}^n p_j \dd{\dot{q_j}} + \pdv{L}{t} \dd{t} \\
+    &= \sum_{j=1}^n \dot{p}_j \dd{q_j} +  \dd {\left(\sum_{j=1}^n p_j \dot{q}_j\right)} - \sum_{j=1}^n \dot{q}_j \dd{p_j} + \pdv{L}{t} \dd{t}.
 \end{align*}
 Portando al primo membro si ha
 \begin{equation*}
-    \dd \left(L - \sum_{j=1}^n p_j\dot{q}_j \right) = \sum_{j=1}^n \dot{p_j} \dd{q_j} - \sum_{j=1}^n \dot{q_j} \dd{p_j} + \pdv{L}{t} \dd{t}.
+    \dd \left(L - \sum_{j=1}^n p_j\dot{q}_j \right) = \sum_{j=1}^n \dot{p}_j \dd{q_j} - \sum_{j=1}^n \dot{q}_j \dd{p_j} + \pdv{L}{t} \dd{t}.
 \end{equation*}
 Definiamo quindi la funzione
 \begin{equation} \label{eq:hamiltoniana}
@@ -58,7 +58,7 @@ Definiamo quindi la funzione
 \end{equation}
 ottenendo
 \begin{equation*}
-    -\dd{H} = \sum_{j=1}^n \dot{p_j} \dd{q_j} - \sum_{j=1}^n \dot{q_j} \dd{p_j} + \pdv{L}{t} \dd{t}.
+    -\dd{H} = \sum_{j=1}^n \dot{p}_j \dd{q_j} - \sum_{j=1}^n \dot{q}_j \dd{p_j} + \pdv{L}{t} \dd{t}.
 \end{equation*}
 Calcolando il differenziale di $H$ dalla \eqref{eq:hamiltoniana} si ha
 \begin{equation*}
@@ -104,7 +104,7 @@ Nel caso meccanico, in un sistema naturale a vincoli scleronomi, la lagrangiana 
 \end{equation*}
 Otteniamo quindi un sistema lineare di equazioni
 \begin{equation*}
-    \vp = A \dot{\vq}.
+    \vp = \tens{A} \dot{\vq}.
 \end{equation*}
 Sostituendo nella definizione di $H$ si ha
 \begin{equation*}
@@ -385,7 +385,7 @@ D'ora in avanti considereremo solo le trasformazioni canoniche con valenza $\lam
 
 La condizione di canonicità si può anche esprimere in forma differenziale:
 \begin{equation*}
-    \sum_{j=1}^n p_j \dd{q}_j - H(\vq, \vp, t) \dd{t} = \sum_{j=1}^n P_j \dd{Q}_j - K(\vQ, \vP, t) \dd{t} + \dd{F}.
+    \sum_{j=1}^n p_j \dd{q_j} - H(\vq, \vp, t) \dd{t} = \sum_{j=1}^n P_j \dd{Q_j} - K(\vQ, \vP, t) \dd{t} + \dd{F}.
 \end{equation*}
 
 Ulteriori condizioni per la canonicità di una trasformazione di coordinate sono le seguenti.
@@ -411,22 +411,22 @@ Presentiamo ora quattro trasformazioni canoniche notevoli, ottenute mediante suc
 \paragraph{Generatrice $F_1(\vq, \vQ, t)$}
 Consideriamo una trasformazione canonica con funzione generatrice $F=F_1(\vq, \vQ, t)$. Scrivendo la forma differenziale della condizione di Lie si ottiene
 \begin{multline*}
-    \sum_{j=1}^n p_j \dd{q}_j - H(\vq, \vp, t) \dd{t} = \sum_{j=1}^n P_j \dd{Q}_j - K(\vQ, \vP, t) \dd{t} \\
-    + \sum_{j=1}^n \pdv{F_1}{q_j} \dd{q}_j + \sum_{j=1}^n \pdv{F_1}{Q_j} \dd{Q}_j + \pdv{F_1}{t} \dd{t}.
+    \sum_{j=1}^n p_j \dd{q_j} - H(\vq, \vp, t) \dd{t} = \sum_{j=1}^n P_j \dd{Q_j} - K(\vQ, \vP, t) \dd{t} \\
+    + \sum_{j=1}^n \pdv{F_1}{q_j} \dd{q_j} + \sum_{j=1}^n \pdv{F_1}{Q_j} \dd{Q_j} + \pdv{F_1}{t} \dd{t}.
 \end{multline*}
-Raggruppando i termini per differenziale indipendente (tutti i $\dd{q}_j$ insieme, tutti i $\dd{Q}_j$ insieme, e il $\dd{t}$) si ottiene
+Raggruppando i termini per differenziale indipendente (tutti i $\dd{q_j}$ insieme, tutti i $\dd{Q_j}$ insieme, e il $\dd{t}$) si ottiene
 \begin{multline*}
-    \sum_{j=1}^n p_j \dd{q}_j + \sum_{j=1}^n P_j \dd{Q}_j - H \dd{t} = \sum_{j=1}^n P_j \dd{Q}_j - K \dd{t} + \sum_{j=1}^n \pdv{F_1}{q_j} \dd{q}_j + \\
-    + \sum_{j=1}^n \pdv{F_1}{Q_j} \dd{Q}_j + \pdv{F_1}{t} \dd{t}
-\end{multline*}
-\vspace{-1.5em}
-\begin{multline*}
-    \sum_{j=1}^n p_j \dd{q}_j + \sum_{j=1}^n P_j \dd{Q}_j - H \dd{t} - \sum_{j=1}^n P_j \dd{Q}_j + K \dd{t} - \sum_{j=1}^n \pdv{F_1}{q_j} \dd{q}_j + \\
-    - \sum_{j=1}^n \pdv{F_1}{Q_j} \dd{Q}_j - \pdv{F_1}{t} \dd{t} = 0
+    \sum_{j=1}^n p_j \dd{q_j} + \sum_{j=1}^n P_j \dd{Q_j} - H \dd{t} = \sum_{j=1}^n P_j \dd{Q_j} - K \dd{t} + \sum_{j=1}^n \pdv{F_1}{q_j} \dd{q_j} + \\
+    + \sum_{j=1}^n \pdv{F_1}{Q_j} \dd{Q_j} + \pdv{F_1}{t} \dd{t}
 \end{multline*}
 \vspace{-1.5em}
 \begin{multline*}
-    \sum_{j=1}^n \left(p_j - \pdv{F_1}{q_j}\right) \dd{q}_j - \sum_{j=1}^n \left(P_j + \pdv{F_1}{Q_j}\right) \dd{Q}_j - \left(H - K + \pdv{F_1}{t}\right) \dd{t} = 0
+    \sum_{j=1}^n p_j \dd{q_j} + \sum_{j=1}^n P_j \dd{Q_j} - H \dd{t} - \sum_{j=1}^n P_j \dd{Q_j} + K \dd{t} - \sum_{j=1}^n \pdv{F_1}{q_j} \dd{q_j} + \\
+    - \sum_{j=1}^n \pdv{F_1}{Q_j} \dd{Q_j} - \pdv{F_1}{t} \dd{t} = 0
+\end{multline*}
+\vspace{-1.5em}
+\begin{multline*}
+    \sum_{j=1}^n \left(p_j - \pdv{F_1}{q_j}\right) \dd{q_j} - \sum_{j=1}^n \left(P_j + \pdv{F_1}{Q_j}\right) \dd{Q_j} - \left(H - K + \pdv{F_1}{t}\right) \dd{t} = 0
 \end{multline*}
 Si ottengono quindi le relazioni
 \begin{equation*}
@@ -438,23 +438,23 @@ Si ottengono quindi le relazioni
 \paragraph{Generatrice $F_2(\vq, \vP, t)$}
 Costruiamo questa generatrice applicando la trasformata di Legendre a $F=F_1$ rispetto alla variabile $Q_j$. Partendo dalla condizione di Lie e applicando $\dd(\sum P_j Q_j) = \sum Q_j \dd P_j + \sum P_j \dd Q_j$, si ha
 \begin{align*}
-    \sum_{j=1}^n p_j \dd{q}_j - H \dd{t} &= \sum_{j=1}^n P_j\dd{Q}_j - K\dd{t} + \dd{F} \\
-    &= \dd{\left(\sum_{j=1}^n P_j Q_j\right)} - \sum_{j=1}^n Q_j \dd{P}_j - K\dd{t} + \dd{F}.
+    \sum_{j=1}^n p_j \dd{q_j} - H \dd{t} &= \sum_{j=1}^n P_j\dd{Q_j} - K\dd{t} + \dd{F} \\
+    &= \dd{\left(\sum_{j=1}^n P_j Q_j\right)} - \sum_{j=1}^n Q_j \dd{P_j} - K\dd{t} + \dd{F}.
 \end{align*}
 Raggruppando i termini si ha
 \begin{gather*}
-    \sum_{j=1}^n p_j \dd{q}_j - H \dd{t} - \dd{\left(\sum_{j=1}^n P_j Q_j\right)} 
-    + \sum_{j=1}^n Q_j \dd{P}_j + K\dd{t} = \dd{F} \\
-    \sum_{j=1}^n p_j \dd{q}_j + \sum_{j=1}^n Q_j \dd{P}_j 
+    \sum_{j=1}^n p_j \dd{q_j} - H \dd{t} - \dd{\left(\sum_{j=1}^n P_j Q_j\right)} 
+    + \sum_{j=1}^n Q_j \dd{P_j} + K\dd{t} = \dd{F} \\
+    \sum_{j=1}^n p_j \dd{q_j} + \sum_{j=1}^n Q_j \dd{P_j} 
     + (K - H)\dd{t} = \dd{F} + \dd{\left(\sum_{j=1}^n P_j Q_j\right)} \\
-    \sum_{j=1}^n p_j \dd{q}_j + \sum_{j=1}^n Q_j \dd{P}_j 
+    \sum_{j=1}^n p_j \dd{q_j} + \sum_{j=1}^n Q_j \dd{P_j} 
     + (K - H)\dd{t} = \dd{\left(F + \sum_{j=1}^n P_j Q_j\right)}.
 \end{gather*}
 La funzione generatrice $F_2$ è quindi data da
 \begin{equation*}
     F_2(\vq, \vP, t) = \left[ F(\vq, \vQ, t) + \sum_{j=1}^n P_j Q_j \right]_{\vQ = \vQ(\vP, \vq, t)}.
 \end{equation*}
-Dalle corrispondenze tra i differenziali indipendenti ($\dd{q}_j$, $\dd{P}_j$, $\dd{t}$) si ottiene
+Dalle corrispondenze tra i differenziali indipendenti ($\dd{q_j}$, $\dd{P_j}$, $\dd{t}$) si ottiene
 \begin{equation*}
     p_j = \pdv{F_2}{q_j}, \qquad
     Q_j = \pdv{F_2}{P_j}, \qquad
@@ -464,12 +464,12 @@ Dalle corrispondenze tra i differenziali indipendenti ($\dd{q}_j$, $\dd{P}_j$, $
 \paragraph{Generatrice $F_3(\vp, \vQ, t)$}
 Questa generatrice si ottiene mediante trasformata di Legendre di $F=F_1$ rispetto a $q_j$. Partendo dalla condizione di Lie e applicando $\dd(\sum p_j q_j) = \sum q_j \dd p_j + \sum p_j \dd q_j$, si ha
 \begin{align*}
-    \dd{\left(\sum_{j=1}^n p_j q_j\right)} - \sum_{j=1}^n q_j \dd{p}_j - H\dd{t} &= \sum_{j=1}^n P_j \dd{Q}_j - K \dd{t} + \dd{F}.
+    \dd{\left(\sum_{j=1}^n p_j q_j\right)} - \sum_{j=1}^n q_j \dd{p_j} - H\dd{t} &= \sum_{j=1}^n P_j \dd{Q_j} - K \dd{t} + \dd{F}.
 \end{align*}
 Raggruppando i termini
 \begin{gather*}
-    - \sum_{j=1}^n q_j \dd{p}_j - H\dd{t} = \sum_{j=1}^n P_j \dd{Q}_j - K \dd{t} + \dd{F} - \dd{\left(\sum_{j=1}^n p_j q_j\right)} \\
-    - \sum_{j=1}^n q_j \dd{p}_j - H\dd{t} = \sum_{j=1}^n P_j \dd{Q}_j - K \dd{t} + \dd{\left(F - \sum_{j=1}^n p_j q_j\right)}.
+    - \sum_{j=1}^n q_j \dd{p_j} - H\dd{t} = \sum_{j=1}^n P_j \dd{Q_j} - K \dd{t} + \dd{F} - \dd{\left(\sum_{j=1}^n p_j q_j\right)} \\
+    - \sum_{j=1}^n q_j \dd{p_j} - H\dd{t} = \sum_{j=1}^n P_j \dd{Q_j} - K \dd{t} + \dd{\left(F - \sum_{j=1}^n p_j q_j\right)}.
 \end{gather*}
 La funzione generatrice $F_3$ è quindi data da
 \begin{equation*}
@@ -485,17 +485,17 @@ e le relazioni di trasformazione sono
 \paragraph{Generatrice $F_4(\vp, \vP, t)$}
 La generatrice $F_4$ si ottiene applicando trasformate di Legendre sia rispetto a $q_j$ che rispetto a $Q_j$. Partendo dalla condizione di Lie e combinando $\dd(\sum p_j q_j)$ e $\dd(\sum P_j Q_j)$ si ha
 \begin{multline*}
-    \dd{\left(\sum_{j=1}^n p_j q_j\right)} - \sum_{j=1}^n q_j \dd{p}_j - H\dd{t} = \\
-    = \dd{\left(\sum_{j=1}^n P_j Q_j\right)} - \sum_{j=1}^n Q_j \dd{P}_j - K \dd{t} + \dd{F}.
+    \dd{\left(\sum_{j=1}^n p_j q_j\right)} - \sum_{j=1}^n q_j \dd{p_j} - H\dd{t} = \\
+    = \dd{\left(\sum_{j=1}^n P_j Q_j\right)} - \sum_{j=1}^n Q_j \dd{P_j} - K \dd{t} + \dd{F}.
 \end{multline*}
 Raggruppando i termini si ha
 \begin{multline*}
-    - \sum_{j=1}^n q_j \dd{p}_j + \sum_{j=1}^n Q_j \dd{P}_j - H\dd{t} = \\
+    - \sum_{j=1}^n q_j \dd{p_j} + \sum_{j=1}^n Q_j \dd{P_j} - H\dd{t} = \\
     = - K \dd{t} + \dd{F} - \dd{\left(\sum_{j=1}^n p_j q_j\right)} + \dd{\left(\sum_{j=1}^n P_j Q_j\right)}
 \end{multline*}
 \vspace{-1em}
 \begin{multline*}
-    - \sum_{j=1}^n q_j \dd{p}_j + \sum_{j=1}^n Q_j \dd{P}_j - H\dd{t} = \\ 
+    - \sum_{j=1}^n q_j \dd{p_j} + \sum_{j=1}^n Q_j \dd{P_j} - H\dd{t} = \\ 
     = - K \dd{t} + \dd\left(F - \sum_{j=1}^n p_j q_j + \sum_{j=1}^n P_j Q_j\right).
 \end{multline*}
 La funzione generatrice $F_4$ è quindi data da
@@ -604,4 +604,3 @@ Questi quattro tipi di funzioni generatrici rappresentano i casi più comuni e n
     \end{equation*}
     Si nota che questa forma è molto più complessa della soluzione nelle coordinate trasformate.
 \end{example}
-soluzione nelle coordinate trasformate.

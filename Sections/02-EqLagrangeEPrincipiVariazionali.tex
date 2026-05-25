@@ -147,8 +147,8 @@ Inoltre, si verifica velocemente che il termine $\pdv[2]{T}{\dot{q}_h}{\dot{q}_k
 \end{equation*}
 Pertanto,
 \begin{align*}
-    A \ddot{\vq} &= \vF(\vq, \dot{\vq}, t) \\
-    \implies \ddot{\vq} &  = A^{-1} \vF(\vq, \dot{\vq}, t)
+    \tens{A} \ddot{\vq} &= \vF(\vq, \dot{\vq}, t) \\
+    \implies \ddot{\vq} &  = \tens{A}^{-1} \vF(\vq, \dot{\vq}, t)
 \end{align*}
 e quindi
 \begin{equation*}
@@ -246,7 +246,7 @@ ovvero, utilizzando la lagrangiana,
 
         % Force: Weight (P) applied at G, thick vector
         \draw[thick, black, ->] (1.5, 1.25) -- (1.5, 0.0);
-        \node[left, font=\small, yshift=5pt] at (1.5, 0.6) {$m\mathbf{g}$}; % Weight label clean-up
+        \node[left, font=\small, yshift=5pt] at (1.5, 0.6) {$m\vb{g}$}; % Weight label clean-up
 
     \end{tikzpicture}
     \caption{Asta rigida con estremi scorrevoli sugli assi.}
@@ -628,7 +628,7 @@ In altri termini, presa una soluzione $\vq(t)$ delle equazioni di Lagrange, se $
 \section{Formulazione variazionale}
 Passiamo ora a una formulazione alternativa della dinamica, basata su principi \emph{variazionali}. L'idea guida è descrivere il moto attraverso un problema di estremo relativo per una quantità integrale.
 
-Un esempio storico fondamentale è il \emph{problema della brachistocrona}, formulato da Johann Bernoulli nel 1696:\note{Il nome "brachistocrona" deriva dal greco "brachistos" (più breve) e "chronos" (tempo), indicando la curva che consente il percorso più rapido tra due punti sotto l'effetto della gravità.}
+Un esempio storico fondamentale è il \emph{problema della brachistocrona}, formulato da Johann Bernoulli nel 1696:\note{Il nome "brachistocrona" deriva dal greco "brachistos" (più breve) e "chronos" (tempo), indicando la curva che consente il percorso più rapido tra due punti sotto l'effetto della gravità}
 \begin{quote}
     In un piano verticale si considerino due punti $A$ e $B$, non sulla stessa verticale, con $A$ più alto di $B$. Supponiamo, inoltre, di collegare $A$ e $B$ con una guida curva liscia $\gamma$.
     
@@ -659,7 +659,7 @@ Un esempio storico fondamentale è il \emph{problema della brachistocrona}, form
 
         % Direzione della gravita' (moved to the edge)
         \draw[thick, ->, black] (5.2, -0.4) -- (5.2, -1.4);
-        \node[right] at (5.2, -0.9) {$\mathbf{g}$};
+        \node[right] at (5.2, -0.9) {$\vb{g}$};
     \end{tikzpicture}
     \caption{Problema della brachistocrona: confronto tra il percorso rettilineo e la curva cicloidale che minimizza il tempo di discesa da $A$ a $B$.}
     \label{fig:brachistocrona_corretta}
@@ -862,15 +862,15 @@ Possiamo quindi riscrivere lo sviluppo finale di $I[y^* + \var{y}]$ in modo rigo
 
 Considerando, invece, una n-upla di funzioni, definiamo un funzionale integrale del tipo
 \begin{equation*}
-    I[y_1, \dots, y_n] = I[\vb{y}]= \int_{x_0}^{x_1} F(\vb{y}, \vb{y'}, x)\dd{x}.
+    I[y_1, \dots, y_n] = I[\vy]= \int_{x_0}^{x_1} F(\vy, \vy', x)\dd{x}.
 \end{equation*}
 il teorema di Eulero si generalizza in maniera immediata, fornendo un sistema di $n$ equazioni differenziali ordinarie:
 \begin{theorem}[Eulero per più variabili]
     Sia un funzionale integrale
     \begin{equation*}
-        I[\vb{y}, \vb{y'}] = \int_{x_0}^{x_1} F(\vb{y}, \vb{y'}, x)\dd{x}.
+        I[\vy, \vy'] = \int_{x_0}^{x_1} F(\vy, \vy', x)\dd{x}.
     \end{equation*}
-    Una condizione necessaria affinché $\vb{y}^*(x)$ sia un estremo relativo di $I[\vb{y}, \vb{y'}]$ è che essa soddisfi il sistema di equazioni
+    Una condizione necessaria affinché $\vy^*(x)$ sia un estremo relativo di $I[\vy, \vy']$ è che essa soddisfi il sistema di equazioni
     \begin{equation*}
         \pdv{F}{y_i} - \dv{x}\pdv{F}{y_i'} = 0 \qquad i = 1, \dots, n.
     \end{equation*}

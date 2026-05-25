@@ -6,29 +6,29 @@ Questo capitolo è dedicato allo studio del moto di un corpo rigido. Discuteremo
 \begin{definition}[Corpo rigido]\note{Trattato durante varie lezioni, sia all'inizio che alla fine del corso}
     Un corpo $\mathcal{S}$ si dice \emph{rigido} se le mutue distanze fra due suoi punti qualsiasi rimangono invariate nel tempo, ovvero
     \begin{equation*}
-        \abs{\vb{P}(t) - \vb{Q}(t)} = \text{cost} \quad \forall P, Q \in \mathcal{S}, \forall t.
+        \abs{\vP(t) - \vQ(t)} = \text{cost} \quad \forall P, Q \in \mathcal{S}, \forall t.
     \end{equation*}
 \end{definition}
 
-Indicando con $\vb{P}_i$ i vettori posizione dei punti del corpo, il \emph{vincolo di rigidità} può essere espresso nella forma
+Indicando con $\vP_i$ i vettori posizione dei punti del corpo, il \emph{vincolo di rigidità} può essere espresso nella forma
 \begin{equation*}
-    \varphi_{ij}(\vb{P}_1, \dots, \vb{P}_N)
-    \defeq \abs{\vb{P}_i - \vb{P}_j}^2 - d_{ij}^2 = 0,
+    \varphi_{ij}(\vP_1, \dots, \vP_N)
+    \defeq \abs{\vP_i - \vP_j}^2 - d_{ij}^2 = 0,
     \qquad i,j = 1,\dots,N.
 \end{equation*}
 Qui $d_{ij}$ indica la distanza costante tra i punti $P_i$ e $P_j$. Tali relazioni sono equazioni nelle sole coordinate dei punti del corpo, e quindi rappresentano vincoli bilateri, olonomi e scleronomi.
 
-La natura di questi vincoli gioca un ruolo cruciale nel determinare le configurazioni accessibili del sistema. Poiché le distanze relative sono prefissate, per individuare univocamente la posizione e l'orientazione dell'intero solido nello spazio tridimensionale non è necessario tracciare le coordinate di ogni singola particella; è sufficiente conoscere la posizione di soli tre suoi punti qualsiasi non allineati, che indichiamo con $\vb{P}_1, \vb{P}_2$ e $\vb{P}_3$.
+La natura di questi vincoli gioca un ruolo cruciale nel determinare le configurazioni accessibili del sistema. Poiché le distanze relative sono prefissate, per individuare univocamente la posizione e l'orientazione dell'intero solido nello spazio tridimensionale non è necessario tracciare le coordinate di ogni singola particella; è sufficiente conoscere la posizione di soli tre suoi punti qualsiasi non allineati, che indichiamo con $\vP_1, \vP_2$ e $\vP_3$.
 
 Se questi tre punti fossero completamente liberi, il sistema possiederebbe $9$ coordinate spaziali indipendenti. Tuttavia, il vincolo di rigidità impone che le distanze reciproche tra questi tre punti rimangano strettamente costanti nel tempo. Questo si traduce in tre equazioni scalari indipendenti
 \begin{align*}
-    \abs{\vb{P}_1 - \vb{P}_2}^2 &= d_{12}^2, \\
-    \abs{\vb{P}_2 - \vb{P}_3}^2 &= d_{23}^2, \\
-    \abs{\vb{P}_3 - \vb{P}_1}^2 &= d_{31}^2.
+    \abs{\vP_1 - \vP_2}^2 &= d_{12}^2, \\
+    \abs{\vP_2 - \vP_3}^2 &= d_{23}^2, \\
+    \abs{\vP_3 - \vP_1}^2 &= d_{31}^2.
 \end{align*}
 
 Attraverso la Proposizione~\ref{prop:gradoLiberta}, si evince chiaramente che il numero totale di gradi di libertà $n$ per un corpo rigido libero nello spazio è pari a
-$$ n = 9 - 3 = 6. $$
+\[ n = 9 - 3 = 6. \]
 
 La scomposizione cinematica naturale del moto di un corpo rigido è in una traslazione di un polo qualsiasi del corpo, ad esempio il centro di massa $G$, e una rotazione attorno a tale polo. Il moto traslazionale è descritto dalle tre coordinate spaziali del polo rispetto ad un riferimento fisso, mentre il moto rotazionale è descritto dai tre angoli che sono definiti di seguito.
 
@@ -160,13 +160,16 @@ L'ultima rotazione avviene di un angolo $\varphi$ attorno all'asse verticale fin
 \end{equation*}
 
 La matrice della trasformazione complessiva risulterà dal prodotto d'insieme delle tre rotazioni $\tens{A} = \tens{B}\tens{C}\tens{D}$
+{\small
 \begin{equation} \label{eq:matriceEulero}
+    \setlength{\arraycolsep}{3pt}
     \tens{A} = \begin{pmatrix} 
         \cos\varphi\cos\psi - \cos\theta\sin\psi\sin\varphi & \cos\varphi\sin\psi + \cos\theta\cos\psi\sin\varphi & \sin\varphi\sin\theta \\ 
         -\sin\varphi\cos\psi - \cos\theta\sin\psi\cos\varphi & -\sin\varphi\sin\psi + \cos\theta\cos\psi\cos\varphi & \cos\varphi\sin\theta \\ 
         \sin\theta\sin\psi & -\sin\theta\cos\psi & \cos\theta 
     \end{pmatrix}.
 \end{equation}
+}
 
 Essendo il prodotto di trasformazioni ortogonali, la matrice $\tens{A}$ è anch'essa ortogonale e soddisfa la relazione $\tens{A}^{-1} = \tens{A}^T$. In aggiunta, poiché $\det\tens{A} = 1$, la trasformazione appartiene al gruppo ortogonale speciale $SO(3)$.
 
@@ -183,44 +186,44 @@ Il moto del corpo rigido $\mathcal{S}$ comporta la continua variazione dell'orie
             \displaystyle \dv{\vu{e}_3}{t} = \vb*{\omega} \cross \vu{e}_3
         \end{cases}
     \end{equation*}
-    Inoltre, se $\vb{u}$ è un qualsiasi vettore solidale a $\mathcal{S}$, resulta
+    Inoltre, se $\vvu$ è un qualsiasi vettore solidale a $\mathcal{S}$, risulta
     \begin{equation*}
-        \dv{\vb{u}}{t} = \vb*{\omega} \cross \vb{u}.
+        \dv{\vvu}{t} = \vb*{\omega} \cross \vvu.
     \end{equation*}
 \end{theorem}
 
-L'introduzione della velocità angolare e delle formule di Poisson permette di mettere in relazione in modo sistematico le variazioni temporali dei vettori misurate in sistemi di riferimento differenti. Dato un generico vettore $\vb{u}(t)$, lo si esprima tramite le sue componenti nella base solidale a $\mathcal{S}$
+L'introduzione della velocità angolare e delle formule di Poisson permette di mettere in relazione in modo sistematico le variazioni temporali dei vettori misurate in sistemi di riferimento differenti. Dato un generico vettore $\vvu(t)$, lo si esprima tramite le sue componenti nella base solidale a $\mathcal{S}$
 \begin{equation*}
-    \vb{u}(t) = \sum_{i=1}^3 u_i(t) \vu{e}_i.
+    \vvu(t) = \sum_{i=1}^3 u_i(t) \vu{e}_i.
 \end{equation*}
-Calcolando la derivata temporale di $\vb{u}$ rispetto alla terna fissa $\{O, \vu{i}_1, \vu{i}_2, \vu{i}_3\}$, si definisce la \emph{derivata assoluta}, indicata con l'operatore $\dva{t}$ o con il punto sovrascritto. Applicando la regola di derivazione del prodotto si ottiene
+Calcolando la derivata temporale di $\vvu$ rispetto alla terna fissa $\{O, \vu{i}_1, \vu{i}_2, \vu{i}_3\}$, si definisce la \emph{derivata assoluta}, indicata con l'operatore $\dva{t}$ o con il punto sovrascritto. Applicando la regola di derivazione del prodotto si ottiene
 \begin{equation}
     \label{eq:derivataAssoluta}
-    \dva{\vb{u}}{t} \equiv \dot{\vb{u}} \defeq \sum_{i=1}^3 \dot{u}_i \vu{e}_i + \sum_{i=1}^3 u_i \vud{e}_i.
+    \dva{\vvu}{t} \equiv \dot{\vvu} \defeq \sum_{i=1}^3 \dot{u}_i \vu{e}_i + \sum_{i=1}^3 u_i \vud{e}_i.
 \end{equation}
-Il primo termine a secondo membro quantifica la variazione del vettore così come viene percepita dall'osservatore solidale, per il quale i versori $\vu{e}_i$ appaiono temporalmente costanti. Tale termine definisce la \emph{derivata relativa} di $\vb{u}$, indicata con l'operatore $\dvr{t}$ o con l'apice
+Il primo termine a secondo membro quantifica la variazione del vettore così come viene percepita dall'osservatore solidale, per il quale i versori $\vu{e}_i$ appaiono temporalmente costanti. Tale termine definisce la \emph{derivata relativa} di $\vvu$, indicata con l'operatore $\dvr{t}$ o con l'apice
 \begin{equation*}
-    \dvr{\vb{u}}{t} \equiv \vb{u}' \defeq \sum_{i=1}^3 \dot{u}_i \vu{e}_i.
+    \dvr{\vvu}{t} \equiv \vvu' \defeq \sum_{i=1}^3 \dot{u}_i \vu{e}_i.
 \end{equation*}
 Il secondo termine della \eqref{eq:derivataAssoluta} può essere riscritto attraverso le formule di Poisson, ottenendo lo sviluppo
 \begin{equation*}
-    \sum_{i=1}^3 u_i \vud{e}_i = \sum_{i=1}^3 u_i (\vb*{\omega} \cross \vu{e}_i) = \vb*{\omega} \cross \left( \sum_{i=1}^3 u_i \vu{e}_i \right) = \vb*{\omega} \cross \vb{u}.
+    \sum_{i=1}^3 u_i \vud{e}_i = \sum_{i=1}^3 u_i (\vb*{\omega} \cross \vu{e}_i) = \vb*{\omega} \cross \left( \sum_{i=1}^3 u_i \vu{e}_i \right) = \vb*{\omega} \cross \vvu.
 \end{equation*}
 
 Sostituendo questi risultati nell'espressione iniziale si ricava l'identità fondamentale della cinematica relativa, oggetto del seguente teorema.
 
 \begin{theorem}[Teorema di derivazione cinematica]
-    Per ogni vettore $\vb{u}$ espresso nella base mobile solidale al corpo rigido $\mathcal{S}$, sussiste la relazione tra la derivata temporale assoluta e la derivata temporale relativa
+    Per ogni vettore $\vvu$ espresso nella base mobile solidale al corpo rigido $\mathcal{S}$, sussiste la relazione tra la derivata temporale assoluta e la derivata temporale relativa
     \begin{equation*}
-        \dva{\vb{u}}{t} = \dvr{\vb{u}}{t} + \vb*{\omega} \cross \vb{u},
+        \dva{\vvu}{t} = \dvr{\vvu}{t} + \vb*{\omega} \cross \vvu,
     \end{equation*}
     la quale, attraverso le rispettive notazioni compatte, assume la forma
     \begin{equation*}
-        \dot{\vb{u}} = \vb{u}' + \vb*{\omega} \cross \vb{u}.
+        \dot{\vvu} = \vvu' + \vb*{\omega} \cross \vvu.
     \end{equation*}
 \end{theorem}
 
-Data l'assoluta arbitrarietà nella scelta del vettore $\vb{u}$, la relazione può essere espressa direttamente nella sua forma operatoriale
+Data l'assoluta arbitrarietà nella scelta del vettore $\vvu$, la relazione può essere espressa direttamente nella sua forma operatoriale
 \begin{equation*}
     \dva{t} = \qty(\dvr{t} + \vb*{\omega} \cross).
 \end{equation*}
@@ -247,26 +250,26 @@ Il comportamento di questo campo vettoriale per un sistema rigido è descritto t
     Sia $\mathcal{S}$ un sistema materiale in moto. Condizione necessaria e sufficiente affinché il moto sia rigido è che, per ogni coppia di punti $P, Q \in \mathcal{S}$, la velocità obbedisca alla relazione
     \begin{equation}
         \label{eq:legge_cinematica}
-        \vb{v}_P = \vb{v}_Q + \vb*{\omega} \cross (\vb{P} - \vb{Q}).
+        \vv_P = \vv_Q + \vb*{\omega} \cross (\vP - \vQ).
     \end{equation}
 \end{theorem}
 
 \begin{proof}
     Siano $P$ e $Q$ due punti arbitrari appartenenti al corpo rigido. La posizione spaziale del punto $P$ può essere relazionata a quella del polo $Q$ attraverso la scomposizione vettoriale geometrica
     \begin{equation*}
-        \vb{P} = \vb{Q} + (\vb{P} - \vb{Q}).
+        \vP = \vQ + (\vP - \vQ).
     \end{equation*}
     Calcolando la derivata temporale di ambo i membri rispetto all'osservatore spaziale fisso si ottiene la relazione tra le velocità assolute
     \begin{equation*}
-        \vb{v}_P = \vb{v}_Q + \dva{(\vb{P} - \vb{Q})}{t}.
+        \vv_P = \vv_Q + \dva{(\vP - \vQ)}{t}.
     \end{equation*}
-    Il vincolo di rigidità impone che la distanza reciproca tra i punti non vari nel tempo. Di conseguenza, il vettore posizione relativa $(\vb{P} - \vb{Q})$ è stazionario per un osservatore solidale a $\mathcal{S}$, implicando l'annullamento della sua derivata temporale relativa
+    Il vincolo di rigidità impone che la distanza reciproca tra i punti non vari nel tempo. Di conseguenza, il vettore posizione relativa $(\vP - \vQ)$ è stazionario per un osservatore solidale a $\mathcal{S}$, implicando l'annullamento della sua derivata temporale relativa
     \begin{equation*}
-        \dvr{(\vb{P} - \vb{Q})}{t} = 0.
+        \dvr{(\vP - \vQ)}{t} = 0.
     \end{equation*}
     Applicando il teorema di derivazione cinematica al vettore della posizione relativa, la variazione temporale assoluta si riduce al solo contributo di trascinamento rotazionale
     \begin{equation*}
-        \dva{(\vb{P} - \vb{Q})}{t} = \dvr{(\vb{P} - \vb{Q})}{t} + \vb*{\omega} \cross (\vb{P} - \vb{Q}) = \vb*{\omega} \cross (\vb{P} - \vb{Q}).
+        \dva{(\vP - \vQ)}{t} = \dvr{(\vP - \vQ)}{t} + \vb*{\omega} \cross (\vP - \vQ) = \vb*{\omega} \cross (\vP - \vQ).
     \end{equation*}
     Sostituendo questo termine nell'espressione della velocità assoluta del punto $P$ si ricava la tesi.
 \end{proof}
@@ -276,22 +279,22 @@ La distribuzione delle accelerazioni si ottiene come diretta estensione della le
 \begin{theorem}[Teorema di Rivals]
     Siano $P$ e $Q$ due punti qualsiasi di un corpo rigido $\mathcal{S}$ in moto con velocità angolare $\vb*{\omega}$ e accelerazione angolare $\dot{\vb*{\omega}}$. Le accelerazioni assolute dei due punti sono legate dalla relazione
     \begin{equation}
-        \vb{a}_P = \vb{a}_Q + \dot{\vb*{\omega}} \cross (\vb{P} - \vb{Q}) + \vb*{\omega} \cross \left[ \vb*{\omega} \cross (\vb{P} - \vb{Q}) \right].
+        \vva_P = \vva_Q + \dot{\vb*{\omega}} \cross (\vP - \vQ) + \vb*{\omega} \cross \left[ \vb*{\omega} \cross (\vP - \vQ) \right].
     \end{equation}
 \end{theorem}
 
 \begin{proof}
     Il campo delle accelerazioni all'interno del corpo rigido si determina derivando la legge fondamentale della cinematica rigida \eqref{eq:legge_cinematica} rispetto all'osservatore fisso
     \begin{equation*}
-        \vb{a}_P = \dva{\vb{v}_P}{t} = \dva{\vb{v}_Q}{t} + \dva{}{t} \left[ \vb*{\omega} \cross (\vb{P} - \vb{Q}) \right].
+        \vva_P = \dva{\vv_P}{t} = \dva{\vv_Q}{t} + \dva{t} \left[ \vb*{\omega} \cross (\vP - \vQ) \right].
     \end{equation*}
-    Il primo termine a secondo membro rappresenta per definizione l'accelerazione assoluta $\vb{a}_Q$ del polo $Q$. Sviluppando il secondo termine attraverso la regola di Leibniz per la derivazione del prodotto vettoriale si ottiene lo sviluppo
+    Il primo termine a secondo membro rappresenta per definizione l'accelerazione assoluta $\vva_Q$ del polo $Q$. Sviluppando il secondo termine attraverso la regola di Leibniz per la derivazione del prodotto vettoriale si ottiene lo sviluppo
     \begin{equation*}
-        \vb{a}_P = \vb{a}_Q + \dva{\vb*{\omega}}{t} \cross (\vb{P} - \vb{Q}) + \vb*{\omega} \cross \dva{(\vb{P} - \vb{Q})}{t}.
+        \vva_P = \vva_Q + \dva{\vb*{\omega}}{t} \cross (\vP - \vQ) + \vb*{\omega} \cross \dva{(\vP - \vQ)}{t}.
     \end{equation*}
-    La derivata assoluta del vettore posizione relativa, come ricavato nella dimostrazione precedente, è pari a $\vb*{\omega} \cross (\vb{P} - \vb{Q})$. Inoltre, scriviamo $\dva{\vb*{\omega}}{t}$ come $\dot{\vb*{\omega}}$. Sostituendo queste relazioni si giunge all'espressione definitiva
+    La derivata assoluta del vettore posizione relativa, come ricavato nella dimostrazione precedente, è pari a $\vb*{\omega} \cross (\vP - \vQ)$. Inoltre, scriviamo $\dva{\vb*{\omega}}{t}$ come $\dot{\vb*{\omega}}$. Sostituendo queste relazioni si giunge all'espressione definitiva
     \begin{equation*}
-        \vb{a}_P = \vb{a}_Q + \dot{\vb*{\omega}} \cross (\vb{P} - \vb{Q}) + \vb*{\omega} \cross \left[ \vb*{\omega} \cross (\vb{P} - \vb{Q}) \right].
+        \vva_P = \vva_Q + \dot{\vb*{\omega}} \cross (\vP - \vQ) + \vb*{\omega} \cross \left[ \vb*{\omega} \cross (\vP - \vQ) \right].
     \end{equation*}
 \end{proof}
 
@@ -411,10 +414,10 @@ Infine, la terza componente diventa
 \end{equation*}
 Per cui, sommando le tre componenti, otteniamo
 \begin{align*}
-    \int_C \rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c} 
-        = \vu{i}&\Bigg[\alpha\int_C \rho(y^2+z^2) \dd{c} -\beta \int_C \rho x y \dd{c} - \gamma \int_C \rho x z \dd{c}\Bigg] \\
-        \quad + \vu{j}&\Bigg[ \beta\int_C \rho(x^2+z^2) \dd{c} -\alpha \int_C \rho x y \dd{c} - \gamma \int_C \rho y z \dd{c}\Bigg] \\
-        \quad + \vu{k}&\Bigg[ \gamma\int_C \rho(x^2+y^2) \dd{c} -\alpha \int_C \rho x z \dd{c} - \beta \int_C \rho y z \dd{c}\Bigg].
+    \int_C &\rho\{ P^2\vu{u} - (\vP\cdot\vu{u})\vP \}\dd{c} \\
+        &= \vu{i}\Bigg[\alpha\int_C \rho(y^2+z^2) \dd{c} -\beta \int_C \rho x y \dd{c} - \gamma \int_C \rho x z \dd{c}\Bigg] \\
+        &\quad + \vu{j}\Bigg[ \beta\int_C \rho(x^2+z^2) \dd{c} -\alpha \int_C \rho x y \dd{c} - \gamma \int_C \rho y z \dd{c}\Bigg] \\
+        &\quad + \vu{k}\Bigg[ \gamma\int_C \rho(x^2+y^2) \dd{c} -\alpha \int_C \rho x z \dd{c} - \beta \int_C \rho y z \dd{c}\Bigg].
 \end{align*}
 I primi termini di ciascuna componente definiscono i momenti di inerzia rispetto agli assi coordinati, mentre i secondi termini, prodotti misti, definiscono i prodotti di inerzia.\note{o momenti centrifughi} Definiamo quindi
 \begin{gather*}
@@ -561,7 +564,7 @@ Questo implica che l'asse normale al piano di simmetria (l'asse $z$) è già un 
 \begin{tikzpicture}[>=stealth, scale=2.2, line join=round, line cap=round]
     % Assi di riferimento
     \draw[->, thick] (0,0,0) -- (1.8,0,0) node[right] {$x$};
-    \draw[->, thick] (0,0,0) -- (0,1.5,0) node[above] {$z\perp\pi$)};
+    \draw[->, thick] (0,0,0) -- (0,1.5,0) node[above] {$z \perp \pi$};
     \draw[->, thick] (0,0,0) -- (0,0,1.8) node[left] {$y$};
     
     % Disegno del piano di simmetria \pi (piano xy)
@@ -685,7 +688,7 @@ Al fine di descriverne la dinamica, introduciamo due sistemi di riferimento con 
 Scriviamo le equazioni cardinali della dinamica separando i contributi delle forze e dei momenti in attivi $(a)$ e vincolari $(v)$:
 \begin{equation*}
     \begin{cases}
-        m\vb{a}_G = \vb{R}^{(e)} = \vb{R}^{(a)} + \vb{R}^{(v)} \\
+        m\vva_G = \vb{R}^{(e)} = \vb{R}^{(a)} + \vb{R}^{(v)} \\
         \dot{\vb{K}}_O = \vb{M}_O^{(e)} = \vb{M}_O^{(a)} + \vb{M}_O^{(v)}.
     \end{cases}
 \end{equation*}
@@ -696,33 +699,33 @@ Questo sistema vettoriale corrisponde a 6 equazioni scalari, mentre le incognite
 \end{enumerate}
 A fronte di 6 equazioni, la presenza di 9 incognite renderebbe il problema indeterminato. Tuttavia, la natura liscia del vincolo ci permette di ricavare una limitazione fondamentale sulle componenti dinamiche attraverso il calcolo del lavoro virtuale del corpo rigido.
 
-Consideriamo un sistema di forze $\vb{F}_i$ applicate ai punti $P_i$ del corpo. Il lavoro virtuale è definito come
+Consideriamo un sistema di forze $\vF_i$ applicate ai punti $P_i$ del corpo. Il lavoro virtuale è definito come
 \begin{equation*}
-    \var{L} = \sum_i \vb{F}_i \cdot \var{\vb{P}_i}.
+    \var{L} = \sum_i \vF_i \cdot \var{\vP_i}.
 \end{equation*}
 Sfruttando la formula fondamentale della cinematica rigida applicata al campo degli spostamenti virtuali, lo spostamento di un generico punto $P_i$ può essere espresso in funzione dello spostamento traslazionale del polo $O$ e di una rotazione virtuale $\var{\vb*{\epsilon}}$ dell'intero solido come
 \begin{equation*}
-    \var{\vb{P}_i} = \var{\vb{O}} + \var{\vb*{\epsilon}} \cross (\vb{P}_i - \vb{O}).
+    \var{\vP_i} = \var{\vO} + \var{\vb*{\epsilon}} \cross (\vP_i - \vO).
 \end{equation*}
 Sostituendo questa relazione nella definizione di lavoro virtuale si ottiene lo sviluppo
 \begin{align*}
-    \var{L} &= \sum_i \vb{F}_i \cdot \left[ \var{\vb{O}} + \var{\vb*{\epsilon}} \cross (\vb{P}_i - \vb{O}) \right] \\
-    &= \left( \sum_i \vb{F}_i \right) \cdot \var{\vb{O}} + \sum_i \vb{F}_i \cdot \left[ \var{\vb*{\epsilon}} \cross (\vb{P}_i - \vb{O}) \right].
+    \var{L} &= \sum_i \vF_i \cdot \left[ \var{\vO} + \var{\vb*{\epsilon}} \cross (\vP_i - \vO) \right] \\
+    &= \left( \sum_i \vF_i \right) \cdot \var{\vO} + \sum_i \vF_i \cdot \left[ \var{\vb*{\epsilon}} \cross (\vP_i - \vO) \right].
 \end{align*}
 Il primo termine al secondo membro fa emergere la forza risultante $\vb{R}$. Per il secondo termine, sfruttando l'invarianza del prodotto misto sotto permutazione ciclica, possiamo scrivere
 \begin{equation*}
-    \vb{F}_i \cdot \left[ \var{\vb*{\epsilon}} \cross (\vb{P}_i - \vb{O}) \right] = \var{\vb*{\epsilon}} \cdot \left[ (\vb{P}_i - \vb{O}) \cross \vb{F}_i \right].
+    \vF_i \cdot \left[ \var{\vb*{\epsilon}} \cross (\vP_i - \vO) \right] = \var{\vb*{\epsilon}} \cdot \left[ (\vP_i - \vO) \cross \vF_i \right].
 \end{equation*}
 Raccogliendo la rotazione virtuale $\var{\vb*{\epsilon}}$, che costituisce un parametro globale indipendente dal singolo indice dei punti, si riconosce la definizione del momento risultante $\vb{M}_O$ rispetto al polo scelto
 \begin{equation*}
-    \var{L} = \vb{R} \cdot \var{\vb{O}} + \var{\vb*{\epsilon}} \cdot \sum_i (\vb{P}_i - \vb{O}) \cross \vb{F}_i = \vb{R} \cdot \var{\vb{O}} + \vb{M}_O \cdot \var{\vb*{\epsilon}}.
+    \var{L} = \vb{R} \cdot \var{\vO} + \var{\vb*{\epsilon}} \cdot \sum_i (\vP_i - \vO) \cross \vF_i = \vb{R} \cdot \var{\vO} + \vb{M}_O \cdot \var{\vb*{\epsilon}}.
 \end{equation*}
 
 Applicando questo formalismo generale alle sole sollecitazioni vincolari, il loro lavoro virtuale assume la forma
 \begin{equation*}
-    \var{L^{(v)}} = \vb{R}^{(v)} \cdot \var{\vb{O}} + \vb{M}_O^{(v)} \cdot \var{\vb*{\epsilon}}.
+    \var{L^{(v)}} = \vb{R}^{(v)} \cdot \var{\vO} + \vb{M}_O^{(v)} \cdot \var{\vb*{\epsilon}}.
 \end{equation*}
-Nel caso specifico di un solido con un punto fisso $O$, il vincolo impedisce qualsiasi spostamento del polo, imponendo la condizione cinematica $\var{\vb{O}} = 0$. L'espressione del lavoro virtuale vincolare si riduce pertanto a
+Nel caso specifico di un solido con un punto fisso $O$, il vincolo impedisce qualsiasi spostamento del polo, imponendo la condizione cinematica $\var{\vO} = 0$. L'espressione del lavoro virtuale vincolare si riduce pertanto a
 \begin{equation*}
     \var{L^{(v)}} = \vb{M}_O^{(v)} \cdot \var{\vb*{\epsilon}}.
 \end{equation*}
@@ -733,7 +736,7 @@ Poiché il vincolo è bilaterale e liscio, il postulato delle reazioni vincolari
 Il momento delle forze vincolari rispetto al punto fisso è nullo. La seconda equazione cardinale si disaccoppia così dalla prima, fornendo un sistema di 3 equazioni differenziali nelle sole 3 incognite cinematiche:
 \begin{equation*}
     \begin{cases}
-        m\vb{a}_G = \vb{R}^{(a)} + \vb{R}^{(v)} \\
+        m\vva_G = \vb{R}^{(a)} + \vb{R}^{(v)} \\
         \dot{\vb{K}}_O = \vb{M}_O^{(a)}.
     \end{cases}
 \end{equation*}
@@ -941,25 +944,25 @@ Si conclude che il più generale moto per inerzia di un giroscopio attorno a un 
 \section{Moto di un solido libero}
 Consideriamo in ultima istanza il problema del moto di un corpo rigido completamente libero da vincoli cinematici esterni. Introduciamo un sistema di riferimento fisso inerziale $\{O, \vu{i}_1, \vu{i}_2, \vu{i}_3\}$ \note{Un riferimento principale di inerzia con origine nel baricentro di un solido è detto \emph{centrale}.}e un riferimento principale di inerzia $\{G, \vu{e}_1, \vu{e}_2, \vu{e}_3\}$ solidale al corpo e avente l'origine coincidente con il baricentro $G$ del solido.
 
-Scegliendo il baricentro $G$ come polo per il calcolo dei momenti, le equazioni cardinali della dinamica assumono una forma che separa formalmente l'evoluzione traslazionale da quella rotazionale\note{Se avessimo scelto un generico polo mobile $Q$, la seconda equazione avrebbe presentato il termine aggiuntivo $\vb{v}_Q \cross m\vb{v}_G$, che si annulla identicamente ponendo $Q \equiv G$.}
+Scegliendo il baricentro $G$ come polo per il calcolo dei momenti, le equazioni cardinali della dinamica assumono una forma che separa formalmente l'evoluzione traslazionale da quella rotazionale\note{Se avessimo scelto un generico polo mobile $Q$, la seconda equazione avrebbe presentato il termine aggiuntivo $\vv_Q \cross m\vv_G$, che si annulla identicamente ponendo $Q \equiv G$.}
 \begin{equation*}
     \begin{cases}
-        m\vb{a}_G = \vb{R}^{(e)} \\
+        m\vva_G = \vb{R}^{(e)} \\
         \dot{\vb{K}}_G = \vb{M}_G^{(e)}.
     \end{cases}
 \end{equation*}
 
-Indichiamo con $\vb{G} = (x_G, y_G, z_G)$ le coordinate del baricentro rispetto alla terna fissa e con $\vb{\Theta} = (\theta, \psi, \varphi)$ gli angoli di Eulero. 
+Indichiamo con $\vG = (x_G, y_G, z_G)$ le coordinate del baricentro rispetto alla terna fissa e con $\vb{\Theta} = (\theta, \psi, \varphi)$ gli angoli di Eulero. 
 
 Proiettando la prima equazione cardinale sugli assi della terna fissa e la seconda equazione cardinale sulle direzioni mobili del riferimento solidale, otteniamo
 \begin{equation*}
     \begin{cases}
-        m\ddot{x}_G = R_x^{(e)}(\vb{G}, \dot{\vb{G}}, \vb{\Theta}, \dot{\vb{\Theta}}, t) \\[0.5em]
-        m\ddot{y}_G = R_y^{(e)}(\vb{G}, \dot{\vb{G}}, \vb{\Theta}, \dot{\vb{\Theta}}, t) \\[0.5em]
-        m\ddot{z}_G = R_z^{(e)}(\vb{G}, \dot{\vb{G}}, \vb{\Theta}, \dot{\vb{\Theta}}, t) \\[0.5em]
-        I_1 \dot{\omega}_1 - (I_2 - I_3 ) \omega_2 \omega_3 = M_{G,1}^{(e)}(\vb{G}, \dot{\vb{G}}, \vb{\Theta}, \dot{\vb{\Theta}}, t)\note{Le componenti della velocità angolare $\omega_i$ sono espresse in funzione degli angoli di Eulero e delle loro derivate prime attraverso le relazioni cinematiche di trasformazione.} \\[0.5em]
-        I_2 \dot{\omega}_2 - (I_3 - I_1) \omega_3 \omega_1 = M_{G,2}^{(e)}(\vb{G}, \dot{\vb{G}}, \vb{\Theta}, \dot{\vb{\Theta}}, t) \\[0.5em]
-        I_3 \dot{\omega}_3 - (I_1 - I_2) \omega_1 \omega_2 = M_{G,3}^{(e)}(\vb{G}, \dot{\vb{G}}, \vb{\Theta}, \dot{\vb{\Theta}}, t).
+        m\ddot{x}_G = R_x^{(e)}(\vG, \dot{\vG}, \vb{\Theta}, \dot{\vb{\Theta}}, t) \\[0.5em]
+        m\ddot{y}_G = R_y^{(e)}(\vG, \dot{\vG}, \vb{\Theta}, \dot{\vb{\Theta}}, t) \\[0.5em]
+        m\ddot{z}_G = R_z^{(e)}(\vG, \dot{\vG}, \vb{\Theta}, \dot{\vb{\Theta}}, t) \\[0.5em]
+        I_1 \dot{\omega}_1 - (I_2 - I_3 ) \omega_2 \omega_3 = M_{G,1}^{(e)}(\vG, \dot{\vG}, \vb{\Theta}, \dot{\vb{\Theta}}, t)\note{Le componenti della velocità angolare $\omega_i$ sono espresse in funzione degli angoli di Eulero e delle loro derivate prime attraverso le relazioni cinematiche di trasformazione} \\[0.5em]
+        I_2 \dot{\omega}_2 - (I_3 - I_1) \omega_3 \omega_1 = M_{G,2}^{(e)}(\vG, \dot{\vG}, \vb{\Theta}, \dot{\vb{\Theta}}, t) \\[0.5em]
+        I_3 \dot{\omega}_3 - (I_1 - I_2) \omega_1 \omega_2 = M_{G,3}^{(e)}(\vG, \dot{\vG}, \vb{\Theta}, \dot{\vb{\Theta}}, t).
     \end{cases}
 \end{equation*}
 
@@ -968,7 +971,7 @@ Il problema dinamico del solido libero si riduce dal punto di vista matematico a
 \begin{example}[Satellite in orbita attorno alla Terra] \note{Lezione 21/05/2026}
     Nel caso di un satellite artificiale in orbita intorno alla Terra, supponendo che il corpo sia schematizzabile come un solido a struttura giroscopica omogeneo a simmetria cilindrica, l'analisi del moto traslazionale del baricentro viene governata dalla prima equazione cardinale impostata nella forma
     \begin{equation*}
-        m\vb{a}_G = -h\frac{m M_T}{\abs{\vb{O} - \vb{G}}^2} \operatorname{vers}\qty(\vb{O} - \vb{G}),
+        m\vva_G = -h\frac{m M_T}{\abs{\vO - \vG}^2} \operatorname{vers}\qty(\vO - \vG),
     \end{equation*}
-    dove lo studio del moto viene condotto introducendo un sistema di riferimento $\mathcal{E}_T$ di tipo terrestre--stellare, il quale, per intervalli temporali significativamente inferiori alla durata dell'anno solare, può essere considerato a tutti gli effetti un riferimento galileiano inerziale.
+    dove $h$ è la costante di gravitazione universale e lo studio del moto viene condotto introducendo un sistema di riferimento $\mathcal{E}_T$ di tipo terrestre--stellare, il quale, per intervalli temporali significativamente inferiori alla durata dell'anno solare, può essere considerato a tutti gli effetti un riferimento galileiano inerziale.
 \end{example}

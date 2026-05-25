@@ -28,7 +28,7 @@ Determiniamo una tale trasformazione. La scelta più naturale per la funzione ge
         \displaystyle K = H + \pdv{F_2}{t}
     \end{cases}
 \end{equation*}
-posto $\det \left( \pdv{F_2}{q_i}{P_j} \right) \neq 0$ per garantire l'invertibilità della trasformazione. La condizione $K \equiv 0$ implica che
+posto $\det \left( \pdv[2]{F_2}{q_i}{P_j} \right) \neq 0$ per garantire l'invertibilità della trasformazione. La condizione $K \equiv 0$ implica che
 \begin{equation}
     \label{eq:hamiltonjacobi-1}
     H + \pdv{F_2}{t} = 0.
@@ -101,7 +101,7 @@ Esaminiamo ora il legame tra la funzione principale di Hamilton $S$ e la soluzio
     \end{equation*}
 \end{theorem}
 
-L'importanza di questo teorema risiede nel fatto che, una volta determinata una soluzione completa $S$, la risoluzione del problema dinamico si riduce a un'operazione puramente algebrica. In particolare, il sistema di $n$ equazioni $\beta_i = \pdv{S}{\alpha_i}$ può essere invertito per esplicitare le coordinate generalizzate in funzione del tempo e delle $2n$ costanti arbitrarie, ottenendo così la legge oraria $q = q(\alpha, \beta, t)$. Questa inversione è sempre garantita localmente dalla condizione $\det(\frac{\partial^2 S}{\partial q_i \partial \alpha_j}) \neq 0$.
+L'importanza di questo teorema risiede nel fatto che, una volta determinata una soluzione completa $S$, la risoluzione del problema dinamico si riduce a un'operazione puramente algebrica. In particolare, il sistema di $n$ equazioni $\beta_i = \pdv{S}{\alpha_i}$ può essere invertito per esplicitare le coordinate generalizzate in funzione del tempo e delle $2n$ costanti arbitrarie, ottenendo così la legge oraria $q = q(\alpha, \beta, t)$. Questa inversione è sempre garantita localmente dalla condizione $\det(\pdv[2]{S}{q_i}{\alpha_j}) \neq 0$.
 
 \section{Equazione ridotta di Hamilton-Jacobi}
 
@@ -155,7 +155,7 @@ da cui si ottengono le soluzioni:
     \end{cases}
 \end{equation}
 
-La dipendenza di $W$ dalle vecchie coordinate $q_i$ si ricava risolvendo l'equazione differenziale alle derivate parziali di Hamilton--Jacobi. Una volta nota $W$, le relazioni della trasformazione $Q_i = \pdv{W}{\alpha_i}$ unite alle soluzioni \ref{eq:Q_i_evol_fixed} appena trovate forniscono il seguente sistema:
+La dipendenza di $W$ dalle vecchie coordinate $q_i$ si ricava risolvendo l'equazione differenziale alle derivate parziali di Hamilton--Jacobi. Una volta nota $W$, le relazioni della trasformazione $Q_i = \pdv{W}{\alpha_i}$ unite alle soluzioni \eqref{eq:Q_i_evol_fixed} appena trovate forniscono il seguente sistema:
 \begin{equation*}
     \begin{cases}
         \displaystyle \pdv{W}{\alpha_1} = t + \beta_1 \\[0.5cm]
@@ -190,7 +190,6 @@ I due metodi di soluzione di un sistema meccanico attraverso la teoria di Hamilt
     \begin{equation*}
         \begin{cases} 
             \displaystyle \dot{Q}_i = \pdv{K}{P_i} = 0 \implies Q_i = \beta_i \\[0.3cm] 
-             \displaystyle 
             \displaystyle  \dot{P}_i = -\pdv{K}{Q_i} = 0 \implies P_i = \alpha_i 
         \end{cases}
     \end{equation*}
@@ -234,7 +233,7 @@ dove $\alpha_1$ è la costante di integrazione associata all'energia, ovvero $\a
 Una volta ottenuta una soluzione completa (sia essa la funzione principale $S$ o la funzione caratteristica $W$), il problema dinamico è ridotto a un'operazione puramente algebrica. Il legame tra il formalismo di Hamilton--Jacobi e l'evoluzione fisica del sistema è custodito nelle $2n$ equazioni della trasformazione canonica.
 
 L'integrazione dell'equazione di Hamilton--Jacobi fornisce la dipendenza della funzione generatrice dalle vecchie coordinate $\vq$, dal tempo $t$ e dalle $n$ costanti di integrazione indipendenti $\alpha_1, \dots, \alpha_n$. Queste costanti vengono identificate con i nuovi momenti, costanti del moto 
-$$P_i = \alpha_i.$$
+\[P_i = \alpha_i.\]
 
 Il processo di soluzione si articola allora in due fasi distinte:
 
@@ -243,7 +242,7 @@ Il processo di soluzione si articola allora in due fasi distinte:
     \begin{equation*}
         Q_i = \pdv{S}{\alpha_i} = \beta_i \quad \text{oppure} \quad Q_i = \pdv{W}{\alpha_i} = v_i t + \beta_i
     \end{equation*}
-    In virtù della condizione di non singolarità della trasformazione, ovvero $\det \pdv{S}{q_i}{\alpha_j} \neq 0$, queste $n$ equazioni possono essere invertite per \emph{estrarre} da $S(\vq, \alpha_i, t)$ o da $W(\vq, \alpha_i)$ le vecchie coordinate $\vq$ in funzione del tempo e delle $2n$ costanti arbitrarie $\alpha_i$ e $\beta_i$:
+    In virtù della condizione di non singolarità della trasformazione, ovvero $\det \left( \pdv[2]{S}{q_i}{\alpha_j} \right) \neq 0$, queste $n$ equazioni possono essere invertite per \emph{estrarre} da $S(\vq, \alpha_i, t)$ o da $W(\vq, \alpha_i)$ le vecchie coordinate $\vq$ in funzione del tempo e delle $2n$ costanti arbitrarie $\alpha_i$ e $\beta_i$:
     \begin{equation*}
         \vq = \vq(\alpha_1, \dots, \alpha_n, \beta_1, \dots, \beta_n, t).
     \end{equation*}
@@ -261,13 +260,13 @@ Le $2n$ costanti arbitrarie $\alpha_i$ e $\beta_i$ sono univocamente determinate
 \vspace{2em}
 
 \begin{example}[Oscillatore armonico]
-    Consideriamo l'oscillatore armonico unidimensionale di hamiltoniana $$H(q,p) = \frac{1}{2m}(p^2 + m^2\omega^2q^2) = \alpha.$$ 
-    L'hamiltoniana è indipendente dal tempo per cui procediamo con il metodo della funzione caratteristica $W$. Le relazioni di trasformazione ricavate nell'equazione \ref{eq:Q_i_evol_fixed} portano a:
+    Consideriamo l'oscillatore armonico unidimensionale di hamiltoniana \[H(q,p) = \frac{1}{2m}(p^2 + m^2\omega^2q^2) = \alpha.\] 
+    L'hamiltoniana è indipendente dal tempo per cui procediamo con il metodo della funzione caratteristica $W$. Le relazioni di trasformazione ricavate nell'equazione \eqref{eq:Q_i_evol_fixed} portano a:
     \begin{equation}
         \label{eq:oscillatoreHJ}
         p = \pdv{W}{q}, \quad Q = \pdv{W}{\alpha} = t + \beta.
     \end{equation}
-    L'equazione ridotta \ref{eq:hamilton-jacobi-ridotta} diventa:
+    L'equazione ridotta \eqref{eq:hamilton-jacobi-ridotta} diventa:
     \begin{equation*}
         \frac{1}{2m}\left[ \left( \pdv{W}{q} \right)^2 + m^2 \omega^2 q^2 \right] = \alpha,
     \end{equation*}
@@ -275,7 +274,7 @@ Le $2n$ costanti arbitrarie $\alpha_i$ e $\beta_i$ sono univocamente determinate
     \begin{equation*}
         W(q; \alpha) = \int \sqrt{2m\alpha - m^2 \omega^2 q^2} \dd{q}.
     \end{equation*}
-    Derivando rispetto alla costante $\alpha$ e sostituendo nella seconda delle equazioni \ref{eq:oscillatoreHJ}:
+    Derivando rispetto alla costante $\alpha$ e sostituendo nella seconda delle equazioni \eqref{eq:oscillatoreHJ}:
     \begin{equation*}
         \pdv{W}{\alpha} = \int \frac{m}{\sqrt{2m\alpha - m^2 \omega^2 q^2}} \dd{q} = \frac{1}{\omega} \arcsin \left( q\sqrt{\frac{m\omega^2}{2\alpha}} \right) = t + \beta.
     \end{equation*}
@@ -356,7 +355,7 @@ Risolvendo rispetto al momento, otteniamo
 che è l'equazione dell'orbita del sistema nello spazio delle fasi. È possibile stabilire la perioditicità di un moto a seconda della forma che l'orbita assume nello spazio delle fasi. Distinguiamo due casi di moti periodici:
 \begin{enumerate}
     \item Se l'orbita è chiusa, il moto si dice di \emph{librazione} (figura \ref{fig:librazione}). In questo sia $q$ che $p$ sono funzioni periodiche del tempo, e il sistema torna esattamente alla stessa configurazione dopo un certo intervallo di tempo $\tau$. Questo è il caso dell'oscillatore armonico unidimensionale.
-    \item Se l'orbita è tale che $p$ è una qualche funzione periodica di $q$, allora il moto si dice di \emph{rotazione} (figura \ref{fig:rotazione}). Se indichiamo con $q_0$ il periodo della funzione $p(q)$, allora si ha che la configurazione del sistema si ripete ogni volta che $q$ aumenta di $q_0$. \par L'esempio più familiare è quello di un corpo rigido vincolato a ruotare attorno a un dato asse, prendendo come $q$ l'angolo di rotazione. In questo caso, un'incremento di $q$ di $2\pi$ non produce alcun sostanziale mutamento nello stato fisico del sistema.
+    \item Se l'orbita è tale che $p$ è una qualche funzione periodica di $q$, allora il moto si dice di \emph{rotazione} (figura \ref{fig:rotazione}). Se indichiamo con $q_0$ il periodo della funzione $p(q)$, allora si ha che la configurazione del sistema si ripete ogni volta che $q$ aumenta di $q_0$. \par L'esempio più familiare è quello di un corpo rigido vincolato a ruotare attorno a un dato asse, prendendo come $q$ l'angolo di rotazione. In questo caso, un incremento di $q$ di $2\pi$ non produce alcun sostanziale mutamento nello stato fisico del sistema.
 \end{enumerate}
 
 \begin{figure}[t]
@@ -402,9 +401,9 @@ che è l'equazione dell'orbita del sistema nello spazio delle fasi. È possibile
     \label{fig:spazio_fasi}
 \end{figure}
 
-È interessante osservare che entrambi i tipi di periodicità possono verificarsi nello stesso sitema fisico. Considerimo il seguente esempio.
+È interessante osservare che entrambi i tipi di periodicità possono verificarsi nello stesso sistema fisico. Consideriamo il seguente esempio.
 \begin{example}[Pendolo semplice]
-    Scegliamo come coordinata l'angolo $\theta$ di deflessione rispetto l'asse verticale. Se $l$ è la lunghezza del pendolo, $m$ la sua massa e lo zero dell'energia potenziale viene scelto nel punto di sospensione, l'hamiltoniana è 
+    Scegliamo come coordinata l'angolo $\theta$ di deflessione rispetto all'asse verticale. Se $l$ è la lunghezza del pendolo, $m$ la sua massa e lo zero dell'energia potenziale viene scelto nel punto di sospensione, l'hamiltoniana è 
     \begin{equation*}
         H(\theta, p_\theta) = \frac{p_\theta^2}{2ml^2} - mgl\cos\theta = \alpha_1,
     \end{equation*}
@@ -477,12 +476,12 @@ che è l'equazione dell'orbita del sistema nello spazio delle fasi. È possibile
     Analizziamo le possibili orbite a seconda del valore di $\alpha_1$.
     \begin{enumerate}
         \item Se $\alpha_1 < mgl$, il moto è fisicamente possibile solo per valori di $\theta$ compresi tra $-\theta'$ e $\theta'$, dove 
-        $$\cos\theta' = -\frac{\alpha_1}{mgl}.$$
+        \[\cos\theta' = -\frac{\alpha_1}{mgl}.\]
         In questo caso si ha un moto di tipo librazionale, rappresentato dall'orbita chiusa indicata con 1 in figura.
 
         \item Se invece $\alpha_1 > mgl$, allora tutti i valori di $\theta$ corrispondono a configurazioni fisicamente ammissibili e la coordinata può crescere indefinitamente. In questo caso si ha un moto di tipo rotazionale, rappresentato dall'orbita aperta indicata con 3 in figura. Ciò che avviene fisicamente è che il pendolo ha un'energia tale da oltrepassare la verticale $\theta = \pi$ e continuare a ruotare.
 
-        \item Infine, il caso $\alpha_1 = mgl$ è descritto dalle curve indicate con 2 e $2'$ in figura. Con questo valore di energia, il pendolo raggiunge la posizione verticale $\theta = \pi$ con $p_\theta = 0$\note{Il punto $(\pi, 0)$ corrisponde a un punto di sella dell'hamiltoniana e si è in presenza di un fenomeno detto \emph{biforccazione}, con due percorsi a $H$ costante che si intersecano} e il sistema si trova in una condizione di equilibrio instabile. In linea teorica potrebbe rimanere in questa configurazione indefinitamente. Tuttavia, la più piccola perturbazione causerà la ripresa del moto lungo una qualunque delle curve 2 o $2'$,
+        \item Infine, il caso $\alpha_1 = mgl$ è descritto dalle curve indicate con 2 e $2'$ in figura. Con questo valore di energia, il pendolo raggiunge la posizione verticale $\theta = \pi$ con $p_\theta = 0$\note{Il punto $(\pi, 0)$ corrisponde a un punto di sella dell'hamiltoniana e si è in presenza di un fenomeno detto \emph{biforcazione}, con due percorsi a $H$ costante che si intersecano} e il sistema si trova in una condizione di equilibrio instabile. In linea teorica potrebbe rimanere in questa configurazione indefinitamente. Tuttavia, la più piccola perturbazione causerà la ripresa del moto lungo una qualunque delle curve 2 o $2'$,
     \end{enumerate}
 \end{example}
 
@@ -491,7 +490,7 @@ In entrambi i casi di moto periodico, risulta utile introdurre una nuova variabi
 \begin{definition}[Variabile di azione]
     Si dice \emph{variabile di azione} $J$ l'integrale di linea
     \begin{equation*}
-    J \defeq \frac{1}{2\pi}\oint_\gamma p \dd{q},\note{Si tratta di un'integrale curvilineo di una forma differenziale}
+    J \defeq \frac{1}{2\pi}\oint_\gamma p \dd{q},\note{Si tratta di un integrale curvilineo di una forma differenziale}
     \end{equation*}
     dove $\gamma$ è la traiettoria descritta da un intero periodo del moto nello spazio delle fasi.
 \end{definition}

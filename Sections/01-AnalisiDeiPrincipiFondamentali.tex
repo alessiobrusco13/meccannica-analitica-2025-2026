@@ -64,7 +64,7 @@ Assumendo che la matrice Jacobiana dei vincoli abbia rango $\rho$, possiamo supp
     \det \left( \frac{\partial(\varphi_1, \varphi_2, \ldots, \varphi_\rho)}{\partial(\xi_1, \xi_2, \ldots, \xi_\rho)} \right) \neq 0.
 \end{equation*}
 
-In virtù del teorema del Dini \note{Analogia con il teorema della funzione implicita in due dimensioni: se $F(x,y) = 0$ e $\frac{\partial F}{\partial y} \neq 0$, allora è possibile esplicitare $y = y(x)$}, questa condizione ci garantisce la possibilità di esplicitare localmente le prime $\rho$ variabili $(\xi_1, \ldots, \xi_\rho)$ in funzione delle restanti $\ell - \rho$ variabili. Possiamo quindi risolvere il sistema delle equazioni vincolari:
+In virtù del teorema del Dini \note{Analogia con il teorema della funzione implicita in due dimensioni: se $F(x,y) = 0$ e $\pdv{F}{y} \neq 0$, allora è possibile esplicitare $y = y(x)$}, questa condizione ci garantisce la possibilità di esplicitare localmente le prime $\rho$ variabili $(\xi_1, \ldots, \xi_\rho)$ in funzione delle restanti $\ell - \rho$ variabili. Possiamo quindi risolvere il sistema delle equazioni vincolari:
 
 \begin{equation*}
     \begin{cases} 
@@ -135,7 +135,7 @@ Un moto del sistema è descritto fissando le funzioni
 \end{equation*}
 le quali hanno \emph{incorporato} il rispetto dei vincoli bilateri. Solitamente supponiamo che queste funzioni siano di classe $C^2([t_1, t_2])$.
 
-Per collegare la descrizione configurazionale alla cinematica, introduciamo il concetto di \emph{spostamenti infinitesimi} o \emph{variazioni}.\note{Non ci sono approssimazioni: le espressioni sono esatte a livello differenziale.}
+Per collegare la descrizione configurazionale alla cinematica, introduciamo il concetto di \emph{spostamenti infinitesimi} o \emph{variazioni}.\note{Non ci sono approssimazioni: le espressioni sono esatte a livello differenziale}
 
 Consideriamo il sistema di coordinate lagrangiane
 \begin{equation*}
@@ -147,7 +147,7 @@ Possiamo calcolare la velocità del punto materiale (di posizione $\vP$) come
 \end{equation*}
 in modo da definire lo \emph{spostamento infinitesimo}:
 \begin{equation*}
-    \dd{\vP} = \vv \dd{t} = \sum_{h=1}^n \pdv{\vP}{q_h} \dd{q}_h + \pdv{\vP}{t} \dd{t}.
+    \dd{\vP} = \vv \dd{t} = \sum_{h=1}^n \pdv{\vP}{q_h} \dd{q_h} + \pdv{\vP}{t} \dd{t}.
 \end{equation*}
 
 \begin{example}[Circonferenza, versore trasversale]
@@ -175,10 +175,10 @@ che mostra come la variazione infinitesima sia tangente alla traiettoria.
 \end{example}
 
 \begin{definition}[Spostamenti reali e virtuali]
-Parliamo di spostamenti \emph{reali} quando $\dd{t} \neq 0$ e di spostamenti \emph{virtuali} quando $\dd{t} = 0$.\note{Probabilmente Stevino nel '500 è stato il primo a parlare di spostamenti virtuali, con maggiore sistematizzazione da parte di Bernoulli e poi Lagrange.}
+Parliamo di spostamenti \emph{reali} quando $\dd{t} \neq 0$ e di spostamenti \emph{virtuali} quando $\dd{t} = 0$.\note{Probabilmente Stevino nel '500 è stato il primo a parlare di spostamenti virtuali, con maggiore sistematizzazione da parte di Bernoulli e poi Lagrange}
 Per cui abbiamo:
 \begin{align*}
-    \dd{\vP} &= \sum_{h=1}^n \pdv{\vP}{q_h} \dd{q}_h + \pdv{\vP}{t} \dd{t} \quad &\text{spostamenti reali} \\
+    \dd{\vP} &= \sum_{h=1}^n \pdv{\vP}{q_h} \dd{q_h} + \pdv{\vP}{t} \dd{t} \quad &\text{spostamenti reali} \\
     \var{\vP} &= \sum_{h=1}^n \pdv{\vP}{q_h} \var{q}_h \quad &\text{spostamenti virtuali}.
 \end{align*}
 \end{definition}
@@ -425,9 +425,9 @@ per cui l'energia meccanica totale è costante:
 
 Ora, nel sistema oltre alle forze che agiscono sui punti, ci sono anche le forze vincolari, per cui
 \begin{equation*}
-    \dd{T} = \underbrace{\dd{L}^{(a)}}_{\text{conservativo}} + \dd{L}^{(v)},
+    \dd{T} = \underbrace{\dd{L^{(a)}}}_{\text{conservativo}} + \dd{L^{(v)}},
 \end{equation*}
-dove $\dd{L}^{(a)}$ è il lavoro reale delle forze attive, mentre $\dd{L}^{(v)}$ è il lavoro reale delle forze vincolari. Se i vincoli sono fissi, lisci e bilaterali, e quindi il sistema è scleronomo, allora si ha
+dove $\dd{L^{(a)}}$ è il lavoro reale delle forze attive, mentre $\dd{L^{(v)}}$ è il lavoro reale delle forze vincolari. Se i vincoli sono fissi, lisci e bilaterali, e quindi il sistema è scleronomo, allora si ha
 \begin{equation*}
     \begin{cases}
         \var{L}^{(v)} \geq 0 \\
@@ -443,7 +443,7 @@ dove $\dd{L}^{(a)}$ è il lavoro reale delle forze attive, mentre $\dd{L}^{(v)}$
 \end{equation*}
 per cui
 \begin{equation*}
-    \dd{T} = \dd{L}^{(a)} = -\dd{V}.
+    \dd{T} = \dd{L^{(a)}} = -\dd{V}.
 \end{equation*}
 
 Infine, l'energia cinetica di un sistema di $N$ punti materiali è data da
@@ -462,9 +462,9 @@ per cui otteniamo
 \begin{align*}
     &= \frac{1}{2} \sum_{i=1}^N m_i \Bigg[ \sum_{h,k=1}^n \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k} \dot{q}_h \dot{q}_k \\
     &\qquad\qquad\quad + 2 \sum_{h=1}^n \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{t} \dot{q}_h + \left(\pdv{\vP_i}{t}\right)^2 \Bigg] \\
-    &= \underbrace{\frac{1}{2} \sum_{h,k=1}^n \left( \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k} \right) \dot{q}_h \dot{q}_k}_{T^2} \\
-    &\quad + \underbrace{\sum_{h=1}^n \left( \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{t} \right) \dot{q}_h}_{T^1} + \underbrace{\frac{1}{2} \sum_{i=1}^N m_i \left(\pdv{\vP_i}{t}\right)^2}_{T^0}\\
-    &= T^2 + T^1 + T^0.
+    &= \underbrace{\frac{1}{2} \sum_{h,k=1}^n \left( \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k} \right) \dot{q}_h \dot{q}_k}_{T_2} \\
+    &\quad + \underbrace{\sum_{h=1}^n \left( \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{t} \right) \dot{q}_h}_{T_1} + \underbrace{\frac{1}{2} \sum_{i=1}^N m_i \left(\pdv{\vP_i}{t}\right)^2}_{T_0}\\
+    &= T_2 + T_1 + T_0.
 \end{align*}
 Questo è un polinomio di secondo grado in $\dot{q}_i$. Definiamo
 \begin{equation*}
@@ -479,7 +479,7 @@ per cui otteniamo
 \begin{remark}
     Se il sistema è a vincoli indipendenti dal tempo, allora l'energia cinetica si riduce alla sola parte quadratica
     \begin{equation*}
-        T = T^2.
+        T = T_2.
     \end{equation*}
 
     Infatti si ha
@@ -499,14 +499,14 @@ detta \emph{matrice di massa}. Essa \`e simmetrica, poich\'e $a_{hk}=a_{kh}$.
 \end{definition}
 
 \begin{proposition}
-$T^2$ è una forma quadratica definita positiva.
+$T_2$ è una forma quadratica definita positiva.
 \end{proposition}
 \begin{proof}
     \begin{align*}
         \sum_{h,k=1}^n a_{hk}\, \xi_h \xi_k &= \sum_{h,k=1}^n\left(\sum_{i=1}^N m_i \pdv{\vP_i}{q_h}\cdot \pdv{\vP_i}{q_k}\right)\xi_h \xi_k \\
         &= \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \xi_h \right)^2 \geq 0,
     \end{align*}
-    pertanto è semidefinita positiva. Resta da dimostrare che la forma è uguale a zero solo se $\xi_h = 0$ per ogni $h = 1, 2, \dots, n$. Se $T^2 = 0$, allora
+    pertanto è semidefinita positiva. Resta da dimostrare che la forma è uguale a zero solo se $\xi_h = 0$ per ogni $h = 1, 2, \dots, n$. Se $T_2 = 0$, allora
     \begin{equation*}
         \sum_{h=1}^n \pdv{\vP_i}{q_h} \xi_h = 0 \quad \forall i = 1, 2, \dots, N.
     \end{equation*}
