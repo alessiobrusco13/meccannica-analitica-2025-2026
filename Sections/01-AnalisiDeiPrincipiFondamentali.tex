@@ -181,23 +181,27 @@ Per visualizzare la differenza, riprendiamo l'esempio della particella sulla gui
 È immediato notare dalle formule che se i vincoli sono fissi (indipendenti dal tempo), l'ultimo termine dello spostamento reale si annulla e gli spostamenti virtuali coincidono esattamente con quelli reali.
 
 \subsection{Vincoli unilateri e spostamenti ammessi}
-Finora abbiamo ipotizzato che i vincoli siano descritti da equazioni (vincoli bilateri). Questo tipo di vincolo si traduce in una restrizione sui gradi di libertà e viene incorporato in modo naturale nella scelta delle coordinate lagrangiane: selezionando $n$ parametri indipendenti, il sistema soddisfa automaticamente i vincoli per qualsiasi valore assunto dalle coordinate.
+Finora abbiamo ipotizzato che i vincoli siano descritti da equazioni, ovvero il caso di vincoli bilateri. Questo tipo di vincolo si traduce in una restrizione sui gradi di libertà e viene incorporato in modo naturale nella scelta delle coordinate lagrangiane: selezionando $n$ parametri indipendenti, il sistema soddisfa automaticamente i vincoli per qualsiasi valore assunto dalle coordinate.
 
 Tuttavia, in presenza di vincoli \emph{unilaterali}, espressi da disequazioni della forma
 \begin{equation*}
     g_j(q_1, \dots, q_n, t) \geq 0 \qquad (j = 1, \dots, s),
 \end{equation*}
-la situazione cambia. Queste disequazioni non eliminano alcun grado di libertà, ma si limitano a restringere il dominio in cui le coordinate $q_k$ possono variare. Poiché le coordinate continuano a variare in modo indipendente, non garantiscono più automaticamente il rispetto di queste condizioni. È quindi necessario imporre esplicitamente che gli spostamenti virtuali $\var{\vq}$ siano \emph{compatibili} con la presenza degli ostacoli, verificando che la nuova posizione non violi il vincolo.
+la situazione cambia. Queste disequazioni non eliminano alcun grado di libertà, ma si limitano a restringere il dominio in cui le coordinate $q_k$ possono variare. Poiché le coordinate continuano a variare in modo indipendente, non garantiscono più automaticamente il rispetto di queste condizioni. È quindi necessario imporre esplicitamente che gli spostamenti virtuali $\var{\vq}$ siano \emph{compatibili} con le limitazioni presenti, verificando che la nuova posizione non violi il vincolo.
 
 Per capire quali spostamenti siano ammessi, è essenziale classificare le configurazioni del sistema in due categorie:
 \begin{itemize}
-    \item \textbf{Configurazioni ordinarie:} Tutti i vincoli unilaterali sono soddisfatti in modo stretto ($g_j > 0$). Il sistema si trova "lontano" dagli ostacoli, pienamente all'interno della regione permessa.
-    \item \textbf{Configurazioni di confine:} Almeno un vincolo unilaterale è \emph{attivo}, ovvero è soddisfatto come uguaglianza ($g_j = 0$). Il sistema si trova a diretto contatto con uno degli ostacoli.
+    \item se tutti i vincoli unilaterali sono soddisfatti in modo stretto ($g_j > 0$), si parla di \emph{configurazioni ordinarie}. In questo caso il sistema si trova distante dai limiti fisici, pienamente all'interno della regione permessa.
+    \item se invece almeno un vincolo unilaterale è \emph{attivo}, ovvero è soddisfatto come uguaglianza ($g_j = 0$), si è in presenza di \emph{configurazioni di confine}. In questa eventualità il sistema si trova a diretto contatto con la superficie vincolante.
 \end{itemize}
 
-Nelle configurazioni ordinarie, un qualsiasi spostamento virtuale $\var{\vq}$ sufficientemente piccolo manterrà il sistema all'interno della regione permessa. Ne consegue che ogni spostamento è \emph{reversibile}: se $\var{\vq}$ è ammissibile, lo è necessariamente anche il suo opposto $-\var{\vq}$.
+\begin{definition}[Spostamento reversibile]
+    Uno spostamento virtuale $\var{\vq}$ ammissibile è detto \emph{reversibile} se anche il suo opposto $-\var{\vq}$ risulta ammissibile per il sistema. In caso contrario, lo spostamento è detto \emph{irreversibile}.
+\end{definition}
 
-Nelle configurazioni di confine, invece, il sistema non può muoversi verso l'esterno dell'ostacolo. Per determinare analiticamente se un piccolo spostamento virtuale $\var{\vq}$ sia ammesso, imponiamo che la funzione di vincolo rimanga non negativa nella posizione variata: $g_j(\vq + \var{\vq}, t) \geq 0$. Espandendo in serie di Taylor al primo ordine attorno alla configurazione attuale $\vq$, otteniamo:
+Nelle configurazioni ordinarie, un qualsiasi spostamento virtuale $\var{\vq}$ sufficientemente piccolo manterrà il sistema all'interno della regione permessa. Ne consegue che ogni spostamento è reversibile.
+
+Nelle configurazioni di confine, invece, il sistema non può muoversi verso l'esterno del dominio consentito. Per determinare analiticamente se un piccolo spostamento virtuale $\var{\vq}$ sia ammesso, imponiamo che la funzione di vincolo rimanga non negativa nella posizione variata: $g_j(\vq + \var{\vq}, t) \geq 0$. Espandendo in serie di Taylor al primo ordine attorno alla configurazione attuale $\vq$, otteniamo:
 \begin{equation*}
     g_j(\vq + \var{\vq}, t) \approx g_j(\vq, t) + \sum_{k=1}^n \pdv{g_j}{q_k}\,\var{q}_k \geq 0.
 \end{equation*}
@@ -205,12 +209,12 @@ Poiché ci troviamo su una configurazione di confine in cui il vincolo è attivo
 \begin{equation*}
     \sum_{k=1}^n \pdv{g_j}{q_k}\,\var{q}_k \geq 0.
 \end{equation*}
-Se questa somma è positiva, il sistema si allontana dall'ostacolo rientrando nella regione permessa; se è nulla, "scivola" tangenzialmente lungo il bordo. Uno spostamento che renda la somma negativa è fisicamente vietato. Pertanto, nelle configurazioni di confine esistono spostamenti \emph{irreversibili}: un movimento verso l'interno ($\var{\vq}$) è ammesso, ma il suo opposto verso l'esterno ($-\var{\vq}$) non lo è.
+Se questa somma è positiva, il sistema rientra nella regione permessa; se è nulla, si sposta tangenzialmente lungo il bordo. Uno spostamento che renda la somma negativa è fisicamente vietato. Pertanto, nelle configurazioni di confine esistono spostamenti irreversibili: un movimento verso l'interno ($\var{\vq}$) è ammesso, ma il suo opposto verso l'esterno ($-\var{\vq}$) non lo è.
 
 \begin{example}[Particella in un dominio circolare]
 Consideriamo un punto vincolato a non uscire da un disco di raggio $R(t)$, eventualmente variabile nel tempo. Il vincolo si scrive come $g(\vP, t) = R(t) - r(\vP) \geq 0$, dove $r(\vP)$ è la distanza del punto dal centro.
 Quando il punto si trova strettamente all'interno ($r < R$), ci troviamo in una configurazione ordinaria: ogni piccolo spostamento in qualsiasi direzione è ammissibile e reversibile.
-Se invece il punto si trova esattamente sul bordo ($r = R$), siamo in una configurazione di confine. Calcolando lo spostamento virtuale (che avviene a "tempo congelato", ignorando la possibile espansione del disco), questo sarà ammesso solo se diretto verso l'interno del disco o lungo la tangente al bordo. Uno spostamento radiale verso l'esterno è vietato, il che rende gli spostamenti verso l'interno irreversibili.
+Se invece il punto si trova esattamente sul bordo ($r = R$), siamo in una configurazione di confine. Calcolando lo spostamento virtuale a tempo fissato, ovvero ignorando la possibile espansione del disco, questo sarà ammesso solo se diretto verso l'interno del disco o lungo la tangente al bordo. Uno spostamento radiale verso l'esterno è vietato, il che rende gli spostamenti verso l'interno irreversibili.
 \end{example}
 
 \section{Problema meccanico dei vincoli}
