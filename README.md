@@ -2,7 +2,7 @@
 
 Raccolta di appunti redatti in LaTeX durante il corso di Meccanica Analitica, tenuto dal Prof. Maurizio Gentile per il secondo anno del Corso di Laurea in Fisica (Gruppo 1) presso l'Università degli Studi di Napoli Federico II.
 
-> **Avvertenza:** Il presente materiale non costituisce documentazione ufficiale del corso. Trattandosi di una trascrizione personale e attualmente in fase di stesura, il testo è soggetto a revisioni e potrebbe presentare errori, imprecisioni o parti incomplete. Contributi sotto forma di segnalazioni (Issues) o correzioni (Pull Requests) sono incoraggiati e benvenuti.
+> **Avvertenza:** Il presente materiale non costituisce documentazione ufficiale del corso. Trattandosi di una trascrizione personale (ora completa e interamente revisionata), il testo potrebbe comunque presentare refusi residui. Contributi sotto forma di segnalazioni (Issues) o correzioni (Pull Requests) sono incoraggiati e benvenuti.
 
 ---
 
@@ -20,12 +20,13 @@ L'ultima versione precompilata del documento, pronta per la lettura e la stampa,
 
 ## Indice degli Argomenti
 
-Il testo si propone di trattare i seguenti argomenti (elenco parziale e in aggiornamento):
+Il testo tratta i seguenti argomenti:
 
 - Principi fondamentali della meccanica analitica
 - Equazioni di Lagrange e principi variazionali
 - Equazioni di Hamilton
 - Teoria di Hamilton-Jacobi
+- Cinematica e dinamica del corpo rigido
 
 ---
 
