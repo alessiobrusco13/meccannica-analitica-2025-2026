@@ -305,8 +305,8 @@ Introduciamo la quantità\note{Lezione 28/04/2026}
 definendo un vettore $\vb{\eta} = (q_1, \dots, q_n, p_1, \dots, p_n)$ che contiene tutte le variabili canoniche. Definiamo inoltre la matrice
 \begin{align*}
     \tens{J} &= \begin{pmatrix}
-        \tens{0} & \tens{I_n} \\
-        -\tens{I_n} & \tens{0}
+        \tens{0} & \tens{1} \\
+        -\tens{1} & \tens{0}
     \end{pmatrix} \\
     &= \begin{pmatrix}
         0 & \dots & 0 & 1 & \dots & 0 \\
@@ -317,7 +317,7 @@ definendo un vettore $\vb{\eta} = (q_1, \dots, q_n, p_1, \dots, p_n)$ che contie
         0 & \dots & -1 & 0 & \dots & 0
     \end{pmatrix}
 \end{align*}
-detta \emph{matrice simplettica}, dove $\tens{0}$ è la matrice nulla $n\times n$ e $\tens{I_n}$ è la matrice identità $n\times n$. Si ha che per questa matrice $\tens{J}^T = \tens{J}^{-1} = -\tens{J}$ e $\det \tens{J} = 1$.
+detta \emph{matrice simplettica}, dove $\tens{0}$ è la matrice nulla $n\times n$ e $\tens{1}$ è la matrice identità $n\times n$. Si ha che per questa matrice $\tens{J}^T = \tens{J}^{-1} = -\tens{J}$ e $\det \tens{J} = 1$.
 
 Le equazioni di Hamilton possono essere riscritte in forma compatta
 \begin{equation*}

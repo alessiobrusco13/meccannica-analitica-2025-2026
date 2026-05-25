@@ -17,3 +17,29 @@
 
 \setlist[itemize]{itemsep=0.2em, topsep=0.4em}
 \setlist[enumerate]{itemsep=0.2em, topsep=0.4em, label=(\arabic*)}
+
+% ===================== Header & Footer Configuration =====================
+\pagestyle{fancy}
+\fancyhf{} % Clear default headers/footers
+
+% Redefine chapter and section marks to be in mixed-case (not all-caps)
+\renewcommand{\chaptermark}[1]{\markboth{Capitolo\ \thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+
+% Header layout for twoside mode (aligned towards the page number on the outer margins):
+% - Even pages (left page): page number and chapter title on outer edge (left)
+% - Odd pages (right page): section title and page number on outer edge (right)
+\fancyhead[EL]{\small{\normalfont\bfseries\thepage}\qquad\itshape\leftmark}
+\fancyhead[ER]{}
+\fancyhead[OL]{}
+\fancyhead[OR]{\small\itshape\rightmark\qquad{\normalfont\bfseries\thepage}}
+
+\renewcommand{\headrulewidth}{0.4pt} % Thin line under header
+\renewcommand{\footrulewidth}{0pt}   % No line above footer
+
+% Redefine 'plain' page style for chapter start pages and similar
+\fancypagestyle{plain}{%
+  \fancyhf{}% Clear all headers and footers
+  \renewcommand{\headrulewidth}{0pt}% No line under header
+  \renewcommand{\footrulewidth}{0pt}% No line above footer
+}

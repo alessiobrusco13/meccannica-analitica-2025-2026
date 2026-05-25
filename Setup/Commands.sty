@@ -67,14 +67,12 @@
 \providecommand{\NoteColor}{black}              % text color
 \providecommand{\MarginNoteWidth}{3.0cm}        % box width
 
-% Side-aware alignment helper (simplified for oneside)
-\newcommand{\NoteAlign}{\raggedright}
-
-% Single \note command. Optional argument vertically shifts the note.
+% Side-aware alignment helper (flush towards the text column)
 \DeclareRobustCommand{\note}[2][0pt]{%
-  \marginnote{%
-    \NoteAlign\NoteFontSize\NoteFont\color{\NoteColor}%
-    \ignorespaces#2%
+  \marginnote[{%
+    \raggedleft\NoteFontSize\NoteFont\color{\NoteColor}\ignorespaces#2%
+  }]{%
+    \raggedright\NoteFontSize\NoteFont\color{\NoteColor}\ignorespaces#2%
   }[#1]%
 }
 % ======================================================================
