@@ -253,7 +253,7 @@ In modo del tutto analogo, si definisce il lavoro virtuale associato a uno spost
     \var{L} = \vF \cdot \var{\vP}.
 \end{equation*}
 
-Denotando con $\var{L}^{(v)}$ il lavoro virtuale complessivo compiuto dalle reazioni vincolari sull'intero sistema, l'ipotesi di assenza di attrito ci fornisce un'importante disuguaglianza geometrico-meccanica. Infatti, per una superficie liscia la reazione è sempre normale al bordo e rivolta verso l'interno della regione permessa; d'altro canto, gli spostamenti ammissibili sono tangenti o diretti anch'essi verso l'interno. Il loro prodotto scalare non potrà quindi mai essere negativo.
+Denotando con $\var{L}^{(v)}$ il lavoro virtuale complessivo compiuto dalle reazioni vincolari sull'intero sistema, l'ipotesi di assenza di attrito ci fornisce un'importante disuguaglianza. Infatti, per una superficie liscia la reazione è sempre normale al bordo e rivolta verso l'interno della regione permessa; d'altro canto, gli spostamenti ammissibili sono tangenti o diretti anch'essi verso l'interno. Il loro prodotto scalare non potrà quindi mai essere negativo.
 
 \begin{proposition}[Vincoli lisci e lavoro virtuale]
     Per un sistema olonomo soggetto a vincoli lisci, il lavoro virtuale delle reazioni vincolari soddisfa
@@ -263,7 +263,7 @@ Denotando con $\var{L}^{(v)}$ il lavoro virtuale complessivo compiuto dalle reaz
     per qualsiasi spostamento virtuale ammissibile. In particolare, se lo spostamento virtuale è reversibile, risulta in modo stringente $\var{L}^{(v)} = 0$.
 \end{proposition}
 
-Questa proprietà fondamentale dei vincoli lisci motiva una generalizzazione assiomatica cruciale per la formulazione della meccanica analitica, che viene sancita da una definizione vera e propria.
+Questa proprietà fondamentale dei vincoli lisci suggerisce l'introduzione di un concetto ancora più generale, basato unicamente sul lavoro virtuale delle forze vincolari senza necessariamente richiamare l'assenza di attrito.
 
 \begin{definition}[Vincoli ideali]
     Un sistema di vincoli è detto \emph{ideale} se il lavoro virtuale delle reazioni vincolari soddisfa la disuguaglianza
@@ -273,13 +273,15 @@ Questa proprietà fondamentale dei vincoli lisci motiva una generalizzazione ass
     per ogni spostamento virtuale ammissibile.
 \end{definition}
 
-In base a questa definizione, la proposizione sui vincoli lisci esposta in precedenza può essere riassunta in modo compatto.
+Come si può notare, la condizione per i vincoli ideali si riduce all'uguaglianza stretta $\var{L}^{(v)} = 0$ nel caso particolare dei vincoli bilateri, poiché per questi ultimi ogni spostamento virtuale ammissibile è reversibile. La formulazione mediante disuguaglianza risulta tuttavia essenziale per poter includere e trattare coerentemente anche il caso dei vincoli unilaterali.
+
+Alla luce di questa definizione, la proprietà discussa nel paragrafo precedente può essere riformulata in modo compatto:
 
 \begin{proposition}\note{Lezione 19/03/2026}
     Se un sistema materiale è soggetto esclusivamente a vincoli privi di attrito, allora è un sistema a vincoli ideali.
 \end{proposition}
 
-È opportuno sottolineare come l'implicazione inversa non sia affatto vera: esistono sistemi ideali in cui sono presenti forti componenti di attrito. Il caso più celebre è quello del puro rotolamento. In questo scenario vi è attrito statico tra i corpi a contatto, il quale è indispensabile per impedire lo strisciamento; tuttavia, il punto di istantanea applicazione della reazione vincolare ha sempre velocità nulla rispetto al suolo, determinando un lavoro virtuale identicamente zero e garantendo così la natura ideale del vincolo.
+L'importanza della nozione di vincolo ideale sta nell'essere un concetto prettamente macroscopico e cinematico: il sistema di forze è vincolato per definizione a rispettare una condizione globale sul lavoro virtuale, il che ci esonera dallo studio analitico delle complesse interazioni microscopiche. La classe dei vincoli ideali è quindi strettamente più ampia di quella dei vincoli lisci, e include anche sistemi in cui è presente attrito. Il caso più celebre è quello del puro rotolamento: in questo scenario vi è attrito statico tra i corpi a contatto (indispensabile per impedire lo strisciamento), ma il punto di istantanea applicazione della reazione vincolare ha velocità nulla rispetto al suolo, determinando un lavoro virtuale nullo e garantendo così la natura ideale del vincolo.
 \section{Forze ed energia nella formulazione lagrangiana}
 In questa parte fissiamo le considerazioni su forze ed energia che useremo per ottenere le equazioni di Lagrange. Consideriamo quindi un sistema olonomo di punti
 \begin{equation*}
