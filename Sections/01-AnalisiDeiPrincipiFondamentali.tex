@@ -339,7 +339,8 @@ Espresso il lavoro, passiamo all'energia cinetica del sistema:
 \end{equation*}
 Sostituendo l'espressione delle velocità in termini di coordinate lagrangiane, ovvero $\vv_i = \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t}$, e sviluppando il quadrato, l'energia cinetica si scompone naturalmente in tre termini, corrispondenti a un polinomio di secondo grado nelle velocità generalizzate $\dot{\vq}$:
 \begin{align*}
-    T &= \frac{1}{2} \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t} \right) \cdot \left( \sum_{k=1}^n \pdv{\vP_i}{q_k} \dot{q}_k + \pdv{\vP_i}{t} \right) \\
+    T &= \frac{1}{2} \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t} \right)^2 \\
+    &= \frac{1}{2} \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t} \right) \cdot \left( \sum_{k=1}^n \pdv{\vP_i}{q_k} \dot{q}_k + \pdv{\vP_i}{t} \right) \\
     &= \underbrace{\frac{1}{2} \sum_{h,k=1}^n \left( \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k} \right) \dot{q}_h \dot{q}_k}_{T_2} \\
     &\quad + \underbrace{\sum_{h=1}^n \left( \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{t} \right) \dot{q}_h}_{T_1} + \underbrace{\frac{1}{2} \sum_{i=1}^N m_i \left(\pdv{\vP_i}{t}\right)^2}_{T_0}\\
     &= T_2 + T_1 + T_0.
@@ -366,12 +367,21 @@ Se i vincoli sono fissi (sistema scleronomo), la dipendenza esplicita dal tempo 
 \end{proposition}
 \begin{proof}
     Sviluppando la forma quadratica per un generico vettore di coefficienti $\vb{\xi} \in \R^n$:
-    \begin{equation*}
-        \sum_{h,k=1}^n a_{hk}\, \xi_h \xi_k = \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \xi_h \right)^2 \geq 0.
-    \end{equation*}
+    \begin{align*}
+        \sum_{h,k=1}^n a_{hk}\, \xi_h \xi_k &= \sum_{h,k=1}^n\left(\sum_{i=1}^N m_i \pdv{\vP_i}{q_h}\cdot \pdv{\vP_i}{q_k}\right)\xi_h \xi_k \\
+        &= \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \xi_h \right)^2 \geq 0.
+    \end{align*}
     Essendo una somma di quantità non negative, è quantomeno semidefinita positiva. Affinché la forma si annulli, ciascun termine deve essere identicamente nullo, ossia:
     \begin{equation*}
         \sum_{h=1}^n \pdv{\vP_i}{q_h} \xi_h = \vb{0} \quad \forall i = 1, \dots, N.
     \end{equation*}
-    Questa equazione vettoriale esprime che il vettore $\vb{\xi}$ appartiene al nucleo della matrice Jacobiana $\vb{J}$ della trasformazione di coordinate (di dimensioni $3N \times n$). Poiché le coordinate lagrangiane sono, per definizione, indipendenti, lo Jacobiano ha rango massimo $n$. Di conseguenza, le sue $n$ colonne sono linearmente indipendenti e il nucleo contiene solo il vettore nullo. Pertanto, l'unica soluzione è $\vb{\xi} = \vb{0}$, dimostrando inequivocabilmente che $T_2$ è definita positiva.
+    Notiamo che le derivate $\pdv{\vP_i}{q_h}$ formano le colonne della matrice Jacobiana $\vb{J}$ del sistema (di dimensioni $3N \times n$):
+    \begin{equation*}
+        \vb{J} = \begin{pmatrix}
+            \displaystyle\pdv{x_1}{q_1} & \cdots & \displaystyle\pdv{x_1}{q_n} \\[0.7em]
+            \vdots & \ddots & \vdots \\[0.7em]
+            \displaystyle\pdv{z_N}{q_1} & \cdots & \displaystyle\pdv{z_N}{q_n}
+        \end{pmatrix}.
+    \end{equation*}
+    L'equazione vettoriale esprime quindi il sistema lineare omogeneo $\vb{J}\vb{\xi} = \vb{0}$, il che significa che il vettore $\vb{\xi}$ appartiene al nucleo di $\vb{J}$. Poiché le coordinate lagrangiane sono, per definizione, indipendenti, lo Jacobiano ha rango massimo $n$. Di conseguenza, le sue $n$ colonne sono linearmente indipendenti e il nucleo contiene solo il vettore nullo. Pertanto, l'unica soluzione è $\vb{\xi} = \vb{0}$, dimostrando inequivocabilmente che $T_2$ è definita positiva.
 \end{proof}
