@@ -191,16 +191,8 @@ la situazione cambia. Queste disequazioni non eliminano alcun grado di libertà,
 
 Per capire quali spostamenti siano ammessi, è essenziale classificare le configurazioni del sistema in due categorie:
 \begin{itemize}
-    \item se tutti i vincoli unilaterali sono soddisfatti in modo stretto, ovvero
-    \begin{equation*}
-        g_j(\vq, t) > 0 \qquad \forall j = 1, \dots, s,
-    \end{equation*}
-    si parla di \emph{configurazioni ordinarie}. In questo caso il sistema si trova distante dai limiti fisici, pienamente all'interno della regione permessa.
-    \item se invece almeno un vincolo unilaterale è \emph{attivo}, ovvero è soddisfatto come uguaglianza:
-    \begin{equation*}
-        g_j(\vq, t) = 0 \qquad \text{per qualche } j \in \{1, \dots, s\},
-    \end{equation*}
-    si è in presenza di \emph{configurazioni di confine}. In questa eventualità il sistema si trova a diretto contatto con la superficie vincolante.
+    \item se tutti i vincoli unilaterali sono soddisfatti in modo stretto ($g_j > 0$), si parla di \emph{configurazioni ordinarie}. In questo caso il sistema si trova distante dai limiti fisici, pienamente all'interno della regione permessa.
+    \item se invece almeno un vincolo unilaterale è \emph{attivo}, ovvero è soddisfatto come uguaglianza ($g_j = 0$), si è in presenza di \emph{configurazioni di confine}. In questa eventualità il sistema si trova a diretto contatto con la superficie vincolante.
 \end{itemize}
 
 \begin{definition}[Spostamento reversibile]
@@ -236,53 +228,58 @@ Se invece il punto si trova esattamente sul bordo, cioè per $r = R$, siamo in u
 \end{example}
 
 \section{Problema meccanico dei vincoli}
+Dal punto di vista dinamico, la presenza di un vincolo si manifesta attraverso l'azione di forze aggiuntive sul sistema. Questo principio fondamentale è codificato nel seguente postulato.
+
 \begin{proposition}[Postulato delle reazioni vincolari]
-Ogni vincolo può essere sostituito con un sistema di forze, dette \emph{reazioni vincolari}, senza alterare lo stato di quiete o di moto del sistema materiale.
+    Ogni vincolo cinematico può essere rimosso e sostituito con un opportuno sistema di incognite, dette \emph{forze vincolari} o \emph{reazioni vincolari}, senza che ciò alteri lo stato di quiete o di moto del sistema materiale.
 \end{proposition}
 
-Nel seguito distingueremo tra forze attive, esterne o applicate, e forze vincolari. Supporremo vincoli \emph{lisci}, cioè privi di attrito.
+Grazie a questo postulato, le forze agenti su un sistema si dividono in due categorie: le \emph{forze attive} o applicate, la cui espressione dipende unicamente dallo stato del sistema in esame, e le \emph{forze vincolari}, le quali si oppongono alle violazioni dei vincoli e le cui intensità rappresentano incognite del problema.
+
+Per chiudere il problema meccanico è necessario specificare la natura fisica del contatto tra il sistema e le superfici vincolanti. Il caso più semplice è quello dei vincoli privi di attrito.
+
 \begin{definition}[Superficie liscia]
-    Diremo che una superficie è \emph{liscia}, o priva di attrito, se è in grado di esercitare tutte e sole le reazioni vincolari ad essa normali e rivolte verso l'esterno, cioè verso la regione in cui il sistema può muoversi.
+    Una superficie vincolante è detta \emph{liscia}, ovvero priva di attrito, se la reazione vincolare che essa esercita è in ogni istante diretta lungo la normale alla superficie stessa e rivolta verso la regione spaziale consentita al moto del sistema.
 \end{definition}
 
-Diremo che un sistema materiale ha vincoli privi di attrito se tutte le superfici degli ostacoli esterni e dei corpi del sistema sono lisce.
+Un intero sistema materiale possiede vincoli privi di attrito se tutte le superfici con cui interagisce risultano lisce. Questa ipotesi si traduce in una condizione analitica fondamentale sul lavoro meccanico svolto dalle reazioni vincolari.
 
-In questa ipotesi, le reazioni vincolari non compiono lavoro virtuale sugli spostamenti compatibili con i vincoli. Questo fatto sarà cruciale nella formulazione lagrangiana.
-
-Se $\vF$ è la forza applicata a un punto materiale e $\dd{\vP}$ il suo spostamento infinitesimo possibile, il lavoro elementare è
+Se consideriamo una forza $\vF$ applicata a un generico punto materiale e uno spostamento infinitesimo $\dd{\vP}$, il lavoro elementare è espresso dal prodotto scalare
 \begin{equation*}
-    \dd{L} = \vF\cdot \dd{\vP} = \sum_{i=1}^n F_i\,\dd{P_i}.
+    \dd{L} = \vF \cdot \dd{\vP}.
 \end{equation*}
-Analogamente definiamo il lavoro virtuale
+In modo del tutto analogo, si definisce il lavoro virtuale associato a uno spostamento virtuale $\var{\vP}$ come
 \begin{equation*}
-    \var{L} = \vF\cdot \var{\vP} = \sum_{i=1}^n F_i\,\var{P_i}.
+    \var{L} = \vF \cdot \var{\vP}.
 \end{equation*}
 
-Indichiamo con $\var{L}^{(v)}$ il lavoro virtuale delle reazioni vincolari.
+Estendendo la definizione all'intero sistema e sommando tutti i contributi, si ottiene il lavoro virtuale totale delle reazioni vincolari, indicato con $\var{L}^{(v)}$. L'ipotesi di assenza di attrito ci fornisce un'importante disuguaglianza geometrico-meccanica. Infatti, per una superficie liscia la reazione è sempre normale al bordo e rivolta verso l'interno della regione permessa; d'altro canto, gli spostamenti ammissibili sono tangenti o diretti anch'essi verso l'interno. Il loro prodotto scalare non potrà quindi mai essere negativo.
+
 \begin{proposition}[Vincoli lisci e lavoro virtuale]
-Per un sistema olonomo con vincoli lisci si ha
-\begin{equation*}
-    \var{L}^{(v)} \geq 0 \quad \forall \var{\vP} \text{ spostamento virtuale}.
-\end{equation*}
-In particolare, $\var{L}^{(v)} = 0$ per gli spostamenti virtuali reversibili.
+    Per un sistema olonomo soggetto a vincoli lisci, il lavoro virtuale delle reazioni vincolari soddisfa
+    \begin{equation*}
+        \var{L}^{(v)} \geq 0
+    \end{equation*}
+    per qualsiasi spostamento virtuale ammissibile. In particolare, se lo spostamento virtuale è reversibile, risulta in modo stringente $\var{L}^{(v)} = 0$.
 \end{proposition}
 
-\begin{definition}
-    Diremo \emph{vincoli ideali} tutti i vincoli che verificano la disuguaglianza
+Questa proprietà fondamentale dei vincoli lisci motiva una generalizzazione assiomatica cruciale per la formulazione della meccanica analitica, che viene sancita da una definizione vera e propria.
+
+\begin{definition}[Vincoli ideali]
+    Un sistema di vincoli è detto \emph{ideale} se il lavoro virtuale delle reazioni vincolari soddisfa la disuguaglianza
     \begin{equation*}
-        \var{L}^{(v)} \geq 0 \quad \forall \var{\vP} \text{ spostamento virtuale}.
+        \var{L}^{(v)} \geq 0
     \end{equation*}
+    per ogni spostamento virtuale ammissibile.
 \end{definition}
 
-\begin{remark}
-    Esistono vincoli ideali che non sono privi di attrito.
-\end{remark}
-
-Questa è l'espressione analitica del fatto che la reazione vincolare deve essere normale alla superficie di contatto.
+In base a questa definizione, la proposizione sui vincoli lisci esposta in precedenza può essere riassunta in modo compatto.
 
 \begin{proposition}\note{Lezione 19/03/2026}
-Se $\mathcal{S}$ è un sistema a vincoli privi di attrito allora è a vincoli ideali.
+    Se un sistema materiale è soggetto esclusivamente a vincoli privi di attrito, allora è un sistema a vincoli ideali.
 \end{proposition}
+
+È opportuno sottolineare come l'implicazione inversa non sia affatto vera: esistono sistemi ideali in cui sono presenti forti componenti di attrito. Il caso più celebre è quello del puro rotolamento. In questo scenario vi è attrito statico tra i corpi a contatto, il quale è indispensabile per impedire lo strisciamento; tuttavia, il punto di istantanea applicazione della reazione vincolare ha sempre velocità nulla rispetto al suolo, determinando un lavoro virtuale identicamente zero e garantendo così la natura ideale del vincolo.
 \section{Forze ed energia nella formulazione lagrangiana}
 In questa parte fissiamo le considerazioni su forze ed energia che useremo per ottenere le equazioni di Lagrange. Consideriamo quindi un sistema olonomo di punti
 \begin{equation*}
