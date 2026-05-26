@@ -229,7 +229,7 @@ Data l'assoluta arbitrarietà nella scelta del vettore $\vvu$, la relazione può
 \end{equation*}
 
 \begin{remark}
-    Applicando il teorema di derivazione cinematica al vettore velocità angolare $\vb*{\omega}$, poiché $\vb*{\omega} \cross \vb*{\omega} = 0$, si ottiene
+    Applicando il teorema di derivazione cinematica al vettore velocità angolare $\vb*{\omega}$, poiché $\vb*{\omega} \cross \vb*{\omega} = \vb{0}$, si ottiene
     \begin{equation*}
         \dot{\vb*{\omega}} = \vb*{\omega}'.
     \end{equation*}
@@ -265,7 +265,7 @@ Il comportamento di questo campo vettoriale per un sistema rigido è descritto t
     \end{equation*}
     Il vincolo di rigidità impone che la distanza reciproca tra i punti non vari nel tempo. Di conseguenza, il vettore posizione relativa $(\vP - \vQ)$ è stazionario per un osservatore solidale a $\mathcal{S}$, implicando l'annullamento della sua derivata temporale relativa
     \begin{equation*}
-        \dvr{(\vP - \vQ)}{t} = 0.
+        \dvr{(\vP - \vQ)}{t} = \vb{0}.
     \end{equation*}
     Applicando il teorema di derivazione cinematica al vettore della posizione relativa, la variazione temporale assoluta si riduce al solo contributo di trascinamento rotazionale
     \begin{equation*}
@@ -725,13 +725,13 @@ Applicando questo formalismo generale alle sole sollecitazioni vincolari, il lor
 \begin{equation*}
     \var{L^{(v)}} = \vb{R}^{(v)} \cdot \var{\vO} + \vb{M}_O^{(v)} \cdot \var{\vb*{\epsilon}}.
 \end{equation*}
-Nel caso specifico di un solido con un punto fisso $O$, il vincolo impedisce qualsiasi spostamento del polo, imponendo la condizione cinematica $\var{\vO} = 0$. L'espressione del lavoro virtuale vincolare si riduce pertanto a
+Nel caso specifico di un solido con un punto fisso $O$, il vincolo impedisce qualsiasi spostamento del polo, imponendo la condizione cinematica $\var{\vO} = \vb{0}$. L'espressione del lavoro virtuale vincolare si riduce pertanto a
 \begin{equation*}
     \var{L^{(v)}} = \vb{M}_O^{(v)} \cdot \var{\vb*{\epsilon}}.
 \end{equation*}
 Poiché il vincolo è bilaterale e liscio, il postulato delle reazioni vincolari impone che il lavoro virtuale $\var{L^{(v)}}$ sia nullo per ogni spostamento virtuale compatibile. Essendo la rotazione virtuale $\var{\vb*{\epsilon}}$ completamente libera e arbitraria nello spazio tridimensionale, l'unica condizione geometrica che garantisca l'annullamento del prodotto scalare per qualsiasi scelta di $\var{\vb*{\epsilon}}$ è che il vettore momento si annulli identicamente
 \begin{equation*}
-    \vb{M}_O^{(v)} = 0.
+    \vb{M}_O^{(v)} = \vb{0}.
 \end{equation*}
 Il momento delle forze vincolari rispetto al punto fisso è nullo. La seconda equazione cardinale si disaccoppia così dalla prima, fornendo un sistema di 3 equazioni differenziali nelle sole 3 incognite cinematiche:
 \begin{equation*}
@@ -808,7 +808,7 @@ Un regime dinamico di notevole interesse si realizza quando il momento risultant
 \begin{definition}[Moti alla Poinsot]
     Diremo che il moto di un solido $\mathcal{S}$ è \emph{alla Poinsot}, o \emph{per inerzia}, se il momento risultante delle forze attive calcolato rispetto a un generico polo $Q$ è nullo
     \begin{equation*}
-        \vb{M}_Q^{(a)} = 0.
+        \vb{M}_Q^{(a)} = \vb{0}.
     \end{equation*}
 \end{definition}
 
@@ -816,9 +816,9 @@ Nella trattazione successiva, considereremo come polo $Q$ il punto fisso $O$ del
 
 Nel caso dei moti alla Poinsot, le equazioni di Eulero si omogeneizzano riducendosi a un sistema di equazioni differenziali del primo ordine nelle incognite cinematiche $\omega_1(t), \omega_2(t), \omega_3(t)$. In questo contesto, analizziamo se siano ammessi moti rotatori uniformi, detti nella letteratura rotazioni permanenti.
 
-Un moto rotatorio uniforme richiede che la velocità angolare sia costante nel tempo sia in modulo che in direzione, implicando $\vb*{\omega} = \text{costante}$, ovvero $\dot{\vb*{\omega}} = 0 = \vb*{\omega}'$ in virtù dell'invarianza dell'accelerazione angolare. Sostituendo questa condizione nelle equazioni di Eulero private dei momenti attivi, si ottiene la relazione vettoriale
+Un moto rotatorio uniforme richiede che la velocità angolare sia costante nel tempo sia in modulo che in direzione, implicando $\vb*{\omega} = \text{costante}$, ovvero $\dot{\vb*{\omega}} = \vb{0} = \vb*{\omega}'$ in virtù dell'invarianza dell'accelerazione angolare. Sostituendo questa condizione nelle equazioni di Eulero private dei momenti attivi, si ottiene la relazione vettoriale
 \begin{equation*}
-    \vb*{\omega} \cross (\tens{I}_O \vb*{\omega}) = 0.
+    \vb*{\omega} \cross (\tens{I}_O \vb*{\omega}) = \vb{0}.
 \end{equation*}
 Affinché il prodotto vettoriale sia nullo, il vettore velocità angolare $\vb*{\omega}$ deve risultare parallelo al vettore momento angolare $\tens{I}_O \vb*{\omega}$. Questo accade se e solo se $\vb*{\omega}$ costituisce un autovettore del tensore di inerzia, formalizzando il seguente teorema.
 
@@ -916,7 +916,7 @@ Oltre alle rotazioni permanenti, i moti per inerzia possono dare origine a soluz
 
 L'applicazione più significativa di questo teorema si riscontra nello studio del moto per inerzia di un solido a struttura giroscopica. Consideriamo un giroscopio avente il polo coincidente con il punto fisso $O$, il cui tensore di inerzia nel riferimento principale assume la forma diagonale con $I_1 = I_2 \neq I_3$. Sotto le ipotesi di moto alla Poinsot, la seconda equazione cardinale impone la conservazione del vettore momento angolare rispetto allo spazio fisso
 \begin{equation*}
-    \dot{\vb{K}}_O = 0 \implies \vb{K}_O = \text{costante} = \vb{K}_O^0.
+    \dot{\vb{K}}_O = \vb{0} \implies \vb{K}_O = \text{costante} = \vb{K}_O^0.
 \end{equation*}
 Espandiamo il vettore momento angolare sfruttando la simmetria dei primi due momenti principali di inerzia
 \begin{align}
