@@ -196,10 +196,10 @@ Per capire quali spostamenti siano ammessi, è essenziale classificare le config
 \end{itemize}
 
 \begin{definition}[Spostamento reversibile]
-    Uno spostamento virtuale $\var{\vP}$ ammissibile è detto \emph{reversibile} se anche il suo opposto $-\var{\vP}$ risulta ammissibile per il sistema. In caso contrario, lo spostamento è detto \emph{irreversibile}.
+    Uno spostamento virtuale $\var{\vq}$ ammissibile è detto \emph{reversibile} se anche il suo opposto $-\var{\vq}$ risulta ammissibile per il sistema. In caso contrario, lo spostamento è detto \emph{irreversibile}.
 \end{definition}
 
-Nelle configurazioni ordinarie, un qualsiasi spostamento virtuale $\var{\vP}$ sufficientemente piccolo manterrà il sistema all'interno della regione permessa. Ne consegue che ogni spostamento è reversibile.
+Nelle configurazioni ordinarie, un qualsiasi spostamento virtuale $\var{\vq}$ sufficientemente piccolo manterrà il sistema all'interno della regione permessa. Ne consegue che ogni spostamento è reversibile.
 
 Nelle configurazioni di confine, invece, il sistema non può muoversi verso l'esterno del dominio consentito. Per determinare analiticamente se un piccolo spostamento virtuale $\var{\vq}$ sia ammesso, imponiamo che la funzione di vincolo rimanga non negativa nella posizione variata: 
 \begin{equation*}
@@ -278,187 +278,90 @@ Alla luce di questa definizione, si ha la seguente proprietà:
 \end{proposition}
 
 L'importanza della nozione di vincolo ideale risiede nel suo carattere macroscopico e globale: assumendo a priori una precisa condizione sul lavoro virtuale, ci si esonera dalla complessa modellizzazione microscopica delle interazioni tra le superfici. Di conseguenza, la classe dei vincoli ideali è strettamente più ampia di quella dei vincoli lisci, potendo includere anche sistemi soggetti ad attrito. L'esempio classico è il puro rotolamento: benché vi sia attrito statico (indispensabile per impedire lo strisciamento), lo spostamento virtuale del punto di contatto è nullo. Pertanto, la forza di attrito non compie alcun lavoro virtuale, garantendo a tutti gli effetti la natura ideale del vincolo.
+
 \section{Forze ed energia nella formulazione lagrangiana}
-In questa parte fissiamo le considerazioni su forze ed energia che useremo per ottenere le equazioni di Lagrange. Consideriamo quindi un sistema olonomo di punti
+
+Per giungere alle equazioni di Lagrange, è necessario riscrivere le grandezze dinamiche fondamentali — il lavoro delle forze e l'energia cinetica — in funzione delle coordinate lagrangiane $\vq$ e delle velocità generalizzate $\dot{\vq}$. 
+
+Consideriamo un sistema olonomo composto da $N$ punti materiali, su cui agisce un sistema di forze attive $\vF_i$. Poiché ci muoviamo nello spazio delle configurazioni, ci interessa calcolare il lavoro virtuale complessivo compiuto da queste forze per un arbitrario spostamento virtuale:
 \begin{equation*}
-    \mathcal{S} = \{(\vP_1, m_1), (\vP_2, m_2), \dots, (\vP_N, m_N)\},
-\end{equation*}
-dove $m_i$ è la massa del punto $\vP_i$, soggetto a un sistema di forze o sollecitazioni
-\begin{equation*}
-    \Sigma = \{(\vP_1, \vF_1), (\vP_2, \vF_2), \dots, (\vP_N, \vF_N)\}.
-\end{equation*}
-Scegliamo un sistema di coordinate lagrangiane con le relative velocità
-\begin{equation*}
-    \dot{\vq} = (\dot{q}_1, \dot{q}_2, \dots, \dot{q}_n)
-    \qquad
-    \vq = (q_1, q_2, \dots, q_n).
+    \var{L} = \sum_{i=1}^N \vF_i \cdot \var{\vP}_i.
 \end{equation*}
 
-La generica forza $\vF_i$ può dipendere, in generale, dalle posizioni di tutti i punti, dalle loro velocità e dal tempo. Tuttavia, poiché le posizioni $\vP_i = \vP_i(\vq, t)$ e le velocità
+Sostituendo l'espressione degli spostamenti virtuali $\var{\vP}_i = \sum_{h=1}^n \pdv{\vP_i}{q_h} \var{q}_h$, otteniamo:
 \begin{equation*}
-    \vv_i = \dv{\vP_i}{t} = \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t}
-\end{equation*}
-sono completamente determinate dalle coordinate lagrangiane $\vq$, dalle velocità generalizzate $\dot{\vq}$ e dal tempo $t$, possiamo esprimere ciascuna forza direttamente in funzione di queste nuove variabili:
-\begin{equation*}
-    \vF_i = \vF_i(\vq, \dot{\vq}, t).
+    \var{L} = \sum_{i=1}^N \vF_i \cdot \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \var{q}_h \right) = \sum_{h=1}^n \underbrace{\left( \sum_{i=1}^N \vF_i \cdot \pdv{\vP_i}{q_h} \right)}_{Q_h} \var{q}_h.
 \end{equation*}
 
-Calcoliamo il lavoro virtuale totale
+\begin{definition}[Forze generalizzate]
+Le quantità $Q_h$, definite come
 \begin{equation*}
-    \var{L} = \sum_{i=1}^N \vF_i \cdot \var{\vP}_i = \sum_{i=1}^N \vF_i \cdot \sum_{h=1}^n \pdv{\vP_i}{q_h} \var{q}_h = \sum_{h=1}^n \left( \sum_{i=1}^N \vF_i \cdot \pdv{\vP_i}{q_h} \right) \var{q}_h.
+    Q_h \defeq \sum_{i=1}^N \vF_i \cdot \pdv{\vP_i}{q_h} \qquad \text{per } h=1,\dots,n,
 \end{equation*}
-\begin{definition}[Componenti lagrangiane delle forze]
-Le \emph{componenti lagrangiane} (o \emph{generalizzate}) delle forze sono definite, per $k=1,\dots,n$, come
-\begin{equation*}
-    Q_k \defeq \sum_{i=1}^N \vF_i \cdot \pdv{\vP_i}{q_k}.
-\end{equation*}
+prendono il nome di \emph{componenti lagrangiane} o \emph{forze generalizzate}.
 \end{definition}
-Con questa definizione otteniamo un'espressione compatta per il lavoro virtuale:
+
+Grazie a questa definizione, il lavoro virtuale assume un'espressione compatta ed elegante, formalmente identica a quella valida in coordinate cartesiane:
 \begin{equation*}
     \var{L} = \sum_{h=1}^n Q_h \var{q}_h.
 \end{equation*}
+A titolo di esempio, per un singolo punto libero nello spazio (dove le coordinate lagrangiane coincidono con le cartesiane $x, y, z$), si ha $\var{L} = F_x \var{x} + F_y \var{y} + F_z \var{z}$, mostrando in modo lampante come le $Q_h$ siano la naturale generalizzazione del concetto di forza.
 
-\begin{example}[Caso in tre dimensioni]
-    Consideriamo un punto materiale soggetto alla forza $\vF$ e calcoliamo il lavoro virtuale.
-    \begin{gather*}
-        \var{\vP} = \var{x}\vu{i} + \var{y}\vu{j} + \var{z}\vu{k}, \\
-        \vF = F_x \vu{i} + F_y \vu{j} + F_z \vu{k}, \\
-        \var{L} = \vF \cdot \var{\vP} = F_x \var{x} + F_y \var{y} + F_z \var{z}.
-    \end{gather*}
+Le forze attive $\vF_i$ possono dipendere, in generale, dalle posizioni e dalle velocità di tutti i punti, oltre che esplicitamente dal tempo. Poiché le variabili cartesiane sono interamente determinate da $\vq$, $\dot{\vq}$ e $t$, anche le forze generalizzate erediteranno questa dipendenza, risultando in funzioni $Q_h(\vq, \dot{\vq}, t)$. Un caso di particolare interesse è quello dei sistemi \emph{posizionali}, in cui le forze dipendono esclusivamente dalla configurazione del sistema: $Q_h = Q_h(\vq)$.
 
-    In questo caso le componenti lagrangiane della forza corrispondono a quelle cartesiane. Inoltre, si nota come il lavoro virtuale assuma la forma di una forma differenziale lineare nelle variazioni virtuali.
-\end{example}
-
-Essendo derivate da forze che dipendono da $\vq, \dot{\vq}$ e $t$, anche le componenti lagrangiane $Q_h$ saranno in generale funzioni di tali variabili:
-\begin{equation*}
-    Q_h = Q_h(\vq, \dot{\vq}, t).
-\end{equation*}
-
-\begin{definition}[Sistema di forze posizionali]
-    Un sistema di forze si dice \emph{posizionale} se le componenti lagrangiane dipendono solo dalle coordinate lagrangiane
-    \begin{equation*}
-        Q_h = Q_h(q_1, q_2, \dots, q_n).
-    \end{equation*}
-\end{definition}
-
-In meccanica newtoniana, se in un sistema di forze $\vF_1, \dots, \vF_N$, per ogni forza $\vF_i$ esiste una funzione scalare
-\begin{equation*}
-    V = V(x_1, y_1, z_1; x_2, y_2, z_2; \dots; x_N, y_N, z_N),
-\end{equation*}
-tale che
-\begin{equation*}
-    \vF_i = -\grad_i V \quad i = 1, 2, \dots, N,
-\end{equation*}
-allora il sistema di forze è conservativo.
-
+Tra i sistemi posizionali, un ruolo di primo piano è ricoperto da quelli conservativi.
 \begin{definition}[Sistema di forze conservativo]
-    Diremo che un sistema di forze agenti su $\mathcal{S}$ (a vincoli fissi) è \emph{conservativo} se esiste una funzione
+    Un sistema di forze posizionali si dice \emph{conservativo} se ammette un'energia potenziale $V(\vq)$ tale che il lavoro virtuale sia un differenziale esatto, ovvero:
     \begin{equation*}
-        V=V(q_1, q_2, \dots, q_n),
+        \var{L} = -\var{V} \implies Q_h = -\pdv{V}{q_h}.
     \end{equation*}
-    detta \emph{energia potenziale}, tale che
-    \begin{equation*}
-        \var{L} = -\var{V},
-    \end{equation*}
-    ovvero
-    \begin{equation*}
-        Q_h = -\pdv{V}{q_h} \quad h = 1, 2, \dots, n,
-    \end{equation*}
-    dove le $Q_h$ sono le componenti lagrangiane della sollecitazione considerata.
 \end{definition}
 
-In un sistema a vincoli indipendenti dal tempo (vincoli fissi), gli spostamenti reali coincidono istante per istante con una classe di spostamenti virtuali ammissibili, sicché il lavoro virtuale coincide formalmente con il lavoro reale elementare. In tale scenario, se il sistema di forze attive è conservativo, si ha
-\begin{equation*}
-    \dd{L}^{(a)} = -\dd{V}.
-\end{equation*}
-
-D'altronde, il teorema dell'energia cinetica stabilisce che la variazione dell'energia cinetica del sistema eguaglia il lavoro totale di tutte le forze in gioco:
-\begin{equation*}
-    \dd{T} = \dd{L} = \dd{L}^{(a)} + \dd{L}^{(v)},
-\end{equation*}
-dove $\dd{L}^{(a)}$ e $\dd{L}^{(v)}$ rappresentano rispettivamente i lavori reali elementari delle forze attive e delle forze vincolari. 
-
-Qualora il sistema sia soggetto a vincoli bilaterali, lisci e indipendenti dal tempo (sistema scleronomo perfetto), il lavoro delle reazioni vincolari è identicamente nullo ($\dd{L}^{(v)} = 0$). Sostituendo questa condizione e l'ipotesi di forze attive conservative, si ricava
-\begin{equation*}
-    \dd{T} = -\dd{V} \implies \dd{(T + V)} = 0.
-\end{equation*}
-Ne consegue che l'energia meccanica totale si conserva ed è una costante del moto:
+Se il sistema meccanico, oltre a essere soggetto a forze conservative, è anche \emph{scleronomo perfetto} (cioè vincolato da superfici lisce e fisse nel tempo), gode di una fondamentale proprietà di conservazione. In tale scenario, il lavoro virtuale delle forze vincolari è nullo e gli spostamenti virtuali coincidono con quelli reali; di conseguenza, il lavoro reale delle forze attive risulta pari a $-\dd{V}$. 
+Applicando il teorema dell'energia cinetica ($\dd{T} = \dd{L}$), segue immediatamente che $\dd{T} = -\dd{V}$, da cui si deduce la conservazione dell'energia meccanica totale:
 \begin{equation*}
     E = T + V = \text{costante}.
 \end{equation*}
 
-Infine, l'energia cinetica di un sistema di $N$ punti materiali è data da
+Espresso il lavoro, passiamo all'energia cinetica del sistema:
 \begin{equation*}
     T = \frac{1}{2} \sum_{i=1}^N m_i v_i^2.
 \end{equation*}
-Teniamo però conto che possiamo esprimere ciascuna velocità come
-\begin{equation*}
-    \vv_i = \dv{\vP_i}{t} = \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t},
-\end{equation*}
-per cui otteniamo
+Sostituendo l'espressione delle velocità in termini di coordinate lagrangiane, ovvero $\vv_i = \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t}$, e sviluppando il quadrato, l'energia cinetica si scompone naturalmente in tre termini, corrispondenti a un polinomio di secondo grado nelle velocità generalizzate $\dot{\vq}$:
 \begin{align*}
-    T &= \frac{1}{2} \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t} \right)^2 \\
-    &= \frac{1}{2} \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t} \right)\cdot \left( \sum_{k=1}^n \pdv{\vP_i}{q_k} \dot{q}_k + \pdv{\vP_i}{t} \right)
-\end{align*}
-\begin{align*}
-    &= \frac{1}{2} \sum_{i=1}^N m_i \Bigg[ \sum_{h,k=1}^n \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k} \dot{q}_h \dot{q}_k \\
-    &\qquad\qquad\quad + 2 \sum_{h=1}^n \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{t} \dot{q}_h + \left(\pdv{\vP_i}{t}\right)^2 \Bigg] \\
+    T &= \frac{1}{2} \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t} \right) \cdot \left( \sum_{k=1}^n \pdv{\vP_i}{q_k} \dot{q}_k + \pdv{\vP_i}{t} \right) \\
     &= \underbrace{\frac{1}{2} \sum_{h,k=1}^n \left( \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k} \right) \dot{q}_h \dot{q}_k}_{T_2} \\
     &\quad + \underbrace{\sum_{h=1}^n \left( \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{t} \right) \dot{q}_h}_{T_1} + \underbrace{\frac{1}{2} \sum_{i=1}^N m_i \left(\pdv{\vP_i}{t}\right)^2}_{T_0}\\
     &= T_2 + T_1 + T_0.
 \end{align*}
-Questo è un polinomio di secondo grado in $\dot{q}_i$. Definiamo
+
+Definendo i coefficienti cinematici
 \begin{equation*}
-    a_{hk} \defeq \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k}, \qquad a_{h} \defeq \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{t},
+    a_{hk}(\vq, t) \defeq \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k}, \qquad a_{h}(\vq, t) \defeq \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{t},
 \end{equation*}
-per cui otteniamo
+la struttura dell'energia cinetica si rende esplicita:
 \begin{equation}
     T_2 = \frac{1}{2} \sum_{h,k=1}^n a_{hk}\, \dot{q}_h \dot{q}_k, \qquad T_1 = \sum_{h=1}^n a_h \,\dot{q}_h, \qquad T_0 = \frac{1}{2} \sum_{i=1}^N m_i \left(\pdv{\vP_i}{t}\right)^2.
     \label{eq:energia_cinetica}
 \end{equation}
 
-\begin{remark}
-    Se il sistema è a vincoli indipendenti dal tempo, allora l'energia cinetica si riduce alla sola parte quadratica
-    \begin{equation*}
-        T = T_2.
-    \end{equation*}
+Se i vincoli sono fissi (sistema scleronomo), la dipendenza esplicita dal tempo svanisce ($\pdv{\vP_i}{t} = \vb{0}$) e l'energia cinetica si riduce alla sola parte quadratica omogenea: $T = T_2$.
 
-    Infatti si ha
-    \begin{equation*}
-        \pdv{\vP_i}{t} = \vb{0} \quad \forall i = 1, 2, \dots, N,
-    \end{equation*}
-\end{remark}
-
-Si ricorda che gli elementi $a_{hk}$ dipendono in generale dalle coordinate lagrangiane, per cui non si tratta di coefficienti costanti.
-
-\begin{definition}[Matrice di massa]
-La parte quadratica dell'energia cinetica definisce la matrice
-\[
-    \tens{A} = (a_{hk}), \qquad a_{hk} = \sum_{i=1}^N m_i \pdv{\vP_i}{q_h}\cdot \pdv{\vP_i}{q_k},
-\]
-detta \emph{matrice di massa}. Essa \`e simmetrica, poich\'e $a_{hk}=a_{kh}$.
+\begin{definition}[Matrice di massa o dell'energia cinetica]
+    I coefficienti $a_{hk}$, che in generale dipendono dalle coordinate $\vq$ (e dal tempo), formano la \emph{matrice di massa} $\tens{A} = (a_{hk})$. Per costruzione, tale matrice è simmetrica ($a_{hk} = a_{kh}$) ed è intimamente legata al termine $T_2$, che rappresenta il nucleo inerziale del sistema.
 \end{definition}
 
 \begin{proposition}
-$T_2$ è una forma quadratica definita positiva.
+    La parte quadratica dell'energia cinetica $T_2$ è una forma quadratica definita positiva.
 \end{proposition}
 \begin{proof}
-    \begin{align*}
-        \sum_{h,k=1}^n a_{hk}\, \xi_h \xi_k &= \sum_{h,k=1}^n\left(\sum_{i=1}^N m_i \pdv{\vP_i}{q_h}\cdot \pdv{\vP_i}{q_k}\right)\xi_h \xi_k \\
-        &= \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \xi_h \right)^2 \geq 0,
-    \end{align*}
-    pertanto è semidefinita positiva. Resta da dimostrare che la forma si annulla solo se $\xi_h = 0$ per ogni $h = 1, \dots, n$. Se $T_2 = 0$, allora deve essere
+    Sviluppando la forma quadratica per un generico vettore di coefficienti $\vb{\xi} \in \R^n$:
+    \begin{equation*}
+        \sum_{h,k=1}^n a_{hk}\, \xi_h \xi_k = \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \xi_h \right)^2 \geq 0.
+    \end{equation*}
+    Essendo una somma di quantità non negative, è quantomeno semidefinita positiva. Affinché la forma si annulli, ciascun termine deve essere identicamente nullo, ossia:
     \begin{equation*}
         \sum_{h=1}^n \pdv{\vP_i}{q_h} \xi_h = \vb{0} \quad \forall i = 1, \dots, N.
     \end{equation*}
-
-    Notiamo che le derivate $\pdv{\vP_i}{q_h}$ formano le colonne della matrice Jacobiana del sistema (di dimensioni $3N \times n$):
-    \begin{equation*}
-        \vb{J} = \begin{pmatrix}
-            \displaystyle\pdv{x_1}{q_1} & \cdots & \displaystyle\pdv{x_1}{q_n} \\[0.7em]
-            \vdots & \ddots & \vdots \\[0.7em]
-            \displaystyle\pdv{z_N}{q_1} & \cdots & \displaystyle\pdv{z_N}{q_n}
-        \end{pmatrix}.
-    \end{equation*}
-    L'equazione vettoriale precedente equivale al sistema lineare omogeneo $\vb{J} \vb{\xi} = \vb{0}$. Poiché le coordinate lagrangiane sono indipendenti per definizione, la matrice Jacobiana ha rango massimo $n$, garantendo che le sue $n$ colonne siano linearmente indipendenti. L'unica soluzione è quindi quella banale $\xi_1 = \dots = \xi_n = 0$, dimostrando che $T_2$ è definita positiva.
+    Questa equazione vettoriale esprime che il vettore $\vb{\xi}$ appartiene al nucleo della matrice Jacobiana $\vb{J}$ della trasformazione di coordinate (di dimensioni $3N \times n$). Poiché le coordinate lagrangiane sono, per definizione, indipendenti, lo Jacobiano ha rango massimo $n$. Di conseguenza, le sue $n$ colonne sono linearmente indipendenti e il nucleo contiene solo il vettore nullo. Pertanto, l'unica soluzione è $\vb{\xi} = \vb{0}$, dimostrando inequivocabilmente che $T_2$ è definita positiva.
 \end{proof}
