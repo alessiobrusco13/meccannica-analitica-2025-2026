@@ -263,7 +263,7 @@ Denotando con $\var{L}^{(v)}$ il lavoro virtuale complessivo compiuto dalle reaz
     per qualsiasi spostamento virtuale ammissibile. In particolare, se lo spostamento virtuale è reversibile, risulta in modo stringente $\var{L}^{(v)} = 0$.
 \end{proposition}
 
-Questa proprietà fondamentale dei vincoli lisci suggerisce l'introduzione di un concetto ancora più generale, basato unicamente sul lavoro virtuale delle forze vincolari senza necessariamente richiamare l'assenza di attrito.
+Questa fondamentale proprietà dei vincoli lisci, ovvero il fatto che la reazione vincolare non compie lavoro per gli spostamenti consentiti dal vincolo, suggerisce una generalizzazione cruciale. Si definiscono **vincoli perfetti** (o ideali) tutti quei vincoli per i quali il lavoro virtuale complessivo delle forze vincolari è nullo per qualsiasi spostamento virtuale reversibile (o minore o uguale a zero per vincoli unilaterali). Questa astrazione meccanica, che eleva l'assenza di attrito a principio generale, permette di eliminare le reazioni vincolari dalle equazioni del moto. Essa costituisce il fondamento del **Principio di D'Alembert**, il quale stabilisce che per un sistema soggetto a vincoli perfetti, in condizione di equilibrio dinamico, il lavoro virtuale delle forze attive sommato a quello delle "forze d'inerzia" è nullo.
 
 \begin{definition}[Vincoli ideali]
     Un sistema di vincoli è detto \emph{ideale} (o \emph{perfetto}) se il lavoro virtuale totale delle reazioni vincolari è nullo per ogni spostamento virtuale ammissibile:
@@ -376,44 +376,24 @@ allora il sistema di forze è conservativo.
     dove le $Q_h$ sono le componenti lagrangiane della sollecitazione considerata.
 \end{definition}
 
-In un sistema a vincoli fissi il lavoro virtuale coincide con quello reale, per cui se il sistema di forze è conservativo, allora
+In un sistema a vincoli indipendenti dal tempo (vincoli fissi), gli spostamenti reali coincidono istante per istante con una classe di spostamenti virtuali ammissibili, sicché il lavoro virtuale coincide formalmente con il lavoro reale elementare. In tale scenario, se il sistema di forze attive è conservativo, si ha
 \begin{equation*}
-    \dd{L} = -\dd{V}.
-\end{equation*}
-Inoltre si ha che la variazione dell'energia cinetica è uguale al lavoro totale del sistema di forze,
-\begin{equation*}
-    \dd{T} = \dd{L}.
-\end{equation*}
-Quindi, se il sistema di forze è conservativo, si ha che
-\begin{equation*}
-    \dd{T} = \dd{L} + \dd{V} = 0,
-\end{equation*}
-per cui l'energia meccanica totale è costante:
-\begin{equation*}
-    E = T + V = \text{costante}.
+    \dd{L}^{(a)} = -\dd{V}.
 \end{equation*}
 
-Ora, nel sistema oltre alle forze che agiscono sui punti, ci sono anche le forze vincolari, per cui
+D'altronde, il teorema dell'energia cinetica stabilisce che la variazione dell'energia cinetica del sistema eguaglia il lavoro totale di tutte le forze in gioco:
 \begin{equation*}
-    \dd{T} = \underbrace{\dd{L^{(a)}}}_{\text{conservativo}} + \dd{L^{(v)}},
+    \dd{T} = \dd{L} = \dd{L}^{(a)} + \dd{L}^{(v)},
 \end{equation*}
-dove $\dd{L^{(a)}}$ è il lavoro reale delle forze attive, mentre $\dd{L^{(v)}}$ è il lavoro reale delle forze vincolari. Se i vincoli sono fissi, lisci e bilaterali, e quindi il sistema è scleronomo, allora si ha
+dove $\dd{L}^{(a)}$ e $\dd{L}^{(v)}$ rappresentano rispettivamente i lavori reali elementari delle forze attive e delle forze vincolari. 
+
+Qualora il sistema sia soggetto a vincoli bilaterali, lisci e indipendenti dal tempo (sistema scleronomo perfetto), il lavoro delle reazioni vincolari è identicamente nullo ($\dd{L}^{(v)} = 0$). Sostituendo questa condizione e l'ipotesi di forze attive conservative, si ricava
 \begin{equation*}
-    \begin{cases}
-        \var{L}^{(v)} \geq 0 \\
-        -\var{L}^{(v)} \geq 0
-    \end{cases}
-    \implies
-    \begin{cases}
-        \vF\cdot \var{\vP} \geq 0 \\
-        -\vF\cdot \var{\vP} \geq 0
-    \end{cases}
-    \implies
-    \vF\cdot \var{\vP} = 0,
+    \dd{T} = -\dd{V} \implies \dd{(T + V)} = 0.
 \end{equation*}
-per cui
+Ne consegue che l'energia meccanica totale si conserva ed è una costante del moto:
 \begin{equation*}
-    \dd{T} = \dd{L^{(a)}} = -\dd{V}.
+    E = T + V = \text{costante}.
 \end{equation*}
 
 Infine, l'energia cinetica di un sistema di $N$ punti materiali è data da
@@ -454,7 +434,7 @@ per cui otteniamo
 
     Infatti si ha
     \begin{equation*}
-        \pdv{\vP_i}{t} = 0 \quad \forall i = 1, 2, \dots, N,
+        \pdv{\vP_i}{t} = \vb{0} \quad \forall i = 1, 2, \dots, N,
     \end{equation*}
 \end{remark}
 
@@ -478,7 +458,7 @@ $T_2$ è una forma quadratica definita positiva.
     \end{align*}
     pertanto è semidefinita positiva. Resta da dimostrare che la forma è uguale a zero solo se $\xi_h = 0$ per ogni $h = 1, 2, \dots, n$. Se $T_2 = 0$, allora
     \begin{equation*}
-        \sum_{h=1}^n \pdv{\vP_i}{q_h} \xi_h = 0 \quad \forall i = 1, 2, \dots, N.
+        \sum_{h=1}^n \pdv{\vP_i}{q_h} \xi_h = \vb{0} \quad \forall i = 1, 2, \dots, N.
     \end{equation*}
 
     Notiamo che la somma delle derivate $\pdv{\vP_i}{q_h}$ rappresenta una combinazione lineare delle colonne della matrice Jacobiana delle coordinate
