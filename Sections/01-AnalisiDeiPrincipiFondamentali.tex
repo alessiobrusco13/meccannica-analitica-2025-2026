@@ -266,22 +266,21 @@ Denotando con $\var{L}^{(v)}$ il lavoro virtuale complessivo compiuto dalle reaz
 Questa proprietà fondamentale dei vincoli lisci suggerisce l'introduzione di un concetto ancora più generale, basato unicamente sul lavoro virtuale delle forze vincolari senza necessariamente richiamare l'assenza di attrito.
 
 \begin{definition}[Vincoli ideali]
-    Un sistema di vincoli è detto \emph{ideale} se il lavoro virtuale delle reazioni vincolari soddisfa la disuguaglianza
+    Un sistema di vincoli è detto \emph{ideale} (o \emph{perfetto}) se il lavoro virtuale totale delle reazioni vincolari è nullo per ogni spostamento virtuale ammissibile:
     \begin{equation*}
-        \var{L}^{(v)} \geq 0
+        \var{L}^{(v)} = 0.
     \end{equation*}
-    per ogni spostamento virtuale ammissibile.
 \end{definition}
 
-Come si può notare, la condizione per i vincoli ideali si riduce all'uguaglianza stretta $\var{L}^{(v)} = 0$ nel caso particolare dei vincoli bilateri, poiché per questi ultimi ogni spostamento virtuale ammissibile è reversibile. La formulazione mediante disuguaglianza risulta tuttavia essenziale per poter includere e trattare coerentemente anche il caso dei vincoli unilaterali.
+Questa definizione si adatta perfettamente al comportamento dei vincoli lisci nel caso in cui siano bilateri. Infatti, come discusso in precedenza, l'assenza di attrito impone che il lavoro virtuale sia non negativo; qualora i vincoli siano bilateri, la reversibilità di ogni spostamento ammissibile forza la disuguaglianza a ridursi all'uguaglianza stretta. Per i vincoli unilaterali ideali, si fa invece solitamente ricorso alla condizione generalizzata $\var{L}^{(v)} \geq 0$.
 
-Alla luce di questa definizione, la proprietà discussa nel paragrafo precedente può essere riformulata in modo compatto:
+Alla luce di questa definizione, si ha la seguente proprietà:
 
 \begin{proposition}\note{Lezione 19/03/2026}
-    Se un sistema materiale è soggetto esclusivamente a vincoli privi di attrito, allora è un sistema a vincoli ideali.
+    Se un sistema materiale è soggetto esclusivamente a vincoli bilateri privi di attrito, allora è un sistema a vincoli ideali.
 \end{proposition}
 
-L'importanza della nozione di vincolo ideale sta nell'essere un concetto prettamente macroscopico e cinematico: il sistema di forze è vincolato per definizione a rispettare una condizione globale sul lavoro virtuale, il che ci esonera dallo studio analitico delle complesse interazioni microscopiche. La classe dei vincoli ideali è quindi strettamente più ampia di quella dei vincoli lisci, e include anche sistemi in cui è presente attrito. Il caso più celebre è quello del puro rotolamento: in questo scenario vi è attrito statico tra i corpi a contatto (indispensabile per impedire lo strisciamento), ma il punto di istantanea applicazione della reazione vincolare ha velocità nulla rispetto al suolo, determinando un lavoro virtuale nullo e garantendo così la natura ideale del vincolo.
+L'importanza della nozione di vincolo ideale sta nell'essere un concetto prettamente macroscopico e cinematico: il sistema di forze è vincolato per definizione a compiere lavoro nullo, il che ci esonera dallo studio analitico delle complesse interazioni microscopiche. La classe dei vincoli ideali è quindi strettamente più ampia di quella dei vincoli lisci, in quanto include anche sistemi in cui è presente attrito. Il caso più celebre è quello del puro rotolamento: in questo scenario vi è attrito statico tra i corpi a contatto (indispensabile per impedire lo strisciamento), ma il punto di istantanea applicazione della reazione vincolare ha velocità nulla rispetto al suolo, determinando un lavoro virtuale nullo e garantendo così la natura ideale del vincolo.
 \section{Forze ed energia nella formulazione lagrangiana}
 In questa parte fissiamo le considerazioni su forze ed energia che useremo per ottenere le equazioni di Lagrange. Consideriamo quindi un sistema olonomo di punti
 \begin{equation*}
