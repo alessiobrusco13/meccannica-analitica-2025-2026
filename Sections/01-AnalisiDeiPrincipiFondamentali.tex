@@ -301,11 +301,21 @@ Le quantità $Q_h$, definite come
 prendono il nome di \emph{componenti lagrangiane} o \emph{forze generalizzate}.
 \end{definition}
 
-Grazie a questa definizione, il lavoro virtuale assume un'espressione compatta ed elegante, formalmente identica a quella valida in coordinate cartesiane:
+Grazie a questa definizione, il lavoro virtuale assume un'espressione compatta ed elegante:
 \begin{equation*}
     \var{L} = \sum_{h=1}^n Q_h \var{q}_h.
 \end{equation*}
-A titolo di esempio, per un singolo punto libero nello spazio (dove le coordinate lagrangiane coincidono con le cartesiane $x, y, z$), si ha $\var{L} = F_x \var{x} + F_y \var{y} + F_z \var{z}$, mostrando in modo lampante come le $Q_h$ siano la naturale generalizzazione del concetto di forza.
+Questa scrittura mette in luce come le $Q_h$ rappresentino la naturale generalizzazione del concetto di forza associata a una specifica coordinata. Per rendersene conto, è sufficiente confrontare questa espressione con il caso più familiare in coordinate cartesiane.
+
+\begin{example}[Caso in tre dimensioni]
+    Consideriamo un singolo punto materiale libero nello spazio tridimensionale, soggetto a una forza $\vF = F_x \vu{i} + F_y \vu{j} + F_z \vu{k}$. Scegliendo come coordinate lagrangiane proprio le cartesiane ($q_1=x, q_2=y, q_3=z$), lo spostamento virtuale è $\var{\vP} = \var{x}\vu{i} + \var{y}\vu{j} + \var{z}\vu{k}$.
+    
+    Calcolando il lavoro virtuale, si ottiene:
+    \begin{equation*}
+        \var{L} = \vF \cdot \var{\vP} = F_x \var{x} + F_y \var{y} + F_z \var{z}.
+    \end{equation*}
+    Confrontando questo risultato con la formula generale $\var{L} = \sum_h Q_h \var{q}_h$, si nota immediatamente che le componenti lagrangiane della forza coincidono esattamente con le componenti cartesiane usuali ($Q_1 = F_x$, $Q_2 = F_y$, $Q_3 = F_z$).
+\end{example}
 
 Le forze attive $\vF_i$ possono dipendere, in generale, dalle posizioni e dalle velocità di tutti i punti, oltre che esplicitamente dal tempo. Poiché le variabili cartesiane sono interamente determinate da $\vq$, $\dot{\vq}$ e $t$, anche le forze generalizzate erediteranno questa dipendenza, risultando in funzioni $Q_h(\vq, \dot{\vq}, t)$. Un caso di particolare interesse è quello dei sistemi \emph{posizionali}, in cui le forze dipendono esclusivamente dalla configurazione del sistema: $Q_h = Q_h(\vq)$.
 
