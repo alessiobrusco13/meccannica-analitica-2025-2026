@@ -196,10 +196,10 @@ Per capire quali spostamenti siano ammessi, è essenziale classificare le config
 \end{itemize}
 
 \begin{definition}[Spostamento reversibile]
-    Uno spostamento virtuale $\var{\vq}$ ammissibile è detto \emph{reversibile} se anche il suo opposto $-\var{\vq}$ risulta ammissibile per il sistema. In caso contrario, lo spostamento è detto \emph{irreversibile}.
+    Uno spostamento virtuale $\var{\vP}$ ammissibile è detto \emph{reversibile} se anche il suo opposto $-\var{\vP}$ risulta ammissibile per il sistema. In caso contrario, lo spostamento è detto \emph{irreversibile}.
 \end{definition}
 
-Nelle configurazioni ordinarie, un qualsiasi spostamento virtuale $\var{\vq}$ sufficientemente piccolo manterrà il sistema all'interno della regione permessa. Ne consegue che ogni spostamento è reversibile.
+Nelle configurazioni ordinarie, un qualsiasi spostamento virtuale $\var{\vP}$ sufficientemente piccolo manterrà il sistema all'interno della regione permessa. Ne consegue che ogni spostamento è reversibile.
 
 Nelle configurazioni di confine, invece, il sistema non può muoversi verso l'esterno del dominio consentito. Per determinare analiticamente se un piccolo spostamento virtuale $\var{\vq}$ sia ammesso, imponiamo che la funzione di vincolo rimanga non negativa nella posizione variata: 
 \begin{equation*}
@@ -294,18 +294,13 @@ Scegliamo un sistema di coordinate lagrangiane con le relative velocità
     \vq = (q_1, q_2, \dots, q_n).
 \end{equation*}
 
-La generica forza $\vF_i$ può dipendere dalle posizioni dei punti, dalle loro velocità e dal tempo:
+La generica forza $\vF_i$ può dipendere, in generale, dalle posizioni di tutti i punti, dalle loro velocità e dal tempo. Tuttavia, poiché le posizioni $\vP_i = \vP_i(\vq, t)$ e le velocità
 \begin{equation*}
-    \vF_i = \vF_i(\vP_1, \vP_2, \dots, \vP_N; \dot{\vP}_1, \dot{\vP}_2, \dots, \dot{\vP}_N; t).
+    \vv_i = \dv{\vP_i}{t} = \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t}
 \end{equation*}
-
-Ricordiamo che la velocità di un punto $\vP_i$ è data da
+sono completamente determinate dalle coordinate lagrangiane $\vq$, dalle velocità generalizzate $\dot{\vq}$ e dal tempo $t$, possiamo esprimere ciascuna forza direttamente in funzione di queste nuove variabili:
 \begin{equation*}
-    \vv=\dv{\vP_i}{t} = \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t},
-\end{equation*}
-per cui possiamo scrivere la forza $\vF_i$ come
-\begin{equation*}
-    \vF_i = \vF_i(\vP_1, \vP_2, \dots, \vP_N; \vv; t).
+    \vF_i = \vF_i(\vq, \dot{\vq}, t).
 \end{equation*}
 
 Calcoliamo il lavoro virtuale totale
@@ -313,12 +308,12 @@ Calcoliamo il lavoro virtuale totale
     \var{L} = \sum_{i=1}^N \vF_i \cdot \var{\vP}_i = \sum_{i=1}^N \vF_i \cdot \sum_{h=1}^n \pdv{\vP_i}{q_h} \var{q}_h = \sum_{h=1}^n \left( \sum_{i=1}^N \vF_i \cdot \pdv{\vP_i}{q_h} \right) \var{q}_h.
 \end{equation*}
 \begin{definition}[Componenti lagrangiane delle forze]
-Le \emph{componenti lagrangiane} (o \emph{generalizzate}) delle forze sono definite, per $k=1,\dots,n$, da
+Le \emph{componenti lagrangiane} (o \emph{generalizzate}) delle forze sono definite, per $k=1,\dots,n$, come
 \begin{equation*}
-    Q_k \defeq \sum_{i=1}^N \vF_i \cdot \pdv{\vP_i}{q_k},
+    Q_k \defeq \sum_{i=1}^N \vF_i \cdot \pdv{\vP_i}{q_k}.
 \end{equation*}
 \end{definition}
-Con questa definizione otteniamo
+Con questa definizione otteniamo un'espressione compatta per il lavoro virtuale:
 \begin{equation*}
     \var{L} = \sum_{h=1}^n Q_h \var{q}_h.
 \end{equation*}
@@ -331,13 +326,12 @@ Con questa definizione otteniamo
         \var{L} = \vF \cdot \var{\vP} = F_x \var{x} + F_y \var{y} + F_z \var{z}.
     \end{gather*}
 
-    In questo caso le componenti lagrangiane della forza corrispondono a quelle cartesiane. Inoltre, si tratta semplicemente di una forma differenziale lineare in $\var{x}, \var{y}, \var{z}$.
+    In questo caso le componenti lagrangiane della forza corrispondono a quelle cartesiane. Inoltre, si nota come il lavoro virtuale assuma la forma di una forma differenziale lineare nelle variazioni virtuali.
 \end{example}
 
-Indichiamo con $Q_h$ le componenti lagrangiane delle forze.
-Le $Q_h$ sono funzioni
+Essendo derivate da forze che dipendono da $\vq, \dot{\vq}$ e $t$, anche le componenti lagrangiane $Q_h$ saranno in generale funzioni di tali variabili:
 \begin{equation*}
-    Q_h = Q_h(q_1, q_2, \dots, q_n; \dot{q}_1, \dot{q}_2, \dots, \dot{q}_n; t).
+    Q_h = Q_h(\vq, \dot{\vq}, t).
 \end{equation*}
 
 \begin{definition}[Sistema di forze posizionali]
@@ -453,22 +447,18 @@ $T_2$ è una forma quadratica definita positiva.
         \sum_{h,k=1}^n a_{hk}\, \xi_h \xi_k &= \sum_{h,k=1}^n\left(\sum_{i=1}^N m_i \pdv{\vP_i}{q_h}\cdot \pdv{\vP_i}{q_k}\right)\xi_h \xi_k \\
         &= \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \xi_h \right)^2 \geq 0,
     \end{align*}
-    pertanto è semidefinita positiva. Resta da dimostrare che la forma è uguale a zero solo se $\xi_h = 0$ per ogni $h = 1, 2, \dots, n$. Se $T_2 = 0$, allora
+    pertanto è semidefinita positiva. Resta da dimostrare che la forma si annulla solo se $\xi_h = 0$ per ogni $h = 1, \dots, n$. Se $T_2 = 0$, allora deve essere
     \begin{equation*}
-        \sum_{h=1}^n \pdv{\vP_i}{q_h} \xi_h = \vb{0} \quad \forall i = 1, 2, \dots, N.
+        \sum_{h=1}^n \pdv{\vP_i}{q_h} \xi_h = \vb{0} \quad \forall i = 1, \dots, N.
     \end{equation*}
 
-    Notiamo che la somma delle derivate $\pdv{\vP_i}{q_h}$ rappresenta una combinazione lineare delle colonne della matrice Jacobiana delle coordinate
+    Notiamo che le derivate $\pdv{\vP_i}{q_h}$ formano le colonne della matrice Jacobiana del sistema (di dimensioni $3N \times n$):
     \begin{equation*}
-                \begin{pmatrix}
-                    \displaystyle\pdv{x_1}{q_1} & \displaystyle\pdv{x_1}{q_2} & \cdots & \displaystyle\pdv{x_1}{q_n} \\[0.7em]
-                    \displaystyle\pdv{y_1}{q_1} & \displaystyle\pdv{y_1}{q_2} & \cdots & \displaystyle\pdv{y_1}{q_n} \\[0.7em]
-                    \displaystyle\pdv{z_1}{q_1} & \displaystyle\pdv{z_1}{q_2} & \cdots & \displaystyle\pdv{z_1}{q_n} \\[0.7em]
-                    \vdots & \vdots & \ddots & \vdots \\[0.7em]
-                    \displaystyle\pdv{x_N}{q_1} & \displaystyle\pdv{x_N}{q_2} & \cdots & \displaystyle\pdv{x_N}{q_n} \\[0.7em]
-                    \displaystyle\pdv{y_N}{q_1} & \displaystyle\pdv{y_N}{q_2} & \cdots & \displaystyle\pdv{y_N}{q_n} \\[0.7em]
-                    \displaystyle\pdv{z_N}{q_1} & \displaystyle\pdv{z_N}{q_2} & \cdots & \displaystyle\pdv{z_N}{q_n}
-                \end{pmatrix}
-            \end{equation*}
-    che ha rango $n$. Per cui la somma è uguale a zero solo se $\xi_h = 0$ per ogni $h = 1, 2, \dots, n$ in quanto le $q_i$ sono indipendenti.
+        \vb{J} = \begin{pmatrix}
+            \displaystyle\pdv{x_1}{q_1} & \cdots & \displaystyle\pdv{x_1}{q_n} \\[0.7em]
+            \vdots & \ddots & \vdots \\[0.7em]
+            \displaystyle\pdv{z_N}{q_1} & \cdots & \displaystyle\pdv{z_N}{q_n}
+        \end{pmatrix}.
+    \end{equation*}
+    L'equazione vettoriale precedente equivale al sistema lineare omogeneo $\vb{J} \vb{\xi} = \vb{0}$. Poiché le coordinate lagrangiane sono indipendenti per definizione, la matrice Jacobiana ha rango massimo $n$, garantendo che le sue $n$ colonne siano linearmente indipendenti. L'unica soluzione è quindi quella banale $\xi_1 = \dots = \xi_n = 0$, dimostrando che $T_2$ è definita positiva.
 \end{proof}
