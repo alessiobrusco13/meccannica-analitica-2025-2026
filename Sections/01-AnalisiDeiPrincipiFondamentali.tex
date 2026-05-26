@@ -234,7 +234,7 @@ Dal punto di vista dinamico, la presenza di un vincolo si manifesta attraverso l
     Ogni vincolo può essere sostituito con un opportuno sistema di forze, dette \emph{forze vincolari} o \emph{reazioni vincolari}, senza che ciò alteri lo stato di quiete o di moto del sistema materiale.
 \end{proposition}
 
-Grazie a questo postulato, le forze agenti su un sistema si dividono in due categorie: le \emph{forze attive} o applicate, la cui espressione dipende unicamente dallo stato del sistema in esame, e le \emph{forze vincolari}, le quali si oppongono alle violazioni dei vincoli e rappresentano incognite del problema.
+Le forze agenti su un sistema si dividono in due categorie: le \emph{forze attive} o applicate, la cui espressione dipende unicamente dallo stato del sistema in esame, e le \emph{forze vincolari}, le quali si oppongono alle violazioni dei vincoli e rappresentano incognite del problema.
 
 Tuttavia, per poter determinare il moto del sistema in presenza di queste nuove incognite, è essenziale caratterizzare dal punto di vista fisico l'interazione tra il sistema stesso e le superfici vincolanti. Il caso più semplice e di fondamentale importanza in meccanica è quello dei vincoli privi di attrito.
 
@@ -263,8 +263,7 @@ Denotando con $\var{L}^{(v)}$ il lavoro virtuale complessivo compiuto dalle reaz
     per qualsiasi spostamento virtuale ammissibile. In particolare, se lo spostamento virtuale è reversibile, risulta in modo stringente $\var{L}^{(v)} = 0$.
 \end{proposition}
 
-Questa proprietà fondamentale dei vincoli lisci motiva una generalizzazione assiomatica cruciale per la formulazione della meccanica analitica, che viene sancita da una definizione vera e propria.
-
+Questa proprietà fondamentale dei vincoli lisci motiva la seguente definizione generale:
 \begin{definition}[Vincoli ideali]
     Un sistema di vincoli è detto \emph{ideale} se il lavoro virtuale totale delle reazioni vincolari è non negativo per ogni spostamento virtuale ammissibile:
     \begin{equation*}
@@ -278,7 +277,7 @@ Alla luce di questa definizione, si ha la seguente proprietà:
     Se un sistema materiale è soggetto esclusivamente a vincoli bilateri privi di attrito, allora è un sistema a vincoli ideali.
 \end{proposition}
 
-L'importanza della nozione di vincolo ideale risiede nel suo carattere macroscopico e globale: assumendo a priori una precisa condizione sul lavoro virtuale (tipicamente la sua nullità per spostamenti reversibili), ci si esonera dalla complessa modellizzazione microscopica delle interazioni tra le superfici. Di conseguenza, la classe dei vincoli ideali è strettamente più ampia di quella dei vincoli lisci, potendo includere anche sistemi soggetti ad attrito. L'esempio paradigmatico è il puro rotolamento: benché vi sia attrito statico (indispensabile per impedire lo strisciamento), lo spostamento virtuale del punto di contatto è nullo. Pertanto, la forza di attrito non compie alcun lavoro virtuale, garantendo a tutti gli effetti la natura ideale del vincolo.
+L'importanza della nozione di vincolo ideale risiede nel suo carattere macroscopico e globale: assumendo a priori una precisa condizione sul lavoro virtuale, ci si esonera dalla complessa modellizzazione microscopica delle interazioni tra le superfici. Di conseguenza, la classe dei vincoli ideali è strettamente più ampia di quella dei vincoli lisci, potendo includere anche sistemi soggetti ad attrito. L'esempio classico è il puro rotolamento: benché vi sia attrito statico (indispensabile per impedire lo strisciamento), lo spostamento virtuale del punto di contatto è nullo. Pertanto, la forza di attrito non compie alcun lavoro virtuale, garantendo a tutti gli effetti la natura ideale del vincolo.
 \section{Forze ed energia nella formulazione lagrangiana}
 In questa parte fissiamo le considerazioni su forze ed energia che useremo per ottenere le equazioni di Lagrange. Consideriamo quindi un sistema olonomo di punti
 \begin{equation*}
