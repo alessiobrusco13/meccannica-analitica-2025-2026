@@ -1,7 +1,7 @@
 \chapter{Analisi dei principi fondamentali}
 In questo capitolo introduciamo il linguaggio geometrico e cinematico di base, fondamentale per tutto lo sviluppo successivo della meccanica analitica. Definiremo i concetti di vincolo, grado di libertà e coordinate generalizzate, strumenti indispensabili per descrivere il moto dei sistemi vincolati. Introdurremo inoltre le nozioni di spostamento e lavoro virtuale, che ci permetteranno di gestire le reazioni vincolari incognite. Questi concetti di base costituiscono il punto di partenza necessario per poter ricavare, nei capitoli successivi, le equazioni di Lagrange e i principi variazionali.
 
-\section{Vincoli e gradi di libertà}
+\section{Vincoli e coordinate lagrangiane}
 Iniziamo considerando un sistema libero costituito da $N$ punti materiali. 
 
 Al fine di mantenere un'impostazione geometrica intrinseca, ovvero indipendente dalla scelta di uno specifico sistema di riferimento, introduciamo lo spazio vettoriale euclideo tridimensionale $E_3$. Questo spazio accoglie tutti i vettori liberi della meccanica, come le posizioni e le velocità. L'identificazione di $E_3$ con l'usuale spazio cartesiano $\R^3$ si realizza unicamente nel momento in cui viene fissata una base.
@@ -80,20 +80,26 @@ Gradi di libertà notevoli:
 \end{itemize}
 \end{example}
 
-\section{Coordinate lagrangiane}
-Se i vincoli sono olonomi e bilateri, l'insieme delle configurazioni accessibili costituisce localmente uno spazio\note{Sarebbe più appropriato parlare di varietà} di dimensione $n = \ell - \rho$. Possiamo dimostrare che esistono $n$ funzioni indipendenti $q_1, q_2, \dots, q_n$ tali che
+Dal momento che un sistema meccanico con $n$ gradi di libertà è descritto univocamente da $n$ parametri indipendenti, risulta naturale, per lo studio della sua dinamica, abbandonare le iniziali $\ell$ coordinate in favore di un set minimo di variabili.
+
+Se i vincoli sono olonomi e bilateri, l'insieme delle configurazioni accessibili costituisce localmente uno spazio\note{Sarebbe più appropriato parlare di varietà} di dimensione $n = \ell - \rho$. Grazie al teorema del Dini, è sempre possibile parametrizzare localmente questa varietà introducendo un insieme di $n$ parametri scalari $q_1, q_2, \dots, q_n$, liberi e indipendenti, in modo da determinare le coordinate originarie $\xi_i$ del sistema. Esistono cioè $n$ funzioni tali che:
 \begin{equation*}
     \xi_i = \xi_i(q_1, q_2, \dots, q_n, t) \quad i = 1, 2, \dots, \ell,
 \end{equation*}
-dove la dipendenza dal tempo è presente solo se almeno uno dei vincoli è reonomo.
-
-\begin{remark}
-    Questo procedimento è la generalizzazione dell'espressione di $x$ e $y$ in funzione di $\theta$ per le coordinate polari sulla circonferenza unitaria.
-\end{remark}
+dove la dipendenza esplicita dal tempo è presente solo se almeno uno dei vincoli è reonomo. Scegliendo questo approccio, il rispetto dei vincoli è garantito intrinsecamente per ogni valore assunto dai parametri $q_k$.
 
 \begin{definition}[Coordinate lagrangiane]
-Questi $n$ parametri $q_1, q_2, \dots, q_n$ sono detti \emph{coordinate lagrangiane}, \emph{coordinate generalizzate} o \emph{coordinate libere} del sistema.
+    I parametri $q_1, q_2, \dots, q_n$ introdotti per descrivere i gradi di libertà del sistema prendono il nome di \emph{coordinate lagrangiane}, \emph{coordinate generalizzate} o \emph{coordinate libere} del sistema.
+
+    Nel seguito utilizzeremo spesso la notazione vettoriale per indicare la $n$-upla delle coordinate lagrangiane: 
+    \begin{equation*}
+        \vq = (q_1, q_2, \dots, q_n).
+    \end{equation*}
 \end{definition}
+
+\begin{remark}
+    L'introduzione delle coordinate lagrangiane generalizza l'espressione di $x$ e $y$ in funzione di $\theta$ per le coordinate polari sulla circonferenza unitaria. Sulla circonferenza vi è un solo grado di libertà, ed è sufficiente il solo parametro $q_1 = \theta$ per descrivere univocamente e senza vincoli aggiuntivi qualsiasi posizione ammissibile.
+\end{remark}
 
 \begin{example}[Guida rettilinea ruotante]
 Consideriamo un punto materiale che può scorrere liberamente lungo un'asta vincolata a ruotare nel piano cartesiano $(O, x, y)$ attorno all'origine con velocità angolare costante $\omega > 0$. 
@@ -118,22 +124,21 @@ sono coordinate lagrangiane.
 
 \section{Spostamenti infinitesimi}
 \begin{definition}[Spazio delle configurazioni]
-    Fissato un istante $t$, la \emph{configurazione istantanea} di un sistema è univocamente individuata dai valori delle $n$ coordinate generalizzate $q_1, q_2, \dots, q_n$. Geometricamente, possiamo associare tale stato a un punto in uno spazio astratto di dimensione $n$. L'insieme di tutte le configurazioni fisicamente ammissibili prende il nome di \emph{spazio delle configurazioni} $\mathcal{C}_n$.
+    Fissato un istante $t$, la \emph{configurazione istantanea} di un sistema è univocamente individuata dalla $n$-upla delle sue coordinate lagrangiane. L'insieme di tutte le configurazioni fisicamente ammissibili costituisce uno spazio $n$-dimensionale, noto come \emph{spazio delle configurazioni} $\mathcal{C}_n$. Ogni stato del sistema è pertanto rappresentato da un singolo punto $\vq = (q_1, q_2, \dots, q_n)$ all'interno di tale spazio.
 \end{definition}
 
-Lo spazio $\mathcal{C}_n$ è, in generale, una varietà differenziabile e può presentare curvature o topologie non banali, come la superficie di una sfera o di un toro. Tuttavia, è sufficiente sapere che localmente esso è sempre assimilabile allo spazio cartesiano $\R^n$. D'ora in avanti considereremo sistemi soggetti esclusivamente a vincoli olonomi bilateri.
+Dal punto di vista matematico, lo spazio $\mathcal{C}_n$ è in generale una varietà differenziabile che può presentare curvature o topologie non banali, come la superficie di una sfera o di un toro. Tuttavia, è sufficiente sapere che esso è localmente sempre assimilabile allo spazio $\R^n$.
 
-In questo quadro geometrico, il moto del sistema in un intervallo di tempo $[t_1, t_2]$ è descritto da una curva continua $\vq(t)$ all'interno dello spazio delle configurazioni, definita dalle funzioni:
+In questo spazio, il moto del sistema in un intervallo di tempo $[t_1, t_2]$ è descritto da una curva $\vq(t)$, di cui si richiede una regolarità almeno di classe $C^2$ per garantire l'esistenza delle velocità e delle accelerazioni. Tale curva è quindi parametrizzata dalle $n$ funzioni
 \begin{equation*}
     q_k = q_k(t), \qquad \text{per } k = 1, 2, \dots, n.
 \end{equation*}
-Si richiede comunemente che tali funzioni siano di classe $C^2([t_1, t_2])$ per garantire l'esistenza di velocità e accelerazioni. Descrivere il moto in questo modo, utilizzando le coordinate libere, incorpora in modo automatico e implicito il perfetto rispetto dei vincoli.
 
 Per collegare la descrizione configurazionale alla cinematica, introduciamo il concetto di \emph{spostamenti infinitesimi} o \emph{variazioni}.
 
-Consideriamo il sistema di coordinate lagrangiane
+Consideriamo la posizione di un generico punto materiale del sistema, espressa in funzione delle coordinate lagrangiane:
 \begin{equation*}
-    \vP = \vP(q_1, q_2, \dots, q_n; t).
+    \vP = \vP(q_1, q_2, \dots, q_n, t).
 \end{equation*}
 Possiamo calcolare la velocità del punto materiale di posizione $\vP$ come
 \begin{equation*}
@@ -169,30 +174,32 @@ che mostra come la variazione infinitesima sia tangente alla traiettoria.
 \end{example}
 
 \begin{definition}[Spostamenti reali e virtuali]
-    Definiamo uno spostamento reale $\dd{\vP}$ come una variazione infinitesima della posizione in un intervallo di tempo $\dd{t}$ non nullo, che tiene quindi conto di un eventuale moto del vincolo.\note{Il concetto di spostamento virtuale affonda le radici nei lavori di Stevino nel '500, per essere poi formalizzato da Bernoulli e Lagrange.} Uno spostamento virtuale $\var{\vP}$ è invece una variazione infinitesima a tempo congelato, cioè con $\dd{t} = 0$, mantenendo anche i vincoli bloccati.
+    Uno \emph{spostamento reale} $\dd{\vP}$ è l'effettiva variazione infinitesima della posizione in un intervallo di tempo $\dd{t}$ non nullo lungo la traiettoria fisica del sistema. Esso tiene dunque conto sia dell'evoluzione temporale delle coordinate sia dell'eventuale moto dei vincoli.\note{Il concetto di spostamento virtuale affonda le radici nei lavori di Stevino nel '500, per essere poi formalizzato da Bernoulli e Lagrange.}
+    
+    Uno \emph{spostamento virtuale} $\var{\vP}$ è invece una qualsiasi variazione infinitesima della configurazione che sia compatibile con i vincoli imposti al sistema in un istante prefissato. Esso viene quindi valutato a \emph{tempo congelato}, cioè con $\dd{t} = 0$, considerando i vincoli istantaneamente bloccati:
     \begin{align*}
         \dd{\vP} &= \sum_{h=1}^n \pdv{\vP}{q_h} \dd{q_h} + \pdv{\vP}{t} \dd{t} \\
         \var{\vP} &= \sum_{h=1}^n \pdv{\vP}{q_h} \var{q}_h
     \end{align*}
 \end{definition}
 
-Per visualizzare la differenza, riprendiamo l'esempio della particella sulla guida ruotante. Il movimento della particella è la somma di due contributi: lo scorrimento lungo la guida, ovvero il moto relativo, e la rotazione della guida stessa, che costituisce il moto di trascinamento. Lo spostamento reale $\dd{\vP}$ tra $t$ e $t + \dd{t}$ li include entrambi, poiché al trascorrere del tempo la guida si sposta. Al contrario, lo spostamento virtuale $\var{\vP}$ congela il tempo all'istante $t$: il trascinamento viene azzerato, poiché la guida è temporaneamente bloccata, e l'unico movimento ammesso è il puro scorrimento lungo la guida.
+Per visualizzare la differenza, riprendiamo l'esempio della particella sulla guida ruotante. Il movimento della particella è la somma di due contributi: lo scorrimento lungo la guida, ovvero il moto relativo, e la rotazione della guida stessa, che costituisce il moto di trascinamento. Lo spostamento reale $\dd{\vP}$ tra $t$ e $t + \dd{t}$ li include entrambi, poiché al trascorrere del tempo la guida si sposta. Al contrario, lo spostamento virtuale $\var{\vP}$ congela il tempo all'istante $t$:~il trascinamento viene azzerato, poiché la guida è bloccata nell'istante $t$, e l'unico movimento ammesso è il puro scorrimento lungo la guida.
 
-È immediato notare dalle formule che se i vincoli sono fissi (indipendenti dal tempo), l'ultimo termine dello spostamento reale si annulla e gli spostamenti virtuali coincidono esattamente con quelli reali.
+È immediato notare dalle formule che se i vincoli sono fissi, l'ultimo termine dello spostamento reale si annulla e gli spostamenti virtuali coincidono esattamente con quelli reali.
 
 \subsection{Vincoli unilateri e spostamenti ammessi}
-Finora abbiamo considerato il caso di vincoli bilateri, ipotizzando quindi che i vincoli siano espressi da equazioni. Questo tipo di vincolo si traduce in una restrizione sui gradi di libertà e viene incorporato in modo naturale nella scelta delle coordinate lagrangiane: selezionando $n$ parametri indipendenti, il sistema soddisfa automaticamente i vincoli per qualsiasi valore assunto dalle coordinate.
+Finora abbiamo considerato il caso di vincoli bilateri, ipotizzando quindi che i vincoli siano espressi da equazioni. Questo tipo di vincolo si traduce in una restrizione sui gradi di libertà e viene incorporato in modo naturale nella scelta delle coordinate lagrangiane.
 
-Tuttavia, in presenza di vincoli \emph{unilaterali}, espressi da disequazioni della forma
+Tuttavia, i vincoli unilaterali, espressi da disequazioni della forma
 \begin{equation*}
     g_j(q_1, \dots, q_n, t) \geq 0 \qquad j = 1, \dots, s,
 \end{equation*}
-la situazione cambia. Queste disequazioni non eliminano alcun grado di libertà, ma si limitano a restringere il dominio in cui le coordinate $q_k$ possono variare. Poiché le coordinate continuano a variare in modo indipendente, non garantiscono più automaticamente il rispetto di queste condizioni. È quindi necessario imporre esplicitamente che gli spostamenti virtuali $\var{\vq}$ siano \emph{compatibili} con le limitazioni presenti, verificando che la nuova posizione non violi il vincolo.
+non eliminano alcun grado di libertà, bensì si limitano a restringere il dominio in cui le coordinate $q_k$ possono variare. Poiché le coordinate continuano a variare liberamente, non garantiscono più automaticamente il rispetto di queste condizioni. È quindi necessario imporre esplicitamente che gli spostamenti virtuali $\var{\vq}$ siano compatibili con le limitazioni presenti, verificando che la nuova posizione non violi il vincolo.
 
-Per capire quali spostamenti siano ammessi, è essenziale classificare le configurazioni del sistema in due categorie:
+Per determinare quali spostamenti siano ammessi, è essenziale classificare le configurazioni del sistema in due categorie:
 \begin{itemize}
-    \item se tutti i vincoli unilaterali sono soddisfatti in modo stretto ($g_j > 0$), si parla di \emph{configurazioni ordinarie}. In questo caso il sistema si trova distante dai limiti fisici, pienamente all'interno della regione permessa.
-    \item se invece almeno un vincolo unilaterale è \emph{attivo}, ovvero è soddisfatto come uguaglianza ($g_j = 0$), si è in presenza di \emph{configurazioni di confine}. In questa eventualità il sistema si trova a diretto contatto con la superficie vincolante.
+    \item se tutti i vincoli unilaterali sono soddisfatti in modo stretto ($g_j > 0$), la configurazione è detta \emph{ordinaria}. In questo caso il sistema si trova distante dai limiti fisici, pienamente all'interno della regione permessa.
+    \item se invece almeno un vincolo unilaterale è \emph{attivo}, ovvero è soddisfatto come uguaglianza ($g_j = 0$), la configurazione è detta \emph{di confine}. In tal caso il sistema si trova a diretto contatto con la superficie vincolante.
 \end{itemize}
 
 \begin{definition}[Spostamento reversibile]
@@ -242,7 +249,7 @@ Tuttavia, per poter determinare il moto del sistema in presenza di queste nuove 
     Una superficie vincolante è detta \emph{liscia}, ovvero priva di attrito, se la reazione vincolare che essa esercita è in ogni istante diretta lungo la normale alla superficie stessa e rivolta verso la regione spaziale consentita al moto del sistema.
 \end{definition}
 
-Un intero sistema materiale possiede vincoli privi di attrito se tutte le superfici con cui interagisce risultano lisce. Questa ipotesi si traduce in una condizione analitica fondamentale sul lavoro meccanico svolto dalle reazioni vincolari.
+Un intero sistema materiale possiede vincoli privi di attrito se tutte le superfici con cui interagisce sono lisce. Questa ipotesi si traduce in una condizione analitica fondamentale sul lavoro meccanico svolto dalle reazioni vincolari.
 
 Se consideriamo una forza $\vF$ applicata a un generico punto materiale e uno spostamento infinitesimo $\dd{\vP}$, il lavoro elementare è espresso dal prodotto scalare
 \begin{equation*}
@@ -255,7 +262,7 @@ In modo del tutto analogo, si definisce il lavoro virtuale associato a uno spost
 
 Denotando con $\var{L}^{(v)}$ il lavoro virtuale complessivo compiuto dalle reazioni vincolari sull'intero sistema, l'ipotesi di assenza di attrito ci fornisce un'importante disuguaglianza. Infatti, per una superficie liscia la reazione è sempre normale al bordo e rivolta verso l'interno della regione permessa; d'altro canto, gli spostamenti ammissibili sono tangenti o diretti anch'essi verso l'interno. Il loro prodotto scalare non potrà quindi mai essere negativo.
 
-\begin{proposition}[Vincoli lisci e lavoro virtuale]
+\begin{proposition}
     Per un sistema olonomo soggetto a vincoli lisci, il lavoro virtuale delle reazioni vincolari soddisfa
     \begin{equation*}
         \var{L}^{(v)} \geq 0
@@ -263,7 +270,7 @@ Denotando con $\var{L}^{(v)}$ il lavoro virtuale complessivo compiuto dalle reaz
     per qualsiasi spostamento virtuale ammissibile. In particolare, se lo spostamento virtuale è reversibile, risulta in modo stringente $\var{L}^{(v)} = 0$.
 \end{proposition}
 
-Questa proprietà fondamentale dei vincoli lisci motiva la seguente definizione generale:
+Questa proprietà fondamentale dei vincoli lisci motiva la seguente generalizzazione.
 \begin{definition}[Vincoli ideali]
     Un sistema di vincoli è detto \emph{ideale} se il lavoro virtuale totale delle reazioni vincolari è non negativo per ogni spostamento virtuale ammissibile:
     \begin{equation*}
@@ -277,7 +284,7 @@ Alla luce di questa definizione, si ha la seguente proprietà:
     Se un sistema materiale è soggetto esclusivamente a vincoli bilateri privi di attrito, allora è un sistema a vincoli ideali.
 \end{proposition}
 
-L'importanza della nozione di vincolo ideale risiede nel suo carattere macroscopico e globale: assumendo a priori una precisa condizione sul lavoro virtuale, ci si esonera dalla complessa modellizzazione microscopica delle interazioni tra le superfici. Di conseguenza, la classe dei vincoli ideali è strettamente più ampia di quella dei vincoli lisci, potendo includere anche sistemi soggetti ad attrito. L'esempio classico è il puro rotolamento: benché vi sia attrito statico (indispensabile per impedire lo strisciamento), lo spostamento virtuale del punto di contatto è nullo. Pertanto, la forza di attrito non compie alcun lavoro virtuale, garantendo a tutti gli effetti la natura ideale del vincolo.
+L'importanza della nozione di vincolo ideale risiede nel suo carattere macroscopico: assumendo a priori una precisa condizione sul lavoro virtuale, è possibile evitare la complessa modellizzazione microscopica delle interazioni tra le superfici. Di conseguenza, la classe dei vincoli ideali è strettamente più ampia di quella dei vincoli lisci, potendo includere anche sistemi soggetti ad attrito. L'esempio classico è il puro rotolamento: benché vi sia attrito statico (indispensabile per impedire lo strisciamento), lo spostamento virtuale del punto di contatto è nullo. Pertanto, la forza di attrito non compie alcun lavoro virtuale, garantendo a tutti gli effetti la natura ideale del vincolo.
 
 \section{Forze ed energia nella formulazione lagrangiana}
 
@@ -380,7 +387,7 @@ e sviluppando il quadrato, l'energia cinetica si scompone naturalmente in tre te
 \begin{align*}
     T &= \frac{1}{2} \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t} \right)^2 \\
     &= \frac{1}{2} \sum_{i=1}^N m_i \left( \sum_{h=1}^n \pdv{\vP_i}{q_h} \dot{q}_h + \pdv{\vP_i}{t} \right) \cdot \left( \sum_{k=1}^n \pdv{\vP_i}{q_k} \dot{q}_k + \pdv{\vP_i}{t} \right) \\
-    &= \underbrace{\frac{1}{2} \sum_{h,k=1}^n \left( \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k} \right) \dot{q}_h \dot{q}_k}_{T_2} \\
+    &= \underbrace{\frac{1}{2} \sum_{h,k=1}^n \left( \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{q_k} \right) \dot{q}_h \dot{q}_k}_{T_2} + \\
     &\quad + \underbrace{\sum_{h=1}^n \left( \sum_{i=1}^N m_i \pdv{\vP_i}{q_h} \cdot \pdv{\vP_i}{t} \right) \dot{q}_h}_{T_1} + \underbrace{\frac{1}{2} \sum_{i=1}^N m_i \left(\pdv{\vP_i}{t}\right)^2}_{T_0}\\
     &= T_2 + T_1 + T_0.
 \end{align*}
@@ -404,7 +411,7 @@ per cui l'energia cinetica si riduce alla sola parte quadratica:
     T = T_2.
 \end{equation*}
 
-\begin{definition}[Matrice di massa o dell'energia cinetica]
+\begin{definition}[Matrice di massa]
     I coefficenti $a_{hk}$ costituiscono gli elementi di una matrice simmetrica, nota come \emph{matrice di massa}, che indichiamo con
     \begin{equation*}
         \tens{A} = (a_{hk}).

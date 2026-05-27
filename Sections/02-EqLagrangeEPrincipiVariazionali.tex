@@ -537,14 +537,14 @@ In altri termini, presa una soluzione $\vq(t)$ delle equazioni di Lagrange, se $
 \end{equation*}
 
 \begin{definition}[Coordinata ciclica]
-    Sia un sistema di lagrangiana $L$. Diremo che una coordinata $q_i$ è una \emph{coordinata ciclica} o \emph{ignorabile} se la lagrangiana non dipende esplicitamente da $q_i$, ovvero
+    Sia un sistema di lagrangiana $L$. Diremo che una coordinata $q_i$ è \emph{ciclica} o \emph{ignorabile} se la lagrangiana non dipende esplicitamente da $q_i$, ovvero
     \begin{equation*}
         \pdv{L}{q_i} = 0.
     \end{equation*}
 \end{definition}
 
 \begin{remark}
-    Se $q_i$ è una coordinata ciclica, allora il momento $p_i$ generalizzato (o coniugato) a $q_i$ si conserva costante. Questo risultato discende direttamente dalle equazioni di Lagrange, che in questo caso si riducono a
+    Se $q_i$ è una coordinata ciclica, allora il momento $p_i$ coniugato a $q_i$ si conserva costante. Questo risultato discende direttamente dalle equazioni di Lagrange, che in questo caso si riducono a
     \begin{equation*}
         \dv{t}\pdv{L}{\dot{q}_i} = \pdv{L}{q_i} = 0 \implies \pdv{L}{\dot{q}_i} = p_i = \text{costante}.
     \end{equation*}
@@ -558,7 +558,7 @@ In altri termini, presa una soluzione $\vq(t)$ delle equazioni di Lagrange, se $
 \end{definition}
 
 \begin{definition}[Gruppo di trasformazioni ammissibili]
-    Diremo che una famiglia a un parametro $\vf(\vq, s)$, con $s \in \R$, di trasformazioni ammissibili costituisce un gruppo di trasformazioni ammissibili per $L$ se
+    Diremo che una famiglia di trasformazioni ammissibili $\vf(\vq, s)$ a un parametro $s \in \R$, costituisce un gruppo di trasformazioni ammissibili per $L$ se
     \begin{enumerate}[label=($\roman*$)]
         \item $\vf(\vq, 0) = \vq \quad \forall \vq$;
         \item $\vQ = f(\vq, s) \implies \vq = \vf(\vQ, -s) \quad \forall s$.
@@ -600,8 +600,7 @@ In altri termini, presa una soluzione $\vq(t)$ delle equazioni di Lagrange, se $
     \end{equation*}
 \end{proof}
 
-\note{Lezione 13/04/2026}
-\begin{example}
+\begin{example}\note{Lezione 13/04/2026}
     Consideriamo la seguente famiglia di trasformazioni
     \begin{equation*}
         f_j(\vq,s) = \begin{cases}
@@ -780,7 +779,7 @@ Introduciamo il \emph{lemma fondamentale del calcolo delle variazioni}, che risu
     \begin{equation*}
         \eta(x) = \begin{cases}
             0, \quad &x\in [a, \xi_1)\cup (\xi_2, b] \\
-            (x-\xi_1)^2(\xi_2-x)^2, \quad &x\in [\xi_1, \xi_2]\note{moltiplicando la potenza per $n$ è possibile dimostrare il lemma anche con funzioni $C^n$}
+            (x-\xi_1)^2(\xi_2-x)^2, \quad &x\in [\xi_1, \xi_2]\note{moltiplicando l'esponente per $n$ è possibile dimostrare il lemma anche con funzioni $C^n$}
         \end{cases}.
     \end{equation*}
     Ovviamente abbiamo che $\eta\in C^0([a, b])\cap C^1(a, b)$ e $\eta(a) = \eta(b) = 0$. Tuttavia, con questa scelta di $\eta$ otteniamo

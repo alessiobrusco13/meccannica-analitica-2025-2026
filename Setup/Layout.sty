@@ -2,15 +2,17 @@
 \ProvidesPackage{Setup/Layout}[2026/03/16 Page layout]
 
 \geometry{
-  a4paper,
   inner=4.2cm,
   outer=4.2cm,
   top=2.7cm,
   bottom=3cm,
-  marginparwidth=\MarginNoteWidth,
   marginparsep=0.5cm,
   includeheadfoot
 }
+
+% Calcola automaticamente la larghezza delle note in base al margine esterno disponibile,
+% in modo che se cambi da a4paper a b5paper le note non escano dal foglio.
+\setlength{\marginparwidth}{\dimexpr \evensidemargin + 1in - \marginparsep - 0.4cm \relax}
 
 \setlength{\parindent}{1.5em}
 \setlength{\parskip}{0pt}
