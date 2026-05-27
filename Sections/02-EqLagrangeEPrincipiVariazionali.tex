@@ -1,6 +1,6 @@
 \chapter{Equazioni di Lagrange e principi variazionali}
 \section{Equazioni di Lagrange}
-Talvolta le equazioni che seguono sono dette di Eulero--Lagrange, ma la derivazione che faremo è propriamente di Lagrange. Risale al 1788, con la pubblicazione del \emph{Mécanique Analytique}.
+Talvolta le equazioni che seguono sono dette di Eulero--Lagrange, ma la derivazione che faremo è propriamente di Lagrange e risale al 1788, con la pubblicazione del \emph{Mécanique Analytique}.
 
 \note{Lezione 24/03/2026} L'equazione di Newton ha uso eminente nella dinamica del punto in un campo centrale e le equazioni cardinali nella dinamica del corpo rigido. Le equazioni di Lagrange sono invece utili per descrivere la dinamica dei sistemi con vincoli. Dimostreremo la corrispondenza biunivoca fra le equazioni di Newton, e quindi anche le equazioni cardinali, e le equazioni di Lagrange.
 
@@ -28,17 +28,9 @@ dove le forze del primo termine tra parentesi sono le \emph{forze perdute}, util
 
 Ci occuperemo di quello che viene detto \emph{problema fondamentale della dinamica dei sistemi olonomi}:
 \begin{quote}
-    Dato un sistema olonomo, le forze agenti su di esso e i vincoli, determinare il moto del sistema, note le condizioni iniziali (posizioni e velocità iniziali dei punti).
+    Dato un sistema olonomo, le forze agenti su di esso e i vincoli, determinare il moto del sistema, note le condizioni iniziali\note{posizioni e velocità iniziali dei punti}.
 \end{quote}
-Le incognite dinamiche del sistema sono le forze vincolari
-\begin{equation*}
-    \vb{\Phi}_1,\dots, \vb{\Phi}_N,
-\end{equation*}
-mentre le incognite cinematiche sono le accelerazioni e quindi le traiettorie dei punti
-\begin{equation*}
-    q_1(t), \dots, q_n(t).
-\end{equation*}
-Per cui in totale abbiamo $3N$ incognite dinamiche e $n$ incognite cinematiche, per un totale di $3N + n$ incognite.
+Le incognite dinamiche del sistema sono le forze vincolari $\vb{\Phi}_1,\dots, \vb{\Phi}_N$, mentre le incognite cinematiche sono le accelerazioni e quindi le traiettorie dei punti $q_1(t), \dots, q_n(t)$. Per cui in totale abbiamo $3N$ incognite dinamiche e $n$ incognite cinematiche, per un totale di $3N + n$ incognite.
 
 Moltiplichiamo scalarmente l'equazione \eqref{eq:dalambert} per il vettore di spostamento virtuale $\var{\vP}_i$ e sommiamo su $i$ da $1$ a $N$:
 \begin{equation*}
@@ -49,16 +41,20 @@ Distribuendo il prodotto scalare, otteniamo
 \begin{equation*}
     \underbrace{\sum_{i=1}^N \vF_i\cdot \var{\vP}_i}_{\var{L^{(a)}}}  \underbrace{-\sum_{i=1}^N m_i\,\vva_i\cdot \var{\vP}_i}_{\var{L^{(m)}}} + \underbrace{\sum_{i=1}^N \vb{\Phi}_i\cdot \var{\vP}_i}_{\var{L^{(v)}}} = 0,
 \end{equation*}
-ovvero la somma di tre lavori, dove $m_i\,\vva_i$ è dimensionalmente una forza, detta \emph{forza di inerzia}. Otteniamo così il \emph{principio di D'Alembert} propriamente detto
-\begin{equation*}
-    \var{L^{(a)}} + \var{L^{(m)}} + \var{L^{(v)}} = 0.
-\end{equation*}
+ovvero la somma di tre lavori, dove $m_i\,\vva_i$ è dimensionalmente una forza, detta \emph{forza di inerzia}. Giungiamo quindi al seguente risultato:
 
-Consideriamo l'ipotesi di vincoli ideali, per cui $\var{L^{(v)}} \geq 0$.\note{Le equazioni di Lagrange possono essere ricavate anche senza questa ipotesi attraverso i moltiplicatori di Lagrange} Segue necessariamente 
+\begin{theorem}[Principio di D'Alembert]
+    Per un sistema meccanico olonomo, in ogni istante del moto e per ogni spostamento virtuale ammissibile, la somma dei lavori virtuali delle forze attive, delle forze d'inerzia e delle reazioni vincolari è nulla:
+    \begin{equation*}
+        \var{L^{(a)}} + \var{L^{(m)}} + \var{L^{(v)}} = 0.
+    \end{equation*}
+\end{theorem}
+
+Nell'ipotesi di vincoli ideali, cioé con $\var{L^{(v)}} \geq 0$\note{Le equazioni di Lagrange possono essere ricavate anche senza questa ipotesi attraverso il metodo dei moltiplicatori.}, il principio si riduce alla disuguaglianza fondamentale:
 \begin{equation*}
     \var{L^{(a)}} + \var{L^{(m)}} \leq 0.
 \end{equation*}
-Consideriamo l'ulteriore ipotesi di vincoli bilaterali ideali, per cui $\var{L^{(v)}} = 0$. Segue di conseguenza
+Nel caso in cui i vincoli ideali siano anche bilaterali, cioé con  $\var{L^{(v)}} = 0$, il principio assume la forma di uguaglianza stretta:
 \begin{equation*}
     \var{L^{(a)}} + \var{L^{(m)}} = 0.
 \end{equation*}
@@ -104,16 +100,17 @@ Introduciamo ora la seguente legge:
 
 Applicando questa legge alla componente lagrangiana della forza di inerzia, otteniamo
 \begin{align*}
-    \tau_h &= \sum_{i=1}^N -m_i\,\vva_i\cdot \pdv{\vP_i}{q_h} \\ 
-    &= -\sum_{i=1}^N m_i\,\dv{\vv_i}{t}\cdot \pdv{\vP_i}{q_h} \\
-    &= -\dv{t}\sum_{i=1}^N m_i\,\vv_i\cdot \pdv{\vP_i}{q_h} + \sum_{i=1}^N m_i\,\vv_i\cdot \dv{t}\pdv{\vP_i}{q_h}
+    \tau_h &= \sum_{i=1}^N -m_i\vva_i\cdot \pdv{\vP_i}{q_h} \\ 
+    &= -\sum_{i=1}^N m_i\dv{\vv_i}{t}\cdot \pdv{\vP_i}{q_h} \\
+    &= -\dv{t}\sum_{i=1}^N m_i\vv_i\cdot \pdv{\vP_i}{q_h} + \sum_{i=1}^N m_i\vv_i\cdot \dv{t}\pdv{\vP_i}{q_h} \\
+    &= -\dv{t}\sum_{i=1}^N m_i\vv_i\cdot \pdv{\vP_i}{q_h} + \sum_{i=1}^N m_i\vv_i\cdot \pdv{\vP_i}{q_h}{t} \note{Invertiamo l'ordine di derivazione per teorema di Schwarz: \\[0.5em] $\pdv{\vP_i}{q_h}{t} = \pdv{\vP_i}{t}{q_h} = \pdv{\vv_i}{q_h}$}
 \end{align*}
-\begin{align*}
-    &= -\dv{t}\sum_{i=1}^N m_i\,\vv_i\cdot \pdv{\vv}{\dot{q}_h} + \sum_{i=1}^N m_i\,\vv_i\cdot \pdv{\vv}{q_h}\note{Legge di cancellazione dei punti e Teorema di Schwarz}\\
-    &= -\dv{t}\pdv{\dot{q}_h}\sum_{i=1}^N \frac{1}{2}m_i\,\vv_i^2 + \pdv{q_h}\sum_{i=1}^N \frac{1}{2}m_i\,\vv_i^2 \\
-    &= -\dv{t}\pdv{T}{\dot{q}_h} + \pdv{T}{q_h},
-\end{align*}
-questi ultimi termini vengono detti \emph{binomi di Lagrange}.
+\begin{align}
+    \nonumber &= -\dv{t}\sum_{i=1}^N m_i\vv_i\cdot \pdv{\vv_i}{\dot{q}_h} + \sum_{i=1}^N m_i\vv_i\cdot \pdv{\vv_i}{q_h}\note{Applicando la legge di cancellazione dei punti}\\
+    \nonumber &= -\dv{t}\pdv{\dot{q}_h}\sum_{i=1}^N \frac{1}{2}m_i v_i^2 + \pdv{q_h}\sum_{i=1}^N \frac{1}{2}m_i v_i^2 \\
+    &= -\dv{t}\pdv{T}{\dot{q}_h} + \pdv{T}{q_h}, \label{eq:binomiLagrange}
+\end{align}
+dove i due termini nella \eqref{eq:binomiLagrange} vengono detti \emph{binomi di Lagrange}.
 
 Otteniamo quindi le \emph{equazioni di Lagrange nella seconda forma}
 \begin{equation*}
@@ -126,7 +123,7 @@ con le $2n$ condizioni iniziali
         \dot{q}_1(t_0) = \dot{q}_1^0, \dots, \dot{q}_n(t_0) = \dot{q}_n^0.
     \end{cases}
 \end{equation*}
-Le equazioni di Lagrange sono $n$ equazioni differenziali ordinarie del secondo ordine pure -- ovvero dove non compaiono le reazioni vincolari -- nelle incognite $q_1(t), \dots, q_n(t)$.\note{Compaiono le derivate parziali dell'energia cinetica, che però non è un'incognita} Il numero di equazioni è precisamente uguale al numero di gradi di libertà del sistema, ottenendo quindi una notevole semplificazione rispetto alle $3N$ equazioni di Newton.
+Le equazioni di Lagrange sono $n$ equazioni differenziali ordinarie\note{Compaiono le derivate parziali dell'energia cinetica, che però non è un'incognita} del secondo ordine nelle incognite $q_1(t), \dots, q_n(t)$, dove non compaiono le reazioni vincolari. Il numero di equazioni è precisamente uguale al numero di gradi di libertà del sistema, ottenendo quindi una notevole semplificazione rispetto alle $3N$ equazioni di Newton.
 
 Non è immediato assumere che valga il teorema di esistenza e unicità per le equazioni di Lagrange. Sicuramente sono verificate le ipotesi di continuità e lipschitzianità, tuttavia il teorema richiede un'equazione differenziale in forma normale, ovvero
 \begin{equation*}
@@ -188,8 +185,7 @@ detta \emph{lagrangiana} del sistema, possiamo scrivere le equazioni di Lagrange
 
 Possiamo estendere la classe di forze attive per cui è possibile scrivere le equazioni di Lagrange nella forma di Eulero--Lagrange, introducendo il seguente concetto:
 \begin{definition}[Potenziale generalizzato]
-    Diremo che un sistema di forze con componenti $Q_h = Q_h(\vq, \dot{\vq}, t)$,
-    dipende da un \emph{potenziale generalizzato} $V = V(\vq, \dot{\vq}, t)$ se
+    Diremo che un sistema di forze con componenti $Q_h = Q_h(\vq, \dot{\vq}, t)$ dipende da un \emph{potenziale generalizzato} $V = V(\vq, \dot{\vq}, t)$ se
     \begin{equation*}
         Q_h = \dv{t}\pdv{V}{\dot{q}_h}-\pdv{V}{q_h}.
     \end{equation*}
@@ -262,8 +258,8 @@ ovvero, utilizzando la lagrangiana,
     dove $y_G$ è la coordinata $y$ del centro di massa dell'asta. Dalla geometria del sistema ricaviamo:
     \begin{equation*}
         \begin{cases}
-            x_G = \frac{\ell}{2}\cos\theta \\
-            y_G = \frac{\ell}{2}\sin\theta \\    
+            \displaystyle x_G = \frac{\ell}{2}\cos\theta \\[0.7em]
+            \displaystyle y_G = \frac{\ell}{2}\sin\theta \\[0.7em]   
         \end{cases}
         \implies \var{y_G} = \frac{\ell}{2}\cos\theta\,\var{\theta}.
     \end{equation*}
@@ -434,7 +430,7 @@ vogliamo stabilire che forma prendono le equazioni di Lagrange nelle nuove coord
 
 Immediatamente possiamo definire la nuova lagrangiana attraverso la sostituzione
 \begin{equation*}
-    L^* = [L(\vq, \dot{\vq}, t)]_{\vq = \vq(\vb{\xi})}.
+    L^* = [L(\vq, \dot{\vq}, t)]_{\vq = \vq(\vb*{\xi})}.
 \end{equation*}
 Seguono le equazioni di Lagrange nella nuova coordinata $\xi_i$ come
 \begin{equation*}
@@ -448,7 +444,7 @@ Notiamo quindi che le equazioni di Lagrange sono \emph{invarianti} rispetto alle
 
 Consideriamo un sistema di lagrangiana $L(\vq, \dot{\vq}, t)$ e un moto del sistema fissando $\vq(t)$ e $\dot{\vq}(t)$. Calcoliamo la derivata totale di $L$ rispetto al tempo:
 \begin{equation*}
-    \dv{L}{t} = \sum_{h=1}^n \pdv{L}{q_h}\,\dot{q}_h + \underbrace{\sum_{h=1}^n \pdv{L}{\dot{q}_h}\,\ddot{q}_h}_{*} + \pdv{L}{t}.
+    \dv{L}{t} = \sum_{h=1}^n \pdv{L}{q_h}\,\dot{q}_h + \sum_{h=1}^n \pdv{L}{\dot{q}_h}\,\ddot{q}_h + \pdv{L}{t}.
 \end{equation*}
 Attraverso la regola di derivazione del prodotto, otteniamo
 \begin{align*}
@@ -481,8 +477,10 @@ Dall'equazione \eqref{eq:conservazione_H} segue il seguente teorema di conservaz
     \end{equation*}
 \end{theorem}
 
+Come si nota dalla forma stessa della funzione di Jacobi, le derivate della lagrangiana rispetto alle velocità generalizzate si presentano in modo naturale. Risulta quindi conveniente isolare queste grandezze e dare loro una denominazione formale.
+
 \begin{definition}[Momenti generalizzati]
-    I momenti generalizzati di un sistema sono le quantità
+    I \emph{momenti generalizzati} o \emph{momenti coniugati} di un sistema sono le quantità
     \begin{equation*}
         p_i = \pdv{L}{\dot{q}_i} \qquad i = 1, \dots, n.
     \end{equation*}
