@@ -71,15 +71,33 @@ e confrontando le due equazioni si ha
 
 La funzione $H$ è la trasformata di Legendre di $L$ e viene detta \emph{hamiltoniana} del sistema.
 
-Se la trasformazione di Legendre è regolare, cioè
+Se la trasformazione di Legendre è regolare, ovvero se la matrice jacobiana della trasformazione $\dot{\vq} \mapsto \vp$, nota anche come \emph{matrice hessiana} della lagrangiana rispetto alle velocità, ha determinante non nullo:
 \begin{equation*}
-    \det\left(\pdv[2]{L}{\dot{q}_i}{\dot{q}_j}\right) \neq 0,
+    \det\left(\pdv{p_i}{\dot{q}_j}\right) = \det\left(\pdv[2]{L}{\dot{q}_i}{\dot{q}_j}\right) \neq 0,
 \end{equation*}
-allora risolvendo le equazioni \eqref{eq:momenticoniugati} per $\dot{q}_j$ si ha che $H$ è una funzione di $\vq$, $\vp$ e $t$, e non dipende più da $\dot{\vq}$, ottenendo così una trasformazione che porta da un sistema di coordinate $(\vq, \dot{\vq})$ a un sistema di coordinate $(\vq, \vp)$:
+allora, per il teorema della funzione inversa, è possibile invertire le relazioni \eqref{eq:momenticoniugati} ricavando le velocità in funzione dei momenti, $\dot{\vq} = \dot{\vq}(\vq, \vp, t)$. Sostituendo tale espressione si ottiene un'hamiltoniana $H$ che è funzione esclusiva di $\vq$, $\vp$ e $t$.
+La trasformazione di Legendre permette quindi il passaggio dalle variabili lagrangiane a quelle hamiltoniane:
 \begin{equation*}
-    (\vq, \dot{\vq}) \leftrightarrow (\vq, \vp),
+    (\vq, \dot{\vq}) \longleftrightarrow (\vq, \vp),
 \end{equation*}
-passando dallo spazio $n$-dimensionale delle configurazioni $\mathcal{C}$ allo spazio $2n$-dimensionale detto \emph{spazio delle fasi} di Gibbs $\Phi_{2n}$.
+ovvero si passa dallo spazio $n$-dimensionale delle configurazioni allo spazio $2n$-dimensionale detto \emph{spazio delle fasi} di Gibbs $\Phi_{2n}$. 
+
+\begin{remark} \label{rem:matrice_hessiana}
+    Consideriamo un sistema meccanico a vincoli ideali e scleronomi, in cui le forze attive derivano da un potenziale del tipo ${V=V(\vq, t)}$. Date le ipotesi sui vincoli, dell'energia cinetica sopravvive solo la sua parte quadratica:
+    \begin{equation}\label{eq:T_2_quadratica}
+        T = T_2 = \frac{1}{2}\sum_{k,h=1}^n a_{kh} \dot{q}_k \dot{q}_h.
+    \end{equation}
+    Derivando la lagrangiana $L = T - V$ rispetto alle velocità generalizzate $\dot{\vq}$, poiché l'energia potenziale non ne dipende, si ha
+    \begin{equation*}
+        \pdv[2]{L}{\dot{q}_i}{\dot{q}_j} = \pdv[2]{T_2}{\dot{q}_i}{\dot{q}_j} = \pdv{}{\dot{q}_i} \left( \sum_{k=1}^n a_{jk} \dot{q}_k \right) = \sum_{k=1}^n a_{jk} \delta_{ik} = a_{ji} = a_{ij}.
+    \end{equation*}
+    Da ciò segue che l'hessiana coincide con la matrice di massa $\tens{A}$. Poiché l'energia cinetica è intrinsecamente una forma quadratica definita positiva, la matrice $\tens{A}$ è sempre invertibile. Questo rende palese l'invertibilità della trasformazione $\dot{\vq} \mapsto \vp$, garantendo che il passaggio allo spazio delle fasi sia sempre lecito e ben definito.
+    
+    Da tale struttura discende direttamente:
+    \begin{equation}\label{eq:p_i_lineari}
+        p_i = \pdv{L}{\dot{q}_i} = \pdv{T_2}{\dot{q}_i} = \sum_{j=1}^n a_{ij} \dot{q}_j \implies \vp = \tens{A} \dot{\vq}.
+    \end{equation}
+\end{remark}
 
 Le $2n$ equazioni differenziali ordinarie del primo ordine in $2n$ incognite
 \begin{equation*}
@@ -90,27 +108,23 @@ Le $2n$ equazioni differenziali ordinarie del primo ordine in $2n$ incognite
 \end{equation*}
 vengono dette \emph{equazioni di Hamilton} o \emph{equazioni canoniche della meccanica}.
 
+Sotto le medesime ipotesi dell'osservazione~\ref{rem:matrice_hessiana}, sostituendo l'espressione dei momenti coniugati \eqref{eq:p_i_lineari} nella definizione dell'hamiltoniana si ottiene:
+\begin{equation*}
+    H = \sum_{j=1}^n p_j \dot{q}_j - L = \sum_{i,j=1}^n a_{ij} \dot{q}_i \dot{q}_j - (T - V).
+\end{equation*}
+Ricordando la definizione dell'energia cinetica \eqref{eq:T_2_quadratica}, la relazione si riduce a:
+\begin{equation*}
+    H = 2T - (T - V) = T + V.
+\end{equation*}
+L'hamiltoniana coincide pertanto con l'energia meccanica totale del sistema.
+
 \begin{remark}
     Nella formulazione dello spazio delle fasi il tempo può essere trattato come una coordinata generalizzata; in tale contesto il suo momento coniugato è legato all'hamiltoniana, con la convenzione usuale
     \begin{equation*}
         p_t = -H.
     \end{equation*}
-    In altre parole, \emph{l'energia} gioca il ruolo del momento generalizzato associato alla variabile tempo, a meno del segno che dipende dalla convenzione scelta.
+    Avendo appurato che in molti sistemi fisici l'hamiltoniana coincide con l'energia meccanica, si deduce che \emph{l'energia} gioca il ruolo del momento generalizzato associato alla variabile tempo, a meno del segno che dipende dalla convenzione scelta.
 \end{remark}
-
-Nel caso meccanico, in un sistema naturale a vincoli scleronomi, la lagrangiana è data da $L = T - V$, e quindi
-\begin{equation*}
-    p_i = \pdv{L}{\dot{q}_i} = \pdv{T}{\dot{q}_i} = \pdv{T_2}{\dot{q}_i} = \sum_{j=1}^n a_{ij} \dot{q}_j.
-\end{equation*}
-Otteniamo quindi un sistema lineare di equazioni
-\begin{equation*}
-    \vp = \tens{A} \dot{\vq}.
-\end{equation*}
-Sostituendo nella definizione di $H$ si ha
-\begin{equation*}
-    H = \sum_{j=1}^n p_j \dot{q}_j - L = \sum_{i,j=1}^n a_{ij} \dot{q}_i \dot{q}_j - (T - V) = T + V,
-\end{equation*}
-ovvero l'hamiltoniana coincide con l'energia totale del sistema.
 
 \begin{example}[Oscillatore armonico]
     % Guida orizzontale, molla con coefficiente k nell'origine punto P di massa M

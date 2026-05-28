@@ -1,0 +1,67 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{goldstein}{book}{}{}
+      \name{author}{3}{}{%
+        {{hash=c0e35b6777e73243aa18df96822aa96b}{%
+           family={Goldstein},
+           familyi={G\bibinitperiod},
+           given={Herbert},
+           giveni={H\bibinitperiod}}}%
+        {{hash=3ad4e7046aff11f350cd20224879c53d}{%
+           family={Poole},
+           familyi={P\bibinitperiod},
+           given={Charles\bibnamedelima P.},
+           giveni={C\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=0e0ec111561781c854c4be89f5c2c20e}{%
+           family={Safko},
+           familyi={S\bibinitperiod},
+           given={John\bibnamedelima L.},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Bologna}%
+      }
+      \list{publisher}{1}{%
+        {Zanichelli}%
+      }
+      \strng{namehash}{2d622f640f2ae64cf5a77bedcae76a4c}
+      \strng{fullhash}{2d622f640f2ae64cf5a77bedcae76a4c}
+      \strng{fullhashraw}{2d622f640f2ae64cf5a77bedcae76a4c}
+      \strng{bibnamehash}{2d622f640f2ae64cf5a77bedcae76a4c}
+      \strng{authorbibnamehash}{2d622f640f2ae64cf5a77bedcae76a4c}
+      \strng{authornamehash}{2d622f640f2ae64cf5a77bedcae76a4c}
+      \strng{authorfullhash}{2d622f640f2ae64cf5a77bedcae76a4c}
+      \strng{authorfullhashraw}{2d622f640f2ae64cf5a77bedcae76a4c}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2}
+      \field{isbn}{9788808084002}
+      \field{note}{Traduzione della 3ª ed. inglese}
+      \field{title}{Meccanica classica}
+      \field{year}{2005}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

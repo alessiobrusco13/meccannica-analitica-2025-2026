@@ -491,7 +491,7 @@ Questi momenti sono immediate generalizzazioni della quantità di moto newtonian
 \end{equation*}
 
 \subsection{Conservazione dell'energia}
-Consideriamo ora un sistema meccanico olonomo soggetto a forze attive di potenziale $V(\vq)$, per cui la lagrangiana è, attraverso l'equazione \eqref{eq:energia_cinetica},
+Consideriamo ora un sistema meccanico olonomo soggetto a forze attive di potenziale $V=V(\vq)$, per cui la lagrangiana è, attraverso l'equazione \eqref{eq:energia_cinetica},
 \begin{equation*}
     L = T - V = T_0 + T_1 + T_2- V.
 \end{equation*}
@@ -501,7 +501,9 @@ Sviluppando la funzione di Jacobi, otteniamo
     &= \sum_{h=1}^n \left(\pdv{T_1}{\dot{q}_h} + \pdv{T_2}{\dot{q}_h}\right)\dot{q}_h - T_0 - T_1 - T_2 + V.
 \end{align*}
 
-Ricorriamo al teorema di Eulero sulle funzioni omogenee:
+Dalla forma dell'energia cinetica, i termini $T_2$, $T_1$ e $T_0$ sono forme rispettivamente quadratiche, lineari e indipendenti dalle velocità generalizzate $\dot{\vq}$. Essi costituiscono pertanto funzioni omogenee di grado 2, 1 e 0 rispetto alle $\dot{\vq}$.
+
+Possiamo allora valutare le derivate ricorrendo al seguente teorema.
 \begin{theorem}[Eulero sulle funzioni omogenee]
     Sia $f(\vx)$ una funzione omogenea di grado $\alpha$ in $\R^n$, ovvero
     \begin{equation*}        
@@ -561,7 +563,7 @@ In altri termini, presa una soluzione $\vq(t)$ delle equazioni di Lagrange, se $
     Diremo che una famiglia di trasformazioni ammissibili $\vf(\vq, s)$ a un parametro $s \in \R$, costituisce un gruppo di trasformazioni ammissibili per $L$ se
     \begin{enumerate}[label=($\roman*$)]
         \item $\vf(\vq, 0) = \vq \quad \forall \vq$;
-        \item $\vQ = f(\vq, s) \implies \vq = \vf(\vQ, -s) \quad \forall s$.
+        \item $\vQ = \vf(\vq, s) \implies \vq = \vf(\vQ, -s) \quad \forall s$.
         \item $\vf(\vf(\vq, s_1), s_2) = \vf(\vq, s_1 + s_2) \quad \forall s_1, s_2$.
     \end{enumerate}
 \end{definition}
@@ -581,7 +583,7 @@ In altri termini, presa una soluzione $\vq(t)$ delle equazioni di Lagrange, se $
     \end{equation*}
     Derivando rispetto a $s$ otteniamo
     \begin{align*}
-        0 = \dv{s} L\left(\vf(\vq, s), \dot{\vf}(\vq, s)\right) &= \sum_{j=1}^n \pdv{L}{q_j}\,\pdv{f_j}{s} + \sum_{j=1}^n \pdv{L}{\dot{q}_j}\,\pdv{\dot{f_j}}{s} \\
+        0 = \dv{s} L\left(\vf(\vq, s), \dot{\vf}(\vq, s)\right) &= \sum_{j=1}^n \pdv{L}{q_j}\,\pdv{f_j}{s} + \sum_{j=1}^n \pdv{L}{\dot{q}_j}\,\pdv{\dot{f_j}}{s} \note{per $\pdv{L}{q_j}$ e $\pdv{L}{\dot{q}_j}$ intendiamo la derivata parziale di $L$ rispetto alla prima variabile e alla seconda variabile, rispettivamente. Nel primo caso si deriva rispetto a $f$, nel secondo rispetto a $\dot{f}$}\\
         &= \sum_{j=1}^n \pdv{L}{q_j}\,\pdv{f_j}{s} + \dv{t}\sum_{j=1}^n \pdv{L}{\dot{q}_j}\,\pdv{f_j}{s} - \sum_{j=1}^n \dv{t}\pdv{L}{\dot{q}_j}\,\pdv{f_j}{s} \\
         &=  \sum_{j=1}^n \left(\pdv{L}{q_j} - \dv{t}\pdv{L}{\dot{q}_j}\right)\pdv{f_j}{s} + \dv{t}\sum_{j=1}^n \pdv{L}{\dot{q}_j}\,\pdv{f_j}{s}.
     \end{align*}
@@ -590,7 +592,7 @@ In altri termini, presa una soluzione $\vq(t)$ delle equazioni di Lagrange, se $
     \begin{equation*}
         0 = \sum_{j=1}^n \left(\pdv{L}{q_j} - \dv{t}\pdv{L}{\dot{q}_j}\right)\pdv{f_j}{s}\bigg|_{s=0} + \dv{t}\sum_{j=1}^n \pdv{L}{\dot{q}_j}\,\pdv{f_j}{s}\bigg|_{s=0}.
     \end{equation*}
-    Il primo termine è nullo in virtù delle equazioni di Lagrange e l'assioma $(i)$ del gruppo, per cui
+    Il primo termine è nullo in virtù delle equazioni di Lagrange, per cui
     \begin{equation*}
         \dv{t}\sum_{j=1}^n \pdv{L}{\dot{q}_j}\,\pdv{f_j}{s}\bigg|_{s=0} = 0,
     \end{equation*}
@@ -632,7 +634,7 @@ Un esempio storico fondamentale è il \emph{problema della brachistocrona}, form
     
     Qual è la curva $\gamma$ che minimizza il tempo di percorrenza di una particella che, lasciata cadere da $A$ con velocità iniziale nulla, scende lungo la guida fino a raggiungere $B$?
 \end{quote}
-\begin{figure}[ht]
+\begin{figure}[t]
     \centering
     \begin{tikzpicture}[>=stealth, scale=1.15]
         % Sistema di assi con origine in A e asse y rivolto verso il basso.
@@ -698,7 +700,7 @@ La tecnica appena usata si generalizza a una classe ampia di problemi.
     \end{equation*}
     dove $y\in C^0([x_0, x_1])\cap C^1(x_0, x_1)$.
 
-    La funzione $F\in C^2([x_0, x_1] \times \mathbb{R} \times \mathbb{R})$ è detta \emph{lagrangiana} per analogia con il caso meccanico.
+    La funzione $F\in C^2(\mathbb{R} \times \mathbb{R} \times [x_0, x_1])$ è detta \emph{lagrangiana} per analogia con il caso meccanico.
 \end{definition}
 
 L'insieme di tutte le funzioni $y(x)$ definite su $[x_0, x_1]$ e appartenenti a $C^0([x_0, x_1])\cap C^1(x_0, x_1)$ ha un ruolo analogo al dominio di una funzione reale e viene detto \emph{classe di funzioni ammissibili}.
@@ -707,12 +709,12 @@ Consideriamo il caso di un massimo relativo del funzionale. Per analogia con il 
 \begin{equation*}
     I[y] \leq I[y^*].
 \end{equation*}
-
-Definiamo la \emph{variazione} infinitesima\note{o perturbazione} di $y^*(x)$ come
+Al fine di definire formalmente il concetto di \emph{sufficientemente vicino}, introduciamo la \emph{variazione} infinitesima\note{o perturbazione} di $y^*(x)$ (figura~\ref{fig:variazioni_estremi_fissi}) come
 \begin{align*}
     y(x) = y^*(x) + \alpha \eta(x), \quad &\forall \alpha \in (-\varepsilon, \varepsilon), \\
     &\forall \eta \in C^0([x_0, x_1])\cap C^1(x_0, x_1): \eta(x_0) = \eta(x_1) = 0.
 \end{align*}
+
 
 \begin{figure}[h!]
     \centering
@@ -742,20 +744,20 @@ Definiamo la \emph{variazione} infinitesima\note{o perturbazione} di $y^*(x)$ co
         \draw[densely dotted, gray] (5, 0) -- (5, 2.7);
         \node[font=\small, gray!70!black] at (3, 0.35) {estremi fissati};
     \end{tikzpicture}
-    \caption{Esempio di funzione di riferimento $y^*(x)$ e di una variazione ammissibile $y^*(x)+\alpha\eta(x)$: le curve coincidono agli estremi perché $\eta(x_0)=\eta(x_1)=0$.}
+    \caption{Esempio di funzione di riferimento $y^*(x)$ e di una variazione $y^*(x)+\alpha\eta(x)$: le curve coincidono agli estremi perché $\eta(x_0)=\eta(x_1)=0$.}
     \label{fig:variazioni_estremi_fissi}
 \end{figure}
 
-La condizione $\eta(x_0)=\eta(x_1)=0$ è essenziale: significa che le perturbazioni ammissibili non modificano i valori agli estremi, cioè i punti iniziale e finale restano fissati. In questo modo stiamo confrontando curve che soddisfano gli stessi vincoli al bordo; la ricerca dell'estremo relativo avviene quindi solo tra funzioni con i medesimi estremi.
+La condizione $\eta(x_0)=\eta(x_1)=0$ assicura che le perturbazioni lascino inalterati i punti iniziale e finale; la ricerca dell'estremo relativo è pertanto limitata a funzioni che soddisfano i medesimi vincoli al bordo.
 
 \begin{definition}[Estremi relativi di un funzionale]
-        Diremo che $y^*(x)$ è un massimo relativo per il funzionale $I[y]$ se
+        Diremo che $y^*(x)$ è un \emph{massimo relativo} per il funzionale $I[y]$ se
         \begin{align*}
             I[y^*] \geq I[y^* + \alpha \eta], \quad
             &\forall \alpha \in (-\varepsilon, \varepsilon), \\
             &\forall \eta \in C^0([x_0, x_1])\cap C^1(x_0, x_1): \eta(x_0) = \eta(x_1) = 0.
         \end{align*}
-        Analogamente, diremo che $y^*(x)$ è un minimo relativo se
+        Analogamente, diremo che $y^*(x)$ è un \emph{minimo relativo} se
         \begin{align*}
             I[y^*] \leq I[y^* + \alpha \eta], \quad 
             &\forall \alpha \in (-\varepsilon, \varepsilon), \\
@@ -766,11 +768,11 @@ La condizione $\eta(x_0)=\eta(x_1)=0$ è essenziale: significa che le perturbazi
 Introduciamo il \emph{lemma fondamentale del calcolo delle variazioni}, che risulta utile per dimostrare il teorema di Eulero che lo segue.
 
 \begin{lemma}[fondamentale del calcolo delle variazioni]
-    Sia $\eta \in C^0([a, b])\cap C^1(a, b)$ con $\eta(a) = \eta(b) = 0$. Se
+    Sia $G \in C^0([a, b])$. Se
     \begin{equation*}
-        \int_{a}^{b} G(x)\,\eta(x)\dd{x} = 0 \quad \forall \eta,
+        \int_{a}^{b} G(x)\,\eta(x)\dd{x} = 0
     \end{equation*}
-    allora $G(x) = 0$ per ogni $x\in [a, b]$.
+    per ogni $\eta \in C^0([a, b])\cap C^1(a, b)$ con $\eta(a) = \eta(b) = 0$, allora $G(x) = 0$ per ogni $x\in [a, b]$.
 \end{lemma}
 \begin{proof}
     Supponiamo per assurdo che esista $\xi\in (a,b): G(\xi) \neq 0$. Senza perdita di generalità, supponiamo che $G(\xi) > 0$. Per il teorema della permanenza del segno, esiste un intervallo $[\xi_1, \xi_2] \subset (a, b)$, tale che $G(x) > 0\ \forall x\in [\xi_1, \xi_2]$.
@@ -779,7 +781,7 @@ Introduciamo il \emph{lemma fondamentale del calcolo delle variazioni}, che risu
     \begin{equation*}
         \eta(x) = \begin{cases}
             0, \quad &x\in [a, \xi_1)\cup (\xi_2, b] \\
-            (x-\xi_1)^2(\xi_2-x)^2, \quad &x\in [\xi_1, \xi_2]\note{moltiplicando l'esponente per $n$ è possibile dimostrare il lemma anche con funzioni $C^n$}
+            (x-\xi_1)^2(\xi_2-x)^2, \quad &x\in [\xi_1, \xi_2]\note{moltiplicando l'esponente per $n$ è possibile dimostrare il lemma anche per funzioni di classe $C^n$}
         \end{cases}.
     \end{equation*}
     Ovviamente abbiamo che $\eta\in C^0([a, b])\cap C^1(a, b)$ e $\eta(a) = \eta(b) = 0$. Tuttavia, con questa scelta di $\eta$ otteniamo
@@ -809,11 +811,11 @@ Introduciamo il \emph{lemma fondamentale del calcolo delle variazioni}, che risu
     \end{align*}
     Osserviamo che la mappa
     \begin{equation*}
-        \alpha \mapsto I[y^* + \alpha \eta] = \int_{x_0}^{x_1} F(y^* + \alpha \eta, y^{*'} + \alpha \eta', x)\dd{x}
+        \alpha \mapsto I[y^* + \alpha \eta] = \int_{x_0}^{x_1} F(y^* + \alpha \eta, y^{*\prime} + \alpha \eta', x)\dd{x}
     \end{equation*}
     è una funzione reale di una variabile reale, derivabile rispetto a $\alpha$. Inoltre ha un massimo in $\alpha = 0$, quindi la sua derivata prima in $\alpha = 0$ è nulla. Calcoliamo allora
     \begin{align*}
-        \dv{I}{\alpha} &= \dv{\alpha} \int_{x_0}^{x_1} F(y^* + \alpha \eta, y^{*'} + \alpha \eta', x)\dd{x} \\ 
+        \dv{I}{\alpha} &= \dv{\alpha} \int_{x_0}^{x_1} F(y^* + \alpha \eta, y^{*\prime} + \alpha \eta', x)\dd{x} \\ 
         &= \int_{x_0}^{x_1} \left(\pdv{F}{y}\,\eta + \pdv{F}{y'}\,\eta'\right)\dd{x} \\
         &= \int_{x_0}^{x_1}\left\{ \pdv{F}{y}\eta + \dv{x}\left(\pdv{F}{y'}\eta\right) - \dv{x}\pdv{F}{y'}\eta \right\} \dd{x} \\
         &= \int_{x_0}^{x_1} \left(\pdv{F}{y} - \dv{x}\pdv{F}{y'}\right)\eta\dd{x} + \int_{x_0}^{x_1} \dv{x}\left(\pdv{F}{y'}\eta\right) \dd{x}\\
@@ -821,7 +823,7 @@ Introduciamo il \emph{lemma fondamentale del calcolo delle variazioni}, che risu
     \end{align*}
     Il secondo termine è nullo in virtù della condizione $\eta(x_0) = \eta(x_1) = 0$, per cui
     \begin{equation*}
-        \dv{I}{\alpha}\bigg|_{\alpha=0} = \int_{x_0}^{x_1} \left(\pdv{F}{y} - \dv{x}\pdv{F}{y'}\right)\eta\dd{x} = 0 \quad \forall \eta.
+        \dv{I}{\alpha}\eval_{\alpha=0} = \int_{x_0}^{x_1} \left(\pdv{F}{y} - \dv{x}\pdv{F}{y'}\right)\eta\dd{x} = 0 \quad \forall \eta.
     \end{equation*}
     Applicando il lemma fondamentale del calcolo delle variazioni, otteniamo
     \begin{equation*}
@@ -834,28 +836,38 @@ Introduciamo la seguente notazione per indicare una variazione infinitesima di $
 \begin{equation*}
     \var{y} = \alpha \eta.
 \end{equation*}
-Notiamo che vale la seguente relazione
-\begin{equation*}
-    (\var{y})' = \alpha \eta' = \var{y'}.
-\end{equation*}
-
-\begin{definition}[Operatore variazionale di Lagrange]
-    Dato un funzionale $I[y]$, definiamo la \emph{variazione prima di $I$} come
+Notiamo che vale \begin{definition}[Variazione prima di un funzionale]
+    Dato un funzionale $I[y]$ e introdotta una perturbazione ammissibile $y(x) = y^*(x) + \alpha \eta(x)$, definiamo la \emph{variazione prima di $I$} come
     \begin{equation*}
         \var{I} \defeq \left(\dv{I}{\alpha}\right)_{\alpha=0}.
     \end{equation*}
 \end{definition}
-Sviluppando i conti, otteniamo il seguente sviluppo:
+
+Questa definizione si comprende intuitivamente sviluppando in serie di MacLaurin il funzionale $I(\alpha) \defeq I[y^* + \alpha \eta]$:
 \begin{align*}
-    I[y^* + \var{y}] &= I[y^*] + \alpha \int_{x_0}^{x_1} \left[\pdv{F}{y}\eta + \pdv{F}{y'}\eta'\right] \dd{x} + \dots
+    I(\alpha) &= I(0) + \left(\dv{I}{\alpha}\right)_{\alpha=0} \alpha + \operatorname{o}(\alpha) \\
+    &= I(0) + \var{I} \alpha + \operatorname{o}(\alpha).
 \end{align*}
-Integrando per parti il secondo termine e applicando le condizioni al contorno, ricaviamo la variazione prima:
+
+Dalla dimostrazione del teorema di Eulero abbiamo già calcolato la variazione prima:
 \begin{equation*}
-    \var{I} = \int_{x_0}^{x_1} \left[\pdv{F}{y} - \dv{x} \pdv{F}{y'}\right] \alpha \eta \dd{x} = \int_{x_0}^{x_1} \left[\pdv{F}{y} - \dv{x} \pdv{F}{y'}\right] \var{y} \dd{x}.
+    \var{I} = \int_{x_0}^{x_1} \left[\pdv{F}{y}\eta + \pdv{F}{y'}\eta'\right] \dd{x}.
 \end{equation*}
-Possiamo quindi riscrivere lo sviluppo finale di $I[y^* + \var{y}]$ in modo rigoroso unendo i due risultati:
+Per scrivere questo termine in una forma più utile, facendo emergere l'equazione di Eulero--Lagrange, esplicitiamo l'integrazione per parti del secondo termine:
 \begin{equation*}
-    I[y^* + \var{y}] = I[y^*] + \int_{x_0}^{x_1} \left[\pdv{F}{y} - \dv{x} \pdv{F}{y'}\right] \var{y} \dd{x} + \dots
+    \int_{x_0}^{x_1} \pdv{F}{y'}\eta'\dd{x} = \left[\pdv{F}{y'}\eta\right]_{x_0}^{x_1} - \int_{x_0}^{x_1} \dv{x}\left(\pdv{F}{y'}\right)\eta\dd{x}.
+\end{equation*}
+Poiché $\eta(x_0) = \eta(x_1) = 0$ per ipotesi, il termine di bordo valutato agli estremi si annulla. Sostituendo questo risultato nell'espressione per $\var{I}$, ricaviamo:
+\begin{equation*}
+    \var{I} = \int_{x_0}^{x_1} \left[\pdv{F}{y} - \dv{x} \pdv{F}{y'}\right] \eta \dd{x}.
+\end{equation*}
+In conclusione, ricordando la definizione di variazione della funzione $\var{y} = \alpha \eta$, il termine lineare dello sviluppo $\alpha\var{I}$ diventa:
+\begin{equation*}
+    \alpha\var{I} = \alpha \int_{x_0}^{x_1} \left[\pdv{F}{y} - \dv{x} \pdv{F}{y'}\right] \eta \dd{x} = \int_{x_0}^{x_1} \left[\pdv{F}{y} - \dv{x} \pdv{F}{y'}\right] \var{y} \dd{x}.
+\end{equation*}
+Unendo i risultati, lo sviluppo del funzionale perturbato $I[y^* + \var{y}]$ si può scrivere evidenziando esplicitamente l'incremento al primo ordine rispetto a $\var{y}$:
+\begin{equation*}
+    I[y^* + \var{y}] = I[y^*] + \alpha\var{I} + \dots = I[y^*] + \int_{x_0}^{x_1} \left[\pdv{F}{y} - \dv{x} \pdv{F}{y'}\right] \var{y} \dd{x} + \dots
 \end{equation*}
 
 Considerando, invece, una n-upla di funzioni, definiamo un funzionale integrale del tipo
@@ -873,14 +885,16 @@ il teorema di Eulero si generalizza in maniera immediata, fornendo un sistema di
         \pdv{F}{y_i} - \dv{x}\pdv{F}{y_i'} = 0 \qquad i = 1, \dots, n.
     \end{equation*}
 \end{theorem}
-La dimostrazione è del tutto analoga a quella del teorema di Eulero per una sola variabile, con la differenza che si deve considerare una variazione infinitesima di ogni funzione $y_i$, ottenendo alla fine
-\begin{equation*}
-    0 = \left(\dv{I}{\alpha}\right)_{\alpha=0} = \int_{x_0}^{x_1} \sum_{i=1}^n \left[\pdv{F}{y_i} - \dv{x}\pdv{F}{y_i'}\right] \eta_i \dd{x} \quad \forall \eta_1, \dots, \eta_n,
-\end{equation*}
-e quindi
-\begin{equation*}
-    \pdv{F}{y_i} - \dv{x}\pdv{F}{y_i'} = 0 \qquad i = 1, \dots, n.
-\end{equation*}
+\begin{proof}
+    La dimostrazione è del tutto analoga a quella del teorema di Eulero per una sola variabile, con la differenza che si deve considerare una variazione infinitesima di ogni funzione $y_i$, ottenendo alla fine
+    \begin{equation*}
+        0 = \left(\dv{I}{\alpha}\right)_{\alpha=0} = \int_{x_0}^{x_1} \sum_{i=1}^n \left[\pdv{F}{y_i} - \dv{x}\pdv{F}{y_i'}\right] \eta_i \dd{x} \quad \forall \eta_1, \dots, \eta_n,
+    \end{equation*}
+    e quindi
+    \begin{equation*}
+        \pdv{F}{y_i} - \dv{x}\pdv{F}{y_i'} = 0 \qquad i = 1, \dots, n.
+    \end{equation*}
+\end{proof}
 
 \begin{definition}[Funzionale stazionario]
     Sia un funzionale integrale
@@ -913,17 +927,15 @@ Introdotto il principio di Hamilton, è possibile dimostrare la seguente proprie
     Le equazioni di Lagrange sono invarianti per trasformazioni puntuali di coordinate.
 \end{proposition}
 \begin{proof}
-    Sia $L$ la lagrangiana di un sistema in coordinate $\vq$ e sia $\vQ = \vf(\vq)$ una trasformazione puntuale di coordinate. La lagrangiana del sistema in coordinate $Q_i$ è data da
+    Sia $L$ la lagrangiana di un sistema in coordinate $\vq$ e sia $\vQ = \vf(\vq, t)$ una trasformazione puntuale di coordinate\note{Una valida trasformazione di coordinate sottintende sempre l'ipotesi di invertibilità locale $$\det \pdv{\vQ}{\vq} \neq 0,$$ che garantisce l'esistenza dell'inversa $\vq = \vq(\vQ, t)$.}.
+    
+    La lagrangiana del sistema nelle nuove coordinate $Q_i$ si ottiene per semplice sostituzione:
     \begin{equation*}
-        L^*(\vQ, \dot{\vQ}, t) = L(\vq, \dot{\vq}, t).
+        L^*(\vQ, \dot{\vQ}, t) = L(\vq(\vQ, t), \dot{\vq}(\vQ, \dot{\vQ}, t), t).
     \end{equation*}
-    Poiché $L$ e $L^*$ sono la stessa funzione scalare si ha
+    Poiché $L$ e $L^*$ rappresentano numericamente la stessa grandezza fisica, gli integrali d'azione coincidono lungo ogni traiettoria e pertanto anche le loro variazioni:
     \begin{equation*}
-        \int_{t_1}^{t_2} L^*(\vQ, \dot{\vQ}, t) \dd{t} = \int_{t_1}^{t_2} L(\vq, \dot{\vq}, t) \dd{t} \implies \var{A^*} = \var{A},
-    \end{equation*}
-    dove abbiamo
-    \begin{equation*}
-        \vq(\vQ, t), \quad \dot{\vq}(\vQ, \dot{\vQ}, t).
+        \int_{t_1}^{t_2} L^*(\vQ, \dot{\vQ}, t) \dd{t} = \int_{t_1}^{t_2} L(\vq, \dot{\vq}, t) \dd{t} \implies \var{A^*} = \var{A}.
     \end{equation*}
     Pertanto, se $A$ è stazionario, allora anche $A^*$ è stazionario, e viceversa. Di conseguenza, le equazioni di Lagrange in coordinate $\vq$ e in coordinate $\vQ$ sono equivalenti, ovvero
     \begin{equation*}
