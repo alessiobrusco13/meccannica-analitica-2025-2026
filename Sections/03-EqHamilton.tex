@@ -8,7 +8,7 @@ Consideriamo il calcolo del differenziale di una funzione di due variabili $f(x,
 \begin{equation*}
     \dd{f} = \pdv{f}{x} \dd{x} + \pdv{f}{y} \dd{y} = u \dd{x} + v \dd{y}.
 \end{equation*}
-Talvolta può risultare utile scrivere il differenziale di $f$ in termini di $u$ e $v$ invece che di $x$ e $y$. Attraverso la regola di Leibniz si ha
+Talvolta può risultare utile scrivere il differenziale di $f$ in termini di $u$ e $y$ invece che di $x$ e $y$. Attraverso la regola di Leibniz si ha
 \begin{equation*}
     \dd{f} = \dd{(ux)} - x \dd{u} + \dd{(vy)} - y \dd{v} = \dd{(ux)} - x \dd{u} + v \dd{y},
 \end{equation*}
@@ -38,11 +38,11 @@ Partiamo dalle equazioni di Lagrange
 Le equazioni possono essere riscritte in termini dei momenti coniugati
 \begin{equation}
     \label{eq:momenticoniugati}
-    p_i = \pdv{L}{\dot{q}_i}, \qquad \dot{p}_i = \pdv{L}{q_i},
+    p_i = \pdv{L}{\dot{q}_i}, \qquad \dot{p}_i = \pdv{L}{q_i},\note{Sostituiamo $p_i=\pdv{L}{\dot{q}_i}$ nelle equazioni di Lagrange e otteniamo $\dot{p}_i = \pdv{L}{q_i}$}
 \end{equation}
 ottenendo $2n$ equazioni differenziali del primo ordine invece di $n$ equazioni differenziali del secondo ordine.
 
-Calcoliamo il differenziale della lagrangiana e la trasformata di Legendre
+Calcoliamo il differenziale della lagrangiana e applichiamo la trasformata di Legendre
 \begin{align*}
     \dd{L} &= \sum_{j=1}^n \left( \pdv{L}{\dot{q}_j} \dd{\dot{q_j}} + \pdv{L}{q_j} \dd{q_j} \right) + \pdv{L}{t} \dd{t} \\
     &= \sum_{j=1}^n \dot{p}_j \dd{q_j} +  \sum_{j=1}^n p_j \dd{\dot{q_j}} + \pdv{L}{t} \dd{t} \\
@@ -58,20 +58,29 @@ Definiamo quindi la funzione
 \end{equation}
 ottenendo
 \begin{equation*}
-    -\dd{H} = \sum_{j=1}^n \dot{p}_j \dd{q_j} - \sum_{j=1}^n \dot{q}_j \dd{p_j} + \pdv{L}{t} \dd{t}.
+    \dd{H} = -\sum_{j=1}^n \dot{p}_j \dd{q_j} + \sum_{j=1}^n \dot{q}_j \dd{p_j} - \pdv{L}{t} \dd{t}.
 \end{equation*}
 Calcolando il differenziale di $H$ dalla \eqref{eq:hamiltoniana} si ha
 \begin{equation*}
     \dd{H} = \sum_{j=1}^n \pdv{H}{q_j} \dd{q_j} + \sum_{j=1}^n \pdv{H}{p_j} \dd{p_j} + \pdv{H}{t} \dd{t},
 \end{equation*}
-e confrontando le due equazioni si ha
+e confrontando le due equazioni otteniamo
 \begin{equation*}
  \dot{q}_j = \pdv{H}{p_j}, \qquad \dot{p}_j = -\pdv{H}{q_j}, \qquad \pdv{H}{t} = -\pdv{L}{t}.
 \end{equation*}
 
 La funzione $H$ è la trasformata di Legendre di $L$ e viene detta \emph{hamiltoniana} del sistema.
 
-Se la trasformazione di Legendre è regolare, ovvero se la matrice jacobiana della trasformazione $\dot{\vq} \mapsto \vp$, nota anche come \emph{matrice hessiana} della lagrangiana rispetto alle velocità, ha determinante non nullo:
+Le $2n$ equazioni differenziali ordinarie del primo ordine in $2n$ incognite
+\begin{equation*}
+    \begin{cases}
+        \displaystyle \dot{q}_j = \pdv{H}{p_j} \\[0.3cm]
+        \displaystyle \dot{p}_j = -\pdv{H}{q_j}
+    \end{cases}
+\end{equation*}
+vengono dette \emph{equazioni di Hamilton} o \emph{equazioni canoniche della meccanica}.
+
+Se la matrice jacobiana della trasformazione $\dot{\vq} \mapsto \vp$, nota anche come \emph{matrice hessiana} della lagrangiana rispetto alle velocità, ha determinante non nullo:
 \begin{equation*}
     \det\left(\pdv{p_i}{\dot{q}_j}\right) = \det\left(\pdv[2]{L}{\dot{q}_i}{\dot{q}_j}\right) \neq 0,
 \end{equation*}
@@ -99,33 +108,6 @@ ovvero si passa dallo spazio $n$-dimensionale delle configurazioni allo spazio $
     \end{equation}
 \end{remark}
 
-Le $2n$ equazioni differenziali ordinarie del primo ordine in $2n$ incognite
-\begin{equation*}
-    \begin{cases}
-        \displaystyle \dot{q}_j = \pdv{H}{p_j} \\[0.3cm]
-        \displaystyle \dot{p}_j = -\pdv{H}{q_j}
-    \end{cases}
-\end{equation*}
-vengono dette \emph{equazioni di Hamilton} o \emph{equazioni canoniche della meccanica}.
-
-Sotto le medesime ipotesi dell'osservazione~\ref{rem:matrice_hessiana}, sostituendo l'espressione dei momenti coniugati \eqref{eq:p_i_lineari} nella definizione dell'hamiltoniana si ottiene:
-\begin{equation*}
-    H = \sum_{j=1}^n p_j \dot{q}_j - L = \sum_{i,j=1}^n a_{ij} \dot{q}_i \dot{q}_j - (T - V).
-\end{equation*}
-Ricordando la definizione dell'energia cinetica \eqref{eq:T_2_quadratica}, la relazione si riduce a:
-\begin{equation*}
-    H = 2T - (T - V) = T + V.
-\end{equation*}
-L'hamiltoniana coincide pertanto con l'energia meccanica totale del sistema.
-
-\begin{remark}
-    Nella formulazione dello spazio delle fasi il tempo può essere trattato come una coordinata generalizzata; in tale contesto il suo momento coniugato è legato all'hamiltoniana, con la convenzione usuale
-    \begin{equation*}
-        p_t = -H.
-    \end{equation*}
-    Avendo appurato che in molti sistemi fisici l'hamiltoniana coincide con l'energia meccanica, si deduce che \emph{l'energia} gioca il ruolo del momento generalizzato associato alla variabile tempo, a meno del segno che dipende dalla convenzione scelta.
-\end{remark}
-
 \begin{example}[Oscillatore armonico]
     % Guida orizzontale, molla con coefficiente k nell'origine punto P di massa M
     Consideriamo un oscillatore armonico, ovvero una massa $m$ che si muove su una guida orizzontale e che è collegata a una molla con coefficiente elastico $k$ ancorata all'origine. La coordinata generalizzata è data da $q = x$, e la lagrangiana è data da
@@ -149,6 +131,36 @@ L'hamiltoniana coincide pertanto con l'energia meccanica totale del sistema.
         \end{cases}
     \end{equation*}
 \end{example}
+
+\section{L'hamiltoniana e l'energia meccanica}
+Sotto le medesime ipotesi dell'osservazione~\ref{rem:matrice_hessiana}, sostituendo l'espressione dei momenti coniugati \eqref{eq:p_i_lineari} nella definizione dell'hamiltoniana si ottiene:
+\begin{equation*}
+    H = \sum_{j=1}^n p_j \dot{q}_j - L = \sum_{i,j=1}^n a_{ij} \dot{q}_i \dot{q}_j - (T - V).
+\end{equation*}
+Ricordando la definizione dell'energia cinetica \eqref{eq:T_2_quadratica}, la relazione si riduce a:
+\begin{equation*}
+    H = 2T - (T - V) = T + V.
+\end{equation*}
+L'hamiltoniana coincide pertanto con l'energia meccanica totale del sistema.
+
+Un risultato fondamentale che discende dalle equazioni canoniche riguarda l'evoluzione temporale dell'hamiltoniana. Calcoliamo la derivata totale di $H(\vq(t), \vp(t), t)$ rispetto al tempo lungo una traiettoria del sistema:
+\begin{equation*}
+    \dv{H}{t} = \sum_{j=1}^n \left( \pdv{H}{q_j} \dot{q}_j + \pdv{H}{p_j} \dot{p}_j \right) + \pdv{H}{t}.
+\end{equation*}
+Sostituendo le equazioni di Hamilton $\dot{q}_j = \pdv{H}{p_j}$ e $\dot{p}_j = -\pdv{H}{q_j}$ all'interno della sommatoria, si ottiene:
+\begin{align*}
+    \dv{H}{t} &= \sum_{j=1}^n \left( \pdv{H}{q_j} \pdv{H}{p_j} - \pdv{H}{p_j} \pdv{H}{q_j} \right) + \pdv{H}{t} \\
+    &= \pdv{H}{t}.
+\end{align*}
+Questa identità dimostra che la variazione totale dell'hamiltoniana nel tempo coincide con la sua derivata parziale. Di conseguenza, se il sistema è autonomo, ovvero se l'hamiltoniana non dipende esplicitamente dal tempo ($\pdv{H}{t} = 0$), allora $H$ è una costante del moto ($\dv{H}{t} = 0$). Questo risultato rappresenta la formulazione hamiltoniana del teorema di conservazione dell'energia.
+
+\begin{remark}
+    Nella formulazione dello spazio delle fasi il tempo può essere trattato come una coordinata generalizzata; in tale contesto, il suo momento coniugato è dato da
+    \begin{equation*}
+        p_t = - H.
+    \end{equation*}
+    Per cui, il momento coniugato al tempo coincide con l'energia meccanica totale del sistema, quando quest'ultima coincide con l'hamiltoniana.
+\end{remark}
 
 Va notato che la funzione $H$ presenta una forma estremamente simile alla funzione $h$ di Jacobi:
 \begin{equation*}
@@ -196,23 +208,12 @@ e integrando le equazioni di Hamilton si ha
 \end{align*}
 Si ha quindi che se è possibile trovare un sistema di coordinate in cui tutte le coordinate siano cicliche allora il sistema è risolvibile per \emph{quadrature}, ovvero è possibile risolvere le equazioni di Hamilton attraverso un numero finito di integrazioni.
 
-Considerando un moto del sistema $\vq(t)$, $\vp(t)$ e mantenendo l'ipotesi che $\pdv{H}{t} = 0$, calcoliamo
-\begin{align*}
-    \dv{H(\vq(t), \vp(t))}{t} &= \sum_{j=1}^n \left( \pdv{H}{q_j} \dot{q}_j + \pdv{H}{p_j} \dot{p}_j \right) + \pdv{H}{t}
-    \\ &= \sum_{j=1}^n \left( \pdv{H}{q_j} \pdv{H}{p_j} - \pdv{H}{p_j} \pdv{H}{q_j} \right) \\
-    &= \pdv{H}{t} = 0.
-\end{align*}
-
 \section{Principio di Hamilton modificato}
 Partiamo dal principio di Hamilton e sostituiamo l'inversa della trasformazione di Legendre della lagrangiana:
 \begin{equation*}
     \var \int_{t_0}^{t_1} L(\vq, \dot{\vq}, t) \dd{t} = \var \int_{t_0}^{t_1} \left( \sum_{j=1}^n p_j \dot{q}_j - H(\vq, \vp, t) \right) \dd{t} = 0.
 \end{equation*}
-Applicando l'operatore variazionale si ha
-\begin{equation*}
-\var \int_{t_0}^{t_1} L \dd{t} = \int_{t_0}^{t_1} \sum_{k=1}^n \left( \pdv{L}{q_k} - \dv{t}\pdv{L}{\dot{q}_k} \right) \var{q_k} \dd{t} + \left[\sum_{k=1}^n \pdv{L}{\dot{q}_k} \var{q}_k \right]_{t_0}^{t_1}.
-\end{equation*}
-Considerando ora come lagrangiana la funzione
+Considerando quindi come lagrangiana la funzione
 \begin{equation*}
     L^*(\vq, \vp, \dot{\vq}, \dot{\vp}, t) = \sum_{j=1}^n p_j \dot{q}_j - H(\vq, \vp, t),
 \end{equation*}
@@ -235,55 +236,57 @@ ottenendo così le equazioni di Hamilton.
 \begin{definition}[Parentesi di Poisson]
     Siano $f(\vq, \vp, t)$ e $g(\vq, \vp, t)$ due funzioni di classe $C^1$ nelle variabili canoniche\note{Le variabili canoniche sono le coordinate generalizzate $q_i$ e i momenti coniugati $p_i$}. Si definisce \emph{parentesi di Poisson} di $f$ e $g$
     \begin{equation*}
-        \{f, g\} \defeq \sum_{j=1}^n \left( \pdv{f}{q_j} \pdv{g}{p_j} - \pdv{f}{p_j} \pdv{g}{q_j} \right).
+        \pb{f}{g} \defeq \sum_{j=1}^n \left( \pdv{f}{q_j} \pdv{g}{p_j} - \pdv{f}{p_j} \pdv{g}{q_j} \right).
     \end{equation*}
 \end{definition}
 
 Analizziamo ora le proprietà delle parentesi di Poisson. Siano $f(\vq, \vp, t)$, $g(\vq, \vp, t)$ e $h(\vq, \vp, t)$ tre funzioni di classe $C^1$ nelle variabili canoniche, allora
 \begin{enumerate}[label=($\roman*$)]
-    \item $\{f, f\} = 0$;
-    \item $\{f, g\} = - \{g, f\}$ (antisimmetria);
-    \item $\{c, f\} = 0$, per ogni $c\in\R$;
-    \item $\{\alpha f + \beta g, h\} = \alpha \{f, h\} + \beta \{g, h\}$, per ogni $\alpha, \beta\in \R$  (linearità);
-    \item $\pdv{t} \{f, g\} = \{\dot{f}, g\} + \{f, \dot{g}\}$;
-    \item $\{f, \{g, h\}\} + \{g, \{h, f\}\} + \{h, \{f, g\}\} = 0$ (identità di Jacobi--Poisson).\note{permutando ciclicamente le funzioni}
+    \item $\pb{f}{f} = 0$;
+    \item $\pb{f}{g} = - \pb{g}{f}$ (antisimmetria);
+    \item $\pb{c}{f} = 0$, per ogni $c\in\R$;
+    \item $\pb{\alpha f + \beta g}{h} = \alpha \pb{f}{h} + \beta \pb{g}{h}$, per ogni $\alpha, \beta\in \R$  (linearità);
+    \item $\displaystyle \pdv{t} \pb{f}{g} = \pb{\pdv{f}{t}}{g} + \pb{f}{\pdv{g}{t}}$;
+    \item $\pb{f}{\pb{g}{h}} + \pb{g}{\pb{h}{f}} + \pb{h}{\pb{f}{g}} = 0$ (identità di Jacobi--Poisson).\note{permutando ciclicamente le funzioni}
 \end{enumerate}
 
 \vspace{1em}
 È interessante notare che la proprietà ($v$) è valida considerando qualsiasi operatore differenziale $\mathcal{D}$ al posto della derivata temporale $\pdv{t}$:
 \begin{equation*}
-    \mathcal{D} \{f, g\} = \{\mathcal{D} f, g\} + \{f, \mathcal{D} g\}.
+    \mathcal{D} \pb{f}{g} = \pb{\mathcal{D} f}{g} + \pb{f}{\mathcal{D} g}.
 \end{equation*}
 
 \begin{definition}[Integrale primo per le equazioni di Hamilton]
     Una funzione $f(\vq, \vp, t)$ è un \emph{integrale primo} per le equazioni di Hamilton se $f$ si conserva costante sulle soluzioni di tali equazioni.
 \end{definition}
-\begin{remark}
+\begin{proposition}
     $f$ è un integrale primo se e soltanto se 
-    \begin{equation*}
-        \pdv{f}{t} + \{f, H\} = 0.
-    \end{equation*}
-    Infatti data una soluzione $\vq(t)$, $\vp(t)$ delle equazioni di Hamilton, si ha che
+    \begin{equation}\label{eq:integrale_primo_poisson}
+        \pdv{f}{t} + \pb{f}{H} = 0.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    Data una soluzione $\vq(t)$, $\vp(t)$ delle equazioni di Hamilton, si ha che
     \begin{align*}
         \dv{f(\vq(t), \vp(t), t)}{t} &= \pdv{f}{t} + \sum_{j=1}^n \left( \pdv{f}{q_j} \dot{q}_j + \pdv{f}{p_j} \dot{p}_j \right) \\
         &= \pdv{f}{t} + \sum_{j=1}^n \left(\pdv{f}{q_j} \pdv{H}{p_j} - \pdv{f}{p_j} \pdv{H}{q_j} \right) \\
-        &= \pdv{f}{t} + \{f, H\}.
+        &= \pdv{f}{t} + \pb{f}{H}.
     \end{align*}
-\end{remark}
+\end{proof}
 
 \begin{theorem}[Jacobi--Poisson]
-    Se $f$ e $g$ sono integrali primi delle equazioni di Hamilton, allora anche $\{f, g\}$ è un integrale primo.
+    Se $f$ e $g$ sono integrali primi delle equazioni di Hamilton, allora anche $\pb{f}{g}$ è un integrale primo.
 \end{theorem}
 \begin{proof}
     Vogliamo dimostrare che 
     \begin{equation*}
-        \{f,g\} \text{ è un integrale primo} \iff \pdv{t} \{f, g\} + \{\{f, g\}, H\} = 0.
+        \pb{f}{g} \text{ è un integrale primo} \iff \pdv{t} \pb{f}{g} + \pb{\pb{f}{g}}{H} = 0.
     \end{equation*}
     Calcoliamo
     \begin{align*}
-        \pdv{t} \{f, g\} + \{\{f, g\}, H\} &= \{\dot{f}, g\} + \{f, \dot{g}\} + \{\{f, g\}, H\} \\
-        &= -\{\{f,H\}, g\} - \{f, \{g, H\}\} - \{H, \{f, g\}\} \\
-        &= -\{g, \{H, f\}\} - \{f, \{g, H\}\} - \{H, \{f, g\}\} \\
+        \pdv{t} \pb{f}{g} + \pb{\pb{f}{g}}{H} &= \pb{\pdv{f}{t}}{g} + \pb{f}{\pdv{g}{t}} + \pb{\pb{f}{g}}{H} \\
+        &= -\pb{\pb{f}{H}}{g} - \pb{f}{\pb{g}{H}} - \pb{H}{\pb{f}{g}} \note{Utilizzando l'equazione~\eqref{eq:integrale_primo_poisson}}\\
+        &= -\pb{g}{\pb{H}{f}} - \pb{f}{\pb{g}{H}} - \pb{H}{\pb{f}{g}} \\
         &= 0,
     \end{align*}
     avendo utilizzato l'identità di Jacobi--Poisson.
@@ -292,22 +295,22 @@ Analizziamo ora le proprietà delle parentesi di Poisson. Siano $f(\vq, \vp, t)$
 \begin{definition}
     Si dicono \emph{parentesi di Poisson fondamentali} le seguenti relazioni fra le variabili canoniche $q_i$ e $p_i$:
     \begin{itemize}
-        \item $\{q_i, q_j\} = 0$;
-        \item $\{p_i, p_j\} = 0$;
-        \item $\{q_i, p_j\} = \delta_{ij}$,
+        \item $\pb{q_i}{q_j} = 0$;
+        \item $\pb{p_i}{p_j} = 0$;
+        \item $\pb{q_i}{p_j} = \delta_{ij}$,
     \end{itemize}
     dove $\delta_{ij}$ è la delta di Kronecker.
 \end{definition}
 
 Calcolando le parentesi di Poisson fra $q_i$ e $H$ e fra $p_i$ e $H$ si ha
 \begin{equation*}
-    \{q_i, H\} = \pdv{H}{p_i}, \qquad \{p_i, H\} = - \pdv{H}{q_i},
+    \pb{q_i}{H} = \pdv{H}{p_i}, \qquad \pb{p_i}{H} = - \pdv{H}{q_i},
 \end{equation*}
 per cui le equazioni di Hamilton possono essere riscritte in termini di parentesi di Poisson
 \begin{equation*}
     \begin{cases}
-        \displaystyle \dot{q}_i = \{q_i, H\} \\
-        \displaystyle \dot{p}_i = \{p_i, H\}
+        \displaystyle \dot{q}_i = \pb{q_i}{H} \\
+        \displaystyle \dot{p}_i = \pb{p_i}{H}
     \end{cases}
 \end{equation*}
 
@@ -316,7 +319,7 @@ Introduciamo la quantità\note{Lezione 28/04/2026}
 \begin{equation*}
     \eta_i = q_i, \qquad \eta_{n+i} = p_i, \qquad i = 1, \dots, n,
 \end{equation*}
-definendo un vettore $\vb{\eta} = (q_1, \dots, q_n, p_1, \dots, p_n)$ che contiene tutte le variabili canoniche. Definiamo inoltre la matrice
+definendo un vettore $\vb*{\eta} = (q_1, \dots, q_n, p_1, \dots, p_n)$ che contiene tutte le variabili canoniche. Definiamo inoltre la matrice
 \begin{align*}
     \tens{J} &= \begin{pmatrix}
         \tens{0} & \tens{1} \\
@@ -341,14 +344,11 @@ Le equazioni di Hamilton possono essere riscritte in forma compatta
 \section{Trasformazioni canoniche}
 Le equazioni di Lagrange sono invarianti per trasformazioni di coordinate. L'elevata simmetria delle equazioni di Hamilton rende più complicato questo problema: può accadere che partendo da un sistema hamiltoniano e applicando una trasformazione di coordinate, il sistema trasformato non è più hamiltoniano. 
 
-Spesso si cerca una trasformazione di coordinate che semplifichi la risoluzione del problema; poniamo quindi il seguente obiettivo:
-\begin{quote}
-    Dato un'hamiltoniana $H(\vq,\vp)$, determinare una trasformazione di coordinate $Q_i = Q_i(\vq, \vp)$, $P_i=P_i(\vq,\vp)$ tale che la nuova hamiltoniana $K$ abbia tutte le coordinate $Q$ cicliche.
-\end{quote}
 Come per l'approccio lagrangiano, è fondamentale che la trasformazione di coordinate sia regolare, ovvero che 
 \begin{equation*}
-\det \pdv{(Q_1, \dots, Q_n, P_1, \dots, P_n)}{(q_1, \dots, q_n, p_1, \dots, p_n)} \neq 0.
+\det \pdv{(Q_1, \dots, Q_n, P_1, \dots, P_n)}{(q_1, \dots, q_n, p_1, \dots, p_n)} \neq 0,
 \end{equation*}
+tuttavia ciò non è sufficiente per garantire che le nuove coordinate trasformate rispettino le equazioni di Hamilton.
 
 \begin{definition}[Trasformazione canonica]
     Una trasformazione di coordinate $Q_i = Q_i(\vq, \vp, t)$, $P_i=P_i(\vq,\vp, t)$ nello spazio delle fasi si dice \emph{canonica} se conserva la struttura canonica delle equazioni, ovvero se le nuove coordinate $Q_i$ e $P_i$ soddisfano le equazioni di Hamilton con la nuova hamiltoniana $K(\vQ, \vP, t)$:
@@ -369,30 +369,34 @@ Data una trasformazione canonica, il principio di Hamilton modificato per $H$ e 
 \end{align*}
 
 \subsection{Condizioni di canonicità}
-Una condizione necessaria e sufficiente affinché una trasformazione di coordinate sia canonica è che
-\begin{align*}
-    \lambda \left(\sum_{j=1}^n p_j \dot{q}_j - H(\vq, \vp, t)\right) &= \sum_{j=1}^n P_j \dot{Q}_j - K(\vQ, \vP, t) + \dv{F}{t}.
-\end{align*}
-dove $\lambda$ è una costante reale, detta \emph{valenza della trasformazione}, e $F$ è una funzione delle variabili canoniche e del tempo.
-L'aggiunta del termine $\dv{F}{t}$ all'integrando non modifica le equazioni di Eulero--Lagrange, poiché
-\begin{equation*}
-    \var \int_{t_0}^{t_1} \dv{F}{t} \dd{t} = \var \left[ F(\vq, \vp, t) \right]_{t_0}^{t_1} = 0,\note{$[F]_{t_0}^{t_1}$ non dipende dalla specifica traiettoria scelta, quindi la sua variazione è nulla}
-\end{equation*}
-avendo che $\var{\vq}(t_0) = \var{\vq}(t_1) = \vb{0}$ e $\var{\vp}(t_0) = \var{\vp}(t_1) = \vb{0}$.
-
-D'ora in avanti considereremo solo le trasformazioni canoniche con valenza $\lambda = 1$, dette \emph{univalenti}.
+Una condizione necessaria e sufficiente affinché una trasformazione di coordinate sia canonica è data dal seguente teorema.
 
 \begin{theorem}[Condizione di canonicità di Lie]
     Una trasformazione puntuale nello spazio delle fasi,
     \begin{equation*}
-        Q_i = Q_i(\vq, t), \qquad P_i = P_i(\vq, t), \qquad i = 1, \dots, n,
+        Q_i = Q_i(\vq, \vp, t), \qquad P_i = P_i(\vq, \vp, t), \qquad i = 1, \dots, n,
     \end{equation*}
     è canonica se e solo se 
     \begin{equation*}
-        \sum_{j=1}^n p_j \dot{q}_j - H(\vq, \vp, t) = \sum_{j=1}^n P_j \dot{Q}_j - K(\vQ, \vP, t) + \dv{F}{t},
+        \lambda \left(\sum_{j=1}^n p_j \dot{q}_j - H(\vq, \vp, t)\right) = \sum_{j=1}^n P_j \dot{Q}_j - K(\vQ, \vP, t) + \dv{F}{t},
     \end{equation*}
-    dove $F$ è una funzione delle $2n$\note{$2n$ perché $F$ può dipendere sia le nuove che le vecchie variabili} variabili canoniche detta \emph{funzione generatrice della trasformazione canonica}.
+    dove $\lambda$ è una costante reale non nulla, detta \emph{valenza della trasformazione}, e $F$ è una funzione delle $2n$ variabili canoniche e del tempo, detta \emph{funzione generatrice della trasformazione canonica}.
 \end{theorem}
+
+L'aggiunta del termine $\dv{F}{t}$ all'integrando non ha effetto sulle equazioni di Eulero--Lagrange, poiché la variazione prima del suo integrale è identicamente nulla. Infatti, esplicitando l'operatore di variazione $\var$ si ottiene
+\begin{align*}
+    \var \int_{t_0}^{t_1} \dv{F}{t} \dd{t} &= \var \left[ F(\vq, \vp, t) \right]_{t_0}^{t_1} \\
+    &= \left[ \sum_{j=1}^n \left(\pdv{F}{q_j} \var{q_j} + \pdv{F}{p_j} \var{p_j} \right) \right]_{t_0}^{t_1} \\
+    &= \sum_{j=1}^n \left( \left. \pdv{F}{q_j} \right|_{t_1} \var{q_j}(t_1) - \left. \pdv{F}{q_j} \right|_{t_0} \var{q_j}(t_0) \right) \\
+    &\quad + \sum_{j=1}^n \left( \left. \pdv{F}{p_j} \right|_{t_1} \var{p_j}(t_1) - \left. \pdv{F}{p_j} \right|_{t_0} \var{p_j}(t_0) \right).
+\end{align*}
+Ricordando che $\var{\vq}(t_0) = \var{\vq}(t_1) = \vb{0}$ e $\var{\vp}(t_0) = \var{\vp}(t_1) = \vb{0}$, si conclude che
+\begin{equation*}
+    \var \int_{t_0}^{t_1} \dv{F}{t} \dd{t} = 0.
+\end{equation*}
+
+D'ora in avanti considereremo solo le trasformazioni canoniche con valenza $\lambda = 1$, dette \emph{univalenti}.
+
 \begin{remark}
     Una trasformazione canonica non è legata a una specifica hamiltoniana, ma è canonica per qualsiasi sistema.
 \end{remark}
@@ -417,6 +421,13 @@ Ulteriori condizioni per la canonicità di una trasformazione di coordinate sono
         \det \pdv{(Q_1, \dots, Q_n, P_1, \dots, P_n)}{(q_1, \dots, q_n, p_1, \dots, p_n)} = 1.
     \end{equation*}
 \end{proposition}
+\begin{remark}
+    La condizione di canonicità impone una precisa restrizione algebrica sulla matrice Jacobiana della trasformazione, che indicheremo con $\tens{M}$. Essa deve infatti preservare la struttura della matrice simplettica $\tens{J}$, traducendosi nella relazione matriciale
+    \begin{equation*}        
+        \tens{M}^T \tens{J} \tens{M} = \tens{J}.
+    \end{equation*}
+    Si noti come, applicando il teorema di Binet a questa espressione e ricordando che $\det\tens{J} = 1$, si ricavi immediatamente la condizione necessaria $\det\tens{M} = 1$.
+\end{remark}
 
 \subsection{Costruzione di trasformazioni canoniche fondamentali mediante funzioni generatrici}
 
@@ -428,21 +439,11 @@ Consideriamo una trasformazione canonica con funzione generatrice $F=F_1(\vq, \v
     \sum_{j=1}^n p_j \dd{q_j} - H(\vq, \vp, t) \dd{t} = \sum_{j=1}^n P_j \dd{Q_j} - K(\vQ, \vP, t) \dd{t} \\
     + \sum_{j=1}^n \pdv{F_1}{q_j} \dd{q_j} + \sum_{j=1}^n \pdv{F_1}{Q_j} \dd{Q_j} + \pdv{F_1}{t} \dd{t}.
 \end{multline*}
-Raggruppando i termini per differenziale indipendente (tutti i $\dd{q_j}$ insieme, tutti i $\dd{Q_j}$ insieme, e il $\dd{t}$) si ottiene
-\begin{multline*}
-    \sum_{j=1}^n p_j \dd{q_j} + \sum_{j=1}^n P_j \dd{Q_j} - H \dd{t} = \sum_{j=1}^n P_j \dd{Q_j} - K \dd{t} + \sum_{j=1}^n \pdv{F_1}{q_j} \dd{q_j} + \\
-    + \sum_{j=1}^n \pdv{F_1}{Q_j} \dd{Q_j} + \pdv{F_1}{t} \dd{t}
-\end{multline*}
-\vspace{-1.5em}
-\begin{multline*}
-    \sum_{j=1}^n p_j \dd{q_j} + \sum_{j=1}^n P_j \dd{Q_j} - H \dd{t} - \sum_{j=1}^n P_j \dd{Q_j} + K \dd{t} - \sum_{j=1}^n \pdv{F_1}{q_j} \dd{q_j} + \\
-    - \sum_{j=1}^n \pdv{F_1}{Q_j} \dd{Q_j} - \pdv{F_1}{t} \dd{t} = 0
-\end{multline*}
-\vspace{-1.5em}
-\begin{multline*}
-    \sum_{j=1}^n \left(p_j - \pdv{F_1}{q_j}\right) \dd{q_j} - \sum_{j=1}^n \left(P_j + \pdv{F_1}{Q_j}\right) \dd{Q_j} - \left(H - K + \pdv{F_1}{t}\right) \dd{t} = 0
-\end{multline*}
-Si ottengono quindi le relazioni
+Portando tutto a primo membro e raccogliendo rispetto a $\dd{q_j}$, $\dd{Q_j}$ e $\dd{t}$, l'equazione assume la forma
+\begin{equation*}
+    \sum_{j=1}^n \left(p_j - \pdv{F_1}{q_j}\right) \dd{q_j} - \sum_{j=1}^n \left(P_j + \pdv{F_1}{Q_j}\right) \dd{Q_j} - \left(H - K + \pdv{F_1}{t}\right) \dd{t} = 0.
+\end{equation*}
+Affinché questa identità sia soddisfatta, i coefficienti dei differenziali devono annullarsi identicamente. Si ottengono quindi le relazioni
 \begin{equation*}
     p_j = \pdv{F_1}{q_j}, \qquad
     P_j = - \pdv{F_1}{Q_j}, \qquad
@@ -450,25 +451,21 @@ Si ottengono quindi le relazioni
 \end{equation*}
 
 \paragraph{Generatrice $F_2(\vq, \vP, t)$}
-Costruiamo questa generatrice applicando la trasformata di Legendre a $F=F_1$ rispetto alla variabile $Q_j$. Partendo dalla condizione di Lie e applicando $\dd(\sum P_j Q_j) = \sum Q_j \dd P_j + \sum P_j \dd Q_j$, si ha
+Costruiamo questa generatrice applicando la trasformata di Legendre a $F=F_1$ rispetto alla variabile $Q_j$. Partendo dalla condizione di Lie e applicando la regola di Leibniz, si ha
 \begin{align*}
     \sum_{j=1}^n p_j \dd{q_j} - H \dd{t} &= \sum_{j=1}^n P_j\dd{Q_j} - K\dd{t} + \dd{F} \\
     &= \dd{\left(\sum_{j=1}^n P_j Q_j\right)} - \sum_{j=1}^n Q_j \dd{P_j} - K\dd{t} + \dd{F}.
 \end{align*}
 Raggruppando i termini si ha
-\begin{gather*}
-    \sum_{j=1}^n p_j \dd{q_j} - H \dd{t} - \dd{\left(\sum_{j=1}^n P_j Q_j\right)} 
-    + \sum_{j=1}^n Q_j \dd{P_j} + K\dd{t} = \dd{F} \\
-    \sum_{j=1}^n p_j \dd{q_j} + \sum_{j=1}^n Q_j \dd{P_j} 
-    + (K - H)\dd{t} = \dd{F} + \dd{\left(\sum_{j=1}^n P_j Q_j\right)} \\
+\begin{equation*}
     \sum_{j=1}^n p_j \dd{q_j} + \sum_{j=1}^n Q_j \dd{P_j} 
     + (K - H)\dd{t} = \dd{\left(F + \sum_{j=1}^n P_j Q_j\right)}.
-\end{gather*}
+\end{equation*}
 La funzione generatrice $F_2$ è quindi data da
 \begin{equation*}
     F_2(\vq, \vP, t) = \left[ F(\vq, \vQ, t) + \sum_{j=1}^n P_j Q_j \right]_{\vQ = \vQ(\vP, \vq, t)}.
 \end{equation*}
-Dalle corrispondenze tra i differenziali indipendenti ($\dd{q_j}$, $\dd{P_j}$, $\dd{t}$) si ottiene
+Dalle corrispondenze tra i differenziali indipendenti $\dd{q_j}$, $\dd{P_j}$, $\dd{t}$, si ottiene
 \begin{equation*}
     p_j = \pdv{F_2}{q_j}, \qquad
     Q_j = \pdv{F_2}{P_j}, \qquad
@@ -476,20 +473,19 @@ Dalle corrispondenze tra i differenziali indipendenti ($\dd{q_j}$, $\dd{P_j}$, $
 \end{equation*}
 
 \paragraph{Generatrice $F_3(\vp, \vQ, t)$}
-Questa generatrice si ottiene mediante trasformata di Legendre di $F=F_1$ rispetto a $q_j$. Partendo dalla condizione di Lie e applicando $\dd(\sum p_j q_j) = \sum q_j \dd p_j + \sum p_j \dd q_j$, si ha
-\begin{align*}
-    \dd{\left(\sum_{j=1}^n p_j q_j\right)} - \sum_{j=1}^n q_j \dd{p_j} - H\dd{t} &= \sum_{j=1}^n P_j \dd{Q_j} - K \dd{t} + \dd{F}.
-\end{align*}
-Raggruppando i termini
-\begin{gather*}
-    - \sum_{j=1}^n q_j \dd{p_j} - H\dd{t} = \sum_{j=1}^n P_j \dd{Q_j} - K \dd{t} + \dd{F} - \dd{\left(\sum_{j=1}^n p_j q_j\right)} \\
-    - \sum_{j=1}^n q_j \dd{p_j} - H\dd{t} = \sum_{j=1}^n P_j \dd{Q_j} - K \dd{t} + \dd{\left(F - \sum_{j=1}^n p_j q_j\right)}.
-\end{gather*}
+Questa generatrice si ottiene mediante trasformata di Legendre di $F=F_1$ rispetto a $q_j$. Partendo dalla condizione di Lie e applicando la regola di Leibniz per il differenziale $\dd(\sum p_j q_j)$, si ha
+\begin{equation*}
+    \dd{\left(\sum_{j=1}^n p_j q_j\right)} - \sum_{j=1}^n q_j \dd{p_j} - H\dd{t} = \sum_{j=1}^n P_j \dd{Q_j} - K \dd{t} + \dd{F}.
+\end{equation*}
+Raggruppando i termini si ha
+\begin{equation*}
+    - \sum_{j=1}^n q_j \dd{p_j} - \sum_{j=1}^n P_j \dd{Q_j} + (K - H)\dd{t} = \dd{\left(F - \sum_{j=1}^n p_j q_j\right)}.
+\end{equation*}
 La funzione generatrice $F_3$ è quindi data da
 \begin{equation*}
-    F_3(\vp, \vQ, t) = \left[ F(\vp, \vQ, t) - \sum_{j=1}^n p_j q_j \right]_{\vq = \vq(\vp, \vQ, t)}
+    F_3(\vp, \vQ, t) = \left[ F(\vq, \vQ, t) - \sum_{j=1}^n p_j q_j \right]_{\vq = \vq(\vp, \vQ, t)}.
 \end{equation*}
-e le relazioni di trasformazione sono
+Dalle corrispondenze tra i differenziali indipendenti $\dd{p_j}$, $\dd{Q_j}$, $\dd{t}$, si ottiene
 \begin{equation*}
     q_j = - \pdv{F_3}{p_j}, \qquad
     P_j = -\pdv{F_3}{Q_j}, \qquad
@@ -497,26 +493,19 @@ e le relazioni di trasformazione sono
 \end{equation*}
 
 \paragraph{Generatrice $F_4(\vp, \vP, t)$}
-La generatrice $F_4$ si ottiene applicando trasformate di Legendre sia rispetto a $q_j$ che rispetto a $Q_j$. Partendo dalla condizione di Lie e combinando $\dd(\sum p_j q_j)$ e $\dd(\sum P_j Q_j)$ si ha
-\begin{multline*}
-    \dd{\left(\sum_{j=1}^n p_j q_j\right)} - \sum_{j=1}^n q_j \dd{p_j} - H\dd{t} = \\
-    = \dd{\left(\sum_{j=1}^n P_j Q_j\right)} - \sum_{j=1}^n Q_j \dd{P_j} - K \dd{t} + \dd{F}.
-\end{multline*}
+La generatrice $F_4$ si ottiene applicando trasformate di Legendre sia rispetto a $q_j$ che rispetto a $Q_j$. Partendo dalla condizione di Lie e applicando la regola di Leibniz per i differenziali $\dd(\sum p_j q_j)$ e $\dd(\sum P_j Q_j)$, si ha
+\begin{equation*}
+    \dd{\left(\sum_{j=1}^n p_j q_j\right)} - \sum_{j=1}^n q_j \dd{p_j} - H\dd{t} = \dd{\left(\sum_{j=1}^n P_j Q_j\right)} - \sum_{j=1}^n Q_j \dd{P_j} - K \dd{t} + \dd{F}.
+\end{equation*}
 Raggruppando i termini si ha
-\begin{multline*}
-    - \sum_{j=1}^n q_j \dd{p_j} + \sum_{j=1}^n Q_j \dd{P_j} - H\dd{t} = \\
-    = - K \dd{t} + \dd{F} - \dd{\left(\sum_{j=1}^n p_j q_j\right)} + \dd{\left(\sum_{j=1}^n P_j Q_j\right)}
-\end{multline*}
-\vspace{-1em}
-\begin{multline*}
-    - \sum_{j=1}^n q_j \dd{p_j} + \sum_{j=1}^n Q_j \dd{P_j} - H\dd{t} = \\ 
-    = - K \dd{t} + \dd\left(F - \sum_{j=1}^n p_j q_j + \sum_{j=1}^n P_j Q_j\right).
-\end{multline*}
+\begin{equation*}
+    - \sum_{j=1}^n q_j \dd{p_j} + \sum_{j=1}^n Q_j \dd{P_j} + (K - H)\dd{t} = \dd\left(F - \sum_{j=1}^n p_j q_j + \sum_{j=1}^n P_j Q_j\right).
+\end{equation*}
 La funzione generatrice $F_4$ è quindi data da
 \begin{equation*}
-    F_4(\vp, \vP, t) = \left[ F(\vp, \vQ, t) - \sum_{j=1}^n p_j q_j + \sum_{j=1}^n P_j Q_j \right]_{\substack{\vQ = \vQ(\vp, \vP, t) \\ \vq = \vq(\vp, \vP, t)}}.
+    F_4(\vp, \vP, t) = \left[ F(\vq, \vQ, t) - \sum_{j=1}^n p_j q_j + \sum_{j=1}^n P_j Q_j \right]_{\substack{\vQ = \vQ(\vp, \vP, t) \\ \vq = \vq(\vp, \vP, t)}}.
 \end{equation*}
-e le relazioni di trasformazione sono
+Dalle corrispondenze tra i differenziali indipendenti $\dd{p_j}$, $\dd{P_j}$, $\dd{t}$, si ottiene
 \begin{equation*}
     q_j = -\pdv{F_4}{p_j}, \qquad
     Q_j = \pdv{F_4}{P_j}, \qquad
