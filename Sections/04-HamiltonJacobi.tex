@@ -162,7 +162,7 @@ Una volta nota $W$ attraverso l'equazione di Hamilton-Jacobi ridotta, le relazio
         \displaystyle \pdv{W}{\alpha_j} = \beta_j \qquad \text{per } j = 2, \dots, n,
     \end{cases}
 \end{equation*}
-per il quale, poiché $\det\qty(\pdv{W}{q_i}{\alpha_j}) \neq 0$\note{Esplicitiamo $q_i = q_i(\alpha_j, Q_j, t)$ e poi sostituiamo la \eqref{eq:Q_i_evol_fixed}}, è applicabile il teorema della funzione implicita ed è possibile ricavare $q_i = q_i(\alpha_1, \dots, \alpha_n; \beta_1, \dots, \beta_n; t)$.
+per il quale, poiché $\det\qty(\pdv{W}{q_i}{\alpha_j}) \neq 0$\note{Esplicitiamo $q_i = q_i(\alpha_j, Q_j, t)$ e poi sostituiamo la \eqref{eq:Q_i_evol_fixed}}, è applicabile il teorema del Dini ed è possibile ricavare $q_i = q_i(\alpha_1, \dots, \alpha_n; \beta_1, \dots, \beta_n; t)$.
 
 Si noterà certamente che $n-1$ di queste equazioni non contengono affatto il tempo. Una delle vecchie coordinate $q_i$ può essere scelta come variabile indipendente, e le rimanenti coordinate si possono quindi esprimere in funzione di essa semplicemente risolvendo il sottosistema delle $n-1$ equazioni non dipendenti dal tempo. In questo modo si ottiene direttamente l'\emph{equazione dell'orbita} del moto nello spazio delle configurazioni\note{ad esempio, per un problema a forze centrali, il metodo fornirebbe direttamente il raggio $r$ in funzione dell'angolo $\theta$}. L'equazione rimanente, quella per $i=1$, è l'unica a dipendere esplicitamente da $t$ e serve a completare la soluzione del problema fornendo la \emph{legge oraria} del moto lungo la traiettoria appena determinata.
 
@@ -350,9 +350,9 @@ Consideriamo un sistema ad un grado di libertà, descritto da un'hamiltoniana $H
     H\left( q, p \right) = \alpha_1. 
 \end{equation}
 Risolvendo rispetto al momento, otteniamo 
-\begin{equation*} \label{eq:orbita-1d}
+\begin{equation} \label{eq:orbita-1d}
     p = p(q, \alpha_1),
-\end{equation*}
+\end{equation}
 che è l'equazione dell'orbita del sistema nello spazio delle fasi. È possibile stabilire la perioditicità di un moto a seconda della forma tale orbita assume. Distinguiamo due casi di moti periodici:
 \begin{enumerate}
     \item Se l'orbita è chiusa, il moto si dice di \emph{librazione} (figura \ref{fig:librazione}). In questo caso sia $q$ che $p$ sono funzioni periodiche del tempo, e il sistema torna esattamente alla stessa configurazione dopo un certo intervallo di tempo $\tau$. Questo è il caso dell'oscillatore armonico unidimensionale.
