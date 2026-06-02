@@ -26,8 +26,7 @@ Se questi tre punti fossero completamente liberi, il sistema possiederebbe $9$ c
     \abs{\vP_2 - \vP_3}^2 &= d_{23}^2, \\
     \abs{\vP_3 - \vP_1}^2 &= d_{31}^2.
 \end{align*}
-
-Attraverso la Proposizione~\ref{prop:gradoLiberta}, si evince chiaramente che il numero totale di gradi di libertà $n$ per un corpo rigido libero nello spazio è pari a
+Attraverso la proposizione~\ref{prop:gradoLiberta}, si evince chiaramente che il numero totale di gradi di libertà $n$ per un corpo rigido libero nello spazio è pari a
 \[ n = 9 - 3 = 6. \]
 
 La scomposizione cinematica naturale del moto di un corpo rigido è in una traslazione di un polo qualsiasi del corpo, ad esempio il centro di massa $G$, e una rotazione attorno a tale polo. Il moto traslazionale è descritto dalle tre coordinate spaziali del polo rispetto ad un riferimento fisso, mentre il moto rotazionale è descritto dai tre angoli che sono definiti di seguito.
@@ -373,7 +372,7 @@ ottenendo
 \end{align}
 Quest'ultimo termine permette di definire un endomorfismo sullo spazio vettoriale tridimensionale
 \begin{equation*}
-    \tau(\vv) \defeq \int_C \rho\{ P^2\vv - (\vP\cdot\vv)\vP \}\dd{c} \quad \forall \vv \in E_3,\note{si noti che $\vv$ non è necessariamente unitario}
+    \vb*{\tau}(\vv) \defeq \int_C \rho\{ P^2\vv - (\vP\cdot\vv)\vP \}\dd{c} \quad \forall \vv \in E_3,\note{si noti che $\vv$ non è necessariamente unitario}
 \end{equation*}
 che si chiama \emph{endomorfismo di inerzia} del sistema materiale rispetto all'asse $a$.
 
@@ -499,9 +498,9 @@ Inoltre, poiché tutti gli autovalori sono strettamente positivi, la matrice di 
 
 Considerando il generico prodotto
 \begin{equation*}
-    (x,y,z)\,\tens{I}_O\,(x,y,z)^T = I_x x^2 + I_y y^2 + I_z z^2 - 2I_{xy} xy - 2I_{xz} xz - 2I_{yz} yz.
+    (x,y,z)\,\tens{I}_O\,(x,y,z)^T = I_x x^2 + I_y y^2 + I_z z^2 - 2I_{xy} xy - 2I_{xz} xz - 2I_{yz} yz,
 \end{equation*}
-L'equazione
+l'equazione
 \begin{equation}
     \label{eq:ellissoideInerzia}
     I_x x^2 + I_y y^2 + I_z z^2 - 2I_{xy} xy - 2I_{xz} xz - 2I_{yz} yz = 1
@@ -733,7 +732,7 @@ Poiché il vincolo è bilaterale e liscio, il postulato delle reazioni vincolari
 \begin{equation*}
     \vb{M}_O^{(v)} = \vb{0}.
 \end{equation*}
-Il momento delle forze vincolari rispetto al punto fisso è nullo. La seconda equazione cardinale si disaccoppia così dalla prima, fornendo un sistema di 3 equazioni differenziali nelle sole 3 incognite cinematiche:
+Il momento delle forze vincolari rispetto al punto fisso è nullo, per cui otteniamo:
 \begin{equation*}
     \begin{cases}
         m\vva_G = \vb{R}^{(a)} + \vb{R}^{(v)} \\
@@ -742,7 +741,7 @@ Il momento delle forze vincolari rispetto al punto fisso è nullo. La seconda eq
 \end{equation*}
 
 \subsection{Equazioni di Eulero}
-Concentriamoci sulla seconda equazione cardinale $\dot{\vb{K}}_O = \vb{M}_O^{(a)}$. Come visto nella trattazione cinematica, per un solido con un punto fisso il momento angolare è legato alla velocità angolare $\vb*{\omega} = \omega_1 \vu{e}_1 + \omega_2 \vu{e}_2 + \omega_3 \vu{e}_3$ tramite il tensore di inerzia rispetto al polo $O$. Essendo la base solidale coincidente con un riferimento principale di inerzia, il tensore si presenta in forma diagonale e si ha
+Concentriamoci sulla seconda equazione cardinale $\dot{\vb{K}}_O = \vb{M}_O^{(a)}$. Per un solido con un punto fisso il momento angolare è legato alla velocità angolare $\vb*{\omega} = \omega_1 \vu{e}_1 + \omega_2 \vu{e}_2 + \omega_3 \vu{e}_3$ tramite il tensore di inerzia rispetto al polo $O$. Essendo la base solidale coincidente con un riferimento principale di inerzia, il tensore si presenta in forma diagonale e si ha
 \begin{equation*}
     \vb{K}_O = \tens{I}_O \vb*{\omega} = \begin{pmatrix}
         I_{1} & 0 & 0 \\
@@ -812,9 +811,9 @@ Un regime dinamico di notevole interesse si realizza quando il momento risultant
     \end{equation*}
 \end{definition}
 
-Nella trattazione successiva, considereremo come polo $Q$ il punto fisso $O$ del solido, nel caso di moto polare, oppure il suo centro di massa $G$, nel caso di solido libero.
+Nella trattazione successiva, considereremo come polo $Q$ il punto fisso $O$ del solido, nel caso di solido con punto fisso, oppure il suo centro di massa $G$, nel caso di solido libero.
 
-Nel caso dei moti alla Poinsot, le equazioni di Eulero si omogeneizzano riducendosi a un sistema di equazioni differenziali del primo ordine nelle incognite cinematiche $\omega_1(t), \omega_2(t), \omega_3(t)$. In questo contesto, analizziamo se siano ammessi moti rotatori uniformi, detti nella letteratura rotazioni permanenti.
+Nel caso dei moti alla Poinsot, le equazioni di Eulero si omogeneizzano riducendosi a un sistema di equazioni differenziali del primo ordine nelle incognite cinematiche $\omega_1(t), \omega_2(t), \omega_3(t)$. In questo contesto, analizziamo se siano ammessi moti rotatori uniformi, detti nella letteratura \emph{rotazioni permanenti}.
 
 Un moto rotatorio uniforme richiede che la velocità angolare sia costante nel tempo sia in modulo che in direzione, implicando $\vb*{\omega} = \text{costante}$, ovvero $\dot{\vb*{\omega}} = \vb{0} = \vb*{\omega}'$ in virtù dell'invarianza dell'accelerazione angolare. Sostituendo questa condizione nelle equazioni di Eulero private dei momenti attivi, si ottiene la relazione vettoriale
 \begin{equation*}
@@ -829,7 +828,7 @@ Affinché il prodotto vettoriale sia nullo, il vettore velocità angolare $\vb*{
 Oltre alle rotazioni permanenti, i moti per inerzia possono dare origine a soluzioni precessionali regolari quando il solido presenta particolari simmetrie di massa.
 
 \begin{definition}[Moti precessionali]
-    Un moto polare di centro $O$ di un solido $\mathcal{S}$ dicesi \emph{precessione} se esistono due rette $r$ e $s$ passanti per $O$, con $r$ fissa nello spazio e $s$ solidale al corpo, tali che l'angolo $\theta$ tra le due rette si mantiene costante durante il moto.
+    Un moto polare di centro $O$\note{Un moto di un solido con punto fisso $O$} di un solido $\mathcal{S}$ dicesi \emph{precessione} se esistono due rette $r$ e $s$ passanti per $O$, con $r$ fissa nello spazio e $s$ solidale al corpo, tali che l'angolo $\theta$ tra le due rette si mantiene costante durante il moto.
 \end{definition}
 
 \begin{proposition} \label{prop:precessione}
@@ -857,9 +856,9 @@ Oltre alle rotazioni permanenti, i moti per inerzia possono dare origine a soluz
     \end{equation*}
     Sostituendo l'espressione dell'ipotesi per la velocità angolare, si sviluppa il prodotto misto
     \begin{equation*}
-        \qty[\qty(\lambda \vu{e}_3 + \mu \vu{i}_3) \cross \vu{e}_3] \cdot \vu{i}_3 = \mu \qty(\vu{i}_3 \cross \vu{e}_3) \cdot \vu{i}_3 = 0,
+        \qty[\qty(\lambda \vu{e}_3 + \mu \vu{i}_3) \cross \vu{e}_3] \cdot \vu{i}_3 = \mu \qty(\vu{i}_3 \cross \vu{e}_3) \cdot \vu{i}_3 = + \lambda\qty(\vu{i}_3 \cross \vu{e}_3) \cdot \vu{e}_3 = 0,
     \end{equation*}
-    dove l'ortogonalità intrinseca del prodotto vettoriale $\vu{i}_3 \cross \vu{e}_3$ rispetto a $\vu{i}_3$ annulla l'espressione, dimostrando la costanza nel tempo dell'angolo $\theta$.
+    dimostrando la costanza nel tempo dell'angolo $\theta$.
 \end{proof}
 
 \begin{figure}[t]
@@ -929,7 +928,7 @@ Contemporaneamente, valutiamo l'effetto della struttura giroscopica sulla terza 
 \begin{equation*}
     I_3 \dot{\omega}_3 - (I_1 - I_1) \omega_1 \omega_2 = 0 \implies I_3 \dot{\omega}_3 = 0.
 \end{equation*}
-Si ricava immediatamente che la componente della velocità angolare lungo l'asse giroscopico è una costante del moto, che battezziamo $\omega_3 = \omega_3^0$. Sostituendo questa costanza nell'equazione \eqref{eq:momentoAngolareGiroscopio} ed esplicitando il vettore velocità angolare si ottiene la scomposizione
+Si ricava immediatamente che la componente della velocità angolare lungo l'asse giroscopico è una costante del moto, che battezziamo $\omega_3 = \omega_3^0$. Sostituendo questa costante nell'equazione \eqref{eq:momentoAngolareGiroscopio} ed esplicitando il vettore velocità angolare si ottiene la scomposizione
 \begin{equation*}
     \vb*{\omega} = \frac{1}{I_1} \vb{K}_O^0 - \frac{I_3 - I_1}{I_1} \omega_3^0 \vu{e}_3.
 \end{equation*}

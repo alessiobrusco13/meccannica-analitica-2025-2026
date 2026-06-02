@@ -359,7 +359,7 @@ che è l'equazione dell'orbita del sistema nello spazio delle fasi. È possibile
     \item Se l'orbita è tale che $p$ è una qualche funzione periodica di $q$, allora il moto si dice di \emph{rotazione} (figura \ref{fig:rotazione}). Se indichiamo con $q_0$ il periodo della funzione $p(q)$, allora si ha che la configurazione del sistema si ripete ogni volta che $q$ aumenta di $q_0$. \par L'esempio più familiare è quello di un corpo rigido vincolato a ruotare attorno a un dato asse, prendendo come $q$ l'angolo di rotazione. In questo caso, un incremento di $q$ di $2\pi$ non produce alcun sostanziale mutamento nello stato fisico del sistema.
 \end{enumerate}
 
-\begin{figure}[t]
+\begin{figure}[h]
     \centering
     
     \begin{subfigure}[b]{0.48\textwidth}
@@ -589,7 +589,7 @@ da cui si evince che $\omega$ è la frequenza del moto periodico, in quanto rapp
     Calcoliamo quindi la variabile di azione $J$:
     \begin{align*}
         J = \frac{1}{2\pi} \oint_\gamma p \dd{q} &= \frac{1}{2\pi} \int_0^{2\pi} \sqrt{2m\alpha} \cos(\theta) \sqrt{\frac{2\alpha}{m\omega^2}} \cos(\theta) \dd{\theta} \\
-        & = \frac{\alpha}{\pi \omega} \oint_0^{2\pi} \cos^2(\theta) \dd{\theta} \\
+        & = \frac{\alpha}{\pi \omega} \int_0^{2\pi} \cos^2(\theta) \dd{\theta} \\
         & = \frac{\alpha}{\pi \omega} \cdot \pi = \frac{\alpha}{\omega}.
     \end{align*}
 \end{example}
